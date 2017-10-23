@@ -8,3 +8,12 @@
 
 # Docker
 /data
+
+# npm
+/node_modules
+
+# Wordpress
+/www/wp-content/themes
+
+# ENV
+.env

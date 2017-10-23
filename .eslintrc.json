@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "globals": {
+    "config": true,
+    "Stats": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "ecmaFeatures": {},
+    "sourceType": "module"
+  },
+  "extends": [
+    "vizzuality"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel"
+  ]
+}
