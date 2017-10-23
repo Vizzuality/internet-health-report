@@ -20,7 +20,7 @@ services:
       - "8000:80"
     restart: always
     volumes:
-      - ./www/wp-content:/var/www/wordpress/wp-content
+      - ./www/wp-content:/var/www/html/wp-content
     container_name: ihr
     environment:
       WORDPRESS_DB_HOST: db:3306
