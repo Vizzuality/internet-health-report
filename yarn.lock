@@ -3034,7 +3034,7 @@ glob2base@^0.0.12:
   dependencies:
     find-index "^0.1.1"
 
-glob@^4.3.1:
+glob@^4.0.6, glob@^4.3.1:
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-4.5.3.tgz#c6cb73d3226c1efef04de3c56d012f03377ee15f"
   dependencies:
@@ -3226,6 +3226,14 @@ gulp-postcss@^7.0.0:
 gulp-rename@^1.2.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
+
+gulp-sass-bulk-import@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-sass-bulk-import/-/gulp-sass-bulk-import-1.0.1.tgz#02f1d6d310e018e69efe2525811a4e7381396423"
+  dependencies:
+    glob "^4.0.6"
+    through2 "^0.6.3"
+    vinyl-fs "^0.3.9"
 
 gulp-sass@^3.1.0:
   version "3.1.0"
@@ -6792,7 +6800,7 @@ through2-filter@^2.0.0:
     through2 "~2.0.0"
     xtend "~4.0.0"
 
-through2@^0.6.0, through2@^0.6.1:
+through2@^0.6.0, through2@^0.6.1, through2@^0.6.3:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-0.6.5.tgz#41ab9c67b29d57209071410e1d7a7a968cd3ad48"
   dependencies:
@@ -7081,7 +7089,7 @@ vinyl-assign@^1.0.1:
     object-assign "^4.0.1"
     readable-stream "^2.0.0"
 
-vinyl-fs@^0.3.0:
+vinyl-fs@^0.3.0, vinyl-fs@^0.3.9:
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/vinyl-fs/-/vinyl-fs-0.3.14.tgz#9a6851ce1cac1c1cea5fe86c0931d620c2cfa9e6"
   dependencies:

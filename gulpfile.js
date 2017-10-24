@@ -22,6 +22,7 @@ const
   imagemin      = require('gulp-imagemin'),
   webpack       = require('webpack-stream'),
   sass          = require('gulp-sass'),
+  bulkSass      = require('gulp-sass-bulk-import'),
   postcss       = require('gulp-postcss'),
 
   // Global variables
@@ -93,6 +94,7 @@ const css = {
 // CSS processing
 gulp.task('css', ['images'], () => {
   return gulp.src(css.src)
+    .pipe(bulkSass())
     .pipe(sass(css.sassOpts))
     .pipe(postcss(css.processors))
     .pipe(gulp.dest(css.build))
