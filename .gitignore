@@ -7,13 +7,24 @@
 .vscode*
 
 # Docker
-/data
+/.data
 
 # npm
 /node_modules
 
 # Wordpress
-/www/wp-content/themes
+*.log
+/www/.htaccess
+/www/wp-config.php
+/www/wp-content/themes/
+/www/wp-content/cache/
+/www/wp-content/upgrade/
+/www/wp-content/uploads/
+/www/wp-content/wp-cache-config.php
+/www/wp-content/advanced-cache.php
+/www/wp-content/backup-db/
+/www/wp-content/backups/
+/www/wp-content/blogs.dir/
 
 # ENV
 .env
