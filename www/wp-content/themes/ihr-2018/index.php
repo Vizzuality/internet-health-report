@@ -56,4 +56,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
+echo do_shortcode('[effecto-bar id=\'home\']');
 get_footer();
