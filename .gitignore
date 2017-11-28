@@ -16,7 +16,6 @@
 *.log
 /www/.htaccess
 /www/wp-config.php
-/www/wp-content/themes/
 /www/wp-content/cache/
 /www/wp-content/upgrade/
 /www/wp-content/uploads/
