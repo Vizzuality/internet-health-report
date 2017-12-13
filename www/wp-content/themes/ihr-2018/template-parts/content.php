@@ -9,7 +9,7 @@
 
 ?>
 
-<article class="c-single-post" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article class="c-single-post" id="post-<?php the_ID(); ?>" <?php post_class(); ?> style="box-shadow: 5px 5px 0 0 <?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;">
 	<header class="single-post-header">
         <?php echo the_field('type')?> // <?php echo get_the_category()[0]->cat_name?>
 	</header><!-- .entry-header -->
