@@ -40,7 +40,7 @@ gulp.task('clean', () => {
 
 // PHP settings
 const php = {
-  src           : dir.src + 'template/**/*.php',
+  src           : dir.src + 'template/**/*',
   build         : dir.build
 };
 
