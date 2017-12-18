@@ -10,7 +10,7 @@ const
   // Source and build folders
   dir = {
     src         : 'src/',
-    build       : 'www/wp-content/themes/ihr-2018/'
+    build       : 'www/wp-content/themes/ihr-2018/template'
   },
 
   // Gulp and plugins
@@ -68,7 +68,7 @@ gulp.task('images', () => {
 
 // CSS settings
 const css = {
-  src         : dir.src + 'scss/theme.scss',
+  src         : dir.src + 'scss/style.scss',
   watch       : dir.src + 'scss/**/*',
   build       : dir.build,
   sassOpts: {
