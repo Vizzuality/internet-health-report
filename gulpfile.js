@@ -68,7 +68,7 @@ gulp.task('images', () => {
 
 // CSS settings
 const css = {
-  src         : dir.src + 'scss/style.scss',
+  src         : dir.src + 'scss/theme.scss',
   watch       : dir.src + 'scss/**/*',
   build       : dir.build,
   sassOpts: {
