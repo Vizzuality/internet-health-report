@@ -10,7 +10,7 @@ const
   // Source and build folders
   dir = {
     src         : 'src/',
-    build       : 'www/wp-content/themes/ihr-2018/template'
+    build       : 'www/wp-content/themes/ihr-2018/'
   },
 
   // Gulp and plugins
