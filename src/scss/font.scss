@@ -1,0 +1,19 @@
+/* Fonts includer */
+@mixin font-face($font-family, $font-file, $weight, $style: "normal") {
+  @font-face {
+    font-family: $font-family;
+    src: url('/wp-content/themes/ihr-2018/fonts/' + $font-file + '.eot');
+    src: url('/wp-content/themes/ihr-2018/fonts/' + $font-file + '.eot?#iefix') format("embedded-opentype"),
+         url('/wp-content/themes/ihr-2018/fonts/' + $font-file + '.woff') format("truetype"),
+         url('/wp-content/themes/ihr-2018/fonts/' + $font-file + '.woff2') format("woff"),
+         url('/wp-content/themes/ihr-2018/fonts/' + $font-file + '.ttf') format("woff2"),
+         url('/wp-content/themes/ihr-2018/fonts/' + $font-file + '.ttf') format(".svg#" + $font-file);
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@include font-face('ZillaSlab', "ZillaSlab-Bold", 700);
+@include font-face('ZillaSlab', "ZillaSlab-Semibold", 600);
+@include font-face('ZillaSlab', "ZillaSlab-Medium", 500);
+@include font-face('ZillaSlab', "ZillaSlab-Regular", 300);
