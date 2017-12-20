@@ -1,3 +1,35 @@
-.text {
-
+h1,
+.title.-main {
+  font-weight: 700;
+  font-size: $font-xxl;
+  line-height: 75px;
 }
+
+h2,
+.title.-section {
+  font-weight: 600;
+  font-size: $font-xxxxl;
+  line-height: 100px;
+}
+
+h3,
+.title.-detail {
+  font-weight: 600;
+  font-size: $font-xxxxl;
+  line-height: 100px;
+}
+
+p,
+.text {
+  font-weight: 300;
+  font-size: $font-s;
+  line-height: 35px;
+}
+
+.text.-large {
+  font-weight: 300;
+  font-size: $font-l;
+  line-height: 50px;
+}
+
+
