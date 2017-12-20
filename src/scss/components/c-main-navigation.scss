@@ -1,0 +1,22 @@
+.c-main-navigation {
+  display: flex;
+  justify-content: flex-end;
+
+  .menu-item {
+    margin-right: 20px;
+
+    a {
+      color: $black;
+    }
+  }
+
+  .sub-menu {
+    padding: 10px;
+    background-color: $white;
+    border: 3px solid $black;
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
