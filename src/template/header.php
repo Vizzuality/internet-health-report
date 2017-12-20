@@ -25,29 +25,30 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ihr-2018' ); ?></a>
 
 	<header id="masthead" class="site-header l-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
+    <div class="wrap">
+      <div class="row">
+        <div class="column small-12 medium-3">
+      		<div class="site-branding">
+      			<?php
+        			the_custom_logo();
 
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation c-main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'ihr-2018' ); ?></button>
-			<?php
-            /*
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-            */
-            wp_nav_menu();
-			?>
-		</nav><!-- #site-navigation -->
+        			$description = get_bloginfo( 'description', 'display' );
+        			if ( $description || is_customize_preview() ) : ?>
+        				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
+        			<?php
+      			endif; ?>
+      		</div><!-- .site-branding -->
+        </div>
+        <div class="column small-12 medium-9">
+      		<nav id="site-navigation" class="main-navigation c-main-navigation">
+      			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'ihr-2018' ); ?></button>
+      			<?php
+              wp_nav_menu();
+      			?>
+  		    </nav><!-- #site-navigation -->
+        </div>
+      </div>
+    </div>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

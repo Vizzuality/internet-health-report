@@ -13,18 +13,72 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'ihr-2018' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'ihr-2018' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'ihr-2018' ), 'ihr-2018', '<a href="http://www.vizzuality.com/">vizzuality</a>' );
-			?>
-		</div><!-- .site-info -->
+	<footer id="colophon" class="site-footer l-footer">
+    <div class="l-footer-top">
+      <div class="wrap">
+    		<div class="row">
+          <div class="column small-12 medium-6">
+            <div class="c-newsletter">
+              <p>Receive our newsletter</p>
+              <input type="text" placeholder="Write your email here">
+              <button class="btn -secondary">Subscribe</button>
+            </div>
+          </div>
+          <div class="column small-12 medium-6">
+            <?php do_action('wpml_add_language_selector'); ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="l-footer-bottom">
+      <div class="wrap">
+        <div class="row">
+          <div class="column small-12 medium-8">
+            <div class="c-footer-navigation">
+              <div class="row">
+                <div class="column small-12 medium-3">
+                  <a href="" class="text -link -light -principal">Introduction</a>
+                  <a href="" class="text -link -light -secondary">What is this?</a>
+                  <a href="" class="text -link -light -secondary">How is the health of the internet?</a>
+                  <a href="" class="text -link -light -secondary">Trending topics</a>
+                  <a href="" class="text -link -light -secondary">Download PDF</a>
+                  <a href="" class="text -link -light -secondary">Contributors</a>
+                </div>
+                <div class="column small-12 medium-3">
+                  <a href="" class="text -link -light -principal">Issues</a>
+                  <a href="" class="text -link -light -secondary">Openness</a>
+                  <a href="" class="text -link -light -secondary">Digital Inclusion</a>
+                  <a href="" class="text -link -light -secondary">Decentralization</a>
+                  <a href="" class="text -link -light -secondary">Provacy and security</a>
+                  <a href="" class="text -link -light -secondary">Web literacy</a>
+                </div>
+                <div class="column small-12 medium-3">
+                  <a href="" class="text -link -light -principal">Feedback</a>
+                  <a href="" class="text -link -light -secondary">What you can do</a>
+                  <a href="" class="text -link -light -secondary">Contact us</a>
+                  <a href="" class="text -link -light -secondary">Share general reflections</a>
+                  <a href="" class="text -link -light -secondary">Contribute</a>
+                </div>
+                <div class="column small-12 medium-3">
+                  <a href="" class="text -link -light -principal">Explore</a>
+                  <a href="" class="text -link -light -principal">Blog</a>
+                  <a href="" class="text -link -light -principal">sitemap</a>
+                  <a href="" class="text -link -light -principal">Previous report</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column small-12 medium-4">
+            <a href="text -link -light">Download PDF</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column small-12 centered">
+            <p>Powered by: </p>
+          </div>
+        </div>
+      </div>
+    </div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

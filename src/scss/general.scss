@@ -1,5 +1,6 @@
 body {
   font-family: $font-family-1;
+  -webkit-font-smoothing: antialiased;
 }
 
 a:-webkit-any-link {

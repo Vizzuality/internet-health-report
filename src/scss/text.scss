@@ -56,10 +56,16 @@ p,
   line-height: 60px;
 }
 
-.text.-link {
-  font-weight: 500;
-  font-size: $font-s;
-  line-height: 25px;
+.text.-link.-secondary {
+  font-weight: 300;
+  font-size: $font-xxs;
+  line-height: 20px;
+}
+
+.text.-link.-principal {
+  font-weight: 600;
+  font-size: $font-xs;
+  line-height: 20px;
 }
 
 .text.-box1 {
@@ -72,6 +78,18 @@ p,
   font-weight: 300;
   font-size: $font-ml;
   line-height: 36px;
+}
+
+h1, h2, h3, h4, h5, h6, p,
+.text,
+.title {
+  &.-light {
+    color: $white;
+  }
+
+  &.-dark {
+    color: $black;
+  }
 }
 
 
