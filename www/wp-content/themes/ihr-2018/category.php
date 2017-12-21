@@ -10,35 +10,25 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area categories">
-		<main id="main" class="site-main">
+		<main id="main" class="site-main l-main">
 
 		<?php
+
 		if ( have_posts() ) : ?>
       <div class="wrap">
         <div class="row">
           <div class="column small-12">
       			<header class="page-header">
-              <a href="#" class="text -btn2"><?php echo single_cat_title( '#', true); ?></a>
-              <h2><?php echo get_field('description', 'category_' . $category->term_id) ?></h2>
 
-      				<!-- <?php
-
-      					the_archive_title();
-      					the_archive_description( '<h2>', '</h2>' );
-
-      				?> -->
-
-              <?php the_meta() ?>
-              <?php echo get_post_custom() ?>
-              <?php echo get_post_custom_values() ?>
-
+              <a href="#" class="text -btn2" style="<?php echo get_field('color', 'category_' . $category_id) ?>"><?php echo single_cat_title( '#', true); ?></a>
+      				<h2><?php echo the_archive_description();?></h2>
       			</header><!-- .page-header -->
           </div>
         </div>
       </div>
 
 			<?php
-        echo "<div class='wrap'><div class='row'><div class='column small-12'>";
+        echo "<div class='l-cards-grid'><div class='wrap'><div class='row'>";
     			/* Start the Loop */
     			while ( have_posts() ) : the_post();
 
@@ -64,5 +54,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();

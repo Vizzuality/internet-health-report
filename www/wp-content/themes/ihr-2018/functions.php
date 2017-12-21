@@ -79,6 +79,13 @@ if ( ! function_exists( 'ihr_2018_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+    /**
+     * Prevent WP to automatically add p tag
+     * @link https://codex.wordpress.org/Function_Reference/wpautop#Disabling_the_filter
+     */
+    remove_filter( 'the_content', 'wpautop' );
+    remove_filter( 'the_excerpt', 'wpautop' );
 	}
 endif;
 add_action( 'after_setup_theme', 'ihr_2018_setup' );
