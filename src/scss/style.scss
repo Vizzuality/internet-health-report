@@ -850,7 +850,6 @@ object {
 }
 
 .row {
-  max-width: 67.5rem;
   margin-left: auto;
   margin-right: auto;
   display: -webkit-flex;
@@ -1534,10 +1533,9 @@ object {
 @import "text";
 @import "general";
 @import "layout";
-@import "old";
-
 
 @import "components/c-main-navigation";
 @import "components/c-single-post";
 @import "components/c-category-card";
+@import "components/c-footer-navigation";
 

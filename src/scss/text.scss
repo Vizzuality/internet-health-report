@@ -1,3 +1,97 @@
-.text {
-
+h1,
+.title.-main {
+  font-weight: 700;
+  font-size: $font-xxl;
+  line-height: 75px;
 }
+
+h2,
+h2 p,
+.title.-section {
+  font-weight: 600;
+  font-size: $font-xxxxl;
+  line-height: 100px;
+}
+
+h3,
+.title.-detail {
+  font-weight: 600;
+  font-size: $font-xxxxl;
+  line-height: 100px;
+}
+
+p,
+.text {
+  font-weight: 300;
+  font-size: $font-s;
+  line-height: 35px;
+}
+
+.text.-large {
+  font-weight: 300;
+  font-size: $font-l;
+  line-height: 50px;
+}
+
+.text.-btn1 {
+  font-weight: 600;
+  font-size: $font-ml;
+  line-height: 35px;
+}
+
+.text.-btn2 {
+  font-weight: 600;
+  font-size: $font-s;
+  line-height: 25px;
+}
+
+.text.-btn3 {
+  font-weight: 600;
+  font-size: $font-m;
+  line-height: 25px;
+}
+
+.text.-btn4 {
+  font-weight: 600;
+  font-size: $font-xl;
+  line-height: 60px;
+}
+
+.text.-link.-secondary {
+  font-weight: 300;
+  font-size: $font-xxs;
+  line-height: 20px;
+}
+
+.text.-link.-principal {
+  font-weight: 600;
+  font-size: $font-xs;
+  line-height: 20px;
+}
+
+.text.-box1 {
+  font-weight: 300;
+  font-size: $font-xl;
+  line-height: 60px;
+}
+
+.text.-box2 {
+  font-weight: 300;
+  font-size: $font-ml;
+  line-height: 36px;
+}
+
+h1, h2, h3, h4, h5, h6, p,
+.text,
+.title {
+  &.-light {
+    color: $white;
+  }
+
+  &.-dark {
+    color: $black;
+  }
+}
+
+
+

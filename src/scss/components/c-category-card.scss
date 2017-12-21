@@ -1,8 +1,9 @@
 .c-category-card {
+  width: 100%;
+  padding: 20px;
+  margin: 20px 0;
   text-decoration: none;
   color: $black;
-  padding: 20px;
-  margin: 10px 0;
 
   .category-description {
     font-size: 30px;

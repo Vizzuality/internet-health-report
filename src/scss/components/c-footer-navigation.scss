@@ -1,0 +1,17 @@
+.c-footer-navigation {
+  .-link {
+    display: block;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.-principal {
+      margin-bottom: 20px;
+    }
+
+    &.-secondary {
+      margin-bottom: 10px;
+    }
+  }
+}

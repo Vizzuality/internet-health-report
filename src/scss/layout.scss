@@ -1,6 +1,10 @@
 .l-main-layout {
-  max-width: 1240px;
   margin: 0 auto;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 1240px;
 }
 
 .l-header {
@@ -8,7 +12,37 @@
   padding: 30px 0;
 }
 
+.l-main {
+  padding: 60px 0 100px 0;
+}
 
 .l-categories {
   margin-top: 50px;
 }
+
+.l-cards-grid {
+  padding-top: 50px;
+}
+
+.l-card {
+  display: flex;
+}
+
+.l-category-card {
+  display: flex;
+}
+
+.l-footer {
+  background-color: $black;
+}
+
+.l-footer-top {
+  border-bottom: 2px solid $white;
+  padding: 40px 0;
+}
+
+.l-footer-bottom {
+  padding: 40px 0 80px;
+}
+
+
