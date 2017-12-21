@@ -14,13 +14,16 @@ get_header(); ?>
 
 		<?php
 
+
+
+
 		if ( have_posts() ) : ?>
       <div class="wrap">
         <div class="row">
           <div class="column small-12">
       			<header class="page-header">
 
-              <a href="#" class="text -btn2" style="<?php echo get_field('color', 'category_' . $category_id) ?>"><?php echo single_cat_title( '#', true); ?></a>
+              <a href="#" class="text -btn2" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '#', true); ?></a>
       				<h2><?php echo the_archive_description();?></h2>
       			</header><!-- .page-header -->
           </div>
