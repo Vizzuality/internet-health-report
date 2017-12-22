@@ -3,6 +3,7 @@ h1,
   font-weight: 700;
   font-size: $font-xxl;
   line-height: 75px;
+  margin-bottom: 15px;
 }
 
 h2,
@@ -11,17 +12,19 @@ h2 p,
   font-weight: 600;
   font-size: $font-xxxxl;
   line-height: 100px;
+  margin-bottom: 20px;
 }
 
 h3,
 .title.-detail {
   font-weight: 600;
-  font-size: $font-xxxxl;
+  font-size: $font-xxxl;
   line-height: 100px;
 }
 
 p,
-.text {
+.text,
+%text {
   font-weight: 300;
   font-size: $font-s;
   line-height: 35px;
@@ -39,7 +42,8 @@ p,
   line-height: 35px;
 }
 
-.text.-btn2 {
+.text.-btn2,
+%text-btn-2 {
   font-weight: 600;
   font-size: $font-s;
   line-height: 25px;
