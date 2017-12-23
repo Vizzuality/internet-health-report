@@ -1,6 +1,10 @@
 <?php
 /**
  * Template part for displaying page content in page.php
+ * - Introduction
+ * - Issues
+ * - Participate
+ * - Explore
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -10,9 +14,15 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
+  <div class="wrap">
+    <div class="row">
+      <div class="column small-12">
+      	<header class="entry-header">
+      		<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+      	</header><!-- .entry-header -->
+      </div>
+    </div>
+  </div>
 
 	<div class="entry-content">
 		<?php
@@ -48,3 +58,5 @@
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
+
+
