@@ -22,7 +22,7 @@ get_header(); ?>
           <div class="column small-12">
       			<header class="page-header">
 
-              <a href="#" class="text -btn2" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '#', true); ?></a>
+              <a href="#" class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '', true); ?></a>
       				<h2><?php echo the_archive_description();?></h2>
       			</header><!-- .page-header -->
           </div>
