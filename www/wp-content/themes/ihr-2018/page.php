@@ -18,16 +18,38 @@ get_header(); ?>
 		<main id="main" class="site-main">
 
 			<?php
-			while ( have_posts() ) : the_post();
+        // Defines active tab
+        $active_page = get_the_ID();
+        // Get parent page info
+        $parent = $post->post_parent;
+        // Include parent page template into current page
+        // include( locate_template( 'parent-tab.php' ) );
 
-				get_template_part( 'template-parts/content', 'page' );
+        if(!isset($parent)) {
+          $parent = $post->ID;
+        }
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
+        $content_post = get_post($parent);
+        $title = $content_post->post_title;
 
-			endwhile; // End of the loop.
+        if($title) {
+        ?>
+        <h1><?php echo $title; ?></h1>
+        <?php
+        }
+
+        $content = $content_post->post_content;
+        $content = apply_filters('the_content', $content);
+        echo $content;
+
+        $mypages = get_pages( array( 'child_of' => $parent, 'sort_column' => 'menu_order', 'sort_order' => 'desc' ) );
+
+        if(count($mypages) > 0) {
+           ///show tabs here
+           set_query_var( 'mypages', $mypages );
+           get_template_part( 'template-parts/tab' );
+        }
+
 			?>
 
 		</main><!-- #main -->
