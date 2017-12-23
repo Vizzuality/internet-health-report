@@ -9,7 +9,15 @@
  */
 ?>
 
-<div class="column small-12 medium-6 large-4 l-card">
+<?php
+    $importance = get_post_meta($post->ID, 'importance', true);
+
+    if ($importance == 1) : $columns = 'large-' . 12;
+    elseif ($importance == 2) : $columns = 'medium-' . 6 . ' large-' . 8;
+    else : $columns = 'medium-' . 6 . ' large-' . 4; endif;
+?>
+
+<div class="column small-12 <?php echo $columns ?> l-card">
   <a href="<?php echo get_permalink() ?>" class="c-single-post" id="post-<?php the_ID(); ?>">
     <span class="color-border" <?php post_class(); ?> style="background-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></span>
   	<header class="single-post-header">
