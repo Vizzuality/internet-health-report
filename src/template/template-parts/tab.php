@@ -1,36 +1,51 @@
-<ul class="nav nav-tabs">
-<?php
-    $counter = 0;
-
-    foreach( $mypages as $page ) {
-
-        //show first page as active if no child page is chosen
-        if(!isset($active_page) && $counter <1) {
-            $active_page = $page->ID;
-        }
-
-        //show the chosen child page as active
-        if($active_page == $page->ID) {
-            $page_content_to_show = $page;
-        ?>
-        <li role="presentation" class="active"><a href="<?php echo get_page_link( $page->ID ); ?>"><?php echo $page->post_title; ?></a></li>
+<div class="l-tabs">
+  <div class="wrap">
+    <div class="column small-12 medium-10 medium-offset-1">
+      <ul class="c-tabs">
         <?php
-        } else {
+          $counter = 0;
+          // Determine active tab
+          if ($isRoot) {
+            $current_id = $mypages[0]->ID;
+          } else {
+            $current_id = get_the_ID();
+          }
+
+          foreach( $mypages as $page ) {
+            //Draw tabs and show the chosen child page as active
+            if($current_id == $page->ID) {
+              $page_content_to_show = $page;
+              ?>
+                <li role="presentation" class="text -btn2 -active"><a href="<?php echo get_page_link( $page->ID ); ?>"><?php echo $page->post_title; ?></a></li>
+              <?php
+            } else {
+              ?>
+                <li role="presentation" class="text -btn2"><a href="<?php echo get_page_link( $page->ID ); ?>" ><?php echo $page->post_title; ?></a></li>
+              <?php
+            }
+
+            $counter++;
+          }
         ?>
-        <li role="presentation"><a href="<?php echo get_page_link( $page->ID ); ?>" ><?php echo $page->post_title; ?></a></li>
-        <?php
-        }
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="l-content">
+  <div class="wrap">
+    <div class="row">
+      <div class="column small-12 medium-8">
+        <p>
+          <?php
+            if(!empty($page_content_to_show)) {
+              $child_content = $page_content_to_show->post_content;
 
-        $counter++;
-    }
-
-    if(!empty($page_content_to_show)) {
-      $child_content = $page_content_to_show->post_content;
-      $child_content = apply_filters('the_content', $child_content);
-
-      echo $child_content;
-      $page_content_to_show = "";
-    }
-?>
-</ul>
-
+              echo $child_content;
+              $page_content_to_show = "";
+            }
+          ?>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

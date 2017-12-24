@@ -10,44 +10,65 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package ihr-2018
+ *
+ * EXAMPLE OF TAB: https://studiofreya.com/wordpress/how-to-show-child-pages-as-tabs/
  */
 
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+		<main id="main" class="site-main l-main">
 
 			<?php
         // Defines active tab
-        $active_page = get_the_ID();
-        // Get parent page info
+        $current = get_the_ID();
+
+        // Get parent page info.
         $parent = $post->post_parent;
-        // Include parent page template into current page
-        // include( locate_template( 'parent-tab.php' ) );
 
-        if(!isset($parent)) {
-          $parent = $post->ID;
-        }
+        // Determine wheter we are in the section's root
+        if ($parent == 0) {
+          $section_root = true;
+        } else {
+          $section_root = false;
+        };
 
-        $content_post = get_post($parent);
-        $title = $content_post->post_title;
+        // Get the current post info
+        $current_post = get_post($parent);
+        $parent_title = $current_post->post_title;
+        $content = $current_post->post_content;
 
-        if($title) {
+        // Draw section header
         ?>
-        <h1><?php echo $title; ?></h1>
+          <div class="wrap">
+            <div class="l-section-header">
+              <div class="row">
+                <div class="column small-12 medium-8">
+                  <h1><?php echo $parent_title; ?></h1>
+                  <p><?php echo $content; ?></p>
+                </div>
+              </div>
+            </div>
+          </div>
         <?php
+
+        // Determine active section to ask for children
+        if ($section_root) {
+          $active_page = $current;
+        } else {
+          $active_page = $parent;
         }
 
-        $content = $content_post->post_content;
-        $content = apply_filters('the_content', $content);
-        echo $content;
+        // Determine pages
+        $mypages = get_pages( array( 'child_of' => $active_page, 'sort_column' => 'menu_order', 'sort_order' => 'asc' ) );
 
-        $mypages = get_pages( array( 'child_of' => $parent, 'sort_column' => 'menu_order', 'sort_order' => 'desc' ) );
-
+        // Draw tabs
         if(count($mypages) > 0) {
-           ///show tabs here
-           set_query_var( 'mypages', $mypages );
-           get_template_part( 'template-parts/tab' );
+          // Declare global var with pages to be available in the template
+          set_query_var( 'mypages', $mypages );
+          set_query_var( 'isRoot', $section_root );
+          // Get tabs template
+          get_template_part( 'template-parts/tab' );
         }
 
 			?>
@@ -55,5 +76,8 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
+
 <?php
 get_footer();
+
+

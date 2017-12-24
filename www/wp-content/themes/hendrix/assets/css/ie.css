@@ -1,0 +1,9 @@
+/*This is for IE*/
+.sticky-post ul li{
+	width:28.5%;
+	margin-right:50px;
+}
+img {
+	height: inherit; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Adhere to container width. */
+}
