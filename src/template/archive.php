@@ -21,13 +21,6 @@ get_header(); ?>
               <a href="#" class="text -btn2"><?php echo single_cat_title( '#', true); ?></a>
               <h2><?php echo get_field('description', 'category_' . $category->term_id) ?></h2>
 
-      				<!-- <?php
-
-      					the_archive_title();
-      					the_archive_description( '<h2>', '</h2>' );
-
-      				?> -->
-
               <?php the_meta() ?>
               <?php echo get_post_custom() ?>
               <?php echo get_post_custom_values() ?>
