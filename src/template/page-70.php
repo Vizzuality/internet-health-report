@@ -25,6 +25,12 @@ get_header(); ?>
           </div>
         </div>
 
+        <div class="l-explore">
+          <div class="row">
+            <?php get_template_part('template-parts/filters'); ?>
+          </div>
+        </div>
+
       </div>
 
 		</main><!-- #main -->

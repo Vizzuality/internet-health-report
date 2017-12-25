@@ -52,7 +52,7 @@ get_header(); ?>
           echo "</div></div>";
     		endif;
           echo "<div class='wrap'><div class='row'>";
-          get_template_part( 'template-parts/categories');
+          get_template_part('template-parts/categories');
           echo "</div></div>";
     		?>
       </div>
