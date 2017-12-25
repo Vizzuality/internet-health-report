@@ -44,7 +44,7 @@ get_header(); ?>
             <div class="l-section-header">
               <div class="row">
                 <div class="column small-12 medium-8">
-                  <h1><?php echo $parent_title; ?></h1>
+                  <h2><?php echo $parent_title; ?></h2>
                   <p><?php echo $content; ?></p>
                 </div>
               </div>

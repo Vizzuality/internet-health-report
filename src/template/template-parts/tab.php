@@ -31,7 +31,7 @@
     </div>
   </div>
 </div>
-<div class="l-content">
+<div class="l-tab-content">
   <div class="wrap">
     <div class="row">
       <div class="column small-12 medium-8">
