@@ -33,10 +33,10 @@
 
       <?php
         $image = get_post_meta($post->ID, 'image', true);
-        //TODO
-        if ($image) {
-          echo "<div class='single-post-image'><img src=" . the_field('image') . "></div>";
-        }
+
+        if ($image) { ?>
+          <div class='single-post-image'><img src="<?php the_field('image')?>"></div>
+        <?php }
       ?>
 
   	</div><!-- .entry-content -->
