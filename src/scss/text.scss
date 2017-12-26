@@ -1,25 +1,42 @@
 h1,
 .title.-main {
   font-weight: 700;
-  font-size: $font-xxl;
-  line-height: 75px;
-  margin-bottom: 15px;
+  font-size: $font-mb-l;
+  line-height: 35px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-xxl;
+    line-height: 75px;
+    margin-bottom: 15px;
+  }
 }
 
 h2,
 h2 p,
 .title.-section {
   font-weight: 600;
-  font-size: $font-xxxxl;
-  line-height: 100px;
-  margin-bottom: 20px;
+  font-size: $font-mb-xl;
+  line-height: 35px;
+  margin-bottom: 15px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-xxxxl;
+    line-height: 128px;
+    margin-bottom: 20px;
+  }
 }
 
 h3,
 .title.-detail {
   font-weight: 600;
-  font-size: $font-xxxl;
-  line-height: 100px;
+  font-size: $font-mb-xl;
+  line-height: 40px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-xxxl;
+    line-height: 80px;
+  }
 }
 
 p,
@@ -28,18 +45,31 @@ p,
   font-weight: 300;
   font-size: $font-s;
   line-height: 35px;
+
+  @media screen and (min-width: $screen-l) {
+  }
 }
 
 .text.-large {
   font-weight: 300;
-  font-size: $font-l;
-  line-height: 50px;
+  font-size: $font-mb-l;
+  line-height: 30px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-l;
+    line-height: 50px;
+  }
 }
 
 .text.-btn1 {
   font-weight: 600;
-  font-size: $font-ml;
-  line-height: 35px;
+  font-size: $font-xs;
+  line-height: 22px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-s;
+    line-height: 35px;
+  }
 }
 
 .text.-btn2,
@@ -47,42 +77,78 @@ p,
   font-weight: 600;
   font-size: $font-s;
   line-height: 25px;
+
+  @media screen and (min-width: $screen-l) {
+  }
 }
 
 .text.-btn3 {
   font-weight: 600;
-  font-size: $font-m;
-  line-height: 25px;
+  font-size: $font-xs;
+  line-height: 22px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-m;
+    line-height: 35px;
+  }
 }
 
 .text.-btn4 {
   font-weight: 600;
-  font-size: $font-xl;
+  font-size: $font-mb-l;
   line-height: 60px;
+
+  @media screen and (min-width: $screen-l) {
+    font-weight: 600;
+    font-size: $font-xl;
+    line-height: 60px;
+  }
 }
 
+//Footer
 .text.-link.-secondary {
   font-weight: 300;
-  font-size: $font-xxs;
+  font-size: $font-xs;
   line-height: 20px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-s;
+    line-height: 25px;
+  }
 }
 
+//Footer
 .text.-link.-principal {
   font-weight: 600;
   font-size: $font-xs;
   line-height: 20px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-s;
+    line-height: 25px;
+  }
 }
 
 .text.-box1 {
   font-weight: 300;
-  font-size: $font-xl;
-  line-height: 60px;
+  font-size: $font-m;
+  line-height: 34px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-xl;
+    line-height: 60px;
+  }
 }
 
 .text.-box2 {
   font-weight: 300;
-  font-size: $font-ml;
-  line-height: 36px;
+  font-size: $font-m;
+  line-height: 34px;
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-ml;
+    line-height: 36px;
+  }
 }
 
 h1, h2, h3, h4, h5, h6, p,
