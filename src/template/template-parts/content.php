@@ -22,25 +22,34 @@
 <div class="column small-12 <?php echo $columns ?> l-card">
   <a href="<?php echo get_permalink() ?>" class="c-single-post <?php echo $type ?>" id="post-<?php the_ID(); ?>">
     <span class="color-border" <?php post_class(); ?> style="background-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></span>
+
+    <div class="visited" style="border-bottom-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></div>
+
   	<header class="single-post-header">
-      <?php echo the_field('type')?> // <?php echo get_the_category()[0]->cat_name?>
+      <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php echo the_field('type')?></p>
   	</header><!-- .entry-header -->
 
   	<div class="single-post-content">
-      <div class="single-post-title">
-        <p class="text -box1"><?php echo the_title(); ?></p>
+      <div class="single-post-body">
+        <div class="single-post-title">
+          <p class="text -box1"><?php echo the_title(); ?></p>
+        </div>
+        <span class="comments">
+          <svg></svg>
+          <span class="text">381</span>
+        </span>
+        <span class="reactions">
+          <svg></svg>
+          <span class="text">34 Reactions</span>
+        </span>
       </div>
 
       <?php
         $image = get_post_meta($post->ID, 'image', true);
-
         if ($image) { ?>
-          <div class='single-post-image'><img src="<?php the_field('image')?>"></div>
+          <div class='single-post-image' style='background-image:url(<?php the_field('image')?>)'></div>
         <?php }
       ?>
-
   	</div><!-- .entry-content -->
-
-  	<footer class="single-post-footer"></footer><!-- .entry-footer -->
   </a><!-- #post-<?php the_ID(); ?> -->
 </div>
