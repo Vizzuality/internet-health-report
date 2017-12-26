@@ -1,3 +1,5 @@
+
+
 <?php
   /**
    * Function to build filter selectors
@@ -14,14 +16,13 @@
   }
 ?>
 
+<form role="search" method="GET" id="searchform" action="<?php echo get_permalink(); ?>">
+  <fieldset>
 
-<!-- Get the categories and draw selectors -->
-<form  method="post" action="">
-  <?php  $taxonomies = get_object_taxonomies('post');
-    foreach($taxonomies as $tax){
-      echo buildSelect($tax);
-    }
-  ?>
-  <input type="submit"/>
+    <input type="text" name="search" value="" placeholder="search&hellip;" maxlength="50">
+    <button type="submit">Search</button>
+  </fieldset>
 </form>
+
+
 
