@@ -1530,12 +1530,15 @@ object {
 
 @import "font";
 @import "settings";
-@import "text";
 @import "general";
+@import "text";
 @import "layout";
 
 @import "components/c-main-navigation";
 @import "components/c-single-post";
 @import "components/c-category-card";
 @import "components/c-footer-navigation";
+@import "components/c-post";
+@import "components/c-tag";
+@import "components/c-tabs";
 

@@ -1,6 +1,8 @@
 <?php
 /**
- * The template for displaying archive pages
+ * The template for displaying category pages:
+ * - Issues pages
+ *
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -20,7 +22,7 @@ get_header(); ?>
           <div class="column small-12">
       			<header class="page-header">
 
-              <a href="#" class="text -btn2" style="<?php echo get_field('color', 'category_' . $category_id) ?>"><?php echo single_cat_title( '#', true); ?></a>
+              <a href="#" class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '', true); ?></a>
       				<h2><?php echo the_archive_description();?></h2>
       			</header><!-- .page-header -->
           </div>

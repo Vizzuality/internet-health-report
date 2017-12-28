@@ -1,6 +1,7 @@
 <?php
 /**
  * The main template file
+ * - Home page
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
@@ -36,6 +37,7 @@ get_header(); ?>
     				 * If you want to override this in a child theme, then include a file
     				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
     				 */
+
     				get_template_part( 'template-parts/content', get_post_format() );
 
     			endwhile;
@@ -50,7 +52,7 @@ get_header(); ?>
           echo "</div></div>";
     		endif;
           echo "<div class='wrap'><div class='row'>";
-          get_template_part( 'template-parts/categories');
+          get_template_part('template-parts/categories');
           echo "</div></div>";
     		?>
       </div>
