@@ -19,8 +19,8 @@
 
 	<?php wp_head(); ?>
 </head>
-
 <body <?php body_class( $category ); ?>>
+<?php get_template_part('template-parts/icons'); ?>
 
 <div id="page" class="site l-main-layout">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ihr-2018' ); ?></a>

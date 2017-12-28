@@ -17,39 +17,37 @@
   elseif ($importance == 2) : $columns = 'medium-' . 6 . ' large-' . 8;
   else : $columns = 'medium-' . 6 . ' large-' . 4; endif;
 
+  $image = get_post_meta($post->ID, 'image', true);
 ?>
 
 <div class="column small-12 <?php echo $columns ?> l-card">
   <a href="<?php echo get_permalink() ?>" class="c-single-post <?php echo $type ?>" id="post-<?php the_ID(); ?>">
     <span class="color-border" <?php post_class(); ?> style="background-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></span>
-
     <div class="visited" style="border-bottom-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></div>
 
-  	<header class="single-post-header">
-      <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php echo the_field('type')?></p>
-  	</header><!-- .entry-header -->
+    <div class="single-post-body <?php if($image){echo '-image';}; ?>">
+    	<header class="single-post-header">
+        <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php echo the_field('type')?></p>
+    	</header><!-- .entry-header -->
 
-  	<div class="single-post-content">
-      <div class="single-post-body">
-        <div class="single-post-title">
-          <p class="text -box1"><?php echo the_title(); ?></p>
-        </div>
+      <div class="single-post-title">
+        <p class="text <?php if($importance == 1 || $importance == 2){echo '-box1';} else { echo '-box2';} ?> "><?php echo the_title(); ?></p>
+      </div>
+      <div class="c-comments-band">
         <span class="comments">
-          <svg></svg>
+          <svg class="c-icon"><use xlink:href="#icon-comment_icon"></use></svg>
           <span class="text">381</span>
         </span>
         <span class="reactions">
-          <svg></svg>
-          <span class="text">34 Reactions</span>
+          <svg class="c-icon"><use xlink:href="#icon-comment_icon"></use></svg>
+          <span class="text">34</span>
         </span>
       </div>
-
-      <?php
-        $image = get_post_meta($post->ID, 'image', true);
-        if ($image) { ?>
-          <div class='single-post-image' style='background-image:url(<?php the_field('image')?>)'></div>
-        <?php }
-      ?>
-  	</div><!-- .entry-content -->
+    </div>
+    <?php
+      if ($image) { ?>
+        <div class='single-post-image' style='background-image:url(<?php the_field('image')?>)'></div>
+      <?php }
+    ?>
   </a><!-- #post-<?php the_ID(); ?> -->
 </div>
