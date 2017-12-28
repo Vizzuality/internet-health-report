@@ -25,6 +25,7 @@ services:
     volumes:
       - ./www/wp-content:/var/www/html/wp-content
       - ./src:/var/www/html/wp-content/themes/ihr-2018
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     container_name: ihr
     environment:
       WORDPRESS_DB_HOST: db:3306
