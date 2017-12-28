@@ -25,5 +25,8 @@
 /www/wp-content/backups/
 /www/wp-content/blogs.dir/
 
+# Theme
+/www/wp-content/themes/
+
 # ENV
 .env
