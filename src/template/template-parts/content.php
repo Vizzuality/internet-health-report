@@ -12,12 +12,11 @@
 <?php
   $importance = get_post_meta($post->ID, 'importance', true);
   $type = 'type-' . get_post_meta($post->ID, 'type', true);
+  $image = get_post_meta($post->ID, 'image', true);
 
   if ($importance == 1) : $columns = 'large-' . 12;
   elseif ($importance == 2) : $columns = 'medium-' . 6 . ' large-' . 8;
   else : $columns = 'medium-' . 6 . ' large-' . 4; endif;
-
-  $image = get_post_meta($post->ID, 'image', true);
 ?>
 
 <div class="column small-12 <?php echo $columns ?> l-card">
