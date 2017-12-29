@@ -7,6 +7,8 @@
   margin: 10px 0;
   transition: .2 ease-in;
   color: $black;
+  background-color: $white;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 5px 5px 0 0 $black;
