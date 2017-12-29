@@ -1,0 +1,12 @@
+.c-post-controls {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  transform: translate(50%, 0);
+  display: flex;
+  flex-direction: column;
+
+  button + button {
+    margin-top: 5px;
+  }
+}

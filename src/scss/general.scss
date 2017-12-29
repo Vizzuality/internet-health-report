@@ -71,3 +71,13 @@ a {
     }
   }
 }
+
+button {
+  appearance: none;
+  box-shadow: none;
+  background-color: transparent;
+  border: 0;
+  text-decoration: none;
+  outline: none;
+  padding: 0;
+}
