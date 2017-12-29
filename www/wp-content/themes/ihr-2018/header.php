@@ -19,8 +19,7 @@
 
 	<?php wp_head(); ?>
 </head>
-
-<body <?php body_class( 'category-' . get_the_category()[0]->term_id ); ?>>
+<body <?php body_class( $category ); ?>>
 <?php get_template_part('template-parts/icons'); ?>
 
 <div id="page" class="site l-main-layout">
