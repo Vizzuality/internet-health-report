@@ -12,6 +12,7 @@
 get_header(); ?>
 
   <?php
+    // To create posts list within the category
     $args = array( 'order'=> 'ASC', 'orderby' => 'order', 'category' => get_the_category()[0]->term_id );
     $postslist = get_posts( $args );
   ?>
@@ -29,28 +30,35 @@ get_header(); ?>
         </div>
       </div>
 
-      <div class='l-cards-grid'>
-        <div class='wrap'>
-          <div class='row'>
-            <?php
-              /* Start the Loop */
-              foreach ( $postslist as $post ) :
-                setup_postdata( $post );
-                /*
-                 * Include the Post-Format-specific template for the content.
-                 * If you want to override this in a child theme, then include a file
-                 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-                 */
-                get_template_part( 'template-parts/content', get_post_format() );
-
-              endforeach;
-              wp_reset_postdata();
-              the_posts_navigation();
-
-            ?>
+      <?php if ( have_posts() ) : ?>
+        <div class='l-cards-grid'>
+          <div class='wrap'>
+            <div class='row'>
+              <?php
+                /* Start the Loop */
+                foreach ( $postslist as $post ) :
+                  setup_postdata( $post );
+                  /*
+                   * Include the Post-Format-specific template for the content.
+                   * If you want to override this in a child theme, then include a file
+                   * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+                   */
+                  get_template_part( 'template-parts/content');
+                  wp_reset_postdata();
+                endforeach;
+              ?>
+          </div>
         </div>
       </div>
-    </div>
+    <?php else :?>
+      <div class='l-cards-grid'>
+          <div class='wrap'>
+            <div class='row'>
+              <p>No post available</p>
+            </div>
+        </div>
+      </div>
+    <?php endif; ?>
 
     </main><!-- #main -->
   </div><!-- #primary -->
