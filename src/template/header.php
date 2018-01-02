@@ -23,7 +23,7 @@
 <?php get_template_part('template-parts/icons'); ?>
 
 <div id="page" class="site l-main-layout">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ihr-2018' ); ?></a>
+	<a class="skip-link screen-reader-text" href="<?php get_permalink(); ?>"><?php esc_html_e( 'Skip to content', 'ihr-2018' ); ?></a>
 
 	<header id="masthead" class="site-header l-header">
     <div class="wrap">
