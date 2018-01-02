@@ -9,43 +9,41 @@
  */
 ?>
 
-<?php
-  //To create prev/next navigation
-  $itemsNav = get_posts( 'orderby=order&sort_order=asc&category=' . get_the_category()[0]->term_id );
-  $items = array();
-  foreach ( $itemsNav as $item ) {
-    $items[] += $item->ID;
+<!-- <?php
+  // To create prev/next navigation
+  $postlistnav = get_posts( 'orderby=order&sort_order=asc&category=' . get_the_category()[0]->term_id );
+  $posts = array();
+  foreach ( $postlistnav as $post ) {
+    $posts[] += $post->ID;
   }
 
-  $current = array_search( get_the_ID(), $items );
-  $nextID = $items[$current-1];
-  $prevID = $items[$current+1];
-?>
-
+  $current = array_search( get_the_ID(), $posts );
+  $prevID = $posts[$current-1];
+  $nextID = $posts[$current+1];
+?> -->
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
   <div class="wrap">
     <div class="l-block-detail">
-
       <div class="c-post-controls">
-        <a href="/category/<?php echo get_the_category()[0]->slug; ?>">
+        <a href="#">
           <svg class="c-icon -medium"><use xlink:href="#icon-close_normal"></use></svg>
         </a>
 
         <?php if ( !empty( $nextID ) ): ?>
         <a href="<?php echo get_permalink( $nextID ); ?>"
          title="<?php echo get_the_title( $nextID ); ?>">
-           <svg class="c-icon -medium"><use xlink:href="#icon-next_normal"></use></svg>
+           <svg class="c-icon -medium  -rotate"><use xlink:href="#icon-next_normal"></use></svg>
          </a>
         <?php endif;
         if ( !empty( $prevID ) ): ?>
         <a href="<?php echo get_permalink( $prevID ); ?>"
           title="<?php echo get_the_title( $prevID ); ?>">
-          <svg class="c-icon -medium -rotate"><use xlink:href="#icon-next_normal"></use></svg>
+          <svg class="c-icon -medium"><use xlink:href="#icon-next_normal"></use></svg>
         </a>
         <?php endif; ?>
-      </div>
 
+      </div>
       <div class="row">
         <div class="column small-10 small-offset-1">
           <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">

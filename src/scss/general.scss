@@ -6,6 +6,54 @@ h1, h2, h3, h4, h5, h6, p, * {
 body {
   font-family: $font-family-1;
   -webkit-font-smoothing: antialiased;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+  &.archive {
+    &.category-11 {
+      background-image: url('images/background/01_Backg_red@2x.png');
+    }
+
+    &.category-12 {
+      background-image: url('images/background/01_Backg_blue@2x.png');
+    }
+
+    &.category-13 {
+      background-image: url('images/background/01_Backg_yellow@2x.png');
+    }
+
+    &.category-14 {
+      background-image: url('images/background/01_Backg_lightblue@2x.png');
+    }
+
+    &.category-15 {
+      background-image: url('images/background/01_Backg_green@2x.png');
+    }
+  }
+
+  &.single {
+    &.category-11 {
+      background-image: url('images/background/02_Backg_red@2x.png');
+    }
+
+    &.category-12 {
+      background-image: url('images/background/02_Backg_blue@2x.png');
+    }
+
+    &.category-13 {
+      background-image: url('images/background/02_Backg_yellow@2x.png');
+    }
+
+    &.category-14 {
+      background-image: url('images/background/02_Backg_lightblue@2x.png');
+    }
+
+    &.category-15 {
+      background-image: url('images/background/02_Backg_green@2x.png');
+    }
+  }
 }
 
 ul, ol, li {
@@ -14,6 +62,22 @@ ul, ol, li {
   list-style: none;
 }
 
-a:-webkit-any-link {
+a {
+    &:-webkit-any-link {
+    text-decoration: none;
+
+    &:visited {
+      color:inherit;
+    }
+  }
+}
+
+button {
+  appearance: none;
+  box-shadow: none;
+  background-color: transparent;
+  border: 0;
   text-decoration: none;
+  outline: none;
+  padding: 0;
 }

@@ -2,11 +2,13 @@
   display: block;
   position: relative;
   width: 100%;
-  padding: 20px;
+  min-height: 320px;
   border: 3px solid $black;
   margin: 10px 0;
   transition: .2 ease-in;
   color: $black;
+  background-color: $white;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 5px 5px 0 0 $black;
@@ -18,7 +20,17 @@
     top: 0;
     bottom: 0;
     left: 0;
-    width: 5px;
+    width: 8px;
+  }
+
+  .single-post-body {
+    position: relative;
+    height: 100%;
+    padding: 20px;
+
+    &.-image {
+      width: 66%;
+    }
   }
 
   .single-post-image {
