@@ -12,45 +12,55 @@ body {
 
 
   &.archive {
-    &.category-11 {
+    &.category-9,
+    &.category-10 {
       background-image: url('images/background/01_Backg_red@2x.png');
     }
 
-    &.category-12 {
+    &.category-8,
+    &.category-13 {
       background-image: url('images/background/01_Backg_blue@2x.png');
     }
 
-    &.category-13 {
+    &.category-1,
+    &.category-5 {
       background-image: url('images/background/01_Backg_yellow@2x.png');
     }
 
-    &.category-14 {
+    &.category-10,
+    &.category-17 {
       background-image: url('images/background/01_Backg_lightblue@2x.png');
     }
 
-    &.category-15 {
+    &.category-11,
+    &.category-16 {
       background-image: url('images/background/01_Backg_green@2x.png');
     }
   }
 
   &.single {
-    &.category-11 {
+    &.category-9,
+    &.category-10 {
       background-image: url('images/background/02_Backg_red@2x.png');
     }
 
-    &.category-12 {
+    &.category-8,
+    &.category-13 {
       background-image: url('images/background/02_Backg_blue@2x.png');
     }
 
-    &.category-13 {
+    &.category-1,
+    &.category-5 {
       background-image: url('images/background/02_Backg_yellow@2x.png');
     }
 
-    &.category-14 {
+    &.category-10,
+    &.category-17 {
       background-image: url('images/background/02_Backg_lightblue@2x.png');
     }
 
-    &.category-15 {
+    &.category-11,
+    &.category-16 {
       background-image: url('images/background/02_Backg_green@2x.png');
     }
   }
