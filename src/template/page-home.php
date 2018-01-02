@@ -72,6 +72,10 @@ get_header(); ?>
           <div class="row">
             <div class="column small-12 medium-7">
               <div class="slide-content">
+                <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
+                  <?php echo get_the_category()[0]->cat_name ?>
+                </div>
+
                 <h1><?php echo $post->post_title; ?></h1>
                 <p> <?php echo $post->post_content; ?></p>
               </div>
