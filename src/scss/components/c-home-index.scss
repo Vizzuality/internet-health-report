@@ -1,0 +1,32 @@
+.c-home-index {
+  position: fixed;
+  top: 30%;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  li {
+    & + li {
+      margin-top: 15px;
+    }
+  }
+
+  a {
+    display: block;
+    height: 36px;
+    width: 10px;
+    transition: .1s ease-in;
+
+    &.item-1 { background-color: $decentralization;}
+    &.item-2 { background-color: $openess;}
+    &.item-3 { background-color: $web-literacy;}
+    &.item-4 { background-color: $digital-inclusion;}
+    &.item-5 { background-color: $light-blue;}
+    &.item-6 { background-color: $black;}
+
+    &:hover {
+      width: 30px;
+    }
+  }
+}
