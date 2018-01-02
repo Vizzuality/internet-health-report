@@ -16,8 +16,19 @@
 
 get_header(); ?>
 
+  <?php
+    // To create posts list within the category
+    $args = array(
+      'order'=> 'DES',
+      'orderby' => 'order',
+      'meta_key' => 'home_item',
+      'meta_value'  => true);
+    $postslist = get_posts($args);
+  ?>
+
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main l-home">
+      <div class="wrap">
 
       <ul class="c-home-index">
         <li><a class="item-1" href="#item-1"></a></li>
@@ -28,13 +39,19 @@ get_header(); ?>
         <li><a class="item-6" href="#item-6"></a></li>
       </ul>
 
-      <div class="wrap">
+      <?php
+        $counter = 0;
+        foreach ( $postslist as $post ) :
+          setup_postdata( $post );
+          if ( $counter == 0 ) :
+      ?>
+
         <div class="c-home-slide">
           <div class="row">
             <div class="column small-12 medium-7">
               <div class="slide-content">
-                <h1 class="title -main"><?php echo get_post()->post_title; ?></h1>
-                <p> <?php echo get_post()->post_content; ?></p>
+                <h1 class="title -main"><?php echo $post->post_title; ?></h1>
+                <p> <?php echo $post->post_content; ?></p>
                 <a class="text -link -dark" href="#">
                   <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
                   Download report
@@ -49,46 +66,32 @@ get_header(); ?>
           </div>
         </div>
 
-  			<?php
-          // Defines active tab
-          $current = get_the_ID();
+      <?php else : ?>
 
-          // Get parent page info.
-          $parent = $post->post_parent;
+        <div class="c-home-slide">
+          <div class="row">
+            <div class="column small-12 medium-7">
+              <div class="slide-content">
+                <h1><?php echo $post->post_title; ?></h1>
+                <p> <?php echo $post->post_content; ?></p>
+              </div>
+            </div>
+            <div class="column small-12 medium-5">
+              <div class="slide-visualization">
+                <p>visualization here</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          // Determine wheter we are in the section's root
-          if ($parent == 0) {
-            $section_root = true;
-          } else {
-            $section_root = false;
-          };
+      <?php
+            endif;
+          $counter++;
+          wp_reset_postdata();
+        endforeach;
+      ?>
 
-          // Get the current post info
-          $current_post = get_post($parent);
-          $parent_title = $current_post->post_title;
-          $content = $current_post->post_content;
-
-          // Determine active section to ask for children
-          if ($section_root) {
-            $active_page = $current;
-          } else {
-            $active_page = $parent;
-          }
-
-          // Determine pages
-          $mypages = get_pages( array( 'child_of' => $active_page, 'sort_column' => 'menu_order', 'sort_order' => 'asc' ) );
-
-          // Draw tabs
-          if(count($mypages) > 0) {
-            // Declare global var with pages to be available in the template
-            set_query_var( 'mypages', $mypages );
-            set_query_var( 'isRoot', $section_root );
-            // Get tabs template
-            get_template_part( 'template-parts/home-slides' );
-          }
-  			?>
       </div>
-
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

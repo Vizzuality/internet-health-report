@@ -4,7 +4,7 @@
         $exclude_category = '';
 
         if(is_category()) {
-            $exclude_category = get_the_category()[0]->cat_ID;
+          $exclude_category = get_the_category()[0]->cat_ID;
         }
 
         $args = array(
