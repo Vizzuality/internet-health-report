@@ -87,7 +87,12 @@ button {
   box-shadow: none;
   background-color: transparent;
   border: 0;
+  border-radius: 0;
   text-decoration: none;
   outline: none;
   padding: 0;
+}
+
+.-is-hidden {
+  display: none;
 }

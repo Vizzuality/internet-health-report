@@ -93,12 +93,12 @@ p,
 }
 
 .text.-btn3 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: $font-xs;
   line-height: 22px;
 
   @media screen and (min-width: $screen-l) {
-    font-size: $font-m;
+    font-size: $font-s;
     line-height: 35px;
   }
 }
