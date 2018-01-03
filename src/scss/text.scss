@@ -12,6 +12,16 @@ h1,
   }
 }
 
+.title.-main {
+  display: inline;
+  background-color: $black;
+  color: $white;
+
+  @media screen and (min-width: $screen-l) {
+    line-height: 90px;
+  }
+}
+
 h2,
 h2 p,
 .title.-section {

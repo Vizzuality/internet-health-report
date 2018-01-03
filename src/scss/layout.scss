@@ -55,6 +55,8 @@
 }
 
 .l-footer {
+  position: relative;
+  z-index: 100;
   background-color: $black;
 }
 

@@ -28,7 +28,7 @@
     <div class="l-block-detail">
 
       <div class="c-post-controls">
-        <a href="/category/<?php echo get_the_category()[0]->slug; ?>">
+        <a href="<?php get_permalink(); ?>/category/<?php echo get_the_category()[0]->slug; ?>">
           <svg class="c-icon -medium"><use xlink:href="#icon-close_normal"></use></svg>
         </a>
 
