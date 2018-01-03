@@ -48,7 +48,6 @@
       			?>
   		    </nav><!-- #site-navigation -->
         </div>
-		<?php echo do_shortcode('[searchandfilter fields="category,post_tag,search" headings=", , " all_items_labels="All Issues, All tags, ", hide_empty="0,0,0" search_placeholder="" submit_label=" "]'); ?>
       </div>
     </div>
 	</header><!-- #masthead -->
