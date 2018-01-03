@@ -11,7 +11,6 @@
  *
  * @package ihr-2018
  *
- * EXAMPLE OF TAB: https://studiofreya.com/wordpress/how-to-show-child-pages-as-tabs/
  */
 
 get_header(); ?>
