@@ -223,10 +223,6 @@ function tuts_mce_before_init( $settings ) {
 
 /* Learn TinyMCE style format options at http://www.tinymce.com/wiki.php/Configuration:formats */
 
-/*
- * Add custom stylesheet to the website front-end with hook 'wp_enqueue_scripts'
- */
-add_action('wp_enqueue_scripts', 'tuts_mcekit_editor_enqueue');
 
 
 
