@@ -16,7 +16,7 @@
   .sub-menu {
     padding: 10px;
     background-color: $white;
-    border: 3px solid $black;
+    border: $border-black;
 
     a:hover {
       text-decoration: underline;
