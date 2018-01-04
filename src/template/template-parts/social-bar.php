@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div class="l-social" id="#emotions-bar" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
+<div class="l-social -emotions" id="emotions-bar" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
   <div class="wrap">
     <div class="c-social -emotions">
       <div class="reactions">
