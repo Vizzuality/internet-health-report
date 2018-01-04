@@ -124,15 +124,11 @@ add_action( 'widgets_init', 'ihr_2018_widgets_init' );
  * Enqueue scripts and styles.
  */
 function ihr_2018_scripts() {
-<<<<<<< HEAD
-  wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
-=======
 	wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
 
   wp_enqueue_script( 'ihr-2018-script', get_template_directory_uri() . '/js/script.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'ihr-2018-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
->>>>>>> button styles
 
   wp_enqueue_script( 'ihr-2018-js-app', get_template_directory_uri() . '/js/app.js', array(), '20151215', true );
 
@@ -231,3 +227,69 @@ function my_pre_get_posts( $query ) {
 }
 
 
+/*
+ * Custom WYSIWYG styles
+ */
+/*
+Plugin Name: Custom Styles
+Plugin URI: http://www.speckygeek.com
+Description: Add custom styles in your posts and pages content using TinyMCE WYSIWYG editor. The plugin adds a Styles dropdown menu in the visual post editor.
+Based on TinyMCE Kit plug-in for WordPress
+http://plugins.svn.wordpress.org/tinymce-advanced/branches/tinymce-kit/tinymce-kit.php
+*/
+/**
+ * Apply styles to the visual editor
+ */
+
+/**
+ * Add "Styles" drop-down
+ */
+add_filter( 'mce_buttons_2', 'tuts_mce_editor_buttons' );
+
+function tuts_mce_editor_buttons( $buttons ) {
+    array_unshift( $buttons, 'styleselect' );
+    return $buttons;
+}
+
+/**
+ * Add styles/classes to the "Styles" drop-down
+ */
+add_filter( 'tiny_mce_before_init', 'tuts_mce_before_init' );
+
+function tuts_mce_before_init( $settings ) {
+
+    $style_formats = array(
+        array(
+            'title' => 'Black button',
+            'selector' => 'a',
+            'block' => 'div',
+            'classes' => 'btn -secondary'
+            ),
+        array(
+            'title' => 'White button',
+            'selector' => 'a',
+            'block' => 'div',
+            'classes' => 'btn -primary',
+        )
+    );
+
+    $settings['style_formats'] = json_encode( $style_formats );
+
+    return $settings;
+
+}
+
+/* Learn TinyMCE style format options at http://www.tinymce.com/wiki.php/Configuration:formats */
+
+/*
+ * Add custom stylesheet to the website front-end with hook 'wp_enqueue_scripts'
+ */
+add_action('wp_enqueue_scripts', 'tuts_mcekit_editor_enqueue');
+
+/*
+ * Enqueue stylesheet, if it exists.
+ */
+// function tuts_mcekit_editor_enqueue() {
+//   $StyleUrl = plugin_dir_url().'editor-styles.css'; // Customstyle.css is relative to the current file
+//   wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
+// }

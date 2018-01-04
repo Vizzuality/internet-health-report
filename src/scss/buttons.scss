@@ -1,6 +1,7 @@
 .btn {
   @extend %text-btn-1;
   padding: 15px 40px;
+  display: inline-block;
 
   &:hover {
     border: $border-black;
@@ -9,7 +10,6 @@
 
   &.-primary {
     color: $black;
-    background-color: $white;
     border: $border-black;
   }
 
