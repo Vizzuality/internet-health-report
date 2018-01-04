@@ -1,0 +1,21 @@
+.btn {
+  @extend %text-btn-1;
+  padding: 15px 40px;
+
+  &:hover {
+    border: $border-black;
+    box-shadow: $box-shadow;
+  }
+
+  &.-primary {
+    color: $black;
+    background-color: $white;
+    border: $border-black;
+  }
+
+  &.-secondary {
+    color: $white;
+    background-color: $black;
+    border: 3px solid $white;
+  }
+}
