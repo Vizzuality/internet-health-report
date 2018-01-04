@@ -270,6 +270,11 @@ function tuts_mce_before_init( $settings ) {
           'title' => 'White button',
           'selector' => 'a',
           'classes' => 'btn -primary',
+      ),
+      array(
+          'title' => 'Raw button',
+          'selector' => 'a',
+          'classes' => 'btn -raw',
       )
   );
 

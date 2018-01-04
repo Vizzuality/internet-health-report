@@ -1,11 +1,14 @@
 .btn {
   @extend %text-btn-1;
-  padding: 15px 40px;
   display: inline-block;
+  padding: 15px 40px;
 
-  &:hover {
-    border: $border-black;
-    box-shadow: $box-shadow;
+  &.-raw {
+    color: $black;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &.-primary {
@@ -17,5 +20,21 @@
     color: $white;
     background-color: $black;
     border: 3px solid $white;
+  }
+
+  &.-primary,
+  &.-secondary {
+    &:hover {
+      border: $border-black;
+      box-shadow: $box-shadow;
+    }
+  }
+}
+
+.post-content {
+  //This is to force buttons inside post to show separeately.
+  .btn {
+    display: table;
+    margin-top: 70px;
   }
 }
