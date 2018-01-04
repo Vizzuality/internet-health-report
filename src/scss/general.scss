@@ -9,6 +9,7 @@ body {
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+  color: $black;
 
 
   &.archive {
@@ -75,10 +76,6 @@ ul, ol, li {
 a {
     &:-webkit-any-link {
     text-decoration: none;
-
-    &:visited {
-      color:inherit;
-    }
   }
 }
 
