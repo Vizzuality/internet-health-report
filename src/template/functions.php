@@ -236,6 +236,8 @@ Plugin URI: http://www.speckygeek.com
 Description: Add custom styles in your posts and pages content using TinyMCE WYSIWYG editor. The plugin adds a Styles dropdown menu in the visual post editor.
 Based on TinyMCE Kit plug-in for WordPress
 http://plugins.svn.wordpress.org/tinymce-advanced/branches/tinymce-kit/tinymce-kit.php
+
+Found at: https://code.tutsplus.com/tutorials/adding-custom-styles-in-wordpress-tinymce-editor--wp-24980
 */
 /**
  * Apply styles to the visual editor
@@ -258,25 +260,22 @@ add_filter( 'tiny_mce_before_init', 'tuts_mce_before_init' );
 
 function tuts_mce_before_init( $settings ) {
 
-    $style_formats = array(
-        array(
-            'title' => 'Black button',
-            'selector' => 'a',
-            'block' => 'div',
-            'classes' => 'btn -secondary'
-            ),
-        array(
-            'title' => 'White button',
-            'selector' => 'a',
-            'block' => 'div',
-            'classes' => 'btn -primary',
-        )
-    );
+  $style_formats = array(
+      array(
+          'title' => 'Black button',
+          'selector' => 'a',
+          'classes' => 'btn -secondary'
+          ),
+      array(
+          'title' => 'White button',
+          'selector' => 'a',
+          'classes' => 'btn -primary',
+      )
+  );
 
-    $settings['style_formats'] = json_encode( $style_formats );
+  $settings['style_formats'] = json_encode( $style_formats );
 
-    return $settings;
-
+  return $settings;
 }
 
 /* Learn TinyMCE style format options at http://www.tinymce.com/wiki.php/Configuration:formats */
@@ -286,10 +285,5 @@ function tuts_mce_before_init( $settings ) {
  */
 add_action('wp_enqueue_scripts', 'tuts_mcekit_editor_enqueue');
 
-/*
- * Enqueue stylesheet, if it exists.
- */
-// function tuts_mcekit_editor_enqueue() {
-//   $StyleUrl = plugin_dir_url().'editor-styles.css'; // Customstyle.css is relative to the current file
-//   wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
-// }
+
+
