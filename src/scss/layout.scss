@@ -61,11 +61,12 @@
     justify-content: space-between;
     width: 100%;
   }
+
+  &.-emotions {
+    transform: translatex(-100%);
+  }
 }
 
-#emotions-bar {
-  display: none;
-}
 
 .l-section-header {
   padding-bottom: 65px;
