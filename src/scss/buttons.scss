@@ -2,6 +2,7 @@
   @extend %text-btn-1;
   display: inline-block;
   padding: 15px 40px;
+  margin-top: 70px;
 
   &.-raw {
     color: $black;
@@ -28,13 +29,5 @@
       border: $border-black;
       box-shadow: $box-shadow;
     }
-  }
-}
-
-.post-content {
-  //This is to force buttons inside post to show separeately.
-  .btn {
-    display: table;
-    margin-top: 70px;
   }
 }
