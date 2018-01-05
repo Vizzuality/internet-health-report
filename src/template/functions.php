@@ -213,7 +213,13 @@ function tuts_mce_before_init( $settings ) {
           'title' => 'Raw button',
           'selector' => 'a',
           'classes' => 'btn -raw',
-      )
+      ),
+      array(
+          'title' => 'Button box',
+          'block' => 'div',
+          'classes' => '',
+          'wrapper' => true
+      ),
   );
 
   $settings['style_formats'] = json_encode( $style_formats );
