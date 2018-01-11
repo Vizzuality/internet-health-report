@@ -7,44 +7,53 @@
  * @package ihr-2018
  */
 
-get_header(); ?>
+get_header(); 
+get_template_part('template-parts/search-bar');
+?>
 
-	<section id="primary" class="content-area">
+<div id="primary" class="content-area l-main">
 		<main id="main" class="site-main">
+    		<?php
+    		if ( have_posts() ) :
 
-		<?php
-		if ( have_posts() ) : ?>
+          echo "<div class='wrap'><div class='row'>";
+    			if ( is_home() && ! is_front_page() ) : ?>
+    				<header>
+    					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+    				</header>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'ihr-2018' ), '<span>' . get_search_query() . '</span>' );
-				?></h1>
-			</header><!-- .page-header -->
+    			<?php
+    			endif;
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+    			/* Start the Loop */
+    			while ( have_posts() ) : the_post();
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+    				/*
+    				 * Include the Post-Format-specific template for the content.
+    				 * If you want to override this in a child theme, then include a file
+    				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+    				 */
 
-			endwhile;
+    				get_template_part( 'template-parts/content', get_post_format() );
 
-			the_posts_navigation();
+    			endwhile;
 
-		else :
+    			the_posts_navigation();
 
-			get_template_part( 'template-parts/content', 'none' );
+          echo "</div></div>";
 
-		endif; ?>
-
+    		else :
+          echo "<div class='wrap'><div class='row'>";
+    			get_template_part( 'template-parts/content', 'none' );
+          echo "</div></div>";
+    		endif;
+    		?>
+      </div>
 		</main><!-- #main -->
-	</section><!-- #primary -->
+	</div><!-- #primary -->
+
+
+
 
 <?php
 get_sidebar();

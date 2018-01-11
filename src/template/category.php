@@ -10,7 +10,6 @@
  */
 
 get_header(); ?>
-
   <?php
     // To create posts list within the category
     $args = array( 'order'=> 'ASC', 'orderby' => 'order', 'category' => get_the_category()[0]->term_id );

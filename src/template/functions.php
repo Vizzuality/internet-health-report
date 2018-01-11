@@ -133,6 +133,8 @@ function ihr_2018_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_enqueue_script( 'ihr-2018-search', get_template_directory_uri() . '/js/search.js', array(), '20180111', true );
 }
 add_action( 'wp_enqueue_scripts', 'ihr_2018_scripts' );
 
@@ -173,6 +175,7 @@ add_filter( 'query_vars', 'register_query_vars' );
 
 // array of filters (field key => field name)
 $GLOBALS['my_query_filters'] = array( 
+	//'field_1'	=> 'issue', 
 	'field_2'	=> 'type'
 );
 
