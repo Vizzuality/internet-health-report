@@ -22,7 +22,7 @@
 		// create filter
 		?>
 		<div class="filter" data-filter="<?php echo $name; ?>">
-			<select class="filter">
+			<select class="filter-select">
 			<?php 
 				//create_field( $field ); 
 				foreach($field['choices'] as $choice) {
@@ -43,7 +43,7 @@
 	?>
 
 		<div class="filter" data-filter="issue">
-				<select class="filter">
+				<select class="filter-select">
 				<?php 
 					foreach(get_categories() as $category)
 					if (strcasecmp($category->name, $selected_category) === 0) {

@@ -19,13 +19,8 @@
                 vals = [];
             
             
-            // find checked inputs
-            $(this).find('input:selected').each(function(){
-    
-                vals.push( $(this).val() );
-    
-            });
-            
+            // Add selected
+            vals.push($(this).find('select').val());            
             
             // append to args
             args[ filter ] = vals.join(',');
