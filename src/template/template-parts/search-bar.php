@@ -1,6 +1,26 @@
 <?php // Search filters ?>
 	<div id="archive-filters">
 
+		<div class="filter" data-filter="issue">
+				<select class="filter-select">
+				<?php
+					$selected_category = $_GET['issue'];
+					if ($selected_category === "" || $selected_category === NULL) {
+						echo "<option value=\"\" selected>All Issues</option>";
+					} else {
+						echo "<option value=\"\">All Issues</option>";
+					}
+
+					foreach(get_categories() as $category)
+					if (strcasecmp($category->name, $selected_category) === 0) {
+						echo "<option value=\"$category->name\" selected>$category->name</option>";
+					} else {
+						echo "<option value=\"$category->name\">$category->name</option>";
+					}
+				?>
+				</select>
+		</div>
+
 	<?php foreach( $GLOBALS['my_query_filters'] as $key => $name ): 
 
 		// Get the ID of a post. This is a hack to use the get_field_object,
@@ -24,12 +44,15 @@
 		<div class="filter" data-filter="<?php echo $name; ?>">
 			<select class="filter-select">
 			<?php 
-				//create_field( $field ); 
+				if ($current_value === "" || $current_value === NULL) {
+					echo "<option value=\"\" selected>All {$name}s</option>";
+				} else {
+					echo "<option value=\"\">All {$name}s</option>";
+				}
 				foreach($field['choices'] as $choice) {
 					if (strcasecmp($current_value , $choice) === 0) {
 						echo "<option value=$choice selected>$choice</option>";
-					}
-					else {
+					} else {
 						echo "<option value=\"$choice\">$choice</option>";
 					}
 				}
@@ -39,22 +62,7 @@
 		
 	<?php 
 		endforeach; 
-		$selected_category = $_GET['issue'];
 	?>
-
-		<div class="filter" data-filter="issue">
-				<select class="filter-select">
-				<?php 
-					foreach(get_categories() as $category)
-					if (strcasecmp($category->name, $selected_category) === 0) {
-						echo "<option value=\"$category->name\" selected>$category->name</option>";
-					} 
-					else {
-						echo "<option value=\"$category->name\">$category->name</option>";
-					}
-				?>
-				</select>
-		</div>
 		<div class="search-bar">
 			<input type="text" class="search-text" value=<?php echo $_GET["s"] ?>>
 			<input id="search-button" type="button" class="search-button"> 
