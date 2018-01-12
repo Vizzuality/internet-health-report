@@ -8,7 +8,7 @@
     
     $('#search-button').on('click', function() {
         // vars
-        var url = window.location.protocol + "//" + window.location.host + "/";
+        var url = window.location.href.replace(/search-result(.*)/, '');
             args = {};
 
         // loop over filters
