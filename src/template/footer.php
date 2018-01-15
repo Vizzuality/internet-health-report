@@ -37,33 +37,33 @@
             <div class="c-footer-navigation">
               <div class="row">
                 <div class="column small-12 medium-3">
-                  <a href="" class="text -link -light -principal">Introduction</a>
-                  <a href="" class="text -link -light -secondary">What is this?</a>
-                  <a href="" class="text -link -light -secondary">How is the health of the internet?</a>
-                  <a href="" class="text -link -light -secondary">Trending topics</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -link -light -principal">Introduction</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/what-is-this' ) ) ?>" class="text -link -light -secondary">What is this?</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-is-the-health-of-the-internet' ) ) ?>" class="text -link -light -secondary">How is the health of the internet?</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/trending-topics' ) ) ?>" class="text -link -light -secondary">Trending topics</a>
                   <a href="" class="text -link -light -secondary">Download PDF</a>
                   <a href="" class="text -link -light -secondary">Contributors</a>
                 </div>
                 <div class="column small-12 medium-3">
-                  <a href="" class="text -link -light -principal">Issues</a>
-                  <a href="" class="text -link -light -secondary">Openness</a>
-                  <a href="" class="text -link -light -secondary">Digital Inclusion</a>
-                  <a href="" class="text -link -light -secondary">Decentralization</a>
-                  <a href="" class="text -link -light -secondary">Provacy and security</a>
-                  <a href="" class="text -link -light -secondary">Web literacy</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'issues' ) ) ?>" class="text -link -light -principal">Issues</a>
+                  <a href="<?php echo get_category_link( get_cat_ID( 'openness' ) ) ?>" class="text -link -light -secondary">Openness</a>
+                  <a href="<?php echo get_category_link( get_cat_ID( 'digital inclusion' ) ) ?>" class="text -link -light -secondary">Digital Inclusion</a>
+                  <a href="<?php echo get_category_link( get_cat_ID( 'decentralization' ) ) ?>" class="text -link -light -secondary">Decentralization</a>
+                  <a href="<?php echo get_category_link( get_cat_ID( 'privacy and security' ) ) ?>" class="text -link -light -secondary">Privacy and security</a>
+                  <a href="<?php echo get_category_link( get_cat_ID( 'web literacy' ) ) ?>" class="text -link -light -secondary">Web literacy</a>
                 </div>
                 <div class="column small-12 medium-3">
-                  <a href="" class="text -link -light -principal">Feedback</a>
-                  <a href="" class="text -link -light -secondary">What you can do</a>
-                  <a href="" class="text -link -light -secondary">Contact us</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -link -light -principal">Participate</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'participate/what-you-can-do' ) ) ?>" class="text -link -light -secondary">What you can do</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary">Contact us</a>
                   <a href="" class="text -link -light -secondary">Share general reflections</a>
                   <a href="" class="text -link -light -secondary">Contribute</a>
                 </div>
                 <div class="column small-12 medium-3">
-                  <a href="" class="text -link -light -principal">Explore</a>
-                  <a href="" class="text -link -light -principal">Blog</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -link -light -principal">Explore</a>
+                  <a href="http://blog" class="text -link -light -principal">Blog</a>
                   <a href="" class="text -link -light -principal">sitemap</a>
-                  <a href="" class="text -link -light -principal">Previous report</a>
+                  <a href="https://internethealthreport.org/2017/" class="text -link -light -principal">Previous report</a>
                 </div>
               </div>
             </div>

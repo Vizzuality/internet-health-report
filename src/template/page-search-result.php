@@ -1,14 +1,6 @@
 <?php
-/**
- * The template for displaying all pages
- *
- * This is the template that displays the search result page
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package ihr-2018
- *
- * EXAMPLE OF TAB: https://studiofreya.com/wordpress/how-to-show-child-pages-as-tabs/
+/*
+ Template Name: Search Page
  */
 
 get_header(); 
