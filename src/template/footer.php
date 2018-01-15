@@ -56,8 +56,8 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -link -light -principal">Participate</a>
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate/what-you-can-do' ) ) ?>" class="text -link -light -secondary">What you can do</a>
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary">Contact us</a>
-                  <a href="" class="text -link -light -secondary">Share general reflections</a>
-                  <a href="" class="text -link -light -secondary">Contribute</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary">Share general reflections</a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary">Contribute</a>
                 </div>
                 <div class="column small-12 medium-3">
                   <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -link -light -principal">Explore</a>
