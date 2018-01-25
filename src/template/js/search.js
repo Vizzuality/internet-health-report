@@ -10,6 +10,8 @@
         // vars
         var url = window.location.href.replace(/search-result(.*)/, '');
             args = {};
+        
+        url = url.replace(/\?(.*)/, '');
 
         // loop over filters
         $('#archive-filters .filter').each(function(){
