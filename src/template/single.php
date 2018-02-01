@@ -32,5 +32,6 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
+	<?php echo do_shortcode('[jetpack-related-posts]'); ?>
 <?php
 get_footer();
