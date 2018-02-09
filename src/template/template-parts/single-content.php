@@ -67,9 +67,24 @@
     </div>
 
     <?php
+      // dw_reactions();
+      //echo do_shortcode('[reaction_buttons]');
+      echo do_shortcode('[zvr_reactions]');
+      //echo do_shortcode('[effecto-bar]');
+    ?>
+
+<div id="coral_talk_stream"></div>
+<script src="http://127.0.0.1:3002/static/embed.js" async onload="
+  Coral.Talk.render(document.getElementById('coral_talk_stream'), {
+    talk: 'http://127.0.0.1:3002/'
+  });
+"></script>
+
+    <?php /*
       if ( comments_open() || get_comments_number() ) :
         comments_template();
       endif;
+      */
     ?>
 
 </article><!-- #post-<?php the_ID(); ?> -->
