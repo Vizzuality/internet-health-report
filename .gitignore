@@ -8,6 +8,7 @@
 
 # Docker
 /.data
+/data
 
 # npm
 /node_modules
@@ -24,6 +25,7 @@
 /www/wp-content/backup-db/
 /www/wp-content/backups/
 /www/wp-content/blogs.dir/
+/www/wp-content/plugins/
 
 # Theme
 /www/wp-content/themes/
