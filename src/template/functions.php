@@ -126,16 +126,13 @@ add_action( 'widgets_init', 'ihr_2018_widgets_init' );
 function ihr_2018_scripts() {
 	wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'ihr-2018-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'ihr-2018-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'ihr-2018-js-app', get_template_directory_uri() . '/js/app.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
-	wp_enqueue_script( 'ihr-2018-search', get_template_directory_uri() . '/js/search.js', array(), '20180111', true );
 }
+
 add_action( 'wp_enqueue_scripts', 'ihr_2018_scripts' );
 
 /**
@@ -170,12 +167,12 @@ function register_query_vars( $vars ) {
 	$vars[] = 'type';
 	$vars[] = 'issue';
     return $vars;
-} 
+}
 add_filter( 'query_vars', 'register_query_vars' );
 
 // array of filters (field key => field name)
-$GLOBALS['my_query_filters'] = array( 
-	//'field_1'	=> 'issue', 
+$GLOBALS['my_query_filters'] = array(
+	//'field_1'	=> 'issue',
 	'field_2'	=> 'type'
 );
 
@@ -186,13 +183,13 @@ add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
 function my_pre_get_posts( $query ) {
 	// bail early if is in admin
 	if( is_admin() ) return;
-	
-	
+
+
 	// bail early if not main query
 	// - allows custom code / plugins to continue working
 	if( !$query->is_main_query() ) return;
-	
-	
+
+
 	// get meta query
 	$meta_query = $query->get('meta_query');
 
@@ -200,22 +197,22 @@ function my_pre_get_posts( $query ) {
 	foreach( $GLOBALS['my_query_filters'] as $key => $name ) {
 		// continue if not found in url
 		if( empty($_GET[ $name ]) ) {
-			
+
 			continue;
-			
+
 		}
-	
+
 		// get the value for this filter
 		// eg: http://www.website.com/events?city=melbourne,sydney
 		$value = explode(',', $_GET[ $name ]);
-		
+
 		// append meta query
     	$meta_query[] = array(
             'key'		=> $name,
             'value'		=> $value,
             'compare'	=> 'IN',
         );
-	} 
+	}
 
 
 	// update meta query

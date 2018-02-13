@@ -105,6 +105,7 @@ gulp.task('css', ['images'], () => {
 const js = {
   src         : dir.src + 'js/index.js',
   build       : dir.build + 'js/',
+  watch       : dir.src + 'js/**/*.js',
   filename    : 'scripts.js',
   webpack     : webpackConfig
 };
@@ -150,7 +151,7 @@ gulp.task('watch', ['browsersync'], () => {
   gulp.watch(css.watch, ['css']);
 
   // JavaScript main changes
-  gulp.watch(js.src, ['js']);
+  gulp.watch(js.watch, ['js']);
 });
 
 // Run all tasks
