@@ -214,14 +214,6 @@ function my_pre_get_posts( $query ) {
         );
 	}
 
-	// removes the home posts
-	$meta_query[] = array(
-		'key'		=> 'home_item',
-		'value'		=> 1,
-		'compare'	=> '!=',
-	);
-
-
 	// update meta query
 	$query->set('meta_query', $meta_query);
 
