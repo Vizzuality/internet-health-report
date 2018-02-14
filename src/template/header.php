@@ -18,6 +18,7 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
+  <script>window.BASE_URL='<?php echo get_site_url(); ?>';</script>
 </head>
 <body <?php body_class( $category ); ?>>
 <?php get_template_part('template-parts/icons'); ?>
