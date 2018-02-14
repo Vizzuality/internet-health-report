@@ -12,7 +12,8 @@
 get_header(); ?>
   <?php
     // To create posts list within the category
-    $args = array( 'order'=> 'ASC', 'orderby' => 'order', 'category' => get_the_category()[0]->term_id );
+    $args = array( 'order'=> 'ASC', 'orderby' => 'order', 'category' => get_the_category()[0]->term_id,
+      'meta_query' => array( array( 'key' => 'home_item', 'value' => 1, 'compare' => '!=')) );
     $postslist = get_posts( $args );
   ?>
 
