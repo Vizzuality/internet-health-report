@@ -11,7 +11,19 @@ get_template_part('template-parts/search-bar');
 <div id="primary" class="content-area l-main">
 		<main id="main" class="site-main">
     		<?php
-            $wpb_all_query = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>-1));
+
+			$args = array(
+				'post_type' => 'post',
+				'meta_status' => 'publish',
+				'posts_per_page' => -1,
+				'meta_query' => array(
+					array(
+						'key' => 'home_item',
+						'value' => 1,
+						'compare' => '!='
+					),
+				),);
+			$wpb_all_query = new WP_Query( $args );
 
     		if ( $wpb_all_query->have_posts() ) :
 

@@ -14,6 +14,7 @@ get_template_part('template-parts/search-bar');
 <div id="primary" class="content-area l-main">
 		<main id="main" class="site-main">
     		<?php
+
     		if ( have_posts() ) :
 
           echo "<div class='wrap'><div class='row'>";

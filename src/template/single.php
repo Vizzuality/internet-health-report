@@ -19,13 +19,6 @@ get_header(); ?>
 
   			get_template_part( 'template-parts/single-content', get_post_type() );
 
-  			// the_post_navigation();
-
-  			// If comments are open or we have at least one comment, load up the comment template.
-  			// if ( comments_open() || get_comments_number() ) :
-  			// 	comments_template();
-  			// endif;
-
   		endwhile; // End of the loop.
 		?>
 
@@ -41,7 +34,7 @@ get_header(); ?>
 
         if ($tags) {
             $tag_ids = array();
-        foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+            foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
             $args=array(
                 'tag__in' => $tag_ids,
                 'post__not_in' => array($post->ID),
@@ -49,6 +42,15 @@ get_header(); ?>
                 'caller_get_posts'=>1
             );
 
+            $args['meta_query']=  
+                array(
+                    array(
+                        'key' => 'home_item',
+                        'value' => 1,
+                        'compare' => '!='
+                    ),
+            );
+ 
         $my_query = new wp_query( $args );
 
         while( $my_query->have_posts() ) {
