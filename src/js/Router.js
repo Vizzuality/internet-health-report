@@ -1,6 +1,7 @@
 // Pages
 import HomePage from 'pages/HomePage';
 import ExplorePage from 'pages/ExplorePage';
+import PostPage from 'pages/PostPage';
 
 const baseUrl = `${window.BASE_URL}`;
 
@@ -12,6 +13,11 @@ const routes = [
   {
     match: /^\/search-result\/?$/,
     class: ExplorePage
+  },
+  // Should be last
+  {
+    match: /^\/[A-z-]+\/?$/,
+    class: PostPage
   }
 ];
 
