@@ -65,6 +65,18 @@ gulp.task('images', () => {
     .pipe(gulp.dest(images.build));
 });
 
+// Data settings
+const data = {
+  src         : dir.src + 'data/*.csv',
+  build       : dir.build + 'data/'
+};
+
+// Copy data
+gulp.task('data', () => {
+  return gulp.src(data.src)
+    .pipe(newer(data.build))
+    .pipe(gulp.dest(data.build));
+});
 
 // CSS settings
 const css = {
@@ -144,6 +156,9 @@ gulp.task('watch', ['browsersync'], () => {
   // Page changes
   gulp.watch(php.src, ['php'], browsersync ? browsersync.reload : {});
 
+  // Data changes
+  gulp.watch(data.src, ['data']);
+
   // Image changes
   gulp.watch(images.src, ['images']);
 
@@ -155,7 +170,7 @@ gulp.task('watch', ['browsersync'], () => {
 });
 
 // Run all tasks
-gulp.task('build', cb => runSequence('clean', ['php', 'css', 'js'], cb));
+gulp.task('build', cb => runSequence('clean', ['php', 'css', 'data', 'js'], cb));
 
 // Default task
 gulp.task('default', cb => runSequence('clean', ['build', 'watch'], cb));
