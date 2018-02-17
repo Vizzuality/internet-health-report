@@ -34,6 +34,11 @@
   p + p {
     margin-top: 30px;
   }
+
+  a {
+    color: $black;
+    text-decoration: underline;
+  }
 }
 
 //Override WP styles
