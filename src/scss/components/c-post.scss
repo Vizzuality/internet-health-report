@@ -1,20 +1,68 @@
 .c-post {
   @extend %text;
 
-  img {
+  figure {
+    position: relative;
     margin: 50px 0 60px;
     border: 3px solid $black;
 
+    figcaption {
+      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 0;
+      padding: 5px 15px;
+      max-width: 90%;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 15px;
+      text-align: left;
+      border-left: 3px solid $black;
+      border-top: 3px solid $black;
+      background-color: $white;
+    }
+
     &.alignleft {
       margin-right: 100px;
+
+      figcaption {
+        top: 0;
+        right: 0;
+        bottom: auto;
+        border-top: 0;
+        border-bottom: 3px solid $black;
+        border-left: 3px solid $black;
+        border-right: 0;
+      }
     }
 
     &.alignright {
       margin-left: 100px;
+
+      figcaption {
+        top: 0;
+        left: 0;
+        bottom: auto;
+        border-top: 0;
+        border-right: 3px solid $black;
+        border-left: 0;
+        border-bottom: 3px solid $black;
+      }
     }
   }
 
   p + p {
-    margin-top: 10px;
+    margin-top: 30px;
   }
+
+  a {
+    color: $black;
+    text-decoration: underline;
+  }
+}
+
+//Override WP styles
+.wp-caption .wp-caption-text {
+  margin: 0;
 }
