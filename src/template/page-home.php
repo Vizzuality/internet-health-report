@@ -20,9 +20,12 @@ get_header(); ?>
     // To create posts list within the category
     $args = array(
       'order'=> 'DES',
-      'orderby' => 'order',
-      'meta_key' => 'home_item',
-      'meta_value'  => true);
+      'meta_key' => 'order',
+      'orderby' => 'meta_value_num',
+      'meta_query' => array( 
+        array( 
+          'key' => 'home_item', 
+          'value' => 1, 'compare' => '=')));
     $postslist = get_posts($args);
   ?>
 
