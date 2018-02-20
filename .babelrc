@@ -6,7 +6,8 @@
       "alias": {
         "misc": "./misc",
         "pages": "./pages",
-        "components": "./components"
+        "components": "./components",
+        "data": "./data"
       }
     }]
   ]

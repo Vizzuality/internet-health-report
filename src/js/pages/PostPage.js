@@ -2,19 +2,21 @@ import Visualization from 'components/Visualization';
 
 export default class PostPage {
   /**
-   * Return the container of the visualizations
-   * @returns {HTMLElement[]}
-   */
-  static getVisalizationContainers() {
-    return $('.js-visualization').get();
-  }
-
-  /**
    * Instantiate the visualizations
    */
   static instiantiateVisualizations() {
-    PostPage.getVisalizationContainers()
-      .forEach(container => new Visualization(container, $(container).data()));
+    (window.VISUALIZATIONS || [])
+      .forEach((vis) => {
+        const container = document.querySelector(`#${vis.id}`);
+        if (container) {
+          // eslint-disable-next-line no-new
+          new Visualization(container, Object.assign({}, vis.options, {
+            id: vis.id,
+            file: vis.file,
+            type: vis.type
+          }));
+        }
+      });
   }
 
   constructor() {

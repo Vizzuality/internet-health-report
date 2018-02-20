@@ -38,5 +38,14 @@
     "dev": "NODE_ENV=development gulp",
     "build": "NODE_ENV=production gulp build",
     "test": "eslint --ext .js src/js/**/*"
+  },
+  "dependencies": {
+    "d3-array": "^1.2.1",
+    "d3-axis": "^1.0.8",
+    "d3-dsv": "^1.0.8",
+    "d3-scale": "^2.0.0",
+    "d3-selection": "^1.3.0",
+    "global": "^4.3.2",
+    "textures": "^1.2.0"
   }
 }
