@@ -60,7 +60,7 @@
             <?php echo the_title(); ?>
           </h1>
           <div class="post-content">
-            <?php echo get_post_field('post_content'); ?>
+            <?php the_content(); ?>
           </div>
         </div><!-- .entry-content -->
       </div>
