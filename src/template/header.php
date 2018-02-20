@@ -18,7 +18,11 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
-  <script>window.BASE_URL='<?php echo get_site_url(); ?>';</script>
+  <script>
+    window.BASE_URL='<?php echo get_site_url(); ?>';
+    window.LANG='<?php echo substr(get_locale(), 0, 2); ?>';
+    window.VISUALIZATIONS = <?php echo get_post_field('visualizations') ? get_post_field('visualizations') . '.visualizations' : '[]' ?>;
+  </script>
 </head>
 <body <?php body_class( $category ); ?>>
 <?php get_template_part('template-parts/icons'); ?>

@@ -5,7 +5,10 @@ export default class ExplorePage {
   }
 
   setListeners() {
-    $('.js-search-button').on('click', this.onClickSearch.bind(this));
+    const searchButton = document.querySelector('.js-search-button');
+    if (searchButton) {
+      searchButton.addEventListener('click', this.onClickSearch.bind(this));
+    }
   }
 
   /**
@@ -13,10 +16,10 @@ export default class ExplorePage {
    * search button
    */
   onClickSearch() { // eslint-disable-line class-methods-use-this
-    const $filters = $('.js-filter').get();
+    const filters = Array.slice(document.querySelectorAll('.js-filter'));
 
-    const query = $filters
-      .map(filter => `${$(filter).data('filter')}=${$(filter).val()}`)
+    const query = filters
+      .map(filter => `${filter.getAttribute('data-filter')}=${filter.value}`)
       .reduce((res, s, i) => `${res}${i === 0 ? '?' : '&'}${s}`, '');
 
     window.location = `${this.baseUrl}/${query}`;

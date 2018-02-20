@@ -5,7 +5,9 @@
       "root": ["./src/js"],
       "alias": {
         "misc": "./misc",
-        "pages": "./pages"
+        "pages": "./pages",
+        "components": "./components",
+        "data": "./data"
       }
     }]
   ]
