@@ -28,7 +28,7 @@
 /www/wp-content/plugins/
 
 # Theme
-/www/wp-content/themes/
+/www/wp-content/themes
 
 # ENV
 .env
