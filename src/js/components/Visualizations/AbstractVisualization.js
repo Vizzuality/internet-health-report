@@ -17,11 +17,11 @@ export default class AbstractVisualization {
   }
 
   get title() {
-    return this.config.dictionary.title || this.dictionary.missing_title;
+    return this.config.title || this.dictionary.missing_title;
   }
 
   get description() {
-    return this.config.dictionary.description || this.dictionary.missing_description;
+    return this.config.description || this.dictionary.missing_description;
   }
 
   constructor(el, config) {
@@ -37,8 +37,7 @@ export default class AbstractVisualization {
     return fetch(this.config.file)
       .then(res => res.text())
       .then((csv) => {
-        const data = csv.replace(/\{\{(.*)\}\}/g, (_, key) => this.config.dictionary[`${key}`] || key);
-        this.data = csvParse(data);
+        this.data = csvParse(csv);
       });
   }
 
