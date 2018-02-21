@@ -21,7 +21,21 @@
   <script>
     window.BASE_URL='<?php echo get_site_url(); ?>';
     window.LANG='<?php echo substr(get_locale(), 0, 2); ?>';
-    window.VISUALIZATIONS = <?php echo get_post_field('visualizations') ? get_post_field('visualizations') . '.visualizations' : '[]' ?>;
+    <?php
+      if (have_rows('visualizations')):
+        echo 'window.VISUALIZATIONS = [';
+        while (have_rows('visualizations')) : the_row();
+          echo '{';
+          echo 'id: "' . get_sub_field('id') . '",';
+          echo 'file: "' . get_sub_field('file') . '",';
+          echo 'dictionary: ' . html_entity_decode(get_sub_field('dictionary'));
+          echo '},';
+        endwhile;
+        echo '];';
+      else:
+        echo 'window.VISUALIZATIONS = [];';
+      endif;
+    ?>
   </script>
 </head>
 <body <?php body_class( $category ); ?>>

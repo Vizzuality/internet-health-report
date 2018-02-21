@@ -1,4 +1,5 @@
 import Visualization from 'components/Visualization';
+import visualizations from 'data/visualizations';
 
 export default class PostPage {
   /**
@@ -10,11 +11,7 @@ export default class PostPage {
         const container = document.querySelector(`#${vis.id}`);
         if (container) {
           // eslint-disable-next-line no-new
-          new Visualization(container, Object.assign({}, vis.options, {
-            id: vis.id,
-            file: vis.file,
-            type: vis.type
-          }));
+          new Visualization(container, Object.assign({}, vis, visualizations[vis.id] || {}));
         }
       });
   }

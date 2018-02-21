@@ -1,18 +1,18 @@
 label,category,value
-{{label_1}},2016,77.82
-{{label_1}},2017,81.62
-{{label_2}},2016,7.96
-{{label_2}},2017,7.04
-{{label_3}},2016,6.37
-{{label_3}},2017,5.21
-{{label_4}},2016,6.39
-{{label_4}},2017,4.64
-{{label_5}},2016,0.15
-{{label_5}},2017,0.15
-{{label_6}},2016,0.08
-{{label_6}},2017,0.04
-{{label_7}},2016,0.01
-{{label_7}},2017,0.02
+Google,2016,77.82
+Google,2017,81.62
+Bing (Bing),2016,7.96
+Bing (Bing),2017,7.04
+Baidu (Bing),2016,6.37
+Baidu (Bing),2017,5.21
+Yahoo (Yandex),2016,6.39
+Yahoo (Yandex),2017,4.64
+Ask (Baidu),2016,0.15
+Ask (Baidu),2017,0.15
+AOL (Haosou),2016,0.08
+AOL (Haosou),2017,0.04
+Excite (Bing),2016,0.01
+Excite (Bing),2017,0.02
 {{label_8}},2016,1.22
 {{label_8}},2017,1.28
 {{label_9}},2016,14.34

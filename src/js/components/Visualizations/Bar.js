@@ -10,6 +10,7 @@ export default class Bar extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
 
+    this.config = config;
     this.config.height = 600;
     this.config.padding = 20;
     this.config.direction = this.config.direction || 'vertical';
@@ -20,6 +21,7 @@ export default class Bar extends AbstractVisualization {
 
   initialize() {
     this.fetchData()
+      .catch(() => {})
       .then(() => this.render());
   }
 
@@ -34,14 +36,14 @@ export default class Bar extends AbstractVisualization {
       .attr('width', width)
       .attr('height', height)
       .attr('role', 'img')
-      .attr('aria-labelledby', `title_${this.uniqueId} desc_${this.uniqueId}`);
+      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`);
 
     svg.append('title')
-      .attr('id', `title_${this.uniqueId}`)
+      .attr('id', `title_${this.id}`)
       .text(this.title);
 
     svg.append('desc')
-      .attr('id', `desc_${this.uniqueId}`)
+      .attr('id', `desc_${this.id}`)
       .text(this.description);
 
     const labels = this.data.map(d => d.label)
