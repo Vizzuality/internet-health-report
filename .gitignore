@@ -28,7 +28,8 @@
 /www/wp-content/plugins/
 
 # Theme
-/www/wp-content/themes
+/www/wp-content/themes/
+/www/wp-content/themes/ihr-2018
 
 # ENV
 .env
