@@ -9,6 +9,7 @@ body {
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+  color: $black;
 
 
   &.archive {
@@ -75,10 +76,6 @@ ul, ol, li {
 a {
     &:-webkit-any-link {
     text-decoration: none;
-
-    &:visited {
-      color:inherit;
-    }
   }
 }
 
@@ -87,7 +84,16 @@ button {
   box-shadow: none;
   background-color: transparent;
   border: 0;
+  border-radius: 0;
   text-decoration: none;
   outline: none;
   padding: 0;
+  font-family: $font-family-1;
 }
+
+.-is-hidden {
+  display: none;
+}
+
+$box-shadow: 5px 5px 0 0 $black;
+$border-black: 3px solid $black;

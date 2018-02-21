@@ -18,8 +18,8 @@
 }
 
 .l-tabs {
-  border-top: 3px solid $black;
-  border-bottom: 3px solid $black;
+  border-top: $border-black;
+  border-bottom: $border-black;
 }
 
 .l-categories {
@@ -41,10 +41,32 @@
 .l-block-detail {
   position: relative;
   padding: 95px 0 90px;
-  border: 3px solid $black;
+  border: $border-black;
   background-color: $white;
   margin-bottom: 115px;
 }
+
+.l-social {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
+  background-color: $white;
+  border-top: $border-black;
+
+  .wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &.-emotions {
+    transform: translatex(-100%);
+  }
+}
+
 
 .l-section-header {
   padding-bottom: 65px;

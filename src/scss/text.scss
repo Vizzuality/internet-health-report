@@ -55,6 +55,7 @@ p,
   font-weight: 300;
   font-size: $font-s;
   line-height: 30px;
+  color: $black;
 
   @media screen and (min-width: $screen-l) {
   }
@@ -71,7 +72,8 @@ p,
   }
 }
 
-.text.-btn1 {
+.text.-btn1,
+%text-btn-1 {
   font-weight: 600;
   font-size: $font-xs;
   line-height: 22px;
@@ -93,12 +95,12 @@ p,
 }
 
 .text.-btn3 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: $font-xs;
   line-height: 22px;
 
   @media screen and (min-width: $screen-l) {
-    font-size: $font-m;
+    font-size: $font-s;
     line-height: 35px;
   }
 }

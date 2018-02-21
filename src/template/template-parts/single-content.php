@@ -48,7 +48,7 @@
 
       <div class="row">
         <div class="column small-10 small-offset-1">
-          <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
+          <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
             <?php echo get_the_category()[0]->cat_name ?>
           </div>
         </div>
@@ -65,6 +65,8 @@
         </div><!-- .entry-content -->
       </div>
     </div>
+
+    <?php get_template_part( 'template-parts/social-bar');?>
 
     <?php
       // dw_reactions();

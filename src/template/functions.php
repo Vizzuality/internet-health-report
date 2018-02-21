@@ -124,7 +124,11 @@ add_action( 'widgets_init', 'ihr_2018_widgets_init' );
  * Enqueue scripts and styles.
  */
 function ihr_2018_scripts() {
-  wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
+
+  wp_enqueue_script( 'ihr-2018-script', get_template_directory_uri() . '/js/script.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'ihr-2018-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
   wp_enqueue_script( 'ihr-2018-js-app', get_template_directory_uri() . '/js/app.js', array(), '20151215', true );
 
@@ -221,5 +225,72 @@ function my_pre_get_posts( $query ) {
     $query->set('category__in', get_cat_ID($_GET[ 'issue' ]));
   }
 }
+
+
+/*
+ * Custom WYSIWYG styles
+ */
+/*
+Plugin Name: Custom Styles
+Plugin URI: http://www.speckygeek.com
+Description: Add custom styles in your posts and pages content using TinyMCE WYSIWYG editor. The plugin adds a Styles dropdown menu in the visual post editor.
+Based on TinyMCE Kit plug-in for WordPress
+http://plugins.svn.wordpress.org/tinymce-advanced/branches/tinymce-kit/tinymce-kit.php
+
+Found at: https://code.tutsplus.com/tutorials/adding-custom-styles-in-wordpress-tinymce-editor--wp-24980
+*/
+/**
+ * Apply styles to the visual editor
+ */
+
+/**
+ * Add "Styles" drop-down
+ */
+add_filter( 'mce_buttons_2', 'tuts_mce_editor_buttons' );
+
+function tuts_mce_editor_buttons( $buttons ) {
+    array_unshift( $buttons, 'styleselect' );
+    return $buttons;
+}
+
+/**
+ * Add styles/classes to the "Styles" drop-down
+ */
+add_filter( 'tiny_mce_before_init', 'tuts_mce_before_init' );
+
+function tuts_mce_before_init( $settings ) {
+
+  $style_formats = array(
+      array(
+          'title' => 'Black button',
+          'selector' => 'a',
+          'classes' => 'btn -secondary'
+          ),
+      array(
+          'title' => 'White button',
+          'selector' => 'a',
+          'classes' => 'btn -primary',
+      ),
+      array(
+          'title' => 'Raw button',
+          'selector' => 'a',
+          'classes' => 'btn -raw',
+      ),
+      array(
+          'title' => 'Button box',
+          'block' => 'div',
+          'classes' => '',
+          'wrapper' => true
+      ),
+  );
+
+  $settings['style_formats'] = json_encode( $style_formats );
+
+  return $settings;
+}
+
+/* Learn TinyMCE style format options at http://www.tinymce.com/wiki.php/Configuration:formats */
+
+
 
 

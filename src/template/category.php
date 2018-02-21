@@ -22,10 +22,11 @@ get_header(); ?>
     <main id="main" class="site-main l-main">
       <div class="wrap">
         <div class="row">
-          <div class="column small-12">
+          <div class="column small-12 medium-8">
             <header class="page-header">
               <a href="#" class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '', true); ?></a>
               <h2><?php echo the_archive_description();?></h2>
+              <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
             </header><!-- .page-header -->
           </div>
         </div>
