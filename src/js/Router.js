@@ -3,7 +3,9 @@ import HomePage from 'pages/HomePage';
 import ExplorePage from 'pages/ExplorePage';
 import PostPage from 'pages/PostPage';
 
-const baseUrl = `${window.BASE_URL}`;
+const baseUrl = (location.hostname === 'localhost' || location.hostname === '0.0.0.0')
+  ? location.origin
+  : window.BASE_URL;
 
 const routes = [
   {
@@ -27,7 +29,7 @@ export default class Router {
    * @returns {{ match: RegExp, class: typeof HomePage }}
    */
   static getMatchingRoute() {
-    return routes.find(r => r.match.test(location.pathname));
+    return routes.find(r => r.match.test(location.href.replace(baseUrl, '')));
   }
 
   /**
