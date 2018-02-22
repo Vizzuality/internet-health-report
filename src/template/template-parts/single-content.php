@@ -28,7 +28,7 @@
     <div class="l-block-detail">
 
       <div class="c-post-controls">
-        <a href="<?php echo network_site_url(); ?>/category/<?php echo get_the_category()[0]->slug; ?>">
+        <a href="<?php echo get_bloginfo( 'url' ); ?>/category/<?php echo get_the_category()[0]->slug; ?>">
           <svg class="c-icon -medium"><use xlink:href="#icon-close_normal"></use></svg>
         </a>
 
@@ -49,7 +49,7 @@
       <div class="row">
         <div class="column small-10 small-offset-1">
           <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
-          <a href="<?php echo network_site_url(); ?>/category/<?php echo get_the_category()[0]->slug; ?>"><?php echo get_the_category()[0]->cat_name ?></a>
+          <a href="<?php echo get_bloginfo( 'url' ); ?>/category/<?php echo get_the_category()[0]->slug; ?>"><?php echo get_the_category()[0]->cat_name ?></a>
           </div>
         </div>
       </div>
