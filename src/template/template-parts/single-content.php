@@ -66,13 +66,10 @@
       </div>
     </div>
 
-    <?php get_template_part( 'template-parts/social-bar');?>
+    <?php // get_template_part( 'template-parts/social-bar');?>
 
     <?php
-      // dw_reactions();
-      //echo do_shortcode('[reaction_buttons]');
-      echo do_shortcode('[zvr_reactions]');
-      //echo do_shortcode('[effecto-bar]');
+     // echo do_shortcode('[zvr_reactions]');
     ?>
 
 <div id="coral_talk_stream"></div>
@@ -82,11 +79,6 @@
   });
 "></script>
 
-    <?php /*
-      if ( comments_open() || get_comments_number() ) :
-        comments_template();
-      endif;
-      */
-    ?>
+
 
 </article><!-- #post-<?php the_ID(); ?> -->
