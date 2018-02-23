@@ -34,12 +34,23 @@ export default class AbstractVisualization {
    * is a translated object stored in this.data
   */
   fetchData() {
+    const isCSVFile = /\.csv$/.test(this.config.file);
+
     return fetch(this.config.file, {
       credentials: 'include'
     })
-      .then(res => res.text())
-      .then((csv) => {
-        this.data = csvParse(csv);
+      .then((res) => {
+        if (isCSVFile) {
+          return res.text();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (isCSVFile) {
+          this.data = csvParse(data);
+        } else {
+          this.data = data;
+        }
       });
   }
 
