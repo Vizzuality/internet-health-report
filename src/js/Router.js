@@ -16,7 +16,7 @@ const routes = [
   },
   // Should be last
   {
-    match: /^\/[A-z-]+\/?$/,
+    match: /^\/[A-z0-9-]+\/?$/,
     class: PostPage
   }
 ];
