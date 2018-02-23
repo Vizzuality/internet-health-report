@@ -34,7 +34,9 @@ export default class AbstractVisualization {
    * is a translated object stored in this.data
   */
   fetchData() {
-    return fetch(this.config.file)
+    return fetch(this.config.file, {
+      credentials: 'include'
+    })
       .then(res => res.text())
       .then((csv) => {
         this.data = csvParse(csv);
