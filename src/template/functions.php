@@ -226,6 +226,26 @@ function my_pre_get_posts( $query ) {
   }
 }
 
+/*
+ * Changes the link to /explore so that it goes to the search page
+ */
+
+add_filter( 'wp_get_nav_menu_items','nav_items', 11, 3 );
+
+function nav_items( $items, $menu, $args ) 
+{
+    if( is_admin() )
+        return $items;
+
+    foreach( $items as $item ) 
+    {
+        if( 'Explore' == $item->post_title)
+            $item->url = get_bloginfo( 'url' ) . '?s=';
+
+    }
+    return $items;
+}
+
 
 /*
  * Custom WYSIWYG styles
