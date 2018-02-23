@@ -19,7 +19,7 @@
 
 	<?php wp_head(); ?>
   <script>
-    window.BASE_URL='<?php echo get_site_url(); ?>';
+    window.BASE_URL='<?php echo get_site_url(null, '', 'relative'); ?>';
     window.LANG='<?php echo substr(get_locale(), 0, 2); ?>';
     <?php
       if (have_rows('visualizations')):
