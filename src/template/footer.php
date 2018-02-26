@@ -41,7 +41,23 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/what-is-this' ) ) ?>" class="text -link -light -secondary">What is this?</a>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-is-the-health-of-the-internet' ) ) ?>" class="text -link -light -secondary">How is the health of the internet?</a>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/trending-topics' ) ) ?>" class="text -link -light -secondary">Trending topics</a>
-                  <a href="" class="text -link -light -secondary">Download PDF</a>
+                  <a href="<?php
+                        $locale = get_locale();
+                        switch(true) {
+                          case preg_match('/en.*/', $locale): 
+                            echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet Health Report 2018.pdf";
+                            break;
+                          case preg_match('/fr.*/', $locale): 
+                            echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin de santé dInternet 2018.pdf";
+                            break;
+                          case preg_match('/de.*/', $locale): 
+                            echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht zur Internetgesundheit 2018.pdf";
+                            break;
+                          case preg_match('/es.*/', $locale): 
+                            echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe de Salud de Internet 2018.pdf";
+                            break;
+                        }
+                  ?>" class="text -link -light -secondary">Download PDF</a>
                   <a href="" class="text -link -light -secondary">Contributors</a>
                 </div>
                 <div class="column small-12 medium-3">
