@@ -1,5 +1,6 @@
 import Bar from 'components/Visualizations/Bar';
 import Line from 'components/Visualizations/Line';
+import Area from 'components/Visualizations/Area';
 import Wikipedia from 'components/Visualizations/Wikipedia';
 
 export default class Visualization {
@@ -10,6 +11,9 @@ export default class Visualization {
 
       case 'line':
         return new Line(container, options);
+
+      case 'area':
+        return new Area(container, options);
 
       case 'wikipedia':
         return new Wikipedia(container, options);
