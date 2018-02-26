@@ -1,4 +1,6 @@
 import Bar from 'components/Visualizations/Bar';
+import Line from 'components/Visualizations/Line';
+import Area from 'components/Visualizations/Area';
 import Wikipedia from 'components/Visualizations/Wikipedia';
 
 export default class Visualization {
@@ -6,6 +8,12 @@ export default class Visualization {
     switch (options.type) {
       case 'bar':
         return new Bar(container, options);
+
+      case 'line':
+        return new Line(container, options);
+
+      case 'area':
+        return new Area(container, options);
 
       case 'wikipedia':
         return new Wikipedia(container, options);
