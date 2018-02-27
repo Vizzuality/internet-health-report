@@ -13,7 +13,7 @@ export default {
   },
   vis_3_2_1_1: {
     type: 'bar',
-    direction: 'vertical'
+    direction: 'horizontal'
   },
   vis_3_5: {
     type: 'area',
