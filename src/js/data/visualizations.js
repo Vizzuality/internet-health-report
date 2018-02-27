@@ -8,6 +8,9 @@ export default {
     type: 'line',
     verticalAxisSize: 20
   },
+  vis_2_3: {
+    type: 'circle'
+  },
   vis_3_2_1_1: {
     type: 'bar',
     direction: 'vertical'
