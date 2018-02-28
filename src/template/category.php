@@ -13,33 +13,37 @@ get_header(); ?>
   <?php
     // To create posts list within the category
     $args = array(
-      'posts_per_page' => -1, 
+      'posts_per_page' => -1,
       'order'=> 'DES',
-      'meta_key' => 'order', 
-      'orderby' => 'meta_value_num', 
+      'meta_key' => 'order',
+      'orderby' => 'meta_value_num',
       'category' => get_the_category()[0]->term_id,
       'meta_query' => array(
-         array( 
+         array(
            'key' => 'home_item',
-            'value' => 1, 
+            'value' => 1,
             'compare' => '!=')) );
-      
+
     $postslist = get_posts( $args );
   ?>
 
   <div id="primary" class="content-area categories">
     <main id="main" class="site-main l-main">
-      <div class="wrap">
-        <div class="row">
-          <div class="column small-12 medium-8">
-            <header class="page-header">
-              <a href="#" class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '', true); ?></a>
+      <header class="page-header">
+        <div class="wrap">
+          <div class="row">
+            <div class="column small-12 medium-10">
+              <span class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '', true); ?></span>
               <h2><?php echo the_archive_description();?></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column small-12 medium-6">
               <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
-            </header><!-- .page-header -->
+            </div>
           </div>
         </div>
-      </div>
+      </header><!-- .page-header -->
 
       <?php if ( have_posts() ) : ?>
         <div class='l-cards-grid'>

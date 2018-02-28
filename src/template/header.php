@@ -49,7 +49,15 @@
     ?>
   </script>
 </head>
-<body <?php body_class( $category ); ?>>
+<body
+  <?php body_class( $category ); ?>
+  <?php
+    if(is_single()) {
+      $bgColor = get_field('color', 'category_' . get_the_category()[0]->term_id);
+      echo 'style="background: linear-gradient(to bottom, ' . $bgColor . ', #fff)"';
+    }
+  ?>
+>
 <?php get_template_part('template-parts/icons'); ?>
 
 <div id="page" class="site l-main-layout">

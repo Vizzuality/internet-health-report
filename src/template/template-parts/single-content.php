@@ -49,7 +49,7 @@
       <div class="row">
         <div class="column small-10 small-offset-1">
           <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
-          <a href="<?php echo get_bloginfo( 'url' ); ?>/category/<?php echo get_the_category()[0]->slug; ?>"><?php echo get_the_category()[0]->cat_name ?></a>
+            <a href="<?php echo get_bloginfo( 'url' ); ?>/category/<?php echo get_the_category()[0]->slug; ?>"><?php echo get_the_category()[0]->cat_name ?></a>
           </div>
         </div>
       </div>

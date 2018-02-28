@@ -9,6 +9,7 @@
   color: $black;
   background-color: $white;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     box-shadow: $box-shadow;
@@ -21,6 +22,10 @@
     bottom: 0;
     left: 0;
     width: 8px;
+  }
+
+  .single-post-header {
+    margin-bottom: 15px;
   }
 
   .single-post-body {
