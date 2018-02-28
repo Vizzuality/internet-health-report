@@ -10,10 +10,11 @@
          url('/wp-content/themes/ihr-2018/fonts/' + $font-file + '.ttf') format(".svg#" + $font-file);
     font-weight: $weight;
     font-style: $style;
+    font-display: swap;
   }
 }
 
 @include font-face('ZillaSlab', "ZillaSlab-Bold", 700);
-@include font-face('ZillaSlab', "ZillaSlab-Semibold", 600);
+@include font-face('ZillaSlab', "ZillaSlab-SemiBold", 600);
 @include font-face('ZillaSlab', "ZillaSlab-Medium", 500);
 @include font-face('ZillaSlab', "ZillaSlab-Regular", 300);
