@@ -1,6 +1,7 @@
 .c-footer-navigation {
   .-link {
     display: block;
+    text-decoration: none;
 
     &:hover {
       text-decoration: underline;
@@ -12,6 +13,42 @@
 
     &.-secondary {
       margin-bottom: 10px;
+    }
+  }
+
+
+  .extra-links {
+    text-align: right;
+
+    // Link to download the report
+    a:first-of-type {
+      position: relative;
+      margin-bottom: 65px;
+
+      .c-icon {
+        position: absolute;
+        top: 5px;
+        right: -30px;
+
+        use { fill: $white; }
+      }
+    }
+
+    .text {
+      margin-bottom: 10px;
+    }
+  }
+
+  .powered-by {
+    margin-top: 70px;
+    font-size: $font-xxs;
+    text-align: center;
+
+    img {
+      display: inline-block;
+      width: 116px;
+      margin-left: 10px;
+      vertical-align: middle;
     }
   }
 }

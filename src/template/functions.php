@@ -232,12 +232,12 @@ function my_pre_get_posts( $query ) {
 
 add_filter( 'wp_get_nav_menu_items','nav_items', 11, 3 );
 
-function nav_items( $items, $menu, $args ) 
+function nav_items( $items, $menu, $args )
 {
     if( is_admin() )
         return $items;
 
-    foreach( $items as $item ) 
+    foreach( $items as $item )
     {
         if( 'Explore' == $item->post_title)
             $item->url = get_bloginfo( 'url' ) . '?s=';
@@ -254,10 +254,10 @@ add_filter( 'upload_mimes', 'my_myme_types', 1, 1 );
 function my_myme_types( $mime_types ) {
   $mime_types['svg'] = 'image/svg+xml';     // Adding .svg extension
   $mime_types['json'] = 'application/json'; // Adding .json extension
-  
+
   unset( $mime_types['xls'] );  // Remove .xls extension
   unset( $mime_types['xlsx'] ); // Remove .xlsx extension
-  
+
   return $mime_types;
 }
 
@@ -325,6 +325,19 @@ function tuts_mce_before_init( $settings ) {
 }
 
 /* Learn TinyMCE style format options at http://www.tinymce.com/wiki.php/Configuration:formats */
+
+function languages_list_footer() {
+  $languages = icl_get_languages('skip_missing=0&orderby=code');
+  if(!empty($languages)) {
+    echo '<div class="c-language-switcher js-language-switcher"><select aria-label="Language selector">';
+    foreach($languages as $l) {
+      echo '<option' . ($l['active'] ? ' selected' : '') . ' value="' . $l['url'] . '">';
+      echo icl_disp_language($l['native_name'], $l['translated_name']);
+      echo '</option>';
+    }
+    echo '</select></div>';
+  }
+}
 
 
 

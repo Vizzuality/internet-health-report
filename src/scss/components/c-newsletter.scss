@@ -1,0 +1,52 @@
+.c-newsletter {
+  .logo {
+    width: 110px;
+  }
+
+  .email-button {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    input {
+      flex-grow: 1;
+      height: 35px;
+      margin-right: 20px;
+      border: 0;
+      border-radius: 0;
+      border-bottom: 3px solid $white;
+      font-family: $font-family-1;
+      font-weight: 300;
+      font-size: $font-s;
+      color: $white;
+      background: transparent;
+    }
+
+    .btn.-secondary {
+      margin: 0;
+
+      &:hover {
+        border-color: $white;
+        box-shadow: $box-shadow-white;
+      }
+    }
+  }
+
+  .privacy {
+    margin-top: 15px;
+
+    input {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    a {
+      color: $white;
+    }
+
+    label {
+      color: $white;
+      font-size: $font-xxs;
+    }
+  }
+}
