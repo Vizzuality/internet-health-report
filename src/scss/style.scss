@@ -1528,6 +1528,9 @@ object {
     padding-left: 0.625rem;
     padding-right: 0.625rem; } }
 
+// Third-party styles
+@import "../../node_modules/mapbox-gl/dist/mapbox-gl";
+
 @import "font";
 @import "settings";
 @import "general";
@@ -1552,3 +1555,4 @@ object {
 @import "components/c-language-switcher";
 @import "components/c-newsletter";
 
+@import "visualizations/*";

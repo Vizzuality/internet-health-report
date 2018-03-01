@@ -1,6 +1,9 @@
 import { curveBasis } from 'd3-shape';
 
 export default {
+  vis_1_2: {
+    type: 'map'
+  },
   vis_1_5: {
     type: 'wikipedia'
   },
@@ -19,5 +22,8 @@ export default {
     type: 'area',
     verticalAxisSize: 20,
     curve: curveBasis
+  },
+  vis_4_1_1: {
+    type: 'map'
   }
 };

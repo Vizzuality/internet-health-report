@@ -3,6 +3,7 @@ import Line from 'components/Visualizations/Line';
 import Area from 'components/Visualizations/Area';
 import Circle from 'components/Visualizations/Circle';
 import Wikipedia from 'components/Visualizations/Wikipedia';
+import Map from 'components/Visualizations/Map';
 
 export default class Visualization {
   constructor(container, options) {
@@ -21,6 +22,9 @@ export default class Visualization {
 
       case 'wikipedia':
         return new Wikipedia(container, options);
+
+      case 'map':
+        return new Map(container, options);
 
       default:
         console.error('Unsupported visualization');

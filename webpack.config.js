@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-require('dotenv').load({ path: '../.env' });
+require('dotenv').load({ path: './.env' });
 
 var path = require('path');
 var webpack = require('webpack');
@@ -31,7 +31,9 @@ module.exports = {
     modules: [path.resolve(__dirname, dir.src + 'js/'), 'node_modules']
   },
   plugins: [
-    new webpack.DefinePlugin({ ENV: process.env }),
+    new webpack.DefinePlugin({
+      'process.env.MAPBOX_API_TOKEN': JSON.stringify(process.env.MAPBOX_API_TOKEN)
+    }),
     isProduction ? new webpack.optimize.UglifyJsPlugin({ minimize: true, test: /\.js$/ }) : undefined
   ].filter(p => p !== undefined),
   devtool: isProduction ? 'none' : 'source-map'

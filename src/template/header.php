@@ -13,6 +13,8 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
+  <?php wp_head(); ?>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-87658599-2"></script>
   <script>
@@ -26,7 +28,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<?php wp_head(); ?>
+  <!-- Loading visualizations -->
   <script>
     window.BASE_URL='<?php echo get_site_url(null, '', 'relative'); ?>';
     window.LANG='<?php echo substr(get_locale(), 0, 2); ?>';

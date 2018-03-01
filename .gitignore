@@ -33,3 +33,6 @@
 
 # ENV
 .env
+
+# do not update sql files
+*.sql

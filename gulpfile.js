@@ -3,8 +3,6 @@
 
 'use strict';
 
-require('dotenv').load({ path: '../.env' });
-
 const
 
   // Source and build folders

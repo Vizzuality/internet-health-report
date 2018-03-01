@@ -1,0 +1,12 @@
+.v-map {
+  height: 600px;
+
+  .category-switcher {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 200px;
+    background: $white;
+    z-index: 1;
+  }
+}
