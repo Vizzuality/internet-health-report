@@ -16,7 +16,7 @@ export default class ExplorePage {
    * search button
    */
   onClickSearch() { // eslint-disable-line class-methods-use-this
-    const filters = Array.slice(document.querySelectorAll('.js-filter'));
+    const filters = Array.prototype.slice.call(document.querySelectorAll('.js-filter'));
 
     const query = filters
       .map(filter => `${filter.getAttribute('data-filter')}=${filter.value}`)
