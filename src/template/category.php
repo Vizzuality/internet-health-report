@@ -69,7 +69,7 @@ get_header(); ?>
       <div class='l-cards-grid'>
           <div class='wrap'>
             <div class='row'>
-              <p>No post available</p>
+              <p><?php esc_html_e( 'No posts available', 'ihr-2018' ); ?></p>
             </div>
         </div>
       </div>

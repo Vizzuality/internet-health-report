@@ -31,7 +31,7 @@
                 <div class="privacy">
                   <label for="privacy">
                     <input id="privacy" name="privacy" required="" type="checkbox">
-                    I’m okay with mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/websites/">privacy notice</a>.
+                    <?php esc_html_e( "I'm ok with mozilla handling my info as explained in this", 'ihr-2018' ); ?><a href="https://www.mozilla.org/privacy/websites/"><?php esc_html_e( 'privacy notice', 'ihr-2018' ); ?></a>.
                   </label>
                 </div>
               </form>
@@ -46,10 +46,10 @@
         <div class="wrap">
           <div class="row">
             <div class="column small-12 medium-3">
-              <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -link -light -principal">Introduction</a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'introduction/what-is-this' ) ) ?>" class="text -link -light -secondary">What is this?</a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-is-the-health-of-the-internet' ) ) ?>" class="text -link -light -secondary">How is the health of the internet?</a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'introduction/trending-topics' ) ) ?>" class="text -link -light -secondary">Trending topics</a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -link -light -principal"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'introduction/what-is-this' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'What is this?', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-is-the-health-of-the-internet' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'introduction/trending-topics' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
               <a href="<?php
                     $locale = get_locale();
                     switch(true) {
@@ -70,32 +70,32 @@
               <a href="" class="text -link -light -secondary">Contributors</a>
             </div>
             <div class="column small-12 medium-3">
-              <a href="<?php echo get_permalink( get_page_by_path( 'issues' ) ) ?>" class="text -link -light -principal">Issues</a>
-              <a href="<?php echo get_category_link( get_cat_ID( 'openness' ) ) ?>" class="text -link -light -secondary">Openness</a>
-              <a href="<?php echo get_category_link( get_cat_ID( 'digital inclusion' ) ) ?>" class="text -link -light -secondary">Digital Inclusion</a>
-              <a href="<?php echo get_category_link( get_cat_ID( 'decentralization' ) ) ?>" class="text -link -light -secondary">Decentralization</a>
-              <a href="<?php echo get_category_link( get_cat_ID( 'privacy and security' ) ) ?>" class="text -link -light -secondary">Privacy and security</a>
-              <a href="<?php echo get_category_link( get_cat_ID( 'web literacy' ) ) ?>" class="text -link -light -secondary">Web literacy</a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'issues' ) ) ?>" class="text -link -light -principal"><?php esc_html_e( 'Issues', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_category_link( get_cat_ID( 'openness' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Openness', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_category_link( get_cat_ID( 'digital inclusion' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Digital Inclusion', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_category_link( get_cat_ID( 'decentralization' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Decentralization', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_category_link( get_cat_ID( 'privacy and security' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Privacy and Security', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_category_link( get_cat_ID( 'web literacy' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Web literacy', 'ihr-2018' ); ?></a>
             </div>
             <div class="column small-12 medium-3">
-              <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -link -light -principal">Participate</a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'participate/what-you-can-do' ) ) ?>" class="text -link -light -secondary">What you can do</a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary">Contact us</a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary">Share general reflections</a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary">Contribute</a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -link -light -principal"><?php esc_html_e( 'Participate', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'participate/what-you-can-do' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'What you can do', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Contact us', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Share general reflections', 'ihr-2018' ); ?></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -link -light -secondary"><?php esc_html_e( 'Contribute', 'ihr-2018' ); ?></a>
             </div>
             <div class="column small-12 medium-3 extra-links">
-              <a href="#" class="text -link -light -principal">Download PDF <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg></a>
-              <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -link -light -principal">Explore</a>
-              <a href="http://blog" class="text -link -light -principal">Blog</a>
-              <a href="" class="text -link -light -principal">Sitemap</a>
-              <a href="https://internethealthreport.org/2017/" class="text -link -light -principal">Previous report</a>
+              <a href="#" class="text -link -light -principal"><?php esc_html_e( 'Download PDF', 'ihr-2018' ); ?> <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg></a>
+              <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -link -light -principal"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
+              <a href="http://blog" class="text -link -light -principal"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a>
+              <a href="" class="text -link -light -principal"><?php esc_html_e( 'Sitemap', 'ihr-2018' ); ?></a>
+              <a href="https://internethealthreport.org/2017/" class="text -link -light -principal"><?php esc_html_e( 'Previous report', 'ihr-2018' ); ?></a>
             </div>
           </div>
           <div class="row">
             <div class="column small-12">
               <p class="powered-by -light">
-                Powered by
+              <?php esc_html_e( 'Powered by', 'ihr-2018' ); ?>
                 <a href="https://www.mozilla.org/">
                   <img src="/wp-content/themes/ihr-2018/images/logos/mozilla-white.svg" alt="Mozilla" />
                 </a>

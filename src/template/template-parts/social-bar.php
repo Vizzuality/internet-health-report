@@ -8,7 +8,7 @@
         <a href="#"><svg class="c-icon -small"><use xlink:href="icon-twitter"></use></svg></a>
       </div>
       <div class="reactions">
-        <span class="text -btn3">Share this</span>
+        <span class="text -btn3"><?php esc_html_e( 'Share this', 'ihr-2018' ); ?></span>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
       <div class="reactions">
         <svg class="c-icon -small"><use xlink:href="#icon-comment_icon"></use></svg>
         <span class="figure text -btn3">1,986</span>
-        <span class="text -btn3">Comments</span>
+        <span class="text -btn3"><?php esc_html_e( 'Comments', 'ihr-2018' ); ?></span>
       </div>
       <div id="reactions-switcher" class="reactions">
         <div class="reactions-panel">
@@ -28,7 +28,7 @@
         </div>
         <svg class="c-icon -small"><use xlink:href="#icon-comment_icon"></use></svg>
         <span class="figure text -btn3">355</span>
-        <span class="text -btn3">Reactions</span>
+        <span class="text -btn3"><?php esc_html_e( 'Reactions', 'ihr-2018' ); ?></span>
       </div>
       <button class="btn-add-reaction" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">+</button>
     </div>
@@ -40,7 +40,7 @@
   <div class="wrap">
     <div class="c-social -emotions">
       <div class="reactions">
-        <span class="text -btn3">Choose your reaction</span>
+        <span class="text -btn3"><?php esc_html_e( 'Choose your reaction', 'ihr-2018' ); ?></span>
       </div>
       <div class="reactions">
         <span class="text -btn3"><svg class="c-icon -small"><use xlink:href="#icon-comment_icon"></use></svg> Happy</span>

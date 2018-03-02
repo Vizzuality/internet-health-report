@@ -23,7 +23,7 @@ if ( post_password_required() ) {
 <div id="comments" class="comments-area l-comments">
   <div class="row">
     <div class="column small-12">
-      <h3>Comments</h3>
+      <h3><?php esc_html_e( 'Comments', 'ihr-2018' ); ?></h3>
 
       <?php
       // You can start editing here -- including this comment!
