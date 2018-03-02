@@ -1,4 +1,5 @@
 import Bar from 'components/Visualizations/Bar';
+import StackedBar from 'components/Visualizations/StackedBar';
 import Line from 'components/Visualizations/Line';
 import Area from 'components/Visualizations/Area';
 import Circle from 'components/Visualizations/Circle';
@@ -10,6 +11,9 @@ export default class Visualization {
     switch (options.type) {
       case 'bar':
         return new Bar(container, options);
+
+      case 'stacked-bar':
+        return new StackedBar(container, options);
 
       case 'line':
         return new Line(container, options);

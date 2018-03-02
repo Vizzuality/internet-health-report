@@ -3,12 +3,12 @@ export default {
     type: 'map'
   },
   vis_1_2_2: {
-    type: 'TODO',
+    type: 'stacked-bar',
     direction: 'vertical'
   },
   vis_1_2_3: {
-    type: 'bar',
-    direction: 'horizontal'
+    type: 'stacked-bar',
+    direction: 'vertical'
   },
   vis_1_3_1: {
     type: 'bar',
@@ -87,7 +87,7 @@ export default {
     direction: 'horizontal'
   },
   vis_3_7_2: {
-    type: 'bar',
+    type: 'stacked-bar',
     direction: 'vertical'
   },
   vis_3_7_3: {
