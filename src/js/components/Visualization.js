@@ -26,6 +26,11 @@ export default class Visualization {
       case 'map':
         return new Map(container, options);
 
+      case 'TODO':
+        // eslint-disable-next-line no-param-reassign
+        container.textContent = 'Visualization not implemented yet';
+        return null;
+
       default:
         console.error('Unsupported visualization');
     }
