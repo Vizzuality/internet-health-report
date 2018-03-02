@@ -19,7 +19,7 @@
           </div>
           <div class="column small-12 medium-7">
             <div class="slide-visualization">
-              <p>visualization here</p>
+              <p><?php esc_html_e( 'Visualizations here.', 'ihr-2018' ); ?></p>
             </div>
           </div>
         </div>

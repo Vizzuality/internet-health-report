@@ -56,13 +56,13 @@ get_header(); ?>
                 <p> <?php echo $post->post_content; ?></p>
                 <a class="text -link -dark" href="#">
                   <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
-                  Download report
+                  <?php esc_html_e( 'Download report', 'ihr-2018' ); ?></p>
                 </a>
               </div>
             </div>
             <div class="column small-12 medium-5">
               <div class="slide-visualization">
-                <p>visualization here</p>
+                <p><?php esc_html_e( 'Visualizations here.', 'ihr-2018' ); ?></p></p>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ get_header(); ?>
             </div>
             <div class="column small-12 medium-5">
               <div class="slide-visualization">
-                <p>visualization here</p>
+                <p><?php esc_html_e( 'Visualizations here.', 'ihr-2018' ); ?></p>
               </div>
             </div>
           </div>
