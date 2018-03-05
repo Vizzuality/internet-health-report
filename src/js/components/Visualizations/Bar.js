@@ -32,6 +32,11 @@ export default class Bar extends AbstractVisualization {
       .then(() => this.render());
   }
 
+  getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const data = select(target).datum();
+    return `${data.value}`;
+  }
+
   render() {
     super.render();
     if (!this.data) return;
@@ -141,7 +146,8 @@ export default class Bar extends AbstractVisualization {
       })
       .attr('fill', d => categoryFillScale(d.category))
       .attr('stroke', 'black')
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 2)
+      .attr('title', d => d.value);
 
     container.append('g')
       .attr('class', 'label-axis')
@@ -182,5 +188,8 @@ export default class Bar extends AbstractVisualization {
       .text(c => c)
       .attr('text-anchor', 'left')
       .attr('alignment-baseline', 'middle');
+
+    // We instantiate the tooltip
+    this.instantiateTooltip('rect');
   }
 }
