@@ -1,4 +1,5 @@
 import { csvParse } from 'd3-dsv';
+import tippy from 'tippy.js';
 
 // Data
 import DictionaryEN from 'data/dictionary-en';
@@ -27,6 +28,42 @@ export default class AbstractVisualization {
   constructor(el, config) {
     this.el = el;
     this.config = config;
+
+    // Tooltip container
+    this.tooltipContainer = document.createElement('div');
+    this.tooltipContainer.classList.add('c-tooltip');
+  }
+
+  /**
+   * Instantiate the tooltip for the target elements
+   * @param {string} target HTML/CSS selector
+   */
+  instantiateTooltip(target) {
+    tippy(this.el, {
+      target,
+      animateFill: false,
+      animation: 'shift-toward',
+      inertia: true,
+      theme: 'ihr',
+      html: this.tooltipContainer,
+      sticky: true,
+      arrow: true,
+      interactive: true,
+      wait: (show, e) => {
+        this.tooltipContainer.innerHTML = this.getTooltipContent(e.target);
+        show();
+      }
+    });
+  }
+
+  /**
+   * Return the content of the tooltip
+   * @param {HTMLElement} target DOM node to which the tooltip will
+   * be attached
+   * @returns {string} HTML string
+  */
+  getTooltipContent(target) { // eslint-disable-line
+    return '';
   }
 
   /**

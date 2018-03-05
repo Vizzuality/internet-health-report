@@ -1,0 +1,61 @@
+.c-tooltip {
+  a {
+    color: $black;
+  }
+
+  .title {
+    margin: 0;
+    font-weight: 600;
+    font-size: $font-s;
+    line-height: 1.25;
+  }
+
+  .number {
+    margin: 5px 0;
+    font-size: $font-l;
+    line-height: 1.25;
+  }
+
+  .note {
+    margin: 0;
+    font-size: $font-xxs;
+    line-height: 1.25;
+  }
+}
+
+// Styles for tippy
+.tippy-tooltip.ihr-theme {
+  padding: 20px;
+  background-color: $white;
+  color: $black;
+  font-family: $font-family-1;
+  font-size: $font-s;
+  border: 2px solid $black;
+  border-radius: 0;
+
+  .tippy-arrow {
+    [x-placement^=top] & {
+      bottom: -11px;
+      width: 20px;
+      height: 20px;
+      border: 0;
+      border-top: 2px solid $black;
+      border-left: 2px solid $black;
+      background: $white;
+      transform: rotate(-135deg);
+      transform-origin: center center;
+    }
+
+    [x-placement^=bottom] & {
+      top: -11px;
+      width: 20px;
+      height: 20px;
+      border: 0;
+      border-bottom: 2px solid $black;
+      border-right: 2px solid $black;
+      background: $white;
+      transform: rotate(-135deg);
+      transform-origin: center center;
+    }
+  }
+}

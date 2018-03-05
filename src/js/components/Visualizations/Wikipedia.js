@@ -1,7 +1,9 @@
-import AbstractVisualization from 'components/Visualizations/AbstractVisualization';
 import { select, event } from 'd3-selection';
 import { zoom } from 'd3-zoom';
 import { forceSimulation, forceX, forceY, forceLink, forceManyBody } from 'd3-force';
+import { format } from 'd3-format';
+
+import AbstractVisualization from 'components/Visualizations/AbstractVisualization';
 
 export default class Bar extends AbstractVisualization {
   constructor(el, config) {
@@ -56,6 +58,40 @@ export default class Bar extends AbstractVisualization {
       .selectAll('text')
       .attr('dx', d => d.x)
       .attr('dy', d => d.y);
+  }
+
+  getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const data = select(target).datum();
+
+    // Library
+    if (data.depth === 1) {
+      let link = data.homepage;
+      if (!link) {
+        if (data.plateform === 'NPM') {
+          link = `https://www.npmjs.com/package/${data.name}`;
+        } else if (data.plateform === 'Packagist') {
+          link = `https://packagist.org/packages/${data.name}`;
+        }
+      }
+
+      return `
+        <a href="${link}" target="_blank" rel="noopener noreferrer">${data.name}</a>
+      `;
+    }
+
+    const link = this.data.links.find(l => l.target.index === data.index);
+    const totalCommits = link ? link.source.totalCommits : null;
+    const percentage = format('.1%')(data.commits / totalCommits) || '';
+
+    // Contributor
+    return `
+      <p class="title">${data.name}</p>
+      <p class="note">
+        <a href="https://github.com/${data.login}" target="_blank" rel="noopener noreferrer">${data.login}</a>
+      </p>
+      <p class="number">${percentage}</p>
+      <p class="note">${data.commits} commits</p>
+    `;
   }
 
   render() {
@@ -147,7 +183,8 @@ export default class Bar extends AbstractVisualization {
       .attr('fill', d => (d.depth <= 1 ? 'white' : '#FF5C73'))
       .attr('cx', d => d.x)
       .attr('cy', d => d.y)
-      .attr('r', d => this.config.nodeSizes[d.depth]);
+      .attr('r', d => this.config.nodeSizes[d.depth])
+      .attr('title', d => (d.depth >= 1 ? d.name : ''));
 
     this.g.append('g')
       .attr('class', 'labels')
@@ -178,5 +215,8 @@ export default class Bar extends AbstractVisualization {
       .force('x', forceX())
       .force('y', forceY())
       .on('tick', this.onTick.bind(this));
+
+    // We instantiate the tooltip
+    this.instantiateTooltip('circle');
   }
 }

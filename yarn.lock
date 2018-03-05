@@ -1881,7 +1881,7 @@ d3-force@^1.1.0:
     d3-quadtree "1"
     d3-timer "1"
 
-d3-format@1:
+d3-format@1, d3-format@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.2.2.tgz#1a39c479c8a57fe5051b2e67a3bee27061a74e7a"
 
@@ -5389,6 +5389,10 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
 
+popper.js@^1.12.9:
+  version "1.12.9"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.9.tgz#0dfbc2dff96c451bb332edcfcfaaf566d331d5b3"
+
 portscanner@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/portscanner/-/portscanner-2.1.1.tgz#eabb409e4de24950f5a2a516d35ae769343fbb96"
@@ -6846,6 +6850,12 @@ timers-browserify@^2.0.2:
 tinyqueue@^1.1.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-1.2.3.tgz#b6a61de23060584da29f82362e45df1ec7353f3d"
+
+tippy.js@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-2.2.3.tgz#ae2aa54763a86d38682de199ef7f6442c2926413"
+  dependencies:
+    popper.js "^1.12.9"
 
 tmp@^0.0.33:
   version "0.0.33"
