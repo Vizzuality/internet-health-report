@@ -1,6 +1,7 @@
 // Pages
 import HomePage from 'pages/HomePage';
 import ExplorePage from 'pages/ExplorePage';
+import IssuePage from 'pages/IssuePage';
 import PostPage from 'pages/PostPage';
 
 const baseUrl = window.BASE_URL;
@@ -13,6 +14,10 @@ const routes = [
   {
     match: /^\/search-result\/?$/,
     class: ExplorePage
+  },
+  {
+    match: /^\/category\/[A-z0-9-]+\/?$/,
+    class: IssuePage
   },
   // Should be last
   {

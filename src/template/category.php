@@ -40,16 +40,21 @@ get_header(); ?>
           <div class="row">
             <div class="column small-12 medium-6">
               <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
+              <p>
+                <button type="button" class="text js-learn-more" aria-expanded="false" aria-controls="description">
+                  <strong><?php esc_html_e( 'Learn More', 'ihr-2018' ); ?></strong>
+                </button>
+              </p>
             </div>
           </div>
-          <div class="row">
-            <div class="column small-12 medium-6">
-            <p><a href="#" class="js-learn-more">Learn More</a></p>
-            </div>
-          </div>
-          <div class="row" style="display:none">
+          <div class="row" id="description" style="display: none;">
             <div class="column small-12 medium-6">
             <p><?php echo the_field('more', 'category_' . get_the_category()[0]->term_id);?></p>
+            <p>
+              <button type="button" class="text js-collapse" aria-expanded="true" aria-controls="description">
+                <strong><?php esc_html_e( 'Collapse', 'ihr-2018' ); ?></strong>
+              </button>
+            </p>
             </div>
           </div>
         </div>
