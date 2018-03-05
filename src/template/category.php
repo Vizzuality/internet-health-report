@@ -42,6 +42,16 @@ get_header(); ?>
               <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
             </div>
           </div>
+          <div class="row">
+            <div class="column small-12 medium-6">
+            <p><a href="#" class="js-learn-more">Learn More</a></p>
+            </div>
+          </div>
+          <div class="row" style="display:none">
+            <div class="column small-12 medium-6">
+            <p><?php echo the_field('more', 'category_' . get_the_category()[0]->term_id);?></p>
+            </div>
+          </div>
         </div>
       </header><!-- .page-header -->
 
