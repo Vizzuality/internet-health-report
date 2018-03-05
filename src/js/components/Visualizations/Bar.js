@@ -14,13 +14,20 @@ export default class Bar extends AbstractVisualization {
     this.config.height = 600;
     this.config.padding = 20;
     this.config.direction = this.config.direction || 'vertical';
-    this.config.axisSize = this.config.direction === 'horizontal' ? 70 : 20;
+    this.config.labelAxisSize = this.config.labelAxisSize || this.config.direction === 'horizontal' ? 70 : 20;
+    this.config.valueAxisSize = this.config.valueAxisSize || this.config.direction === 'horizontal' ? 20 : 70;
+    this.config.legendSize = 50;
 
     this.initialize();
   }
 
   initialize() {
     this.fetchData()
+      .then(() => {
+        this.data = this.data.map(d => Object.assign({}, d, {
+          value: +d.value
+        }));
+      })
       .catch(() => {})
       .then(() => this.render());
   }
@@ -62,7 +69,7 @@ export default class Bar extends AbstractVisualization {
 
     const labelScale = scaleBand()
       .domain(labels)
-      .rangeRound([0, (this.config.direction === 'horizontal' ? height : width) - (2 * this.config.padding)])
+      .rangeRound([0, (this.config.direction === 'horizontal' ? (height - this.config.legendSize) : width) - (2 * this.config.padding) - this.config.valueAxisSize])
       .paddingInner(0.2);
 
     const categoryScale = scaleBand()
@@ -76,7 +83,15 @@ export default class Bar extends AbstractVisualization {
 
     const valueScale = scaleLinear()
       .domain([0, max(this.data, d => d.value)])
-      .rangeRound(this.config.direction === 'horizontal' ? [0, width - (2 * this.config.padding) - this.config.axisSize] : [height - (2 * this.config.padding) - this.config.axisSize, 0]);
+      .rangeRound(this.config.direction === 'horizontal' ? [0, width - (2 * this.config.padding) - this.config.labelAxisSize] : [height - this.config.legendSize - (2 * this.config.padding) - this.config.labelAxisSize, 0]);
+
+    const legendScale = scaleBand()
+      .domain(categories)
+      .rangeRound([0, width - (2 * this.config.padding)]);
+
+    const valueAxis = (this.config.direction === 'horizontal' ? axisBottom : axisLeft)(valueScale)
+      .tickPadding(10)
+      .tickSize(5);
 
     const labelAxis = (this.config.direction === 'horizontal' ? axisLeft : axisBottom)(labelScale)
       .tickPadding(10)
@@ -90,22 +105,82 @@ export default class Bar extends AbstractVisualization {
       .data(labels)
       .enter()
       .append('g')
-      .attr('transform', d => (this.config.direction === 'horizontal' ? `translate(0, ${labelScale(d)})` : `translate(${labelScale(d)}, 0)`))
+      .attr('transform', (d) => {
+        if (this.config.direction === 'horizontal') {
+          return `translate(0, ${labelScale(d)})`;
+        }
+        return `translate(${labelScale(d)}, 0)`;
+      })
       .selectAll('rect')
       .data(label => this.data.filter(d => d.label === label))
       .enter()
       .append('rect')
-      .attr(this.config.direction === 'horizontal' ? 'y' : 'x', d => categoryScale(d.category))
-      .attr(this.config.direction === 'horizontal' ? 'x' : 'y', d => (this.config.direction === 'horizontal' ? this.config.axisSize : valueScale(d.value)))
-      .attr(this.config.direction === 'horizontal' ? 'height' : 'width', categoryScale.bandwidth())
-      .attr(this.config.direction === 'horizontal' ? 'width' : 'height', d => (this.config.direction === 'horizontal' ? valueScale(d.value) : (height - (2 * this.config.padding) - this.config.axisSize - valueScale(d.value))))
+      .attr('x', (d) => {
+        if (this.config.direction === 'horizontal') {
+          return this.config.labelAxisSize;
+        }
+        return categoryScale(d.category) + this.config.valueAxisSize;
+      })
+      .attr('y', (d) => {
+        if (this.config.direction === 'horizontal') {
+          return categoryScale(d.category);
+        }
+        return valueScale(d.value);
+      })
+      .attr('width', (d) => {
+        if (this.config.direction === 'horizontal') {
+          return valueScale(d.value);
+        }
+        return categoryScale.bandwidth();
+      })
+      .attr('height', (d) => {
+        if (this.config.direction === 'horizontal') {
+          return categoryScale.bandwidth();
+        }
+        return height - (2 * this.config.padding) - this.config.labelAxisSize - valueScale(d.value) - this.config.legendSize;
+      })
       .attr('fill', d => categoryFillScale(d.category))
       .attr('stroke', 'black')
       .attr('stroke-width', 2);
 
     container.append('g')
-      .attr('class', 'axis')
-      .attr('transform', this.config.direction === 'horizontal' ? `translate(${this.config.axisSize}, 0)` : `translate(0, ${height - (2 * this.config.padding) - this.config.axisSize})`)
+      .attr('class', 'label-axis')
+      .attr('transform', () => {
+        if (this.config.direction === 'horizontal') {
+          return `translate(${this.config.labelAxisSize}, 0)`;
+        }
+        return `translate(${this.config.valueAxisSize}, ${height - (2 * this.config.padding) - this.config.labelAxisSize - this.config.legendSize})`;
+      })
       .call(labelAxis);
+
+    container.append('g')
+      .attr('class', 'value-axis')
+      .attr('transform', this.config.direction === 'horizontal' ? `translate(${this.config.labelAxisSize}, ${height - (2 * this.config.padding) - this.config.valueAxisSize - this.config.legendSize})` : `translate(${this.config.valueAxisSize}, 0)`)
+      .call(valueAxis);
+
+    const legendItem = container.append('g')
+      .attr('class', 'legend')
+      .attr('transform', `translate(0, ${height - (2 * this.config.padding) - (this.config.legendSize / 2)})`)
+      .selectAll('g')
+      .data(categories)
+      .enter()
+      .append('g')
+      .attr('transform', c => `translate(${legendScale(c)}, 0)`);
+
+    legendItem.append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', 15)
+      .attr('height', 15)
+      .attr('fill', c => categoryFillScale(c))
+      .attr('stroke', 'black')
+      .attr('stroke-width', 2);
+
+    legendItem.insert('text')
+      .attr('dx', 20)
+      .attr('dy', 15)
+      .text(c => c)
+      .attr('text-anchor', 'left')
+      .attr('alignment-baseline', 'middle');
   }
 }
