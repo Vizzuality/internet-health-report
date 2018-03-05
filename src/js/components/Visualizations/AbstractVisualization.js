@@ -28,10 +28,6 @@ export default class AbstractVisualization {
   constructor(el, config) {
     this.el = el;
     this.config = config;
-
-    // Tooltip container
-    this.tooltipContainer = document.createElement('div');
-    this.tooltipContainer.classList.add('c-tooltip');
   }
 
   /**
@@ -39,18 +35,30 @@ export default class AbstractVisualization {
    * @param {string} target HTML/CSS selector
    */
   instantiateTooltip(target) {
+    const getTooltipContent = this.getTooltipContent.bind(this);
     tippy(this.el, {
       target,
       animateFill: false,
       animation: 'shift-toward',
       inertia: true,
       theme: 'ihr',
-      html: this.tooltipContainer,
+      html: document.createElement('div'),
       sticky: true,
       arrow: true,
       interactive: true,
-      wait: (show, e) => {
-        this.tooltipContainer.innerHTML = this.getTooltipContent(e.target);
+      wait(show, e) {
+        // FIXME: We hack tippy here to not have to inject
+        // the result of getTooltipContent in the DOM
+        // Referencing a virtual node in `html` doesn't
+        // work because it can't be re-used
+        const container = document.createElement('div');
+        container.classList.add('c-tooltip', 'js-tooltip');
+        container.innerHTML = getTooltipContent(e.target);
+
+        const tooltip = this.querySelector('.tippy-content');
+        tooltip.innerHTML = '';
+        tooltip.appendChild(container);
+
         show();
       }
     });
