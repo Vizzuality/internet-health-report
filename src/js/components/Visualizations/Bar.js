@@ -1,23 +1,14 @@
-import textures from 'textures';
 import { select } from 'd3-selection';
 import { scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
-import { axisLeft, axisBottom } from 'd3-axis';
+import { axisRight, axisBottom } from 'd3-axis';
+import { format } from 'd3-format';
 
 import AbstractVisualization from 'components/Visualizations/AbstractVisualization';
 
 export default class Bar extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
-
-    this.config = config;
-    this.config.height = 600;
-    this.config.padding = 20;
-    this.config.direction = this.config.direction || 'vertical';
-    this.config.labelAxisSize = this.config.labelAxisSize || this.config.direction === 'horizontal' ? 70 : 20;
-    this.config.valueAxisSize = this.config.valueAxisSize || this.config.direction === 'horizontal' ? 20 : 70;
-    this.config.legendSize = 50;
-
     this.initialize();
   }
 
@@ -32,21 +23,13 @@ export default class Bar extends AbstractVisualization {
       .then(() => this.render());
   }
 
-  getTooltipContent(target) { // eslint-disable-line class-methods-use-this
-    const data = select(target).datum();
-    return `${data.value}`;
-  }
-
   render() {
     super.render();
     if (!this.data) return;
 
-    const width = this.el.offsetWidth;
-    const height = this.config.height;
-
     const svg = select(this.el).append('svg')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', this.width)
+      .attr('height', this.height)
       .attr('role', 'img')
       .attr('aria-labelledby', `title_${this.id} desc_${this.id}`);
 
@@ -64,114 +47,34 @@ export default class Bar extends AbstractVisualization {
     const categories = this.data.map(d => d.category)
       .filter((d, i, arr) => arr.indexOf(d) === i);
 
-    const patterns = [
-      textures.lines().lighter().size(8),
-      textures.paths().d('woven').lighter().size(8),
-      textures.circles().lighter().size(8)
-    ];
-
-    patterns.forEach(p => svg.call(p));
-
-    const labelScale = scaleBand()
-      .domain(labels)
-      .rangeRound([0, (this.config.direction === 'horizontal' ? (height - this.config.legendSize) : width) - (2 * this.config.padding) - this.config.valueAxisSize])
-      .paddingInner(0.2);
-
-    const categoryScale = scaleBand()
-      .domain(categories)
-      .rangeRound([0, labelScale.bandwidth()])
-      .paddingInner(0.1);
+    this.patterns.forEach(p => svg.call(p));
 
     const categoryFillScale = scaleOrdinal()
       .domain(categories)
-      .range(patterns.map(p => p.url()));
-
-    const valueScale = scaleLinear()
-      .domain([0, max(this.data, d => d.value)])
-      .rangeRound(this.config.direction === 'horizontal' ? [0, width - (2 * this.config.padding) - this.config.labelAxisSize] : [height - this.config.legendSize - (2 * this.config.padding) - this.config.labelAxisSize, 0]);
-
-    const legendScale = scaleBand()
-      .domain(categories)
-      .rangeRound([0, width - (2 * this.config.padding)]);
-
-    const valueAxis = (this.config.direction === 'horizontal' ? axisBottom : axisLeft)(valueScale)
-      .tickPadding(10)
-      .tickSize(5);
-
-    const labelAxis = (this.config.direction === 'horizontal' ? axisLeft : axisBottom)(labelScale)
-      .tickPadding(10)
-      .tickSize(0);
+      .range(this.patterns.map(p => p.url()));
 
     const container = svg.append('g')
-      .attr('transform', `translate(${this.config.padding}, ${this.config.padding})`);
+      .attr('transform', `translate(${this.padding}, ${this.padding})`);
 
+    // Title
     container.append('g')
-      .selectAll('g')
-      .data(labels)
-      .enter()
-      .append('g')
-      .attr('transform', (d) => {
-        if (this.config.direction === 'horizontal') {
-          return `translate(0, ${labelScale(d)})`;
-        }
-        return `translate(${labelScale(d)}, 0)`;
-      })
-      .selectAll('rect')
-      .data(label => this.data.filter(d => d.label === label))
-      .enter()
-      .append('rect')
-      .attr('x', (d) => {
-        if (this.config.direction === 'horizontal') {
-          return this.config.labelAxisSize;
-        }
-        return categoryScale(d.category) + this.config.valueAxisSize;
-      })
-      .attr('y', (d) => {
-        if (this.config.direction === 'horizontal') {
-          return categoryScale(d.category);
-        }
-        return valueScale(d.value);
-      })
-      .attr('width', (d) => {
-        if (this.config.direction === 'horizontal') {
-          return valueScale(d.value);
-        }
-        return categoryScale.bandwidth();
-      })
-      .attr('height', (d) => {
-        if (this.config.direction === 'horizontal') {
-          return categoryScale.bandwidth();
-        }
-        return height - (2 * this.config.padding) - this.config.labelAxisSize - valueScale(d.value) - this.config.legendSize;
-      })
-      .attr('fill', d => categoryFillScale(d.category))
-      .attr('stroke', 'black')
-      .attr('stroke-width', 2)
-      .attr('title', d => d.value);
+      .attr('class', 'title')
+      .attr('transform', `translate(${this.titleBounds.x}, ${this.titleBounds.y})`)
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dominant-baseline', 'hanging')
+      .text(this.title);
 
-    container.append('g')
-      .attr('class', 'label-axis')
-      .attr('transform', () => {
-        if (this.config.direction === 'horizontal') {
-          return `translate(${this.config.labelAxisSize}, 0)`;
-        }
-        return `translate(${this.config.valueAxisSize}, ${height - (2 * this.config.padding) - this.config.labelAxisSize - this.config.legendSize})`;
-      })
-      .call(labelAxis);
-
-    container.append('g')
-      .attr('class', 'value-axis')
-      .attr('transform', this.config.direction === 'horizontal' ? `translate(${this.config.labelAxisSize}, ${height - (2 * this.config.padding) - this.config.valueAxisSize - this.config.legendSize})` : `translate(${this.config.valueAxisSize}, 0)`)
-      .call(valueAxis);
-
+    // Legend
+    let currentXPosition = this.legendBounds.x;
     const legendItem = container.append('g')
       .attr('class', 'legend')
-      .attr('transform', `translate(0, ${height - (2 * this.config.padding) - (this.config.legendSize / 2)})`)
+      .attr('transform', `translate(${this.legendBounds.x}, ${this.legendBounds.y})`)
       .selectAll('g')
       .data(categories)
       .enter()
-      .append('g')
-      .attr('transform', c => `translate(${legendScale(c)}, 0)`);
+      .append('g');
 
     legendItem.append('rect')
       .attr('x', 0)
@@ -183,13 +86,220 @@ export default class Bar extends AbstractVisualization {
       .attr('stroke-width', 2);
 
     legendItem.insert('text')
-      .attr('dx', 20)
-      .attr('dy', 15)
+      .attr('x', 25)
+      .attr('y', 7.5)
       .text(c => c)
       .attr('text-anchor', 'left')
-      .attr('alignment-baseline', 'middle');
+      .attr('dominant-baseline', 'central');
 
-    // We instantiate the tooltip
-    this.instantiateTooltip('rect');
+    // We position the items as if they would
+    // follow the "inline" flow
+    legendItem
+      .attr('transform', function () { // eslint-disable-line func-names
+        const res = `translate(${currentXPosition}, 0)`;
+        currentXPosition += this.getBBox().width + 40;
+        return res;
+      });
+
+    // Value axis title
+    container.append('g')
+      .attr('class', 'value-axis-title')
+      .attr('transform', () => {
+        const translate = `translate(${this.valueAxisTitleBounds.x + (this.valueAxisTitleBounds.width / 2)}, ${this.valueAxisTitleBounds.y + (this.valueAxisTitleBounds.height / 2)})`;
+        if (this.direction === 'horizontal') {
+          return translate;
+        }
+        return `${translate} rotate(-90)`;
+      })
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dominant-baseline', 'central')
+      .attr('text-anchor', 'middle')
+      .text(this.valueAxisTitle);
+
+    // Label axis title
+    container.append('g')
+      .attr('class', 'label-axis-title')
+      .attr('transform', () => {
+        const translate = `translate(${this.labelAxisTitleBounds.x + (this.labelAxisTitleBounds.width / 2)}, ${this.labelAxisTitleBounds.y + (this.labelAxisTitleBounds.height / 2)})`;
+        if (this.direction === 'horizontal') {
+          return `${translate} rotate(-90)`;
+        }
+        return translate;
+      })
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dominant-baseline', 'central')
+      .attr('text-anchor', 'middle')
+      .text(this.labelAxisTitle);
+
+    // Value axis
+    const valueScale = scaleLinear()
+      .domain([0, max(this.data, d => d.value)])
+      .rangeRound(
+        this.direction === 'horizontal'
+          ? [0, this.valueAxisBounds.width]
+          : [this.valueAxisBounds.height, 0]
+      );
+
+    const valueAxis = (this.direction === 'horizontal' ? axisBottom : axisRight)(valueScale)
+      .tickPadding(10)
+      .tickSize(0)
+      .tickFormat(format(this.valueFormat));
+
+    container.append('g')
+      .attr('class', 'value-axis')
+      .attr('transform', `translate(${this.valueAxisBounds.x}, ${this.valueAxisBounds.y})`)
+      .call(valueAxis)
+      .selectAll('text')
+      .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '');
+
+    // Rules
+    container.append('g')
+      .attr('class', 'rules')
+      .attr('transform', this.direction === 'horizontal' ? `translate(${this.visualizationBounds.x}, 0)` : `translate(0, ${this.valueAxisBounds.y})`)
+      .selectAll('line')
+      .data(valueScale.ticks())
+      .enter()
+      .append('line')
+      .attr('x1', (d) => {
+        if (this.direction === 'horizontal') {
+          return valueScale(d);
+        }
+        return this.visualizationBounds.x;
+      })
+      .attr('x2', (d) => {
+        if (this.direction === 'horizontal') {
+          return valueScale(d);
+        }
+        return this.valueAxisBounds.x + this.valueAxisBounds.width;
+      })
+      .attr('y1', (d) => {
+        if (this.direction === 'horizontal') {
+          return this.visualizationBounds.y;
+        }
+        return valueScale(d);
+      })
+      .attr('y2', (d) => {
+        if (this.direction === 'horizontal') {
+          return this.valueAxisBounds.y + this.valueAxisBounds.height;
+        }
+        return valueScale(d);
+      });
+
+    // Label axis
+    const labelScale = scaleBand()
+      .domain(labels)
+      .rangeRound(this.direction === 'horizontal' ? [0, this.visualizationBounds.height] : [0, this.visualizationBounds.width])
+      .paddingInner(0.2)
+      .paddingOuter(0.2);
+
+    const labelAxis = (this.direction === 'horizontal' ? axisRight : axisBottom)(labelScale)
+      .tickPadding(10)
+      .tickSize(0);
+
+    container.append('g')
+      .attr('class', 'label-axis')
+      .attr('transform', `translate(${this.labelAxisBounds.x}, ${this.labelAxisBounds.y})`)
+      .call(labelAxis);
+
+    // Marks
+    const categoryScale = scaleBand()
+      .domain(categories)
+      .rangeRound([0, labelScale.bandwidth()])
+      .paddingInner(0.1);
+
+    const markItem = container.append('g')
+      .attr('class', 'marks')
+      .attr('transform', `translate(${this.visualizationBounds.x}, ${this.visualizationBounds.y})`)
+      .selectAll('g')
+      .data(labels)
+      .enter()
+      .append('g')
+      .attr('transform', (d) => {
+        if (this.direction === 'horizontal') {
+          return `translate(0, ${labelScale(d)})`;
+        }
+        return `translate(${labelScale(d)}, 0)`;
+      });
+
+    markItem.selectAll('rect')
+      .data(label => this.data.filter(d => d.label === label))
+      .enter()
+      .append('rect')
+      .attr('x', (d) => {
+        if (this.direction === 'horizontal') {
+          return valueScale(0);
+        }
+        return categoryScale(d.category);
+      })
+      .attr('y', (d) => {
+        if (this.direction === 'horizontal') {
+          return categoryScale(d.category);
+        }
+        return valueScale(d.value);
+      })
+      .attr('width', (d) => {
+        if (this.direction === 'horizontal') {
+          return valueScale(d.value) - valueScale(0);
+        }
+        return categoryScale.bandwidth();
+      })
+      .attr('height', (d) => {
+        if (this.direction === 'horizontal') {
+          return categoryScale.bandwidth();
+        }
+        return valueScale(0) - valueScale(d.value);
+      })
+      .attr('fill', d => categoryFillScale(d.category))
+      .attr('stroke', 'black')
+      .attr('stroke-width', 2);
+
+    // Value above the rectangle
+    markItem.append('g')
+      .attr('class', 'value-outline')
+      .selectAll('text')
+      .data(label => this.data.filter(d => d.label === label))
+      .enter()
+      .append('text')
+      .attr('x', (d) => {
+        if (this.direction === 'horizontal') {
+          return valueScale(d.value);
+        }
+        return categoryScale(d.category) + (categoryScale.bandwidth() / 2);
+      })
+      .attr('y', (d) => {
+        if (this.direction === 'horizontal') {
+          return categoryScale(d.category) + (categoryScale.bandwidth() / 2);
+        }
+        return valueScale(d.value);
+      })
+      .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
+      .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
+      .text(d => format(this.valueFormat)(d.value));
+
+    markItem.append('g')
+      .attr('class', 'value')
+      .selectAll('text')
+      .data(label => this.data.filter(d => d.label === label))
+      .enter()
+      .append('text')
+      .attr('x', (d) => {
+        if (this.direction === 'horizontal') {
+          return valueScale(d.value);
+        }
+        return categoryScale(d.category) + (categoryScale.bandwidth() / 2);
+      })
+      .attr('y', (d) => {
+        if (this.direction === 'horizontal') {
+          return categoryScale(d.category) + (categoryScale.bandwidth() / 2);
+        }
+        return valueScale(d.value);
+      })
+      .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
+      .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
+      .text(d => format(this.valueFormat)(d.value));
   }
 }

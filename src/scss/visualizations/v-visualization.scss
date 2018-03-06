@@ -1,0 +1,75 @@
+.v-visualization {
+  margin: 20px 0;
+  font-family: $font-family-1;
+
+  .title {
+    font-size: $font-s;
+    font-weight: 600;
+  }
+
+  .legend {
+    font-size: $font-s;
+  }
+
+  .label-axis-title,
+  .value-axis-title {
+    text {
+      font-size: $font-xxs;
+    }
+  }
+
+  .rules {
+    line {
+      stroke-width: 1px;
+      stroke: $black;
+
+      &:first-of-type {
+        stroke-width: 2px;
+      }
+    }
+  }
+
+  .label-axis,
+  .value-axis {
+    path,
+    line {
+      stroke: transparent;
+    }
+
+    text {
+      font-family: $font-family-1;
+      font-size: $font-xxxs;
+    }
+  }
+
+  .value-axis {
+    text {
+      transform: translateY(-#{$font-xxs / 2});
+    }
+  }
+
+  .marks {
+    text {
+      transform: translateY(-#{$font-xxs / 2});
+      font-family: $font-family-1;
+      font-size: $font-xxxs;
+    }
+
+    .value-outline text {
+      stroke: $white;
+      stroke-width: 4px;
+    }
+  }
+
+  &.-horizontal {
+    .value-axis {
+      text {
+        transform: translateX(#{$font-xxs / 2});
+      }
+    }
+
+    .marks text {
+      transform: translateX(#{$font-xxs / 2});
+    }
+  }
+}

@@ -32,6 +32,7 @@
   <script>
     window.BASE_URL='<?php echo get_site_url(null, '', 'relative'); ?>';
     window.LANG='<?php echo substr(get_locale(), 0, 2); ?>';
+    window.COLOR = '<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>';
     <?php
       if (have_rows('visualizations')):
         echo 'window.VISUALIZATIONS = [';
