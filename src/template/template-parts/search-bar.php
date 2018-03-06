@@ -22,13 +22,8 @@
 		</div>
 
 	<?php foreach( $GLOBALS['my_query_filters'] as $key => $name ):
-
-		// Get the ID of a post. This is a hack to use the get_field_object,
-		// as is requires the id of a post
-		$temp_post_id = get_posts("numberposts=1")[0]->ID;
-
 		// get the field's settings without attempting to load a value
-		$field = get_field_object($name, $temp_post_id);
+		$field = get_field_object($name);
 
 		$current_value = NULL;
 		// set value if available
