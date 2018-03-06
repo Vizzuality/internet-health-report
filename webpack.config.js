@@ -25,7 +25,9 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'app.js'
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/wp-content/themes/ihr-2018/js/'
   },
   resolve: {
     modules: [path.resolve(__dirname, dir.src + 'js/'), 'node_modules']

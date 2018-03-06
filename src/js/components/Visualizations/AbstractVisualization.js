@@ -1,5 +1,5 @@
 import { csvParse } from 'd3-dsv';
-import tippy from 'tippy.js';
+import tippy from 'tippy.js/dist/tippy.min';
 import textures from 'textures';
 
 // Data

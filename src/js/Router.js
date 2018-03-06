@@ -1,28 +1,22 @@
-// Pages
-import HomePage from 'pages/HomePage';
-import ExplorePage from 'pages/ExplorePage';
-import IssuePage from 'pages/IssuePage';
-import PostPage from 'pages/PostPage';
-
 const baseUrl = window.BASE_URL;
 
 const routes = [
   {
     match: /^\/?$/,
-    class: HomePage
+    page: 'HomePage'
   },
   {
     match: /^\/search-result\/?$/,
-    class: ExplorePage
+    page: 'ExplorePage'
   },
   {
     match: /^\/category\/[A-z0-9-]+\/?$/,
-    class: IssuePage
+    page: 'IssuePage'
   },
   // Should be last
   {
     match: /^\/[A-z0-9-]+\/?$/,
-    class: PostPage
+    page: 'PostPage'
   }
 ];
 
@@ -42,8 +36,9 @@ export default class Router {
   static executeRoute() {
     const matchingRoute = Router.getMatchingRoute();
     if (matchingRoute) {
-      // eslint-disable-next-line no-new, new-cap
-      new matchingRoute.class(matchingRoute, { baseUrl });
+      import(/* webpackChunkName: "pages" */ `pages/${matchingRoute.page}.js`)
+        // eslint-disable-next-line new-cap
+        .then(page => new page.default(matchingRoute, { baseUrl }));
     }
   }
 

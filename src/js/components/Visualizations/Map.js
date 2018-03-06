@@ -1,17 +1,24 @@
-import mapboxgl from 'mapbox-gl';
 import { extent as d3Extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
 
 import AbstractVisualization from './AbstractVisualization';
 
-// Configuring mapbox
-mapboxgl.accessToken = process.env.MAPBOX_API_TOKEN || 'undefined';
+// Mapbox is lazy-loaded (code splitting)
+let mapboxgl = null;
 
 export default class Map extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
-    this.initialize();
+    import(/* webpackChunkName: "mapbox" */ 'mapbox-gl')
+      .then((lib) => {
+        mapboxgl = lib;
+
+        // Configuring mapbox
+        mapboxgl.accessToken = process.env.MAPBOX_API_TOKEN || 'undefined';
+
+        this.initialize();
+      });
   }
 
   initialize() {

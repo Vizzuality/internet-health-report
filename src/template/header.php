@@ -28,6 +28,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
+  <!-- Prefetching the JS -->
+  <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages0.bundle.js" as="script">
+  <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages1.bundle.js" as="script">
+  <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages2.bundle.js" as="script">
+  <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages3.bundle.js" as="script">
+  <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/mapbox.bundle.js" as="script">
+
   <!-- Loading visualizations -->
   <script>
     window.BASE_URL='<?php echo get_site_url(null, '', 'relative'); ?>';

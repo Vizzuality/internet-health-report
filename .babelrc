@@ -9,6 +9,7 @@
         "components": "./components",
         "data": "./data"
       }
-    }]
+    }],
+    "syntax-dynamic-import"
   ]
 }
