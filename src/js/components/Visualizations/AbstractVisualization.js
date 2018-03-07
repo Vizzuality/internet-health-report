@@ -167,7 +167,7 @@ export default class AbstractVisualization {
       x: 2, // Avoid the border to be cut if no padding
       y: this.titleBounds.y + this.titleBounds.height,
       width: this.width - (2 * this.padding),
-      height: this.titleSize
+      height: this.config.legendRows * this.titleSize
     };
   }
 
@@ -299,6 +299,9 @@ export default class AbstractVisualization {
   constructor(el, config) {
     this.el = el;
     this.config = config;
+
+    // This value is dynamically updated by the visualization
+    this.config.legendRows = 1;
   }
 
   /**

@@ -80,7 +80,6 @@ export default class StackedBar extends AbstractVisualization {
       .text(this.title);
 
     // Legend
-    let currentXPosition = this.legendBounds.x;
     const legendItem = container.append('g')
       .attr('class', 'legend')
       .attr('transform', `translate(${this.legendBounds.x}, ${this.legendBounds.y})`)
@@ -107,12 +106,24 @@ export default class StackedBar extends AbstractVisualization {
 
     // We position the items as if they would
     // follow the "inline" flow
+    this.config.legendRows = 1;
+    let currentXPosition = this.legendBounds.x;
+    let currentRow = 0;
+    const self = this;
     legendItem
       .attr('transform', function () { // eslint-disable-line func-names
-        const res = `translate(${currentXPosition}, 0)`;
-        currentXPosition += this.getBBox().width + 40;
+        const width = this.getBBox().width + 40;
+        const nextXPosition = currentXPosition + width;
+        if (nextXPosition > self.titleBounds.width) {
+          currentRow++; // eslint-disable-line no-plusplus
+          currentXPosition = self.legendBounds.x;
+        }
+        const res = `translate(${currentXPosition}, ${currentRow * (self.legendBounds.height)})`;
+        currentXPosition += width;
         return res;
       });
+
+    this.config.legendRows = currentRow + 1;
 
     // Value axis title
     container.append('g')
