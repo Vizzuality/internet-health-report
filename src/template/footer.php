@@ -25,13 +25,13 @@
                 <input id="lang" name="lang" value="<?php echo ICL_LANGUAGE_CODE; ?>" type="hidden">
                 <input id="newsletters" name="newsletters" value="internet-health-report-group" type="hidden">
                 <div class="email-button">
-                  <input id="email" name="email" required="required" placeholder="Write your email here" aria-label="Email address" type="email">
-                  <button id="newsletter_submit" type="submit" class="btn -secondary">Subscribe</button>
+                  <input id="email" name="email" required="required" placeholder="<?php esc_html_e( 'Write your email here', 'ihr-2018' ); ?>" aria-label="Email address" type="email">
+                  <button id="newsletter_submit" type="submit" class="btn -secondary"><?php esc_html_e( 'Subscribe', 'ihr-2018' ); ?></button>
                 </div>
                 <div class="privacy">
                   <label for="privacy">
                     <input id="privacy" name="privacy" required="" type="checkbox">
-                    <?php esc_html_e( "I'm ok with mozilla handling my info as explained in this", 'ihr-2018' ); ?><a href="https://www.mozilla.org/privacy/websites/"><?php esc_html_e( 'privacy notice', 'ihr-2018' ); ?></a>.
+                    <?php esc_html_e( "I'm ok with mozilla handling my info as explained in this ", 'ihr-2018' ); ?><a href="https://www.mozilla.org/privacy/websites/"><?php esc_html_e( 'privacy notice', 'ihr-2018' ); ?></a>.
                   </label>
                 </div>
               </form>
