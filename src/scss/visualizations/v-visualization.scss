@@ -48,17 +48,19 @@
     }
   }
 
-  .marks {
+  .marks,
+  .value-outline,
+  .value {
     text {
       transform: translateY(-#{$font-xxs / 2});
       font-family: $font-family-1;
       font-size: $font-xxxs;
     }
+  }
 
-    .value-outline text {
-      stroke: $white;
-      stroke-width: 4px;
-    }
+  .value-outline text {
+    stroke: $white;
+    stroke-width: 4px;
   }
 
   &.-horizontal {
@@ -68,8 +70,12 @@
       }
     }
 
-    .marks text {
-      transform: translateX(#{$font-xxs / 2});
+    .marks,
+    .value-outline,
+    .value {
+      text {
+        transform: translateX(#{$font-xxs / 2});
+      }
     }
   }
 }
