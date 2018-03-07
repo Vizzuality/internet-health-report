@@ -54,13 +54,15 @@
     }
   }
 
-  .marks,
-  .value-outline,
-  .value {
-    text {
-      transform: translateY(-#{$font-xxs / 2});
-      font-family: $font-family-1;
-      font-size: $font-xxxs;
+  &:not(.v-circle) {
+    .marks,
+    .value-outline,
+    .value {
+      text {
+        transform: translateY(-#{$font-xxs / 2});
+        font-family: $font-family-1;
+        font-size: $font-xxxs;
+      }
     }
   }
 

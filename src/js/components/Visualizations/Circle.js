@@ -7,12 +7,6 @@ import AbstractVisualization from 'components/Visualizations/AbstractVisualizati
 export default class Circle extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
-
-    this.config = config;
-    this.config.height = 600;
-    this.config.padding = 20;
-    this.config.legendSize = 50;
-
     this.initialize();
   }
 
@@ -51,8 +45,7 @@ export default class Circle extends AbstractVisualization {
       .map(d => valueScale(d.value) * 2);
 
     // // Remaining space between the pair of circles of the first line
-    const firstLineRemainingSpace = (width - (2 * this.config.padding)
-      - firstLineCirclesSize.reduce((res, s) => res + s, 0));
+    const firstLineRemainingSpace = width - firstLineCirclesSize.reduce((res, s) => res + s, 0);
 
     const firstLineLabelRange = (new Array(labels.length)).fill(undefined)
       .map((_, i) => {
@@ -76,12 +69,15 @@ export default class Circle extends AbstractVisualization {
     super.render();
     if (!this.data) return;
 
-    const width = this.el.offsetWidth;
-    const height = this.config.height;
+    this.el.classList.add('v-circle');
+
+    // We remove the space reserved for the axes
+    this.config.valueAxisSize = 0;
+    this.config.labelAxisSize = 0;
 
     const svg = select(this.el).append('svg')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', this.width)
+      .attr('height', this.height)
       .attr('role', 'img')
       .attr('aria-labelledby', `title_${this.id} desc_${this.id}`);
 
@@ -99,27 +95,86 @@ export default class Circle extends AbstractVisualization {
     const categories = this.data.map(d => d.category)
       .filter((d, i, arr) => arr.indexOf(d) === i);
 
+    const container = svg.append('g')
+      .attr('transform', `translate(${this.padding}, ${this.padding})`);
+
+    // Title
+    container.append('g')
+      .attr('class', 'title')
+      .attr('transform', `translate(${this.titleBounds.x}, ${this.titleBounds.y})`)
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dominant-baseline', 'hanging')
+      .text(this.title);
+
+    // Legend
+    const legendItem = container.append('g')
+      .attr('class', 'legend')
+      .attr('transform', `translate(${this.legendBounds.x}, ${this.legendBounds.y})`)
+      .selectAll('g')
+      .data(categories)
+      .enter()
+      .append('g');
+
+    legendItem.append('circle')
+      .attr('cx', 7.5)
+      .attr('cy', 7.5)
+      .attr('r', 7.5)
+      .attr('fill', (_, i) => (i === 0 ? '#64A4F4' : 'transparent'))
+      .attr('stroke', (_, i) => (i === 0 ? 'transparent' : 'black'))
+      .attr('stroke-width', 2)
+      .attr('stroke-dasharray', '5, 3');
+
+    legendItem.insert('text')
+      .attr('x', 25)
+      .attr('y', 7.5)
+      .text(c => c)
+      .attr('text-anchor', 'left')
+      .attr('dominant-baseline', 'central');
+
+    // We position the items as if they would
+    // follow the "inline" flow
+    this.config.legendRows = 1;
+    let currentXPosition = this.legendBounds.x;
+    let currentRow = 0;
+    const self = this;
+    legendItem
+      .attr('transform', function () { // eslint-disable-line func-names
+        const width = this.getBBox().width + 40;
+        const nextXPosition = currentXPosition + width;
+        if (nextXPosition > self.titleBounds.width) {
+          currentRow++; // eslint-disable-line no-plusplus
+          currentXPosition = self.legendBounds.x;
+        }
+        const res = `translate(${currentXPosition}, ${currentRow * (self.legendBounds.height)})`;
+        currentXPosition += width;
+        return res;
+      });
+
+    this.config.legendRows = currentRow + 1;
+
+    // Marks
     const valueScale = scaleLinear()
       .domain(extent(this.data, d => d.value))
-      .range([5, 160]);
+      .range([5, 150]);
+
+    const xOffset = 20;
 
     const firstLineLabelScale = this.getLabelScale(
       labels.slice(0, Math.min(labels.length, 6)),
       valueScale,
-      width
+      this.visualizationBounds.width - xOffset
     );
     const secondLineLabelScale = this.getLabelScale(
       labels.slice(6, labels.length),
       valueScale,
-      width
+      this.visualizationBounds.width - xOffset
     );
 
-    const container = svg.append('g')
-      .attr('transform', `translate(${this.config.padding}, ${this.config.padding})`);
-
     const firstLineItem = container.append('g')
-      .attr('class', 'first-line')
-      .attr('transform', `translate(0, ${valueScale.range()[1] + this.config.legendSize})`)
+      .attr('class', 'marks')
+      .attr('transform', `translate(${this.visualizationBounds.x + xOffset}, ${this.visualizationBounds.y + valueScale.range()[1]})`)
       .selectAll('g')
       .data(labels.slice(0, 6))
       .enter()
@@ -147,12 +202,12 @@ export default class Circle extends AbstractVisualization {
       .attr('dy', 0)
       .text(l => l)
       .attr('text-anchor', 'middle')
-      .attr('alignment-baseline', 'middle')
+      .attr('dominant-baseline', 'central')
       .attr('transform', (_, i) => (i < 3 ? '' : `translate(${firstLineLabelScale(i)}, ${secondLineLabelScale(0) + 60}) rotate(-45)`));
 
     const secondLineItem = container.append('g')
       .attr('class', 'second-line')
-      .attr('transform', `translate(0, ${(valueScale.range()[1] * 2) + secondLineLabelScale(0) + this.config.legendSize + 60})`)
+      .attr('transform', `translate(${this.visualizationBounds.x + xOffset}, ${this.visualizationBounds.y + (valueScale.range()[1] * 2) + secondLineLabelScale(0) + 60})`)
       .selectAll('g')
       .data(labels.slice(6, labels.length))
       .enter()
@@ -180,31 +235,7 @@ export default class Circle extends AbstractVisualization {
       .attr('dy', 0)
       .text(l => l)
       .attr('text-anchor', 'middle')
-      .attr('alignment-baseline', 'middle')
+      .attr('dominant-baseline', 'central')
       .attr('transform', (_, i) => `translate(${secondLineLabelScale(i)}, ${secondLineLabelScale(0) + 60}) rotate(-45)`);
-
-    const legendItem = container.append('g')
-      .attr('class', 'legend')
-      .selectAll('g')
-      .data(categories)
-      .enter()
-      .append('g')
-      .attr('transform', (_, i) => `translate(${i * 150}, 0)`);
-
-    legendItem.append('circle')
-      .attr('cx', 0)
-      .attr('cy', 0)
-      .attr('r', 7.5)
-      .attr('fill', (_, i) => (i === 0 ? '#64A4F4' : 'transparent'))
-      .attr('stroke', (_, i) => (i === 0 ? 'transparent' : 'black'))
-      .attr('stroke-width', 2)
-      .attr('stroke-dasharray', '5, 3');
-
-    legendItem.insert('text')
-      .attr('dx', 20)
-      .attr('dy', 7.5)
-      .text(c => c)
-      .attr('text-anchor', 'left')
-      .attr('alignment-baseline', 'middle');
   }
 }

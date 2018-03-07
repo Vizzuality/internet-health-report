@@ -201,7 +201,9 @@ export default class AbstractVisualization {
   }
 
   get valueAxisSize() {
-    return this.config.valueAxisSize || 30;
+    return this.config.valueAxisSize !== undefined && this.config.valueAxisSize !== null
+      ? this.config.valueAxisSize
+      : 30;
   }
 
   get valueAxisBounds() {
@@ -252,8 +254,10 @@ export default class AbstractVisualization {
   }
 
   get labelAxisSize() {
-    return this.config.labelAxisSize
-      || (this.direction === 'horizontal' ? 70 : 30);
+    // eslint-disable-next-line no-nested-ternary
+    return this.config.labelAxisSize !== undefined && this.config.labelAxisSize !== null
+      ? this.config.labelAxisSize
+      : (this.direction === 'horizontal' ? 70 : 30);
   }
 
   get labelAxisBounds() {
