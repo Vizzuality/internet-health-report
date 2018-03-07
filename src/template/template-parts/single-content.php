@@ -69,6 +69,14 @@
     <?php // get_template_part( 'template-parts/social-bar');?>
 
     <?php
+      $reactions = reaction_count(get_the_ID());
+
+
+      echo '<div>Number of reactions: ' . $reactions['total_reactions'] . "</div>";
+      echo '<div>Most used: ' . $reactions['reaction_0'] . "</div>";
+      echo '<div>Second most used: ' . $reactions['reaction_1'] . "</div>";
+
+
       echo do_shortcode('[reaction_buttons]');
     ?>
 

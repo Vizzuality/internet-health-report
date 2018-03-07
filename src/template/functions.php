@@ -339,6 +339,32 @@ function languages_list_footer() {
   }
 }
 
+/**
+ * Gets the information about a post's reactions
+ * 
+ * @param integer $post_id The id of the post to get the reactions counts from
+ * @return array [Reaction Count, Most Reacted, Second Most reacted]
+ * 
+ */
 
+ function reaction_count($post_id) {
+    // Get table name
+    global $wpdb;
+    $table = $wpdb->prefix . "postmeta";
 
+    // Get number of reactions
+    $reaction_count = $wpdb->get_results("SELECT sum(meta_value) as total_reactions FROM $table where meta_key like '_reaction_buttons%' and post_id = " . $post_id);
+    $reaction_order = $wpdb->get_results("SELECT meta_key, meta_value FROM $table where meta_key like '_reaction_buttons%' and post_id = " . $post_id . " order by meta_value desc" );
+    $reaction_names = explode(',', get_option('reaction_buttons_button_names'));
+
+    $reaction_0 = (int) substr($reaction_order[0]->meta_key, -1);
+    $reaction_1 = (int) substr($reaction_order[1]->meta_key, -1);
+
+    $reaction_0_name =  $reaction_names[$reaction_0];
+    $reaction_1_name =  $reaction_names[$reaction_1];
+    
+    $return_array = array('total_reactions' => $reaction_count[0]->total_reactions, 'reaction_0' => $reaction_0_name, 'reaction_1' => $reaction_1_name);
+    
+    return $return_array;
+ }
 

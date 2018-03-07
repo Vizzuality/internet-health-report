@@ -41,7 +41,10 @@
         </span>
         <span class="reactions">
           <svg class="c-icon -small"><use xlink:href="#icon-comment_icon"></use></svg>
-          <span class="text">34</span>
+          <span class="text"><?php 
+          $reactions = reaction_count(get_the_ID());
+          echo $reactions['total_reactions'];
+          ?></span>
         </span>
       </div>
     </div>
