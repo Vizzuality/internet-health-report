@@ -18,7 +18,8 @@ get_header(); ?>
   <?php
     // To create posts list within the category
     $args = array(
-      'order'=> 'DES',
+      'posts_per_page' => 10,
+      'order' => 'ASC',
       'meta_key' => 'order',
       'orderby' => 'meta_value_num',
       'meta_query' => array( 
