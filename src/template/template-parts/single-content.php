@@ -69,27 +69,12 @@
     <?php // get_template_part( 'template-parts/social-bar');?>
 
     <?php
-      /**
-       *  Temporary place for the code to count and list reactions/comments
-       */ 
+      $reactions = reaction_count(get_the_ID());
 
 
-      // Get table name
-      global $wpdb;
-      $table = $wpdb->prefix . "postmeta";
-
-      // Get number of reactions
-      $reaction_count = $wpdb->get_results("SELECT sum(meta_value) as total_reactions FROM $table where meta_key like '_reaction_buttons%' and post_id = " . get_the_ID());
-      $reaction_order = $wpdb->get_results("SELECT meta_key, meta_value FROM $table where meta_key like '_reaction_buttons%' and post_id = " . get_the_ID() . " order by meta_value desc" );
-      $reaction_names = explode(',', get_option('reaction_buttons_button_names'));
-
-      $reaction_0 = (int) substr($reaction_order[0]->meta_key, -1);
-      $reaction_1 = (int) substr($reaction_order[1]->meta_key, -1);
-
-
-      echo '<div>Number of reactions: ' . $reaction_count[0]->total_reactions . "</div>";
-      echo '<div>Most used: ' . $reaction_names[$reaction_0] . "</div>";
-      echo '<div>Second most used: ' . $reaction_names[$reaction_1] . "</div>";
+      echo '<div>Number of reactions: ' . $reactions['total_reactions'] . "</div>";
+      echo '<div>Most used: ' . $reactions['reaction_0'] . "</div>";
+      echo '<div>Second most used: ' . $reactions['reaction_1'] . "</div>";
 
 
       echo do_shortcode('[reaction_buttons]');
