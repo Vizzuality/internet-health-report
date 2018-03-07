@@ -32,7 +32,8 @@ export default class AbstractVisualization {
       '#5FA1F4',
       '#76E1F4',
       '#6DD8AF',
-      '#FFE159'
+      '#FFE159',
+      '#9D45E3'
     ];
   }
 
