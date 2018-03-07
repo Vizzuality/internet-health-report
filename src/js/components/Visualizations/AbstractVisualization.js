@@ -200,6 +200,10 @@ export default class AbstractVisualization {
     };
   }
 
+  get valueAxisTicks() {
+    return this.config.valueAxisTicks || 5;
+  }
+
   get valueAxisSize() {
     return this.config.valueAxisSize !== undefined && this.config.valueAxisSize !== null
       ? this.config.valueAxisSize

@@ -149,7 +149,7 @@ export default class Line extends AbstractVisualization {
     container.append('g')
       .attr('class', 'value-axis')
       .attr('transform', `translate(${this.valueAxisBounds.x}, ${this.valueAxisBounds.y})`)
-      .call(valueAxis)
+      .call(valueAxis.ticks(this.valueAxisTicks))
       .selectAll('text');
 
     // Label axis
@@ -193,7 +193,7 @@ export default class Line extends AbstractVisualization {
       .attr('class', 'rules')
       .attr('transform', `translate(0, ${this.valueAxisBounds.y})`)
       .selectAll('line')
-      .data(valueScale.ticks())
+      .data(valueScale.ticks(this.valueAxisTicks))
       .enter()
       .append('line')
       .attr('x1', this.visualizationBounds.x)

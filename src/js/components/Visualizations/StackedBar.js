@@ -176,7 +176,7 @@ export default class StackedBar extends AbstractVisualization {
     container.append('g')
       .attr('class', 'value-axis')
       .attr('transform', `translate(${this.valueAxisBounds.x}, ${this.valueAxisBounds.y})`)
-      .call(valueAxis)
+      .call(valueAxis.ticks(this.valueAxisTicks))
       .selectAll('text')
       .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '');
 
@@ -185,7 +185,7 @@ export default class StackedBar extends AbstractVisualization {
       .attr('class', 'rules')
       .attr('transform', this.direction === 'horizontal' ? `translate(${this.visualizationBounds.x}, 0)` : `translate(0, ${this.valueAxisBounds.y})`)
       .selectAll('line')
-      .data(valueScale.ticks())
+      .data(valueScale.ticks(this.valueAxisTicks))
       .enter()
       .append('line')
       .attr('x1', (d) => {
