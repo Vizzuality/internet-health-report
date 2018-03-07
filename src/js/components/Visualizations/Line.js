@@ -176,10 +176,9 @@ export default class Line extends AbstractVisualization {
         return 'middle';
       });
 
-
     // Rules
     container.append('g')
-      .attr('class', 'rules')
+      .attr('class', 'rules -secondary')
       .attr('transform', `translate(0, ${this.valueAxisBounds.y})`)
       .selectAll('line')
       .data(labelScale.ticks())
@@ -188,8 +187,7 @@ export default class Line extends AbstractVisualization {
       .attr('x1', d => labelScale(d))
       .attr('x2', d => labelScale(d))
       .attr('y1', 0)
-      .attr('y2', this.visualizationBounds.height)
-      .attr('opacity', 0.2);
+      .attr('y2', this.visualizationBounds.height);
 
     container.append('g')
       .attr('class', 'rules')

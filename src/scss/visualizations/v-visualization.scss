@@ -22,10 +22,16 @@
     line {
       stroke-width: 1px;
       stroke: $black;
+    }
 
-      &:first-of-type {
+    &:not(.-secondary) {
+      line:first-of-type {
         stroke-width: 2px;
       }
+    }
+
+    &.-secondary {
+      opacity: .2;
     }
   }
 
