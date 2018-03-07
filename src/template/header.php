@@ -47,8 +47,8 @@
           echo '{';
           echo 'id: "' . get_sub_field('id') . '",';
           echo 'file: "' . get_sub_field('file') . '",';
-          echo 'title: "' . get_sub_field('title') . '",';
-          echo 'description: "' . get_sub_field('description') . '",';
+          echo 'title: ' . json_encode(get_sub_field('title')) . ',';
+          echo 'description: ' . json_encode(get_sub_field('description')) . ',';
           echo 'dictionary: ' . html_entity_decode(get_sub_field('dictionary'));
           echo '},';
         endwhile;
