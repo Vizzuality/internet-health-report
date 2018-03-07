@@ -541,7 +541,7 @@ a:hover, a:active {
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
-  left: auto;
+  left: -70%;
 }
 
 .main-navigation li {
@@ -553,6 +553,10 @@ a:hover, a:active {
   display: block;
   text-decoration: none;
 }
+
+#menu-item-74 ul:hover
+{ left:-195%; }
+
 
 /* Small menu. */
 .menu-toggle,
@@ -1556,5 +1560,6 @@ object {
 @import "components/c-language-switcher";
 @import "components/c-newsletter";
 @import "components/c-tooltip";
+@import "components/c-issue-card";
 
 @import "visualizations/*";
