@@ -69,7 +69,7 @@
     <?php // get_template_part( 'template-parts/social-bar');?>
 
     <?php
-     // echo do_shortcode('[zvr_reactions]');
+      echo do_shortcode('[reaction_buttons]');
     ?>
 
 <div id="coral_talk_stream"></div>
