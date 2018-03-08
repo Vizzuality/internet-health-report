@@ -33,7 +33,7 @@ export default class StackedBar extends AbstractVisualization {
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
     const d = select(target).datum();
-    return `${d[1] - d[0]}`;
+    return `${format(this.valueFormat)(d[1] - d[0])}`;
   }
 
   render() {

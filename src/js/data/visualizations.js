@@ -12,17 +12,20 @@ export default {
   },
   vis_1_3_1: {
     type: 'bar',
-    direction: 'vertical'
+    direction: 'vertical',
+    valueFormat: '.0%'
   },
   vis_1_4: {
     type: 'wikipedia'
   },
   vis_2_1_1: {
-    type: 'line'
+    type: 'line',
+    valueFormat: '.0%'
   },
   vis_2_1_2: {
     type: 'bar',
-    direction: 'vertical'
+    direction: 'vertical',
+    valueFormat: '.0%'
   },
   vis_2_1_3: {
     type: 'bar',
@@ -39,11 +42,13 @@ export default {
   },
   vis_2_5_1: {
     type: 'bar',
-    direction: 'vertical'
+    direction: 'vertical',
+    valueFormat: '.0%'
   },
   vis_2_5_2: {
     type: 'bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    valueFormat: '.0%'
   },
   vis_3_1_2: {
     type: 'map'
@@ -73,7 +78,8 @@ export default {
     type: 'TODO'
   },
   vis_3_6: {
-    type: 'area'
+    type: 'area',
+    valueFormat: '.0%'
   },
   vis_3_7_1: {
     type: 'bar',
@@ -81,19 +87,24 @@ export default {
   },
   vis_3_7_2: {
     type: 'stacked-bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    valueFormat: '.0%'
   },
   vis_3_7_3: {
-    type: 'line'
+    type: 'line',
+    valueFormat: '.0%'
   },
   vis_4_1_1: {
-    type: 'line'
+    type: 'line',
+    valueFormat: '.0%'
   },
   vis_4_1_2: {
-    type: 'map'
+    type: 'map',
+    valueFormat: '.0%'
   },
   vis_4_2_1: {
-    type: 'area'
+    type: 'area',
+    valueFormat: '.0%'
   },
   vis_4_2_2: {
     type: 'TODO'
@@ -103,15 +114,18 @@ export default {
   },
   vis_4_4_1: {
     type: 'bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    valueFormat: '.0%'
   },
   vis_4_4_2: {
     type: 'bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    valueFormat: '.0%'
   },
   vis_4_5_3: {
     type: 'bar',
-    direction: 'vertical'
+    direction: 'vertical',
+    valueFormat: '.0%'
   },
   vis_4_5_1: {
     type: 'bar',
@@ -125,7 +139,8 @@ export default {
   },
   vis_4_5_2: {
     type: 'stacked-bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    valueFormat: '.0%'
   },
   vis_5_4: {
     type: 'TODO'
