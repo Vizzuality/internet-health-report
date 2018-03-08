@@ -45,11 +45,11 @@
         echo 'window.VISUALIZATIONS = [';
         while (have_rows('visualizations')) : the_row();
           echo '{';
-          echo 'id: "' . get_sub_field('id') . '",';
-          echo 'file: "' . get_sub_field('file') . '",';
+          echo 'id: ' . json_encode(get_sub_field('id')) . ',';
+          echo 'file: ' . json_encode(get_sub_field('file')) . ',';
           echo 'title: ' . json_encode(get_sub_field('title')) . ',';
           echo 'description: ' . json_encode(get_sub_field('description')) . ',';
-          echo 'dictionary: ' . html_entity_decode(get_sub_field('dictionary'));
+          echo 'dictionary: ' . json_encode(get_sub_field('dictionary'));
           echo '},';
         endwhile;
         echo '];';
