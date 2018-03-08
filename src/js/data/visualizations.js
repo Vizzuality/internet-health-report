@@ -13,7 +13,8 @@ export default {
   vis_1_3_1: {
     type: 'bar',
     direction: 'vertical',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_1_4: {
     type: 'wikipedia'
@@ -25,7 +26,8 @@ export default {
   vis_2_1_2: {
     type: 'bar',
     direction: 'vertical',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_2_1_3: {
     type: 'bar',
@@ -43,7 +45,8 @@ export default {
   vis_2_5_1: {
     type: 'bar',
     direction: 'vertical',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_2_5_2: {
     type: 'bar',
@@ -125,7 +128,8 @@ export default {
   vis_4_5_3: {
     type: 'bar',
     direction: 'vertical',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_4_5_1: {
     type: 'bar',
