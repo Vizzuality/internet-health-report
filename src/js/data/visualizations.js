@@ -21,7 +21,8 @@ export default {
   },
   vis_2_1_1: {
     type: 'line',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_2_1_2: {
     type: 'bar',
@@ -82,7 +83,8 @@ export default {
   },
   vis_3_6: {
     type: 'area',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_3_7_1: {
     type: 'bar',
@@ -95,11 +97,13 @@ export default {
   },
   vis_3_7_3: {
     type: 'line',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_4_1_1: {
     type: 'line',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_4_1_2: {
     type: 'map',
@@ -107,7 +111,8 @@ export default {
   },
   vis_4_2_1: {
     type: 'area',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueAxisSize: 35
   },
   vis_4_2_2: {
     type: 'TODO'
