@@ -8,7 +8,9 @@ export default {
   },
   vis_1_2_3: {
     type: 'stacked-bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    labelAxisSize: 50,
+    valueSize: 30
   },
   vis_1_3_1: {
     type: 'bar',
