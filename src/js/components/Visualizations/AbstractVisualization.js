@@ -14,6 +14,18 @@ export default class AbstractVisualization {
     }[window.LANG] || {};
   }
 
+  get WPDictionary() {
+    /* eslint-disable no-underscore-dangle */
+    if (!this._WPDictionary) {
+      this._WPDictionary = csvParse(this.config.dictionary)
+        .map(o => ({ [o.key]: o.value }))
+        .reduce((res, o) => Object.assign(res, o), {});
+    }
+
+    return this._WPDictionary;
+    /* eslint-enable no-underscore-dangle */
+  }
+
   get id() {
     return this.config.id;
   }
@@ -136,12 +148,12 @@ export default class AbstractVisualization {
     return this.config.valueFormat || '';
   }
 
-  get valueAxisTitle() { // eslint-disable-line class-methods-use-this
-    return null; // TODO:
+  get valueAxisTitle() {
+    return this.WPDictionary.valueAxisTitle;
   }
 
-  get labelAxisTitle() { // eslint-disable-line class-methods-use-this
-    return null; // TODO:
+  get labelAxisTitle() {
+    return this.WPDictionary.labelAxisTitle;
   }
 
   get valueSize() {
