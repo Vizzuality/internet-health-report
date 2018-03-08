@@ -28,19 +28,23 @@
     <div class="l-block-detail">
 
       <div class="c-post-controls">
-        <a href="<?php echo get_bloginfo( 'url' ); ?>/category/<?php echo get_the_category()[0]->slug; ?>">
+        <a
+          href="<?php echo get_bloginfo( 'url' ); ?>/category/<?php echo get_the_category()[0]->slug; ?>"
+          title="<?php esc_html_e( 'Go back to issue', 'ihr-2018' ) ?>"
+          class="js-close-button"
+        >
           <svg class="c-icon -medium"><use xlink:href="#icon-close_normal"></use></svg>
         </a>
 
         <?php if ( !empty( $nextID ) ): ?>
         <a href="<?php echo get_permalink( $nextID ); ?>"
-         title="<?php echo get_the_title( $nextID ); ?>">
+         title="<?php echo esc_html_e( 'Next article: ', 'ihr-2018' ) . get_the_title( $nextID ); ?>">
            <svg class="c-icon -medium"><use xlink:href="#icon-next_normal"></use></svg>
          </a>
         <?php endif;
         if ( !empty( $prevID ) ): ?>
         <a href="<?php echo get_permalink( $prevID ); ?>"
-          title="<?php echo get_the_title( $prevID ); ?>">
+          title="<?php echo esc_html_e( 'Previous article: ', 'ihr-2018' ) . get_the_title( $prevID ); ?>">
           <svg class="c-icon -medium -rotate"><use xlink:href="#icon-next_normal"></use></svg>
         </a>
         <?php endif; ?>

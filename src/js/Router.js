@@ -37,9 +37,39 @@ export default class Router {
     const matchingRoute = Router.getMatchingRoute();
     if (matchingRoute) {
       import(/* webpackChunkName: "pages" */ `pages/${matchingRoute.page}.js`)
-        // eslint-disable-next-line new-cap
-        .then(page => new page.default(matchingRoute, { baseUrl }));
+        .then((page) => {
+          // We save the visited page
+          Router.pushPage({
+            page: matchingRoute.page,
+            url: window.location.href
+          });
+
+          // eslint-disable-next-line new-cap, no-new
+          new page.default(matchingRoute, { baseUrl }, Router);
+        });
     }
+  }
+
+  /**
+   * Return the page history
+   * NOTE: the array is in reverse order i.e. the most recent item
+   * it the first one
+   * @returns {{ page: string, url: string }[]}
+   */
+  static getPageHistory() {
+    return JSON.parse(sessionStorage.getItem('history')) || [];
+  }
+
+  /**
+   * Save a page in sessionStorage to maintain the history
+   * @param {{ page: string, url: string }} page
+   * @returns {{ page: string, url: string }[]}
+   */
+  static pushPage(page) {
+    const history = Router.getPageHistory();
+    history.unshift(page);
+    sessionStorage.setItem('history', JSON.stringify(history));
+    return history;
   }
 
   constructor() {
