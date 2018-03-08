@@ -40,8 +40,12 @@ export default class Map extends AbstractVisualization {
    * @returns {any}
   */
   createMapInstance() {
+    this.mapContainer = document.createElement('div');
+    this.mapContainer.classList.add('map-container');
+    this.el.appendChild(this.mapContainer);
+
     return new mapboxgl.Map({
-      container: this.el,
+      container: this.mapContainer,
       style: 'mapbox://styles/vizz-mozilla/cjdvvwlcu6hh92ss3hjrs8f8s',
       center: [10.282177814440729, 44.54101006950887],
       zoom: 0.8276700596335558,
@@ -136,7 +140,7 @@ export default class Map extends AbstractVisualization {
     // We add the category switcher
     const categorySwitcher = document.createElement('div');
     categorySwitcher.classList.add('category-switcher');
-    this.el.append(categorySwitcher);
+    this.mapContainer.append(categorySwitcher);
 
     // We append the select element
     const select = document.createElement('select');
@@ -204,6 +208,22 @@ export default class Map extends AbstractVisualization {
   render() {
     this.el.innerHTML = '';
     this.el.classList.add('v-map');
+
+    this.el.setAttribute('role', 'img');
+    this.el.setAttribute('aria-labelledby', `title_${this.id} desc_${this.id}`);
+
+    const title = document.createElement('div');
+    title.classList.add('title');
+    title.setAttribute('id', `title_${this.id}`);
+    title.innerText = this.title;
+
+    const description = document.createElement('div');
+    description.setAttribute('id', `desc_${this.id}`);
+    description.innerText = this.description;
+    description.style.display = 'none';
+
+    this.el.appendChild(title);
+    this.el.appendChild(description);
 
     // Creating map
     this.map = this.createMapInstance();

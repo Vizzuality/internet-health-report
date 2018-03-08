@@ -1,5 +1,20 @@
 .v-map {
   height: 600px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    flex-shrink: 0;
+    font-family: $font-family-1;
+    font-size: $font-s;
+    font-weight: 600;
+    line-height: 1.75;
+  }
+
+  .map-container {
+    flex-basis: 100%;
+    flex-grow: 1;
+  }
 
   .category-switcher {
     position: absolute;
