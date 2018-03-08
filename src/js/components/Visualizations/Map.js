@@ -1,6 +1,7 @@
 import { extent as d3Extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
+import { format } from 'd3-format';
 
 import AbstractVisualization from './AbstractVisualization';
 
@@ -52,6 +53,51 @@ export default class Map extends AbstractVisualization {
   }
 
   /**
+   * Instantiate the tooltip
+   * @param {object[]} data Rendered data
+   * @param {string} layerId ID of the layer
+   */
+  instantiateTooltip(data, layerId) {
+    if (!this.tooltip) {
+      this.tooltip = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 20
+      });
+    }
+
+    this.map.on('mousemove', layerId, (e) => {
+      const iso = e.features.length && e.features[0].properties.iso;
+      const item = iso && data.find(d => d.iso === iso);
+      if (item) {
+        this.tooltip.setLngLat(e.lngLat)
+          .setHTML(`
+            <div class="c-tooltip">
+              ${this.getTooltipContent(item)}
+            </div>
+          `)
+          .addTo(this.map);
+      } else {
+        this.tooltip.remove();
+      }
+    });
+
+    this.map.on('mouseleave', layerId, () => this.tooltip.remove());
+  }
+
+  /**
+   * Return the content of the tooltip
+   * @param {{ iso: string, country: string, category?: string, value: string|number }} item
+   * @returns {string} HTML content
+   */
+  getTooltipContent(item) { // eslint-disable-line class-methods-use-this
+    return `
+      <div class="number">${format(this.valueFormat)(item.value)}</div>
+      <div class="note">${item.country}</div>
+    `;
+  }
+
+  /**
    * Render the chloropleth map
   */
   renderChloropleth() {
@@ -76,6 +122,8 @@ export default class Map extends AbstractVisualization {
         'fill-color': expression
       }
     }, firstLayerId);
+
+    this.instantiateTooltip(this.data, 'chloropleth');
   }
 
   /**
@@ -149,6 +197,8 @@ export default class Map extends AbstractVisualization {
         'fill-color': expression
       }
     }, firstLayerId);
+
+    this.instantiateTooltip(data, 'categorical-chloropleth');
   }
 
   render() {

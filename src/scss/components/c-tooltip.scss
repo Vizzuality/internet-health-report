@@ -59,3 +59,54 @@
     }
   }
 }
+
+// Styles for mapbox
+.mapboxgl-popup {
+  .mapboxgl-popup-content {
+    padding: 20px;
+    background-color: $white;
+    color: $black;
+    font-family: $font-family-1;
+    font-size: $font-s;
+    border: 2px solid $black;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  .mapboxgl-popup-tip {
+    position: absolute;
+    bottom: -9px;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-top: 2px solid $black;
+    border-left: 2px solid $black;
+    background: $white;
+    transform: rotate(-135deg);
+    transform-origin: center center;
+  }
+
+  &.mapboxgl-popup-anchor-top {
+    .mapboxgl-popup-tip {
+      top: -9px;
+      bottom: auto;
+      transform: rotate(45deg);
+    }
+  }
+
+  &.mapboxgl-popup-anchor-left {
+    .mapboxgl-popup-tip {
+      left: -9px;
+      bottom: auto;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &.mapboxgl-popup-anchor-right {
+    .mapboxgl-popup-tip {
+      right: -9px;
+      bottom: auto;
+      transform: rotate(135deg);
+    }
+  }
+}
