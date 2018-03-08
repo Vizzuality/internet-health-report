@@ -20,8 +20,32 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    width: 200px;
+    padding: 20px;
     background: $white;
     z-index: 1;
+    border: 2px solid $black;
+
+    label {
+      display: block;
+      font-family: $font-family-1;
+      font-size: $font-xxs;
+      line-height: 1.75;
+    }
+
+    select {
+      -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+      padding-right: 25px;
+      border: 0;
+      font-family: $font-family-1;
+      font-size: $font-xxs;
+      color: $black;
+      text-align: right;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
+      background-repeat: no-repeat;
+      background-size: 11px auto;
+      background-position: right center;
+    }
   }
 }

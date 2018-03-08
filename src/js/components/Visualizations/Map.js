@@ -142,8 +142,15 @@ export default class Map extends AbstractVisualization {
     categorySwitcher.classList.add('category-switcher');
     this.mapContainer.append(categorySwitcher);
 
+    // We append the label
+    const label = document.createElement('label');
+    label.textContent = 'Layer';
+    label.htmlFor = `map_category_switcher_${this.id}`;
+    categorySwitcher.appendChild(label);
+
     // We append the select element
     const select = document.createElement('select');
+    select.setAttribute('id', `map_category_switcher_${this.id}`);
     categorySwitcher.appendChild(select);
 
     // And its options
