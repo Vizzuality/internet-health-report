@@ -1,7 +1,8 @@
 <?php // Search filters ?>
-	<div id="archive-filters">
-
-		<div>
+	<div id="archive-filters" class="wrap">
+    	<div class="row">
+    	<div class="column small-6 medium-3 large-2">	
+		<div class="selector-search">
 				<select class="js-filter" data-filter="issue">
 				<?php
 					$selected_category = $_GET['issue'];
@@ -19,7 +20,7 @@
 					}
 				?>
 				</select>
-		</div>
+		</div></div>
 
 	<?php foreach( $GLOBALS['my_query_filters'] as $key => $name ):
 		// get the field's settings without attempting to load a value
@@ -36,7 +37,8 @@
 
 		// create filter
 		?>
-		<div>
+		<div class="column small-6 medium-3 large-2">	
+		<div class="selector-search">
 			<select class="js-filter" data-filter="<?php echo $name; ?>">
 			<?php
 				if ($current_value === "" || $current_value === NULL) {
@@ -54,14 +56,19 @@
 			?>
 			</select>
 		</div>
+	</div>
 
 	<?php
 		endforeach;
 	?>
+		<div class="column small-12 medium-6 large-8" style="text-align:right;">
+
 		<div class="search-bar">
-			<input type="text" class="js-filter" data-filter="s" value=<?php echo $_GET["s"] ?>>
+			<input type="text" class="js-filter" data-filter="s" value="<?php echo $_GET["s"] ?>">
 			<button id="search-button" type="button" class="js-search-button">Search</button>
 		</div>
+		</div>
+	</div>
 	</div>
 
 

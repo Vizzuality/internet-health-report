@@ -77,7 +77,7 @@
 	<header id="masthead" class="site-header l-header">
     <div class="wrap">
       <div class="row">
-        <div class="column small-12 medium-3">
+        <div class="column small-8 medium-3">
       		<div class="site-branding">
       			<?php
         			the_custom_logo();
@@ -89,9 +89,9 @@
       			endif; ?>
       		</div><!-- .site-branding -->
         </div>
-        <div class="column small-12 medium-9">
+        <div class="column small-4 medium-9">
       		<nav id="site-navigation" class="main-navigation c-main-navigation">
-      			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'ihr-2018' ); ?></button>
+      			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">&#9776;</button>
       			<?php
               wp_nav_menu();
       			?>

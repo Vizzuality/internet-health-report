@@ -44,9 +44,11 @@
        &:hover {
          text-decoration: underline;
        }
-    } 
+    }
   }
+
   .current-menu-item > a {
     border-bottom: $border-black;
+    display:inline;
   }
 }

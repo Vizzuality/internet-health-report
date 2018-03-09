@@ -516,6 +516,7 @@ a:hover, a:active {
   padding-left: 0;
 }
 
+
 .main-navigation ul ul {
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   float: left;
@@ -532,6 +533,7 @@ a:hover, a:active {
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
+  
   left: 100%;
 }
 
@@ -541,7 +543,11 @@ a:hover, a:active {
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
-  left: -70%;
+  
+  @media screen and (min-width: 37.5em) {
+  left: auto;
+  }
+  
 }
 
 .main-navigation li {
@@ -554,14 +560,33 @@ a:hover, a:active {
   text-decoration: none;
 }
 
-#menu-item-74 ul:hover
-{ left:-195%; }
+/*#menu-item-75 ul {
+  left: -68%;
+}
+
+#menu-item-74 ul {
+  left: -189%;
+}
+
+#menu-item-117 ul {
+  left: -85%;
+}*/
 
 
 /* Small menu. */
+.menu-toggle {
+ font-size: 40px;
+ position: relative;
+ top:10px;
+ right:0px;
+ 
+ 
+}
+
 .menu-toggle,
 .main-navigation.toggled ul {
   display: block;
+  float: left;  
 }
 
 @media screen and (min-width: 37.5em) {
@@ -703,6 +728,59 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
+# Explore Search
+--------------------------------------------------------------*/
+
+.selector-search {
+ position: relative;
+  display: block;
+   select {
+    border: none;
+    outline: none;
+    background: transparent;
+    -webkit-appearance: none;
+     -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    margin: 1px;
+    display: block;
+    width: 100%;
+    padding: 12px 55px 15px 15px;
+    font-size: 20px;
+    font-family: ZillaSlab;
+        }
+    select:-ms-expand { 
+    display: none;
+}
+}
+
+/*--------------------------------------------------------------
+# Introduction credits
+--------------------------------------------------------------*/
+
+.what-credits {
+ margin-bottom: 50px;
+ h2 {
+ padding-top: 50px;
+ padding-bottom: 20px;
+ }
+ ul {
+ 
+ }
+ li {
+  font-size: 20px;
+  font-family: ZillaSlab;
+  float: left;
+  width: 25%;
+  padding: 10px;
+ }
+ p {
+ font-size: 40px;
+ margin-bottom: 50px;
+ }
+}
+
+/*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
@@ -802,6 +880,7 @@ object {
 .wp-caption-text {
   text-align: center;
 }
+
 
 /*--------------------------------------------------------------
 ## Galleries
