@@ -27,7 +27,7 @@ get_header(); ?>
 
         <div class="l-explore">
           <div class="row">
-            <?php get_template_part('template-parts/filters'); ?>
+            <?php get_template_part('template-parts/categories'); ?>
           </div>
         </div>
       </div>
