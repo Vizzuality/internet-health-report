@@ -33,10 +33,11 @@ get_header(); ?>
       echo 'window.HPVISUALIZATIONS = [';
       foreach( $postslist as $post ):
         $reactions = reaction_count($post->ID);
+        $category = get_the_category($post->ID)[0];
         echo '{';
 
-        echo 'issue: ' . json_encode(wp_get_post_categories($post->ID)[0]->cat_name) . ','; 
-        echo 'color: ' . json_encode(the_field('color', 'category_' . wp_get_post_categories($post->ID)[0]->term_id)) . ','; 
+        echo 'issue: ' . json_encode($category ->cat_name) . ','; 
+        echo 'color: ' . json_encode(the_field('color', 'category_' . $category->cat_name)) . ','; 
         echo 'type: ' . json_encode(get_post_meta($post->ID, 'type', true)) . ','; 
         echo 'title: ' . json_encode($post->post_title ). ','; 
         echo 'url: ' . json_encode(get_post_permalink($post->ID)) . ','; 

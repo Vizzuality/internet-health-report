@@ -361,7 +361,7 @@ function languages_list_footer() {
     try {
       preg_match('~commentCount\":(\d+)~', $stuff['body'], $comment_num);
 
-      return $comment_num[1];
+      return $comment_num[1] == NULL ? '0' : $comment_num[1];
     } catch (Exception $e) {
       return '0';
     }
