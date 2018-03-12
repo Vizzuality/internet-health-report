@@ -340,6 +340,35 @@ function languages_list_footer() {
 }
 
 /**
+ * Gets the number of comments for a post
+ * Queries the Talk API to get the results
+ * 
+ * @param integer $post_id The id of the post to count the comments
+ * @return integer The number of comments of a post
+ */
+  function comments_count($post_id) {
+    $permalink = get_post_permalink($post_id);
+    $response = wp_remote_post('https://talk.mofoprod.net/api/v1/graph/ql', 
+          array(
+            'method' => 'POST',
+            'httpversion' => '1.0',
+            'blocking' => true,
+            'headers' => array("Content-type" => "application/json"),
+            'body' => '{"query":"{\n  asset(url: \\"'. $permalink .'\\") {\n    id\n    title\n    commentCount\n  }\n}","variables":null,"operationName":null}',
+            'cookies' => array()
+            )); 
+
+    try {
+      preg_match('~commentCount\":(\d+)~', $stuff['body'], $comment_num);
+
+      return $comment_num[1];
+    } catch (Exception $e) {
+      return '0';
+    }
+  }
+
+
+/**
  * Gets the information about a post's reactions
  * 
  * @param integer $post_id The id of the post to get the reactions counts from

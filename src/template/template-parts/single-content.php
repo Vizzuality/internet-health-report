@@ -80,6 +80,7 @@
       echo '<div>Most used: ' . $reactions['reaction_0'] . "</div>";
       echo '<div>Second most used: ' . $reactions['reaction_1'] . "</div>";
 
+      echo '<div>Number of comments: '. comments_count(get_the_ID()) .'</div>';
 
       echo do_shortcode('[reaction_buttons]');
     ?>
