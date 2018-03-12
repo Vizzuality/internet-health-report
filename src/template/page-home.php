@@ -17,7 +17,7 @@ get_header(); ?>
 
 <!-- Homepage Visualizations -->
 <script>
-<?php 
+<?php
   $args = array(
     'posts_per_page' => 100,
     'post_type' => 'post',
@@ -26,32 +26,34 @@ get_header(); ?>
       array(
         'key' => 'home_item',
         'value' => '1',
-        'compare' => '<>'
+        'compare' => '!='
       )));
     $postslist = get_posts($args);
     if (!empty($postslist)):
-      echo 'window.HPVISUALIZATIONS = [';
+      echo 'window.POSTS = [';
       foreach( $postslist as $post ):
         $reactions = reaction_count($post->ID);
         $category = get_the_category($post->ID)[0];
         echo '{';
 
-        echo 'issue: ' . json_encode($category ->cat_name) . ','; 
-        echo 'color: ' . json_encode(the_field('color', 'category_' . $category->cat_name)) . ','; 
-        echo 'type: ' . json_encode(get_post_meta($post->ID, 'type', true)) . ','; 
-        echo 'title: ' . json_encode($post->post_title ). ','; 
-        echo 'url: ' . json_encode(get_post_permalink($post->ID)) . ','; 
-        echo 'commentsNum: ' . json_encode(comments_count($post->ID) ). ',';
-        echo 'reactionsNum: ' . json_encode($reactions['total_reactions']) . ',';
-        echo 'reactionsMain: ' . json_encode($reactions['reaction_0']) . ',';
-        echo 'reactionsSec: ' . json_encode($reactions['reaction_1']);
+        echo 'issue: ' . json_encode($category ->cat_name) . ',';
+        echo 'color: ' . json_encode(get_field('color', 'category_' . $category->term_id)) . ',';
+        echo 'type: ' . json_encode(get_post_meta($post->ID, 'type', true)) . ',';
+        echo 'title: ' . json_encode($post->post_title ). ',';
+        echo 'url: ' . json_encode(get_permalink($post)) . ',';
+        echo 'commentsCount: ' . (comments_count($post->ID) ? comments_count($post->ID) : 0). ',';
+        echo 'reactionsCount: ' . ($reactions['total_reactions'] ? $reactions['total_reactions'] : 0) . ',';
+        echo 'reactions: [';
+        echo json_encode($reactions['reaction_0']) . ',';
+        echo json_encode($reactions['reaction_1']);
+        echo ']';
 
         echo '},';
       endforeach;
 
       echo '];';
     else:
-      echo 'window.HPVISUALIZATIONS = []';
+      echo 'window.POSTS = []';
     endif;
 ?>
 </script>
