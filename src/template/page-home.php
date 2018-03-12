@@ -15,6 +15,47 @@
 
 get_header(); ?>
 
+<!-- Homepage Visualizations -->
+<script>
+<?php 
+  $args = array(
+    'posts_per_page' => 100,
+    'post_type' => 'post',
+    'post_status' => 'publish',
+    'meta_query' => array(
+      array(
+        'key' => 'home_item',
+        'value' => '1',
+        'compare' => '<>'
+      )));
+    $postslist = get_posts($args);
+    if (!empty($postslist)):
+      echo 'window.HPVISUALIZATIONS = [';
+      foreach( $postslist as $post ):
+        $reactions = reaction_count($post->ID);
+        echo '{';
+
+        echo 'issue: ' . json_encode(wp_get_post_categories($post->ID)[0]->cat_name) . ','; 
+        echo 'color: ' . json_encode(the_field('color', 'category_' . wp_get_post_categories($post->ID)[0]->term_id)) . ','; 
+        echo 'type: ' . json_encode(get_post_meta($post->ID, 'type', true)) . ','; 
+        echo 'title: ' . json_encode($post->post_title ). ','; 
+        echo 'url: ' . json_encode(get_post_permalink($post->ID)) . ','; 
+        echo 'commentsNum: ' . json_encode(comments_count($post->ID) ). ',';
+        echo 'reactionsNum: ' . json_encode($reactions['total_reactions']) . ',';
+        echo 'reactionsMain: ' . json_encode($reactions['reaction_0']) . ',';
+        echo 'reactionsSec: ' . json_encode($reactions['reaction_1']);
+
+        echo '},';
+      endforeach;
+
+      echo '];';
+    else:
+      echo 'window.HPVISUALIZATIONS = []';
+    endif;
+?>
+</script>
+<!-- End Homepage Visualizations -->
+
   <?php
     // To create posts list within the category
     $args = array(
