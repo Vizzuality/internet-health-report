@@ -762,13 +762,14 @@ a:active {
 .selector-search {
   position: relative;
   display: block;
+
   select {
     border: none;
     outline: none;
     background: transparent;
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     border-radius: 0;
     margin: 1px;
     display: block;
@@ -776,7 +777,13 @@ a:active {
     padding: 12px 55px 15px 15px;
     font-size: 20px;
     font-family: "ZillaSlab", serif;
+    padding-right: 25px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
+    background-repeat: no-repeat;
+    background-size: 11px auto;
+    background-position: right center;
   }
+
   select:-ms-expand {
     display: none;
   }
