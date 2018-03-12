@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-end;
 
+
   .menu-item {
     margin-right: 20px;
 
@@ -9,17 +10,45 @@
       color: $black;
       font-weight: 300;
       font-size: $font-s;
-      line-height: 30px;
+      line-height: 40px;
     }
   }
 
   .sub-menu {
-    padding: 10px;
+    padding:20px 0px;
     background-color: $white;
     border: $border-black;
 
-    a:hover {
-      text-decoration: underline;
+    &:after {
+       content: '';
+       height: 10px;
+       width: 10px;
+       display: block;
+       margin: auto;
+       background: $white;
+       border-top: 3px solid $black;
+       border-left: 3px solid $black;
+       -ms-transform: rotate(45deg);
+       -webkit-transform: rotate(45deg);
+       transform: rotate(45deg);
+       top: -27px;
+       position: relative;
     }
+
+    li {
+    padding:8px 0px 8px 30px;
+    }
+
+    a {
+       line-height: 24px;
+       &:hover {
+         text-decoration: underline;
+       }
+    }
+  }
+
+  .current-menu-item > a {
+    border-bottom: $border-black;
+    display:inline;
   }
 }
