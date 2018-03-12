@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="what-credits row">
-     <?php if (is_page(93)): ?>
+     <?php if (is_page(32)): ?>
      <h2><?php _e('Credits','ihr-2018' ) ?></h2>
      <p><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></p>
      <?php if( have_rows('credits') ): ?>
