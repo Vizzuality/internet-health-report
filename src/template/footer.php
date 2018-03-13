@@ -110,5 +110,51 @@
 
 <?php wp_footer(); ?>
 
+<?php if (is_single()): ?>
+
+  <div class="fixedfooter">
+    <div class="wrap">
+      <ul>
+        <li>
+          <a href="http://www.facebook.com/share.php?u=<?php print(urlencode(get_permalink())); ?>&amp;t=<?php echo urlencode(get_the_title()); ?>" title="<?php _e('Share on Facebook', 'ihr-2018'); ?>">
+            <svg class="c-icon"><use xlink:href="#icon-facebook"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a href="http://twitter.com/home?status=<?php echo urlencode(get_the_title()); ?>+<?php print(urlencode(get_permalink())); ?>" title="<?php _e('Share on Twitter', 'ihr-2018'); ?>">
+            <svg class="c-icon"><use xlink:href="#icon-twitter"></use></svg>
+          </a>
+        </li>
+        <li class="text">
+          <?php _e('Share this', 'ihr-2018');?>
+        </li>
+      </ul>
+      <div>
+        <ul>
+          <li class="comments">
+            <svg class="c-icon"><use xlink:href="#icon-comment_icon"></use></svg>
+            <span class="text"><?php echo comments_count(get_the_ID()) . ' ' . translate('Comments', 'ihr-2018');?>
+          </li>
+          <li class="text">
+            <?php
+              $reactions = reaction_count(get_the_ID())['total_reactions'];
+              echo ($reactions ? $reactions : '0') . ' '. translate('Reactions', 'ihr-2018');
+            ?>
+          </li>
+        </ul>
+        <!-- <a href="https://internethealthreport.org/2018/" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
+          <span class="text -large">&#43;</span>
+        </a> -->
+      </div>
+    </div>
+  </div>
+
+<?php endif; ?>
+
+
+
+</div>
+</div>
+
 </body>
 </html>

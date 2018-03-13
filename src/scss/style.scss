@@ -779,6 +779,76 @@ a:active {
   }
 }
 
+
+/*--------------------------------------------------------------
+# Footer Sticky Bar
+--------------------------------------------------------------*/
+
+.fixedfooter {
+  justify-content: space-between;
+  background: white;
+  bottom: 0px;
+  color: #fff;
+  font-family: "ZillaSlab", sans-serif;
+  padding: 0px 0;
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  z-index: 50; // z-index lower than the actual footer
+  margin: 0px 0 0;
+  opacity: 1;
+  border-top: 2px solid black;
+
+  .wrap {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      li:not(:last-of-type) {
+        margin-right: 20px;
+      }
+    }
+
+    .c-icon {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .comments .c-icon {
+      margin-right: 15px;
+    }
+  }
+}
+
+.footerfloat {
+  width:98%;
+  margin:0 0 0 2%;
+  overflow: hidden;
+  font-size:20px;
+  li {
+    padding: 5px 8px;
+    display:inline-block;
+    color: black;
+  }
+  a {
+    color: black;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+}
+
+
+
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
