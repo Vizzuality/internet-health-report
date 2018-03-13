@@ -569,7 +569,8 @@ a:active {
 .main-navigation ul li:hover>ul,
 .main-navigation ul li.focus>ul {
   @media screen and (min-width: 37.5em) {
-    left: auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
