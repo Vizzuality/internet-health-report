@@ -41,8 +41,12 @@
 
     a {
        line-height: 24px;
+
        &:hover {
-         text-decoration: underline;
+         // We remove the underline because it enters
+         // in conflict (visually) with the border at the
+         // bottom when the element is active
+         text-decoration: none;
        }
     }
   }
