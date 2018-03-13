@@ -327,10 +327,13 @@ export default class AbstractVisualization {
   /**
    * Instantiate the tooltip for the target elements
    * @param {string} target HTML/CSS selector
+   * @param {string} [trigger='mouseenter focus'] Event(s) to trigger the tooltip
+   * @param {string} [additionalClass=''] CSS class to add
+   * @return {any} tippy instance
    */
-  instantiateTooltip(target) {
+  instantiateTooltip(target, trigger = 'mouseenter focus', additionalClass = '') {
     const getTooltipContent = this.getTooltipContent.bind(this);
-    tippy(this.el, {
+    return tippy(this.el, {
       target,
       animateFill: false,
       animation: 'shift-toward',
@@ -340,18 +343,29 @@ export default class AbstractVisualization {
       sticky: true,
       arrow: true,
       interactive: true,
+      trigger,
       wait(show, e) {
+        // Callback to be executed when the tooltip is inserted in
+        // the dom
+        let callback = () => {};
+
         // FIXME: We hack tippy here to not have to inject
         // the result of getTooltipContent in the DOM
         // Referencing a virtual node in `html` doesn't
         // work because it can't be re-used
         const container = document.createElement('div');
         container.classList.add('c-tooltip', 'js-tooltip');
-        container.innerHTML = getTooltipContent(e.target);
+        container.innerHTML = getTooltipContent(e.target, (func) => { callback = func; });
+
+        // We add the additional class
+        this.children[0].classList.add(additionalClass);
 
         const tooltip = this.querySelector('.tippy-content');
         tooltip.innerHTML = '';
         tooltip.appendChild(container);
+
+        // We execute the callback
+        callback(container);
 
         show();
       }

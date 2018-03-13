@@ -1,3 +1,8 @@
 .c-home-slide {
   padding: 120px 0 240px;
+
+  .slide-content {
+    position: relative; // Needed for the homepage vis
+    z-index: 2; // Needed for the homepage vis
+  }
 }

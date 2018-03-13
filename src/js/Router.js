@@ -22,7 +22,7 @@ export default class Router {
    * @returns {{ match: RegExp, class: typeof HomePage }}
    */
   static getMatchingRoute() {
-    return routes.find(r => r.match.test(location.pathname.slice(baseUrl.length)));
+    return routes.find(r => r.match.test(location.pathname.slice(baseUrl.length) + location.search));
   }
 
   /**

@@ -21,6 +21,30 @@
     font-size: $font-xxs;
     line-height: 1.25;
   }
+
+  .close-button {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    transform: translateX(50%);
+  }
+
+  .c-single-post {
+    display: flex;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .single-post-body {
+      height: auto;
+      flex-basis: 100%;
+    }
+  }
 }
 
 // Styles for tippy
@@ -57,6 +81,12 @@
       transform: rotate(-135deg);
       transform-origin: center center;
     }
+  }
+
+  &.-homepage-vis {
+    width: 340px;
+    padding: 0;
+    text-align: left;
   }
 }
 

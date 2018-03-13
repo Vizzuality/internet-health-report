@@ -42,6 +42,7 @@ get_header(); ?>
         echo 'type: ' . json_encode(get_post_meta($post->ID, 'type', true)) . ',';
         echo 'title: ' . json_encode($post->post_title ). ',';
         echo 'url: ' . json_encode(get_permalink($post)) . ',';
+        echo 'highlighted: ' . json_encode(get_field('highlighted', $post->ID)) . ',';
         // The next line is off until finding a faster approach
         //echo 'commentsCount: ' . (comments_count($post->ID) ? comments_count($post->ID) : 0). ',';
         echo 'reactionsCount: ' . ($reactions['total_reactions'] ? $reactions['total_reactions'] : 0) . ',';
@@ -71,9 +72,9 @@ get_header(); ?>
       'orderby'        => 'meta_value_num',
       'post_status'    => 'publish',
       'post_type'      => 'post',
-      'meta_query' => array( 
-        array( 
-          'key' => 'home_item', 
+      'meta_query' => array(
+        array(
+          'key' => 'home_item',
           'value' => 1, 'compare' => '=')));
     $postslist = get_posts($args);
   ?>
@@ -101,18 +102,13 @@ get_header(); ?>
         <div class="c-home-slide">
           <div class="row">
             <div class="column small-12 medium-7">
-              <div class="slide-content">
+              <div class="slide-content js-visualization" data-issue="">
                 <h1 class="title -main"><?php echo $post->post_title; ?></h1>
                 <p> <?php echo $post->post_content; ?></p>
                 <a class="text -link -dark" href="#">
                   <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
                   <?php esc_html_e( 'Download report', 'ihr-2018' ); ?></p>
                 </a>
-              </div>
-            </div>
-            <div class="column small-12 medium-5">
-              <div class="slide-visualization">
-                <p><?php esc_html_e( 'Visualizations here.', 'ihr-2018' ); ?></p></p>
               </div>
             </div>
           </div>
@@ -123,18 +119,13 @@ get_header(); ?>
         <div class="c-home-slide">
           <div class="row">
             <div class="column small-12 medium-7">
-              <div class="slide-content">
+              <div class="slide-content js-visualization" data-issue="<?php echo get_the_category()[0]->cat_name; ?>">
                 <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
                   <?php echo get_the_category()[0]->cat_name ?>
                 </div>
 
                 <h1><?php echo $post->post_title; ?></h1>
                 <p> <?php echo $post->post_content; ?></p>
-              </div>
-            </div>
-            <div class="column small-12 medium-5">
-              <div class="slide-visualization">
-                <p><?php esc_html_e( 'Visualizations here.', 'ihr-2018' ); ?></p>
               </div>
             </div>
           </div>

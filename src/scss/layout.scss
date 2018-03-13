@@ -11,6 +11,8 @@
 .l-header {
   width: 100%;
   padding: 30px 0;
+  position: relative; // Needed for homepage vis
+  z-index: 2; // Needed for homepage vis
 }
 
 .l-main {
