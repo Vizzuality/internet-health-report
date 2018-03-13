@@ -41,8 +41,8 @@ get_header(); ?>
             <div class="column small-12 medium-6">
               <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
               <p>
-                <button type="button" class="text js-learn-more" aria-expanded="false" aria-controls="description">
-                  <strong><?php esc_html_e( 'Learn More', 'ihr-2018' ); ?></strong>
+                <button type="button" class="text -btn1 js-learn-more" aria-expanded="false" aria-controls="description">
+                  <?php esc_html_e( 'Learn More', 'ihr-2018' ); ?>
                 </button>
               </p>
             </div>
@@ -51,8 +51,8 @@ get_header(); ?>
             <div class="column small-12 medium-6">
             <p><?php echo the_field('more', 'category_' . get_the_category()[0]->term_id);?></p>
             <p>
-              <button type="button" class="text js-collapse" aria-expanded="true" aria-controls="description">
-                <strong><?php esc_html_e( 'Collapse', 'ihr-2018' ); ?></strong>
+              <button type="button" class="text -btn1 js-collapse" aria-expanded="true" aria-controls="description">
+                <?php esc_html_e( 'Collapse', 'ihr-2018' ); ?>
               </button>
             </p>
             </div>
