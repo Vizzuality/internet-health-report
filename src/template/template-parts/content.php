@@ -34,6 +34,7 @@
       <div class="single-post-title">
         <p class="text <?php if($importance == 1 || $importance == 2){echo '-box1';} else { echo '-box2';} ?> "><?php echo the_title(); ?></p>
       </div>
+      <!--
       <div class="c-comments-band">
         <span class="comments">
           <svg class="c-icon -small"><use xlink:href="#icon-comment_icon"></use></svg>
@@ -42,11 +43,12 @@
         <span class="reactions">
           <svg class="c-icon -small"><use xlink:href="#icon-comment_icon"></use></svg>
           <span class="text"><?php 
-          $reactions = reaction_count(get_the_ID());
-          echo $reactions['total_reactions'];
+          //$reactions = reaction_count(get_the_ID());
+          //echo $reactions['total_reactions'];
           ?></span>
         </span>
       </div>
+      -->
     </div>
     <?php
       if ($image) { ?>
