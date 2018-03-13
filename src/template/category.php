@@ -52,7 +52,7 @@ get_header(); ?>
             <p><?php echo the_field('more', 'category_' . get_the_category()[0]->term_id);?></p>
             <p>
               <button type="button" class="text -btn1 js-collapse" aria-expanded="true" aria-controls="description">
-                <?php esc_html_e( 'Collapse', 'ihr-2018' ); ?>
+                <?php esc_html_e( 'Close', 'ihr-2018' ); ?>
               </button>
             </p>
             </div>
