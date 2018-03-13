@@ -1,0 +1,61 @@
+.c-explore-filters {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .selectors {
+    display: flex;
+
+    select {
+      border: none;
+      background: transparent;
+      -webkit-appearance: none;
+        -moz-appearance: none;
+              appearance: none;
+      border-radius: 0;
+      display: block;
+      font-size: 20px;
+      font-family: "ZillaSlab", serif;
+      padding: 6px 25px 6px 6px;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
+      background-repeat: no-repeat;
+      background-size: 11px auto;
+      background-position: right center;
+
+      &:not(:last-of-type) {
+        margin-right: 20px;
+      }
+    }
+
+    select:-ms-expand {
+      display: none;
+    }
+  }
+
+  .inputs {
+    display: flex;
+    justify-content: flex-end;
+
+    input {
+      flex-grow: 1;
+      border: 0;
+      border-bottom: 3px solid #000;
+      border-radius: 0;
+      font-family: "ZillaSlab", serif;
+      font-size: 20px;
+      font-weight: 300;
+
+      @media screen and (min-width: 40em) {
+        max-width: 300px;
+      }
+    }
+
+    button {
+      flex-shrink: 0;
+      display: inline-block;
+      margin-left: 20px;
+      padding-left: 20px;
+      border-left: 1px solid #000;
+    }
+  }
+}

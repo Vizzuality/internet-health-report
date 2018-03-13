@@ -6,10 +6,6 @@ const routes = [
     page: 'HomePage'
   },
   {
-    match: /^\/search-result\/?$/,
-    page: 'ExplorePage'
-  },
-  {
     match: /^\/category\/[A-z0-9-]+\/?$/,
     page: 'IssuePage'
   },

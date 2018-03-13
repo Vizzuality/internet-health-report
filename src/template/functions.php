@@ -329,7 +329,7 @@ function tuts_mce_before_init( $settings ) {
 function languages_list_footer() {
   $languages = icl_get_languages('skip_missing=0&orderby=code');
   if(!empty($languages)) {
-    echo '<div class="c-language-switcher js-language-switcher"><select aria-label="Language selector">';
+    echo '<div class="c-language-switcher js-language-switcher"><select aria-label="' . translate( 'Language selector', 'ihr-2018' ) . '">';
     foreach($languages as $l) {
       echo '<option' . ($l['active'] ? ' selected' : '') . ' value="' . $l['url'] . '" data-lang="' . $l['native_name'] . '">';
       echo icl_disp_language($l['native_name'], $l['translated_name']);
@@ -342,13 +342,13 @@ function languages_list_footer() {
 /**
  * Gets the number of comments for a post
  * Queries the Talk API to get the results
- * 
+ *
  * @param integer $post_id The id of the post to count the comments
  * @return integer The number of comments of a post
  */
   function comments_count($post_id) {
     $permalink = get_post_permalink($post_id);
-    $response = wp_remote_post('https://talk.mofoprod.net/api/v1/graph/ql', 
+    $response = wp_remote_post('https://talk.mofoprod.net/api/v1/graph/ql',
           array(
             'method' => 'POST',
             'httpversion' => '1.0',
@@ -356,7 +356,7 @@ function languages_list_footer() {
             'headers' => array("Content-type" => "application/json"),
             'body' => '{"query":"{\n  asset(url: \\"'. $permalink .'\\") {\n    id\n    title\n    commentCount\n  }\n}","variables":null,"operationName":null}',
             'cookies' => array()
-            )); 
+            ));
 
     try {
       preg_match('~commentCount\":(\d+)~', $stuff['body'], $comment_num);
@@ -370,10 +370,10 @@ function languages_list_footer() {
 
 /**
  * Gets the information about a post's reactions
- * 
+ *
  * @param integer $post_id The id of the post to get the reactions counts from
  * @return array [Reaction Count, Most Reacted, Second Most reacted]
- * 
+ *
  */
 
  function reaction_count($post_id) {
@@ -391,9 +391,9 @@ function languages_list_footer() {
 
     $reaction_0_name =  $reaction_names[$reaction_0];
     $reaction_1_name =  $reaction_names[$reaction_1];
-    
+
     $return_array = array('total_reactions' => $reaction_count[0]->total_reactions, 'reaction_0' => $reaction_0_name, 'reaction_1' => $reaction_1_name);
-    
+
     return $return_array;
  }
 
