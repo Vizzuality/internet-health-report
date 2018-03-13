@@ -19,7 +19,7 @@ get_header(); ?>
 <script>
 <?php
   $args = array(
-    'posts_per_page' => 100,
+    'posts_per_page' => -1,
     'post_type' => 'post',
     'post_status' => 'publish',
     'meta_query' => array(
@@ -41,7 +41,8 @@ get_header(); ?>
         echo 'type: ' . json_encode(get_post_meta($post->ID, 'type', true)) . ',';
         echo 'title: ' . json_encode($post->post_title ). ',';
         echo 'url: ' . json_encode(get_permalink($post)) . ',';
-        echo 'commentsCount: ' . (comments_count($post->ID) ? comments_count($post->ID) : 0). ',';
+        // The next line is off until finding a faster approach
+        //echo 'commentsCount: ' . (comments_count($post->ID) ? comments_count($post->ID) : 0). ',';
         echo 'reactionsCount: ' . ($reactions['total_reactions'] ? $reactions['total_reactions'] : 0) . ',';
         echo 'reactions: [';
         echo json_encode($reactions['reaction_0']) . ',';
