@@ -19,6 +19,7 @@ get_header(); ?>
 <script>
 <?php
   $args = array(
+    'suppress_filters' => false,
     'posts_per_page' => -1,
     'post_type' => 'post',
     'post_status' => 'publish',
@@ -63,6 +64,7 @@ get_header(); ?>
   <?php
     // To create posts list within the category
     $args = array(
+      'suppress_filters' => false,
       'posts_per_page' => 10,
       'order'          => 'ASC',
       'meta_key'       => 'order',
