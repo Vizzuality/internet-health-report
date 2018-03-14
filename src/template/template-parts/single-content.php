@@ -11,15 +11,26 @@
 
 <?php
   //To create prev/next navigation
-  $itemsNav = get_posts( 'orderby=order&sort_order=asc&category=' . get_the_category()[0]->term_id );
+  $args = array(
+    'posts_per_page' => -1,
+    'order'=> 'ASC',
+    'meta_key' => 'order',
+    'orderby' => 'meta_value_num',
+    'category' => get_the_category()[0]->term_id,
+    'meta_query' => array(
+       array(
+         'key' => 'home_item',
+          'value' => 1,
+          'compare' => '!=')) );
+  $itemsNav = get_posts($args);
   $items = array();
   foreach ( $itemsNav as $item ) {
     $items[] += $item->ID;
   }
 
   $current = array_search( get_the_ID(), $items );
-  $nextID = $items[$current-1];
-  $prevID = $items[$current+1];
+  $prevID = $items[$current-1];
+  $nextID = $items[$current+1];
 ?>
 
 
