@@ -88,9 +88,16 @@ export default class Homepage extends AbstractVisualization {
 
       const commentsContainer = tooltip.querySelector('.js-comments');
       if (commentsContainer) {
+        const body = {
+          query: `{ asset(url: "${d.url}") { id commentCount } }`,
+          variables: null,
+          operationName: null
+        };
+
         fetch('https://talk.mofoprod.net/api/v1/graph/ql', {
           method: 'POST',
-          body: `{"query":"{\n  asset(url: \\"${d.url}\\") {\n    id\n    title\n    commentCount\n  }\n}","variables":null,"operationName":null}`
+          headers: new Headers({ 'Content-type': 'application/json' }),
+          body: JSON.stringify(body)
         }).then(res => res.json())
           .then(({ asset }) => {
             commentsContainer.textContent = asset.commentCount;
