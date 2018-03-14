@@ -1,0 +1,28 @@
+.c-reactions-icon {
+  position: relative;
+  display: inline-block;
+  width: 43px;
+  vertical-align: middle;
+
+  // Targets the second .reaction
+  > div:last-of-type() {
+    position: absolute;
+    top: 0;
+    left: 19px;
+  }
+
+  .reaction {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    box-sizing: content-box;
+    border: 2px solid $white;
+
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -325,6 +325,13 @@ export default class AbstractVisualization {
   }
 
   /**
+   * Event handler executed when the tooltip is beginning
+   * to hide
+   */
+  onHideTooltip() { // eslint-disable-line class-methods-use-this
+  }
+
+  /**
    * Instantiate the tooltip for the target elements
    * @param {string} target HTML/CSS selector
    * @param {string} [trigger='mouseenter focus'] Event(s) to trigger the tooltip
@@ -368,7 +375,8 @@ export default class AbstractVisualization {
         callback(container);
 
         show();
-      }
+      },
+      onHide: this.onHideTooltip.bind(this)
     });
   }
 

@@ -48,6 +48,10 @@
 }
 
 // Styles for tippy
+.tippy-popper {
+  z-index: 50 !important; // Need to be lower than the footer's (for the homepage vis)
+}
+
 .tippy-tooltip.ihr-theme {
   padding: 20px;
   background-color: $white;

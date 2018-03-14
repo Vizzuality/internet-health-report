@@ -98,7 +98,7 @@
 
 .l-footer {
   position: relative;
-  z-index: 100;
+  z-index: 100; // Need to be higher than 2 for the homepage visualisation
   background-color: $black;
 }
 

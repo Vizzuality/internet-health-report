@@ -16,7 +16,7 @@ export default class Homepage extends AbstractVisualization {
     super(el, config);
     this.config.height = this.el.offsetHeight;
 
-    this.openDefaultTooltip = debounce(this.openDefaultTooltip, 500);
+    this.openDefaultTooltip = debounce(this.openDefaultTooltip, 200);
 
     this.setListeners();
     this.visualizationBreakpoints = this.getVisualizationBreakpoints();
@@ -72,6 +72,32 @@ export default class Homepage extends AbstractVisualization {
   }
 
   /**
+   * Event handler executed when the tooltip is beginning
+   * to hide
+   */
+  onHideTooltip() {
+    // We hide the faces of all the bubbles
+    this.faces.attr('opacity', 0);
+  }
+
+  /**
+   * Event handler executed when a circle is clicked
+   * @param {any} _
+   * @param {number} index Index of the circle
+   */
+  onClickCircle(_, index) {
+    const face = select(this.faces.nodes()[index]);
+    const opacity = face.attr('opacity'); // Don't move in the setTimeout
+
+    // We use a timeout of 0 to make sure we already
+    // have hidden all the faces in onHideTooltip
+    setTimeout(() => {
+      // We toggle the opacity of the face
+      face.attr('opacity', opacity === '0' ? 1 : 0);
+    }, 0);
+  }
+
+  /**
    * Return the content of the tooltip
    * @param {HTMLElement} target Target for the tooltip
    * @param {function(): any} provideCallback
@@ -86,24 +112,26 @@ export default class Homepage extends AbstractVisualization {
         closeButton.addEventListener('click', this.closeTooltip.bind(this));
       }
 
-      const commentsContainer = tooltip.querySelector('.js-comments');
-      if (commentsContainer) {
-        const body = {
-          query: `{ asset(url: "${d.url}") { id commentCount } }`,
-          variables: null,
-          operationName: null
-        };
+      // NOTE: temporarily hidden until we figure out how to fetch
+      // the number of comments
+      // const commentsContainer = tooltip.querySelector('.js-comments');
+      // if (commentsContainer) {
+      //   const body = {
+      //     query: `{ asset(url: "${d.url}") { id commentCount } }`,
+      //     variables: null,
+      //     operationName: null
+      //   };
 
-        fetch('https://talk.mofoprod.net/api/v1/graph/ql', {
-          method: 'POST',
-          headers: new Headers({ 'Content-type': 'application/json' }),
-          body: JSON.stringify(body)
-        }).then(res => res.json())
-          .then(({ asset }) => {
-            commentsContainer.textContent = asset.commentCount;
-          })
-          .catch(() => {});
-      }
+      //   fetch('https://talk.mofoprod.net/api/v1/graph/ql', {
+      //     method: 'POST',
+      //     headers: new Headers({ 'Content-type': 'application/json' }),
+      //     body: JSON.stringify(body)
+      //   }).then(res => res.json())
+      //     .then(({ asset }) => {
+      //       commentsContainer.textContent = asset.commentCount;
+      //     })
+      //     .catch(() => {});
+      // }
     };
 
     provideCallback(callback);
@@ -119,10 +147,16 @@ export default class Homepage extends AbstractVisualization {
           </div>
           <div class="c-comments-band">
             <span class="comments">
-              <svg class="c-icon -small"><use xlink:href="#icon-comment_icon"></use></svg>
-              <span class="text js-comments">–</span>
             </span>
             <span class="reactions">
+              <div class="c-reactions-icon">
+                <div class="reaction">
+                  <svg><use xlink:href="${this.getFaceIconHref(d.reactions[1] || 'Happy', null)}"></use></svg>
+                </div>
+                <div class="reaction" style="background-color: ${d.issue.color};">
+                  <svg><use xlink:href="${this.getFaceIconHref(d.reactions[0] || 'Happy', null)}"></use></svg>
+                </div>
+              </div>
               <span class="text">${d.reactionsCount} ${this.dictionary.reactions}</span>
             </span>
           </div>
@@ -150,23 +184,44 @@ export default class Homepage extends AbstractVisualization {
   }
 
   /**
+   * Return the highlighted bubble for the active issue
+   * @returns {any} d3 element
+   */
+  getHighlightedBubble() {
+    return this.bubbles
+      .filter(d => d.issue.name === this.currentActiveIssue.issue && d.highlighted);
+  }
+
+  /**
    * Opent the tooltip of the highlighted post for the active
    * issue
    * NOTE: this function is debounced
    */
   openDefaultTooltip() {
     // We open the tooltip of the highlighted circle, if any
-    const highlightedCircle = this.circles
-      .filter(d => d.issue.name === this.currentActiveIssue.issue && d.highlighted)
-      .node();
+    const highlightedBubble = this.getHighlightedBubble();
 
-    if (highlightedCircle) {
-      highlightedCircle.dispatchEvent(new MouseEvent('click', {
+    if (highlightedBubble.node()) {
+      highlightedBubble.select('circle').node().dispatchEvent(new MouseEvent('click', {
         view: window,
         bubbles: true,
         cancelable: true
       }));
     }
+  }
+
+  /**
+   * Return the href link to the reaction's icon
+   * @param {string} reactionName Name of the reaction
+   * @param {string} [size='big'] Size of the icon
+   */
+  getFaceIconHref(reactionName, size = 'big') { // eslint-disable-line class-methods-use-this
+    let reaction = reactionName.trim().toLowerCase();
+    if (reaction === 'fired up') {
+      reaction = 'angry';
+    }
+
+    return `#icon-${reaction}${size ? `-${size}` : ''}-reaction`;
   }
 
   /**
@@ -228,9 +283,7 @@ export default class Homepage extends AbstractVisualization {
         .force('center', forceCenter(...this.visualizationBreakpoints[0].center))
         .force('bounce', forceBounce().radius(d => d.r))
         .on('tick', () => {
-          this.circles
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y);
+          this.bubbles.attr('transform', d => `translate(${d.x}, ${d.y})`);
         });
 
       this.simulations.push(simulation);
@@ -240,11 +293,20 @@ export default class Homepage extends AbstractVisualization {
         .duration(750)
         .ease(easeElasticOut);
 
+      this.bubbles
+        .style('cursor', 'default');
+
       this.circles
         .attr('title', null)
-        .style('cursor', 'default')
         .transition(radiusTransition)
         .attr('r', d => d.r);
+
+      this.faces
+        .transition(radiusTransition)
+        .attr('x', d => -d.r)
+        .attr('y', d => -d.r)
+        .attr('width', d => d.r * 2)
+        .attr('height', d => d.r * 2);
     }
   }
 
@@ -266,9 +328,7 @@ export default class Homepage extends AbstractVisualization {
       .force('charge', forceManyBody().strength(10))
       .force('collide', forceCollide(d => (d.issue.name === issueName ? d.r : 0)).strength(1).iterations(50))
       .on('tick', () => {
-        this.circles
-          .attr('cx', d => d.x)
-          .attr('cy', d => d.y);
+        this.bubbles.attr('transform', d => `translate(${d.x}, ${d.y})`);
       });
 
     this.simulations = [simulation];
@@ -278,11 +338,22 @@ export default class Homepage extends AbstractVisualization {
       .duration(750)
       .ease(easeElasticOut);
 
+    this.bubbles
+      .style('cursor', 'pointer');
+
+    const getRadius = d => (d.issue.name === issueName && d.depth === 0 ? d.r : 0);
+
     this.circles
       .attr('title', d => d.issue.name)
-      .style('cursor', 'pointer')
       .transition(radiusTransition)
-      .attr('r', d => (d.issue.name === issueName && d.depth === 0 ? d.r : 0));
+      .attr('r', d => getRadius(d));
+
+    this.faces
+      .transition(radiusTransition)
+      .attr('x', d => -1 * getRadius(d))
+      .attr('y', d => -1 * getRadius(d))
+      .attr('width', d => getRadius(d) * 2)
+      .attr('height', d => getRadius(d) * 2);
   }
 
   render() {
@@ -325,7 +396,8 @@ export default class Homepage extends AbstractVisualization {
         type: d.type,
         url: d.url,
         reactionsCount: d.reactionsCount,
-        highlighted: d.highlighted
+        highlighted: d.highlighted,
+        reactions: d.reactions
       }));
 
     const randomNodes = new Array(10)
@@ -343,15 +415,36 @@ export default class Homepage extends AbstractVisualization {
       .concat(randomNodes)
       .sort((n1, n2) => n2.depth - n1.depth);
 
-    this.circles = this.svg.append('g')
-      .attr('class', 'circles')
-      .selectAll('circle')
+    this.bubbles = this.svg.append('g')
+      .attr('class', 'bubbles')
+      .selectAll('g')
       .data(this.nodes)
       .enter()
-      .append('circle')
+      .append('g')
+      .attr('class', 'bubble');
+
+    // NOTE: the click event can't be attached to the
+    // bubbles because the browsers (and especially Safari)
+    // don't compute their size correctly (because of the
+    // <use> tag)
+    // The event can only be attached to the circles, but as
+    // the faces are above it, we need to remove the pointer
+    // events from them
+
+    this.circles = this.bubbles.append('circle')
       .attr('r', d => d.r)
-      .attr('filter', (d, i) => (d.depth === 0 ? '' : `url(#blur-${i})`))
-      .attr('fill', d => d.issue.color);
+      .attr('filter', d => (d.depth === 0 ? '' : `url(#blur-${d.depth})`))
+      .attr('fill', d => d.issue.color)
+      .on('click', this.onClickCircle.bind(this));
+
+    this.faces = this.bubbles.append('use')
+      .attr('xlink:href', d => this.getFaceIconHref((d.reactions && d.reactions[0]) || 'Happy'))
+      .attr('x', d => -d.r)
+      .attr('y', d => -d.r)
+      .attr('width', d => d.r * 2)
+      .attr('height', d => d.r * 2)
+      .attr('opacity', 0)
+      .style('pointer-events', 'none');
 
     if (!this.simulations) {
       this.simulations = [];
