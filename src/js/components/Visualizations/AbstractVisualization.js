@@ -112,12 +112,12 @@ export default class AbstractVisualization {
       this._patterns = [ // eslint-disable-line no-underscore-dangle
         blank,
         linesA,
+        dotsC,
         dotsA,
         linesB,
         linesC,
-        dotsB,
         linesD,
-        dotsC
+        dotsB
       ];
     }
 
