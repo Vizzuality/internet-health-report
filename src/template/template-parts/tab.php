@@ -47,18 +47,5 @@
         </p>
       </div>
     </div>
-    <div class="what-credits row">
-     <?php if (is_page(32)): ?>
-     <h2><?php _e('Credits','ihr-2018' ) ?></h2>
-     <p><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></p>
-     <?php if( have_rows('credits') ): ?>
-      <ul>
-     <?php while( have_rows('credits') ): the_row(); ?>   
-        <li><?php the_sub_field('name'); ?></li>         
-    <?php endwhile; ?>
-    </ul>  
-    <?php endif; ?>  
-    <?php endif; ?>
-    </div>
   </div>
 </div>
