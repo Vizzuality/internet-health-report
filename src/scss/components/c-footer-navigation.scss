@@ -42,7 +42,8 @@
   .powered-by {
     margin-top: 70px;
     font-size: $font-xxs;
-    text-align: center;
+    text-align: right;
+    
 
     img {
       display: inline-block;
@@ -50,5 +51,23 @@
       margin-left: 10px;
       vertical-align: middle;
     }
+  }
+  .legal-advice {
+    vertical-align: text-bottom;
+    color: $white;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-top: 72px;
+     a {
+       color: $white;
+       &:hover {
+         text-decoration: underline;
+	}
+     }
+     ul, li {
+      display: inline;
+      padding-right: 10px;
+     }
   }
 }

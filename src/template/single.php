@@ -51,15 +51,7 @@ get_header(); ?>
 
         if ($my_query->have_posts()) {
     ?>
-      <header>
-        <div class="wrap">
-          <div class="row">
-            <div class="column small-12 medium-10">
-              <h3>More and more</h3>
-            </div>
-          </div>
-        </div>
-      </header>
+     
 
       <div class="l-cards-grid">
         <div class="wrap">
