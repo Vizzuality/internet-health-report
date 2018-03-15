@@ -50,13 +50,21 @@ export default {
   vis_2_5_1: {
     type: 'bar',
     direction: 'vertical',
-    valueFormat: '.0%',
-    valueAxisSize: 35
+    valueFormat: (v) => {
+      const value = v * 100;
+      return `${Math.floor(value) + (+format('.2r')(value % 1))}%`;
+    },
+    valueAxisSize: 25
   },
   vis_2_5_2: {
     type: 'bar',
     direction: 'horizontal',
-    valueFormat: '.0%'
+    labelAxisSize: 45,
+    valueFormat: (v) => {
+      const value = v * 100;
+      return `${Math.floor(value) + (+format('.2r')(value % 1))}%`;
+    },
+    valueSize: 45
   },
   vis_3_1_2: {
     type: 'map'
