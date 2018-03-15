@@ -35,7 +35,7 @@ get_template_part('template-parts/search-bar');
     				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
     				 */
 
-    				get_template_part( 'template-parts/content', get_post_format() );
+    				get_template_part( 'template-parts/search-content', get_post_format() );
 
     			endwhile;
 
@@ -45,7 +45,7 @@ get_template_part('template-parts/search-bar');
 
     		else :
           echo "<div class='wrap'><div class='row'>";
-    			get_template_part( 'template-parts/content', 'none' );
+    			get_template_part( 'template-parts/search-content', 'none' );
           echo "</div></div>";
     		endif;
     		?>
