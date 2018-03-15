@@ -461,7 +461,15 @@ export default class Homepage extends AbstractVisualization {
 
     if (!this.currentActiveIssue || activeIssue.issue !== this.currentActiveIssue.issue) {
       // We hide all the tooltips
-      if (this.tippy) this.tippy.destroyAll();
+      if (this.tippy) {
+        this.tippy.destroyAll();
+
+        // FIXME: Tippy.js introduces a title attribute with the value "null"
+        // to this.el when we call destroyAll. To prevent having a native
+        // tooltip with the same value, we delete the temporary title.
+        // https://github.com/atomiks/tippyjs/issues/207
+        this.el.removeAttribute('title');
+      }
 
       if (activeIssue.issue) {
         this.createIssueSimulation(activeIssue.issue);
