@@ -765,7 +765,12 @@ a:active {
   margin-bottom: 50px;
   h2 {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
+  }
+  h4 {
+   font-size: 40px;
+   padding-bottom: 50px;
+   font-weight: 200;
   }
   li {
     font-size: 20px;
@@ -773,6 +778,9 @@ a:active {
     float: left;
     width: 25%;
     padding: 10px;
+    @media screen and (max-width: 37.5em) {
+     width: 50%;
+    }
   }
   p {
     font-size: 40px;

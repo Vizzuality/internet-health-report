@@ -89,14 +89,14 @@ get_header();
           </div>
           <div class="what-credits row">
             <h3><?php _e('Credits','ihr-2018' ) ?></h3>
-            <p><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></p>
+            <h4><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></h4>
             <?php if( have_rows('credits') ): ?>
               <ul>
                 <?php while( have_rows('credits') ): the_row(); ?>   
                   <li><?php the_sub_field('name'); ?></li>         
                 <?php endwhile; ?>
               </ul>  
-            <?php endif; ?>  
+            <?php endif; ?>
         </div>
       </div>
 
