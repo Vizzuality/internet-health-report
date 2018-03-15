@@ -56,8 +56,10 @@ export default class AbstractVisualization {
   }
 
   get patterns() {
-    // We create the patterns once
-    if (!this._patterns) { // eslint-disable-line no-underscore-dangle
+    /* eslint-disable no-underscore-dangle */
+    if (this.config.patterns && !this._patterns) {
+      this._patterns = this.config.patterns(this.color);
+    } else if (!this.config.patterns && !this._patterns) {
       const blank = textures.lines()
         .stroke('transparent')
         .background(this.color);
@@ -123,7 +125,8 @@ export default class AbstractVisualization {
       ];
     }
 
-    return this._patterns; // eslint-disable-line no-underscore-dangle
+    return this._patterns;
+    /* eslint-enable no-underscore-dangle */
   }
 
   get width() {
