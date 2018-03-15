@@ -20,7 +20,7 @@ export default class Line extends AbstractVisualization {
         // We properly format the labels as dates and
         // the values as numbers
         this.data = this.data.map(d => Object.assign(d, {
-          label: new Date(Date.UTC(+d.label, 0)),
+          label: new Date(d.label),
           value: +d.value
         }));
       })
