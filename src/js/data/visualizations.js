@@ -1,3 +1,5 @@
+import { format } from 'd3-format';
+
 export default {
   vis_1_1: {
     type: 'map'
@@ -67,11 +69,22 @@ export default {
   },
   vis_3_3_1: {
     type: 'bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    height: 1000,
+    labelAxisSize: 125,
+    valueFormat: (v) => {
+      const value = v / 1e6;
+      return Math.floor(value) + (+format('.2r')(value % 1));
+    },
+    valueSize: 40
   },
   vis_3_3_2: {
     type: 'bar',
-    direction: 'vertical'
+    direction: 'vertical',
+    valueFormat: (v) => {
+      const value = v / 1e6;
+      return Math.floor(value) + (+format('.2r')(value % 1));
+    }
   },
   vis_3_4_1: {
     type: 'bar',
