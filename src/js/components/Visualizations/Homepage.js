@@ -86,6 +86,8 @@ export default class Homepage extends AbstractVisualization {
    * @param {number} index Index of the circle
    */
   onClickCircle(_, index) {
+    if (!this.currentActiveIssue.issue) return;
+
     const face = select(this.faces.nodes()[index]);
     const opacity = face.attr('opacity'); // Don't move in the setTimeout
 
