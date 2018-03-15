@@ -178,7 +178,8 @@ export default class StackedBar extends AbstractVisualization {
       .attr('transform', `translate(${this.valueAxisBounds.x}, ${this.valueAxisBounds.y})`)
       .call(valueAxis.ticks(this.valueAxisTicks))
       .selectAll('text')
-      .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '');
+      .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
+      .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle');
 
     // Rules
     container.append('g')
