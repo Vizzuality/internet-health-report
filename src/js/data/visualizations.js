@@ -1,4 +1,5 @@
 import { format } from 'd3-format';
+import textures from 'textures';
 
 export default {
   vis_1_1: {
@@ -18,7 +19,52 @@ export default {
     type: 'bar',
     direction: 'vertical',
     valueFormat: '.0%',
-    valueAxisSize: 35
+    valueAxisSize: 35,
+    patterns: color => [
+      textures.lines()
+        .orientation('1/8')
+        .size(10)
+        .lighter()
+        .stroke('#000'),
+      textures.lines()
+        .stroke('transparent')
+        .background(color),
+      textures.circles()
+        .complement()
+        .size(8)
+        .fill('#000')
+        .background(color),
+      textures.circles()
+        .complement()
+        .size(8)
+        .lighter()
+        .fill('#000')
+        .background(color),
+      textures.lines()
+        .orientation('6/8')
+        .size(20)
+        .lighter()
+        .stroke('#000')
+        .background(color),
+      textures.lines()
+        .orientation('2/8', '6/8')
+        .size(6)
+        .lighter()
+        .stroke('#000')
+        .background(color),
+      textures.lines()
+        .orientation('2/8')
+        .size(4)
+        .lighter()
+        .stroke('#000')
+        .background(color),
+      textures.circles()
+        .complement()
+        .size(8)
+        .radius(0.5)
+        .fill('#000')
+        .background(color)
+    ]
   },
   vis_1_4: {
     type: 'wikipedia'
