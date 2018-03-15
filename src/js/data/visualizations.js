@@ -95,7 +95,9 @@ export default {
   vis_3_7_2: {
     type: 'stacked-bar',
     direction: 'horizontal',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    labelAxisSize: 45,
+    valueSize: 35
   },
   vis_3_7_3: {
     type: 'line',
