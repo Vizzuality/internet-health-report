@@ -1,4 +1,6 @@
 import { csvParse } from 'd3-dsv';
+import { format } from 'd3-format';
+import { utcFormat } from 'd3-time-format';
 import tippy from 'tippy.js/dist/tippy.min';
 import textures from 'textures';
 
@@ -141,11 +143,22 @@ export default class AbstractVisualization {
   }
 
   get labelFormat() {
-    return this.config.labelFormat || '';
+    if (typeof this.config.labelFormat === 'function') {
+      return this.config.labelFormat;
+    }
+
+    if (this.config.labelFormat) {
+      return utcFormat(this.config.labelFormat);
+    }
+
+    return v => v;
   }
 
   get valueFormat() {
-    return this.config.valueFormat || '';
+    if (typeof this.config.valueFormat === 'function') {
+      return this.config.valueFormat;
+    }
+    return format(this.config.valueFormat || '');
   }
 
   get valueAxisTitle() {

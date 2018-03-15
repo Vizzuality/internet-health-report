@@ -1,7 +1,6 @@
 import { extent as d3Extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
-import { format } from 'd3-format';
 
 import AbstractVisualization from './AbstractVisualization';
 
@@ -96,7 +95,7 @@ export default class Map extends AbstractVisualization {
    */
   getTooltipContent(item) { // eslint-disable-line class-methods-use-this
     return `
-      <div class="number">${format(this.valueFormat)(item.value)}</div>
+      <div class="number">${this.valueFormat(item.value)}</div>
       <div class="note">${item.country}</div>
     `;
   }

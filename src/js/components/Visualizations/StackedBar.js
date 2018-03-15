@@ -3,7 +3,6 @@ import { scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 import { axisRight, axisBottom } from 'd3-axis';
 import { stack as d3Stack } from 'd3-shape';
-import { format } from 'd3-format';
 
 import AbstractVisualization from 'components/Visualizations/AbstractVisualization';
 
@@ -33,7 +32,7 @@ export default class StackedBar extends AbstractVisualization {
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
     const d = select(target).datum();
-    return `${format(this.valueFormat)(d[1] - d[0])}`;
+    return `${this.valueFormat(d[1] - d[0])}`;
   }
 
   render() {
@@ -171,7 +170,7 @@ export default class StackedBar extends AbstractVisualization {
     const valueAxis = (this.direction === 'horizontal' ? axisBottom : axisRight)(valueScale)
       .tickPadding(10)
       .tickSize(0)
-      .tickFormat(format(this.valueFormat));
+      .tickFormat(this.valueFormat);
 
     container.append('g')
       .attr('class', 'value-axis')
@@ -302,7 +301,7 @@ export default class StackedBar extends AbstractVisualization {
       })
       .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
       .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
-      .text(d => format(this.valueFormat)(d.value));
+      .text(d => this.valueFormat(d.value));
 
     container.append('g')
       .attr('class', 'value')
@@ -325,7 +324,7 @@ export default class StackedBar extends AbstractVisualization {
       })
       .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
       .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
-      .text(d => format(this.valueFormat)(d.value));
+      .text(d => this.valueFormat(d.value));
 
     // We instantiate the tooltip
     this.instantiateTooltip('rect');

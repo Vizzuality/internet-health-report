@@ -2,7 +2,6 @@ import { select } from 'd3-selection';
 import { scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale';
 import { max } from 'd3-array';
 import { axisRight, axisBottom } from 'd3-axis';
-import { format } from 'd3-format';
 
 import AbstractVisualization from 'components/Visualizations/AbstractVisualization';
 
@@ -158,7 +157,7 @@ export default class Bar extends AbstractVisualization {
     const valueAxis = (this.direction === 'horizontal' ? axisBottom : axisRight)(valueScale)
       .tickPadding(10)
       .tickSize(0)
-      .tickFormat(format(this.valueFormat));
+      .tickFormat(this.valueFormat);
 
     container.append('g')
       .attr('class', 'value-axis')
@@ -290,7 +289,7 @@ export default class Bar extends AbstractVisualization {
       })
       .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
       .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
-      .text(d => format(this.valueFormat)(d.value));
+      .text(d => this.valueFormat(d.value));
 
     markItem.append('g')
       .attr('class', 'value')
@@ -312,6 +311,6 @@ export default class Bar extends AbstractVisualization {
       })
       .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
       .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
-      .text(d => format(this.valueFormat)(d.value));
+      .text(d => this.valueFormat(d.value));
   }
 }

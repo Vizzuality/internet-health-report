@@ -3,8 +3,6 @@ import { scaleUtc, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { max, extent } from 'd3-array';
 import { axisRight, axisBottom } from 'd3-axis';
 import { line as d3Line } from 'd3-shape';
-import { format } from 'd3-format';
-import { utcFormat } from 'd3-time-format';
 
 import AbstractVisualization from 'components/Visualizations/AbstractVisualization';
 
@@ -144,7 +142,7 @@ export default class Line extends AbstractVisualization {
     const valueAxis = axisRight(valueScale)
       .tickPadding(10)
       .tickSize(0)
-      .tickFormat(format(this.valueFormat));
+      .tickFormat(this.valueFormat);
 
     container.append('g')
       .attr('class', 'value-axis')
@@ -161,9 +159,7 @@ export default class Line extends AbstractVisualization {
       .tickPadding(10)
       .tickSize(0);
 
-    if (this.labelFormat) {
-      labelAxis.tickFormat(utcFormat(this.labelFormat));
-    }
+    labelAxis.tickFormat(this.labelFormat);
 
     container.append('g')
       .attr('class', 'label-axis')
