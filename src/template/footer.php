@@ -136,9 +136,8 @@
           </div>
         </li>
         <li>
-          <a href="http://twitter.com/home?status=<?php echo urlencode(get_the_title()); ?>+<?php print(urlencode(get_permalink())); ?>" title="<?php _e('Share on Twitter', 'ihr-2018'); ?>">
-            <svg class="c-icon"><use xlink:href="#icon-twitter"></use></svg>
-          </a>
+
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=#internethealth" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </li>
         <li class="text">
           <?php _e('Share this', 'ihr-2018');?>
