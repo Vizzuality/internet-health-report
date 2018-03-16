@@ -348,10 +348,10 @@ export default class AbstractVisualization {
    * Instantiate the tooltip for the target elements
    * @param {string} target HTML/CSS selector
    * @param {string} [trigger='mouseenter focus'] Event(s) to trigger the tooltip
-   * @param {string} [additionalClass=''] CSS class to add
+   * @param {string} additionalClass CSS class to add
    * @return {any} tippy instance
    */
-  instantiateTooltip(target, trigger = 'mouseenter focus', additionalClass = '') {
+  instantiateTooltip(target, trigger = 'mouseenter focus', additionalClass) {
     const getTooltipContent = this.getTooltipContent.bind(this);
     return tippy(this.el, {
       target,
@@ -378,7 +378,9 @@ export default class AbstractVisualization {
         container.innerHTML = getTooltipContent(e.target, (func) => { callback = func; });
 
         // We add the additional class
-        this.children[0].classList.add(additionalClass);
+        if (additionalClass) {
+          this.children[0].classList.add(additionalClass);
+        }
 
         const tooltip = this.querySelector('.tippy-content');
         tooltip.innerHTML = '';
