@@ -12,7 +12,7 @@
   width: 100%;
   padding: 30px 0;
   position: relative; // Needed for homepage vis
-  z-index: 2; // Needed for homepage vis
+  z-index: 3; // Needed for homepage vis, make sure it's above .c-home-slide .slide-content
 }
 
 .l-main {
