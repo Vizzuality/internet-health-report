@@ -14,9 +14,11 @@ export default class Bar extends AbstractVisualization {
   initialize() {
     this.fetchData()
       .then(() => {
-        this.data = this.data.map(d => Object.assign({}, d, {
-          value: +d.value
-        }));
+        if (!this.categorical) {
+          this.data = this.data.map(d => Object.assign({}, d, {
+            value: +d.value
+          }));
+        }
       })
       .catch(() => {})
       .then(() => this.render());
@@ -45,6 +47,10 @@ export default class Bar extends AbstractVisualization {
 
     const categories = this.data.map(d => d.category)
       .filter((d, i, arr) => arr.indexOf(d) === i);
+
+    const values = this.data.map(d => d.value)
+      .filter((d, i, arr) => arr.indexOf(d) === i)
+      .sort();
 
     this.patterns.forEach(p => svg.call(p));
 
@@ -146,18 +152,35 @@ export default class Bar extends AbstractVisualization {
       .text(this.labelAxisTitle);
 
     // Value axis
-    const valueScale = scaleLinear()
-      .domain([0, max(this.data, d => d.value)])
-      .rangeRound(
-        this.direction === 'horizontal'
-          ? [0, this.valueAxisBounds.width]
-          : [this.valueAxisBounds.height, 0]
-      );
+    let valueScale;
+    if (this.categorical) {
+      valueScale = scaleOrdinal()
+        .domain(values)
+        .range(
+          this.direction === 'horizontal'
+            ? new Array(values.length).fill(0)
+              .map((_, i) => (this.valueAxisBounds.width / values.length) * (i + 1))
+            : new Array(values.length).fill(0)
+              .map((_, i) => this.valueAxisBounds.height
+                - ((this.valueAxisBounds.height / values.length) * (i + 1)))
+        );
+    } else {
+      valueScale = scaleLinear()
+        .domain([0, max(this.data, d => d.value)])
+        .rangeRound(
+          this.direction === 'horizontal'
+            ? [0, this.valueAxisBounds.width]
+            : [this.valueAxisBounds.height, 0]
+        );
+    }
 
     const valueAxis = (this.direction === 'horizontal' ? axisBottom : axisRight)(valueScale)
       .tickPadding(10)
-      .tickSize(0)
-      .tickFormat(this.valueFormat);
+      .tickSize(0);
+
+    if (!this.categorical) {
+      valueAxis.tickFormat(this.valueFormat);
+    }
 
     container.append('g')
       .attr('class', 'value-axis')
@@ -172,17 +195,26 @@ export default class Bar extends AbstractVisualization {
       .attr('class', 'rules')
       .attr('transform', this.direction === 'horizontal' ? `translate(${this.visualizationBounds.x}, 0)` : `translate(0, ${this.valueAxisBounds.y})`)
       .selectAll('line')
-      .data(valueScale.ticks(this.valueAxisTicks))
+      .data(this.categorical
+        ? [this.direction === 'horizontal' ? 0 : this.visualizationBounds.height].concat(valueScale.range())
+        : valueScale.ticks(this.valueAxisTicks)
+      )
       .enter()
       .append('line')
       .attr('x1', (d) => {
         if (this.direction === 'horizontal') {
+          if (this.categorical) {
+            return d;
+          }
           return valueScale(d);
         }
         return this.visualizationBounds.x;
       })
       .attr('x2', (d) => {
         if (this.direction === 'horizontal') {
+          if (this.categorical) {
+            return d;
+          }
           return valueScale(d);
         }
         return this.valueAxisBounds.x + this.valueAxisBounds.width;
@@ -191,11 +223,17 @@ export default class Bar extends AbstractVisualization {
         if (this.direction === 'horizontal') {
           return this.visualizationBounds.y;
         }
+        if (this.categorical) {
+          return d;
+        }
         return valueScale(d);
       })
       .attr('y2', (d) => {
         if (this.direction === 'horizontal') {
           return this.valueAxisBounds.y + this.valueAxisBounds.height;
+        }
+        if (this.categorical) {
+          return d;
         }
         return valueScale(d);
       });
@@ -242,6 +280,9 @@ export default class Bar extends AbstractVisualization {
       .append('rect')
       .attr('x', (d) => {
         if (this.direction === 'horizontal') {
+          if (this.categorical) {
+            return 0;
+          }
           return valueScale(0);
         }
         return categoryScale(d.category);
@@ -254,6 +295,9 @@ export default class Bar extends AbstractVisualization {
       })
       .attr('width', (d) => {
         if (this.direction === 'horizontal') {
+          if (this.categorical) {
+            return valueScale(d.value);
+          }
           return valueScale(d.value) - valueScale(0);
         }
         return categoryScale.bandwidth();
@@ -261,6 +305,9 @@ export default class Bar extends AbstractVisualization {
       .attr('height', (d) => {
         if (this.direction === 'horizontal') {
           return categoryScale.bandwidth();
+        }
+        if (this.categorical) {
+          return this.visualizationBounds.height - valueScale(d.value);
         }
         return valueScale(0) - valueScale(d.value);
       })
@@ -289,7 +336,7 @@ export default class Bar extends AbstractVisualization {
       })
       .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
       .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
-      .text(d => this.valueFormat(d.value));
+      .text(d => (this.categorical ? d.value : this.valueFormat(d.value)));
 
     markItem.append('g')
       .attr('class', 'value')
@@ -311,6 +358,6 @@ export default class Bar extends AbstractVisualization {
       })
       .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
       .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
-      .text(d => this.valueFormat(d.value));
+      .text(d => (this.categorical ? d.value : this.valueFormat(d.value)));
   }
 }

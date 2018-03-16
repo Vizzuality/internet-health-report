@@ -138,6 +138,10 @@ export default class AbstractVisualization {
     return this.config.direction || 'vertical';
   }
 
+  get categorical() {
+    return this.config.categorical || false;
+  }
+
   get labelFormat() {
     if (typeof this.config.labelFormat === 'function') {
       return this.config.labelFormat;
