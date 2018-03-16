@@ -4,27 +4,20 @@ import { utcFormat } from 'd3-time-format';
 import tippy from 'tippy.js/dist/tippy.min';
 import textures from 'textures';
 
-// Data
-import DictionaryEN from 'data/dictionary-en';
-import DictionaryFR from 'data/dictionary-fr';
-
 export default class AbstractVisualization {
-  get dictionary() { // eslint-disable-line class-methods-use-this
-    return {
-      en: DictionaryEN,
-      fr: DictionaryFR
-    }[window.LANG] || {};
+  get translations() { // eslint-disable-line class-methods-use-this
+    return window.TRANSLATIONS || {};
   }
 
-  get WPDictionary() {
+  get dictionary() {
     /* eslint-disable no-underscore-dangle */
-    if (!this._WPDictionary) {
-      this._WPDictionary = csvParse(this.config.dictionary)
+    if (!this._dictionary) {
+      this._dictionary = csvParse(this.config.dictionary)
         .map(o => ({ [o.key]: o.value }))
         .reduce((res, o) => Object.assign(res, o), {});
     }
 
-    return this._WPDictionary;
+    return this._dictionary;
     /* eslint-enable no-underscore-dangle */
   }
 
@@ -33,11 +26,11 @@ export default class AbstractVisualization {
   }
 
   get title() {
-    return this.config.title || this.dictionary.missing_title;
+    return this.config.title || this.translations.missing_title;
   }
 
   get description() {
-    return this.config.description || this.dictionary.missing_description;
+    return this.config.description || this.translations.missing_description;
   }
 
   get colors() { // eslint-disable-line class-methods-use-this
@@ -165,11 +158,11 @@ export default class AbstractVisualization {
   }
 
   get valueAxisTitle() {
-    return this.WPDictionary.valueAxisTitle;
+    return this.dictionary.valueAxisTitle;
   }
 
   get labelAxisTitle() {
-    return this.WPDictionary.labelAxisTitle;
+    return this.dictionary.labelAxisTitle;
   }
 
   get valueSize() {

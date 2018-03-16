@@ -159,12 +159,12 @@ export default class Homepage extends AbstractVisualization {
                   <svg><use xlink:href="${this.getFaceIconHref(d.reactions[0] || 'Happy', null)}"></use></svg>
                 </div>
               </div>
-              <span class="text">${d.reactionsCount} ${this.dictionary.reactions}</span>
+              <span class="text">${d.reactionsCount} ${this.translations.reactions}</span>
             </span>
           </div>
         </div>
       </a>
-      <button type="button" class="close-button js-close" aria-label="${this.dictionary.close_tooltip}">
+      <button type="button" class="close-button js-close" aria-label="${this.translations.close_tooltip}">
         <svg class="c-icon -medium"><use xlink:href="#icon-close_normal"></use></svg>
       </button>
     `;

@@ -143,7 +143,7 @@ export default class Map extends AbstractVisualization {
 
     // We append the label
     const label = document.createElement('label');
-    label.textContent = this.dictionary.map_category_switcher_label;
+    label.textContent = this.translations.map_category_switcher_label;
     label.htmlFor = `map_category_switcher_${this.id}`;
     categorySwitcher.appendChild(label);
 

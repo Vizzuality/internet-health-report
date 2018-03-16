@@ -35,7 +35,7 @@
   <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages3.bundle.js" as="script">
   <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/mapbox.bundle.js" as="script">
 
-  <!-- Loading visualizations -->
+  <!-- Loading visualizations & more -->
   <script>
     window.BASE_URL='<?php echo get_site_url(null, '', 'relative'); ?>';
     window.LANG='<?php echo substr(get_locale(), 0, 2); ?>';
@@ -58,6 +58,15 @@
         echo 'window.VISUALIZATIONS = [];';
       endif;
     ?>
+
+    window.TRANSLATIONS = {
+      missing_title: <?php echo json_encode(translate('Missing title', 'ihr-2018')) ?>,
+      missing_description: <?php echo json_encode(translate('Missing description', 'ihr-2018')) ?>,
+      visualization_error: <?php echo json_encode(translate('Unable to display this visualization.', 'ihr-2018')) ?>,
+      map_category_switcher_label: <?php echo json_encode(translate('Layer', 'ihr-2018')) ?>,
+      close_tooltip: <?php echo json_encode(translate('Close', 'ihr-2018')) ?>,
+      reactions: <?php echo json_encode(translate('Reaction', 'ihr-2018')) ?>
+    };
   </script>
 </head>
 <body
