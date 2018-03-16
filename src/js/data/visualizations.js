@@ -157,7 +157,9 @@ export default {
   },
   vis_3_7_1: {
     type: 'bar',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    categorical: true,
+    labelAxisSize: 100
   },
   vis_3_7_2: {
     type: 'stacked-bar',
