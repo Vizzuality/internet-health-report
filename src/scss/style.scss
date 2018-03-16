@@ -538,7 +538,7 @@ a:active {
 }
 
 .main-navigation ul {
-  display: none;
+  display: block;
   list-style: none;
   margin: 0;
   padding-left: 0;
@@ -569,7 +569,7 @@ a:active {
 
 .main-navigation ul li:hover>ul,
 .main-navigation ul li.focus>ul {
-  @media screen and (min-width: 37.5em) {
+  @media screen and (min-width: 44em) {
     left: 50%;
     transform: translateX(-50%);
   }
@@ -578,6 +578,10 @@ a:active {
 .main-navigation li {
   float: left;
   position: relative;
+  @media screen and (max-width: 44em) {
+    width: 100%;
+  }
+  
 }
 
 .main-navigation a {
@@ -585,40 +589,51 @@ a:active {
   text-decoration: none;
 }
 
-/*#menu-item-75 ul {
-  left: -68%;
+.lang-selector {
+  display: none;
 }
 
-#menu-item-74 ul {
-  left: -189%;
-}
-
-#menu-item-117 ul {
-  left: -85%;
-}*/
 
 /* Small menu. */
 
 .menu-toggle {
-  font-size: 40px;
-  position: relative;
-  top: 10px;
-  right: 0px;
+  display: none;
 }
 
-.menu-toggle,
-.main-navigation.toggled ul {
-  display: block;
-  float: left;
-}
-
-@media screen and (min-width: 37.5em) {
+@media screen and (max-width: 44em) {
   .menu-toggle {
-    display: none;
+    font-size: 40px;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+  }
+  nav#site-navigation.main-navigation.c-main-navigation.toggled {
+    position: absolute;
+    background: black;
+    left:0;
+    top: 0;
+    width: 100%;
+    padding: 100px 40px;
+      button {
+        color: white;
+      }
+      .lang-selector {
+        display:block;
+	
+      }
+  }
+    
+  .menu-toggle,
+  .main-navigation.toggled ul {
+    display: block; 
+    float: left;
+    a { color: white;}
   }
   .main-navigation ul {
-    display: block;
+    display: none;
+  
   }
+
 }
 
 .site-main .comment-navigation,

@@ -1,6 +1,14 @@
 .c-main-navigation {
   display: flex;
   justify-content: flex-end;
+  @media screen and (max-width: 44em) {
+    display: block;
+    .current-menu-item > li {
+    border-left: 5px solid white;
+    display:inline;
+  }
+
+  }
 
 
   .menu-item {
@@ -55,4 +63,5 @@
     border-bottom: $border-black;
     display:inline;
   }
+
 }

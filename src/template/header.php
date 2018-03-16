@@ -89,12 +89,13 @@
       			endif; ?>
       		</div><!-- .site-branding -->
         </div>
-        <div class="column small-4 medium-9">
+        <div class="column small-12 medium-9">
       		<nav id="site-navigation" class="main-navigation c-main-navigation">
       			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">&#9776;</button>
       			<?php
               wp_nav_menu();
       			?>
+            <div class="lang-selector"><?php languages_list_footer(); ?></div>
   		    </nav><!-- #site-navigation -->
         </div>
       </div>
