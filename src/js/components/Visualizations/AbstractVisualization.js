@@ -154,7 +154,7 @@ export default class AbstractVisualization {
       return utcFormat(this.config.labelFormat);
     }
 
-    return v => v;
+    return null;
   }
 
   get valueFormat() {
