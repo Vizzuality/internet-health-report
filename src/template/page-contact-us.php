@@ -64,9 +64,9 @@ get_header(); ?>
           ?>
 
           <div id="coral_talk_stream"></div>
-          <script src="http://127.0.0.1:3002/static/embed.js" async onload="
+          <script src="https://talk.mofoprod.net/static/embed.js" async onload="
           Coral.Talk.render(document.getElementById('coral_talk_stream'), {
-              talk: 'http://127.0.0.1:3002'
+              talk: 'https://talk.mofoprod.net/'
           });
           "></script>
 		</main><!-- #main -->
