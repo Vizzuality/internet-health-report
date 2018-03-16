@@ -111,14 +111,29 @@
 <?php wp_footer(); ?>
 
 <?php if (is_single()): ?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
   <div class="fixedfooter">
     <div class="wrap">
       <ul>
         <li>
-          <a href="http://www.facebook.com/share.php?u=<?php print(urlencode(get_permalink())); ?>&amp;t=<?php echo urlencode(get_the_title()); ?>" title="<?php _e('Share on Facebook', 'ihr-2018'); ?>">
-            <svg class="c-icon"><use xlink:href="#icon-facebook"></use></svg>
-          </a>
+          <div class="fb-share-button" 
+              data-href="<?php the_permalink(); ?>" 
+              data-layout="button" 
+              data-size="small" 
+              data-mobile-iframe="true">
+                <a target="_blank" 
+                  href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>&amp;src=sdkpreparse" 
+                  class="fb-xfbml-parse-ignore">
+                </a>
+          </div>
         </li>
         <li>
           <a href="http://twitter.com/home?status=<?php echo urlencode(get_the_title()); ?>+<?php print(urlencode(get_permalink())); ?>" title="<?php _e('Share on Twitter', 'ihr-2018'); ?>">
