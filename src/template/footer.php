@@ -126,9 +126,6 @@
             </div>
             <div class="column small-6 medium-3">
               <div class="extra-links">
-                <div class="download">
-
-                </div>
                 <ul>
                   <li><a href="#" class="text -light -category download-pdf-link"><?php esc_html_e( 'Download PDF', 'ihr-2018' ); ?> <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg></a></li>
                   <li><a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
