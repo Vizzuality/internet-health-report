@@ -16,36 +16,125 @@
     flex-grow: 1;
   }
 
-  .category-switcher {
+  .legend-container {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    padding: 20px;
+    bottom: 30px;
+    right: 30px;
+    padding: 25px;
+    width: 340px;
     background: $white;
     z-index: 1;
-    border: 2px solid $black;
+    border: 3px solid $black;
+    box-shadow: $box-shadow;
+    font-family: $font-family-1;
 
-    label {
-      display: block;
-      font-family: $font-family-1;
-      font-size: $font-xxs;
-      line-height: 1.75;
+    .category-switcher {
+      .label {
+        margin-bottom: 10px;
+        padding-right: 25px;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
+        background-repeat: no-repeat;
+        background-size: 11px auto;
+        background-position: right center;
+        cursor: pointer;
+
+        .text {
+          line-height: 1;
+          font-weight: 600;
+        }
+      }
+
+      select {
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
+
+        border: 0;
+        font-size: $font-xxs;
+        color: $black;
+        text-align: right;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
+        background-repeat: no-repeat;
+        background-size: 11px auto;
+        background-position: right center;
+      }
     }
 
-    select {
-      -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-      padding-right: 25px;
-      border: 0;
-      font-family: $font-family-1;
-      font-size: $font-xxs;
-      color: $black;
-      text-align: right;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
-      background-repeat: no-repeat;
-      background-size: 11px auto;
-      background-position: right center;
+    .legend {
+      .box.-no-data {
+        position: relative;
+        &:after {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAxMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHRpdGxlPkxpbmVzLzMwLTAxLVg8L3RpdGxlPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMCAwaDEwdjIwSDB6Ii8+PC9kZWZzPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PG1hc2sgaWQ9ImIiIGZpbGw9IiNmZmYiPjx1c2UgeGxpbms6aHJlZj0iI2EiLz48L21hc2s+PGcgbWFzaz0idXJsKCNiKSIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj48cGF0aCBkPSJNMiAyMEwxMiAwTS04IDIwTDIgMCIvPjwvZz48ZyBtYXNrPSJ1cmwoI2IpIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiPjxwYXRoIGQ9Ik03IDIwTDE3IDBNLTMgMjBMNyAwIi8+PC9nPjwvZz48L3N2Zz4=');
+          opacity: .5;
+          content: '';
+        }
+      }
+
+      &.-linear {
+        display: flex;
+        justify-content: space-between;
+
+        > div {
+          &:first-of-type {
+            flex-grow: 1;
+            margin-right: 20px;
+
+            .text {
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+        }
+
+        .box {
+          position: relative;
+          width: 100%;
+          height: 15px;
+          border: 2px solid $black;
+
+          &.-gradient {
+            &:after {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+              content: '';
+            }
+          }
+        }
+      }
+
+      &.-categorical {
+        > div {
+          position: relative;
+          padding-left: 23px;
+        }
+
+        .box {
+          position: absolute;
+          top: 7px;
+          left: 0;
+          width: 15px;
+          height: 15px;
+          border: 2px solid $black;
+
+          > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
     }
   }
 }

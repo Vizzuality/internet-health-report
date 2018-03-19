@@ -29,6 +29,24 @@
     transform: translateX(50%);
   }
 
+  .map-categories {
+    text-align: left;
+    max-width: 260px;
+
+    > div:not(:last-of-type) {
+      margin-bottom: 15px;
+    }
+
+    .text {
+      line-height: 1;
+      cursor: pointer;
+
+      &.-active {
+        font-weight: 600;
+      }
+    }
+  }
+
   .c-single-post {
     display: flex;
     align-items: stretch;

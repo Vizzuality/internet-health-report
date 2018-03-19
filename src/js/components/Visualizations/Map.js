@@ -1,6 +1,5 @@
 import { extent as d3Extent } from 'd3-array';
-import { scaleLinear } from 'd3-scale';
-import { interpolateYlOrRd } from 'd3-scale-chromatic';
+import { scaleLinear, scaleOrdinal } from 'd3-scale';
 
 import AbstractVisualization from './AbstractVisualization';
 
@@ -24,6 +23,8 @@ export default class Map extends AbstractVisualization {
   initialize() {
     this.fetchData()
       .then(() => {
+        if (this.categorical) return;
+
         // We properly format the labels as dates and
         // the values as numbers
         this.data = this.data.map(d => Object.assign(d, {
@@ -32,6 +33,25 @@ export default class Map extends AbstractVisualization {
       })
       .catch(() => {})
       .then(() => this.render());
+  }
+
+  /**
+   * Event handler executed when the user change the layer
+   * of the map (i.e. selects a different category)
+   * @param {MouseEvent} e Event
+   */
+  onChangeCategory({ target }) {
+    this.closeTooltip();
+
+    this.selectedCategory = target.textContent.trim();
+    const filteredData = this.data.filter(d => d.category === this.selectedCategory);
+
+    // We remove the previous layer, if any
+    if (this.map.getLayer('data-layer')) {
+      this.map.removeLayer('data-layer');
+    }
+
+    this.renderDataLayer(filteredData);
   }
 
   /**
@@ -47,8 +67,8 @@ export default class Map extends AbstractVisualization {
       container: this.mapContainer,
       style: 'mapbox://styles/vizz-mozilla/cjdvvwlcu6hh92ss3hjrs8f8s',
       center: [10.282177814440729, 44.54101006950887],
-      zoom: 0.8276700596335558,
-      maxZoom: 2,
+      zoom: 1,
+      maxZoom: 3,
       attributionControl: false,
       renderWorldCopies: true,
       scrollZoom: false
@@ -56,11 +76,11 @@ export default class Map extends AbstractVisualization {
   }
 
   /**
-   * Instantiate the tooltip
+   * Instantiate the tooltip of the map
    * @param {object[]} data Rendered data
    * @param {string} layerId ID of the layer
    */
-  instantiateTooltip(data, layerId) {
+  instantiateMapTooltip(data, layerId) {
     if (!this.tooltip) {
       this.tooltip = new mapboxgl.Popup({
         closeButton: false,
@@ -76,7 +96,7 @@ export default class Map extends AbstractVisualization {
         this.tooltip.setLngLat(e.lngLat)
           .setHTML(`
             <div class="c-tooltip">
-              ${this.getTooltipContent(item)}
+              ${this.getMapTooltipContent(item)}
             </div>
           `)
           .addTo(this.map);
@@ -93,122 +113,190 @@ export default class Map extends AbstractVisualization {
    * @param {{ iso: string, country: string, category?: string, value: string|number }} item
    * @returns {string} HTML content
    */
-  getTooltipContent(item) { // eslint-disable-line class-methods-use-this
+  getMapTooltipContent(item) { // eslint-disable-line class-methods-use-this
     return `
-      <div class="number">${this.valueFormat(item.value)}</div>
+      <div class="number">${this.categorical ? item.value : this.valueFormat(item.value)}</div>
       <div class="note">${item.country}</div>
     `;
   }
 
   /**
-   * Render the chloropleth map
-  */
-  renderChloropleth() {
-    const extent = d3Extent(this.data, d => d.value);
-    const scale = scaleLinear().domain(extent);
-    const expression = ['match', ['get', 'iso']];
-    this.data.forEach(d => expression.push(d.iso, `${interpolateYlOrRd(scale(d.value))}`));
-    expression.push('rgba(0, 0, 0, 0)');
-
-    // When the map is created, it contains many layers
-    // corresponding to the styles
-    // To add ours behind them, we just place them below
-    // the first one
-    const firstLayerId = this.map.getStyle().layers[0].id;
-
-    this.map.addLayer({
-      id: 'chloropleth',
-      type: 'fill',
-      source: 'countries',
-      'source-layer': 'cartodb-query-dljbj5',
-      paint: {
-        'fill-color': expression
-      }
-    }, firstLayerId);
-
-    this.instantiateTooltip(this.data, 'chloropleth');
-  }
-
-  /**
-   * Render the categorical chloropleth map
-  */
-  renderCategoricalChloropleth() {
+   * Return the content of the tooltip used to select a layer
+   * @param {HTMLElement} target Target for the tooltip
+   * @param {function(): any} provideCallback
+   * @returns {string} HTML content
+   */
+  getTooltipContent(_, provideCallback) {
     const categories = this.data.map(d => d.category)
       .filter((c, i, cats) => cats.indexOf(c) === i);
 
-    // We add the category switcher
-    const categorySwitcher = document.createElement('div');
-    categorySwitcher.classList.add('category-switcher');
-    this.mapContainer.append(categorySwitcher);
+    const callback = (tooltip) => {
+      tooltip.addEventListener('click', (e) => {
+        if (e.target.classList.contains('js-category')) {
+          this.onChangeCategory(e);
+        }
+      });
+    };
 
-    // We append the label
-    const label = document.createElement('label');
-    label.textContent = this.translations.map_category_switcher_label;
-    label.htmlFor = `map_category_switcher_${this.id}`;
-    categorySwitcher.appendChild(label);
+    provideCallback(callback);
 
-    // We append the select element
-    const select = document.createElement('select');
-    select.setAttribute('id', `map_category_switcher_${this.id}`);
-    categorySwitcher.appendChild(select);
-
-    // And its options
-    const options = categories.map((c) => {
-      const option = document.createElement('option');
-      option.value = c;
-      option.innerText = c;
-      return option;
-    });
-    options.forEach(option => select.appendChild(option));
-
-    // Each time the select's value is changed, we update the
-    // active layer
-    select.addEventListener('change', ({ target }) => {
-      const category = target.value;
-      const filteredData = this.data.filter(d => d.category === category);
-      this.addCategoricalChloroplethLayer(filteredData);
-    });
-
-    // We add the layer to the map
-    const filteredData = this.data.filter(d => d.category === categories[0]);
-    this.addCategoricalChloroplethLayer(filteredData);
+    return `
+      <div class="map-categories">
+        ${categories.map(c => `
+          <div class="text${this.selectedCategory === c ? ' -active' : ''} js-category">
+            ${c}
+          </div>
+        `).join('')}
+      </div>
+    `;
   }
 
   /**
-   * Add the categorical chloropleth layer to the map
-   * NOTE: this method makes sure only one is displayed at a time
-   * @param {{}[]}} data Data
-   * @returns {any}
+   * Create the legend
+   * @param {any} options
    */
-  addCategoricalChloroplethLayer(data) {
-    const extent = d3Extent(data, d => d.value);
-    const scale = scaleLinear().domain(extent);
-    const expression = ['match', ['get', 'iso']];
-    data.forEach(d => expression.push(d.iso, `${interpolateYlOrRd(scale(d.value))}`));
-    expression.push('rgba(0, 0, 0, 0)');
-
-    // We remove the previous layer, if any
-    if (this.map.getLayer('categorical-chloropleth')) {
-      this.map.removeLayer('categorical-chloropleth');
+  createLegend(options) {
+    // If the legend has already been created, we re-create it
+    if (this.legendContainer) {
+      this.mapContainer.removeChild(this.legendContainer);
     }
+
+    this.legendContainer = document.createElement('div');
+    this.legendContainer.classList.add('legend-container');
+    this.mapContainer.append(this.legendContainer);
+
+    const switcher = document.createElement('div');
+    switcher.classList.add('category-switcher');
+    this.legendContainer.appendChild(switcher);
+
+    if (this.selectedCategory) {
+      switcher.innerHTML = `
+        <div class="label js-label" title="${this.translations.map_category_switcher_label}">
+          <span class="text">
+            ${this.selectedCategory}
+          </span>
+        </div>
+      `;
+
+      this.instantiateTooltip('.js-label', 'click', false);
+    }
+
+    const legend = document.createElement('div');
+    legend.classList.add('legend');
+    this.legendContainer.appendChild(legend);
+
+    if (!this.categorical) {
+      legend.classList.add('-linear');
+      legend.innerHTML = `
+        <div>
+          <div class="text">
+            <span>${options.min}</span>
+            <span>${options.max}</span>
+          </div>
+          <div class="box -gradient" style="background: ${this.color}"></div>
+        </div>
+        <div>
+          <div class="text">${this.translations.unknown}</div>
+          <div class="box -no-data"></div>
+        </div>
+      `;
+    } else {
+      legend.classList.add('-categorical');
+      legend.innerHTML = `
+        ${options.opacityScale.domain().map(v => `
+          <div class="text">
+            <div class="box" style="background: ${this.color};">
+              <div style="background: rgba(255, 255, 255, ${1 - options.opacityScale(v)});"></div>
+            </div> ${v}
+          </div>
+        `).join('')}
+        <div class="text">
+          <div class="box -no-data"></div> ${this.translations.unknown}
+        </div>
+      `;
+    }
+  }
+
+  /**
+   * Return the issue's color in RGB
+   * @return {number[]}
+   */
+  getRGBColor() {
+    // Example: #0033FF
+    if (this.color.length === 7) {
+      const matches = this.color.match(/#([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})/i);
+      matches.shift();
+      return matches.map(hex => parseInt(hex, 16));
+    }
+
+    // Example: #03F
+    const matches = this.color.match(/#([0-9A-F])([0-9A-F])([0-9A-F])/i);
+    matches.shift();
+    return matches.map(hex => parseInt(`${hex}${hex}`, 16));
+  }
+
+  /**
+   * Return the fill color of the countries on the map
+   * The result don't use the alpha channel because we don't want
+   * the pattern from the countries with no value to show
+   * @param {number} opacity Opacity between 0 and 1
+   */
+  getFillColor(opacity) {
+    const color = this.getRGBColor();
+    const mix = c => Math.round((c * opacity) + (255 * (1 - opacity)));
+    return `rgb(${mix(color[0])}, ${mix(color[1])}, ${mix(color[2])})`;
+  }
+
+  /**
+   * Add the data layer to the map
+   * @param {any[]} data Data
+   */
+  renderDataLayer(data) {
+    let opacityScale;
+    if (this.categorical) {
+      const values = data.map(d => d.value)
+        .filter((d, i, arr) => arr.indexOf(d) === i);
+
+      opacityScale = scaleOrdinal()
+        .domain(values)
+        .range(values.map((_, i) => i * (1 / (values.length - 1))).reverse());
+    } else {
+      const extent = d3Extent(data, d => d.value);
+      opacityScale = scaleLinear()
+        .domain(extent)
+        .range([0, 1]);
+    }
+
+    const fillColor = ['match', ['get', 'iso']];
+    data.forEach(d => fillColor.push(d.iso, this.getFillColor(opacityScale(d.value))));
+    fillColor.push('transparent');
 
     // When the map is created, it contains many layers
     // corresponding to the styles
     // To add ours behind them, we just place them below
-    // the first one
-    const firstLayerId = this.map.getStyle().layers[0].id;
+    // the second one. The first one contains the pattern
+    // for the countries with no data.
+    const firstLayerId = this.map.getStyle().layers[1].id;
 
     this.map.addLayer({
-      id: 'categorical-chloropleth',
+      id: 'data-layer',
       type: 'fill',
       source: 'countries',
       'source-layer': 'cartodb-query-dljbj5',
       paint: {
-        'fill-color': expression
+        'fill-color': fillColor
       }
     }, firstLayerId);
 
-    this.instantiateTooltip(data, 'categorical-chloropleth');
+    this.createLegend(this.categorical
+      ? { opacityScale }
+      : {
+        min: this.valueFormat(opacityScale.domain()[0]),
+        max: this.valueFormat(opacityScale.domain()[1])
+      }
+    );
+
+    this.instantiateMapTooltip(data, 'data-layer');
   }
 
   render() {
@@ -245,10 +333,17 @@ export default class Map extends AbstractVisualization {
         url: 'mapbox://vizz-mozilla.49re30fj'
       });
 
-      if (!this.data[0].category) {
-        this.renderChloropleth();
+      if (this.data[0].category) {
+        const categories = this.data.map(d => d.category)
+          .filter((c, i, cats) => cats.indexOf(c) === i);
+
+        if (!this.selectedCategory) {
+          this.selectedCategory = categories[0];
+        }
+
+        this.renderDataLayer(this.data.filter(d => d.category === this.selectedCategory));
       } else {
-        this.renderCategoricalChloropleth();
+        this.renderDataLayer(this.data);
       }
     });
   }
