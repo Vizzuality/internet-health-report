@@ -9,7 +9,7 @@
   z-index: 2; // Needed for the homepage vis
 
   li {
-    & + li {
+    &:not(:first-child) {
       margin-top: 15px;
     }
   }
@@ -18,14 +18,14 @@
     display: block;
     height: 36px;
     width: 10px;
-    transition: .1s ease-in;
+    transition: width .1s ease-in;
 
-    &.item-1 { background-color: $decentralization;}
-    &.item-2 { background-color: $openess;}
-    &.item-3 { background-color: $web-literacy;}
+    &.item-1 { background-color: $black;}
+    &.item-2 { background-color: $light-blue;}
+    &.item-3 { background-color: $openess;}
     &.item-4 { background-color: $digital-inclusion;}
-    &.item-5 { background-color: $light-blue;}
-    &.item-6 { background-color: $black;}
+    &.item-5 { background-color: $web-literacy;}
+    &.item-6 { background-color: $decentralization;}
 
     &:hover {
       width: 30px;
