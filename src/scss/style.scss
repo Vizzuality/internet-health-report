@@ -788,22 +788,40 @@ a:active {
   }
 }
 
-.intro-buttons {
-  flex: 1;
+.intro-buttons-container {
   display: flex;
-  min-height: 200px;
-  padding: 30px;
-  margin-top: 70px;
-  margin-bottom: 100px;
-  font-weight: 300;
-  font-size: 54px;
-  line-height: 54px;
-  color: black;
-  border: 3px solid black;
+  margin: 70px 0 100px;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  > .intro-buttons {
+    flex: 1;
+    display: flex;
+    padding: 30px 30px 145px;
+    font-weight: 300;
+    font-size: 54px;
+    line-height: 54px;
+    color: black;
+    border: 3px solid black;
+
+    &:not(:first-child) {
+      margin: 10px 0 0;
+    }
+
+    @media screen and (min-width: 768px) {
+      &:not(:first-child) {
+        margin: 0 0 0 10px;
+      }
+    }
+
     &:hover {
-     color: black;
-     box-shadow: 5px 5px 0 0 black;
-    }  
+      color: black;
+      box-shadow: 5px 5px 0 0 black;
+    }
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1077,7 +1095,7 @@ div.reaction_buttons{
     padding-bottom: 5px;
     font-size: 0.8em;
     text-align: left;
-    
+
 }
 
 /* a single normal button */
@@ -1090,7 +1108,7 @@ div.reaction_buttons li.reaction_button {
     text-align: center;
     display: inline-block;
     width: 50px;
- 
+
 }
 
 /* the button while hovering over it */

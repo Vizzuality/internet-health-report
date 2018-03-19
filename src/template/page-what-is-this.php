@@ -3,7 +3,7 @@
  Template Name: What is this
  */
 
-get_header(); 
+get_header();
 
 ?>
 
@@ -93,10 +93,10 @@ get_header();
               <h4><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></h4>
               <?php if( have_rows('credits') ): ?>
                 <ul>
-                  <?php while( have_rows('credits') ): the_row(); ?>   
-                    <li><?php the_sub_field('name'); ?></li>         
+                  <?php while( have_rows('credits') ): the_row(); ?>
+                    <li><?php the_sub_field('name'); ?></li>
                   <?php endwhile; ?>
-                </ul>  
+                </ul>
               <?php endif; ?>
             </div>
         </div>
@@ -104,11 +104,11 @@ get_header();
       <div class='l-cards-grid'>
       <div class='wrap'>
         <div class='row'>
-          <div class="column small-12 medium-6">
-            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'How is the health of the Internet?' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
-          </div>
-          <div class="column small-12 medium-6">
-            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Trending topics' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+          <div class="column small-12">
+            <div class="intro-buttons-container">
+              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'How is the health of the Internet?' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Trending topics' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+            </div>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
  Template Name: Trending topics
  */
 
-get_header(); 
+get_header();
 
 ?>
 
@@ -112,11 +112,11 @@ get_header();
     <div class='l-cards-grid'>
       <div class='wrap'>
         <div class='row'>
-          <div class="column small-12 medium-6">
-            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'What is this' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
-          </div>
-          <div class="column small-12 medium-6">
-            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'How is the health of the Internet?' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+          <div class="column small-12">
+            <div class="intro-buttons-container">
+              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'What is this' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
+              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'How is the health of the Internet?' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+            </div>
           </div>
         </div>
       </div>
