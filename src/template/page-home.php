@@ -84,12 +84,12 @@ get_header(); ?>
       <div class="wrap">
 
       <ul class="c-home-index">
-        <li><a class="item-1" href="#item-1"></a></li>
-        <li><a class="item-2" href="#item-2"></a></li>
-        <li><a class="item-3" href="#item-3"></a></li>
-        <li><a class="item-4" href="#item-4"></a></li>
-        <li><a class="item-5" href="#item-5"></a></li>
-        <li><a class="item-6" href="#item-6"></a></li>
+        <li class="home-index-item"><a class="item-1" href="#non-category"></a></li>
+        <li class="home-index-item"><a class="item-2" href="#privacy-and-security"></a></li>
+        <li class="home-index-item"><a class="item-3" href="#openness"></a></li>
+        <li class="home-index-item"><a class="item-4" href="#digital-nclusion"></a></li>
+        <li class="home-index-item"><a class="item-5" href="#web-literacy"></a></li>
+        <li class="home-index-item"><a class="item-6" href="#decentralization"></a></li>
       </ul>
 
       <?php
@@ -101,7 +101,7 @@ get_header(); ?>
 
         <div class="c-home-slide">
           <div class="row">
-            <div class="column small-12 medium-7">
+            <div class="column small-12 medium-7" id="non-category">
               <div class="slide-content js-visualization" data-issue="">
                 <h1 class="title -main"><?php echo $post->post_title; ?></h1>
                 <p> <?php echo $post->post_content; ?></p>
@@ -119,7 +119,10 @@ get_header(); ?>
         <div class="c-home-slide">
           <div class="row">
             <div class="column small-12 medium-7">
-              <div class="slide-content js-visualization" data-issue="<?php echo get_the_category()[0]->cat_name; ?>">
+              <div class="slide-content js-visualization"
+                id="<?php echo sanitize_title(get_the_category()[0]->cat_name) ?>"
+                data-issue="<?php echo get_the_category()[0]->cat_name ?>"
+              >
                 <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
                   <?php echo get_the_category()[0]->cat_name ?>
                 </div>

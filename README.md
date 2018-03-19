@@ -19,9 +19,10 @@ Here are the steps to run the project for the first time:
 4. Copy `.env.sample`, rename the copy `.env` and set the variables (see below)
 5. Build the project: `yarn build`
 6. Build and run the Docker image in a terminal: `docker-compose -f docker-compose.yml build && docker-compose -f docker-compose.yml up`
-7. Run the development server in another: `yarn dev`
-8. Go to http://localhost:3000 and create an account in Wordpress
-9. Change the theme to "Internet Health Report 2018"
+7. Dump the database content: `cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u wordpress --password=wordpress wordpress`
+8. Run the development server in another: `yarn dev`
+9. Go to http://localhost:3000 and create an account in Wordpress
+10. Change the theme to "Internet Health Report 2018"
 
 Later on, you just need to run these steps:
 1. Run the image in a terminal: `docker-compose -f docker-compose.yml up`
