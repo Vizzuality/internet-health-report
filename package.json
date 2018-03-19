@@ -58,6 +58,7 @@
     "global": "^4.3.2",
     "lodash": "^4.17.5",
     "mapbox-gl": "^0.44.1",
+    "smooth-scroll": "^12.1.5",
     "textures": "^1.2.0",
     "tippy.js": "^2.2.3"
   }
