@@ -345,13 +345,29 @@ export default class AbstractVisualization {
   }
 
   /**
+   * Close the tooltip
+   */
+  closeTooltip() { // eslint-disable-line class-methods-use-this
+    // We close the tooltip, if opened
+    document.querySelectorAll('.tippy-popper')
+      .forEach((popper) => {
+        const instance = popper._tippy; // eslint-disable-line no-underscore-dangle
+        if (instance.state.visible) {
+          instance.popperInstance.disableEventListeners();
+          instance.hide();
+        }
+      });
+  }
+
+  /**
    * Instantiate the tooltip for the target elements
    * @param {string} target HTML/CSS selector
    * @param {string} [trigger='mouseenter focus'] Event(s) to trigger the tooltip
+   * @param {boolean} [sticky=true] Whether the tooltip follows the target
    * @param {string} additionalClass CSS class to add
    * @return {any} tippy instance
    */
-  instantiateTooltip(target, trigger = 'mouseenter focus', additionalClass) {
+  instantiateTooltip(target, trigger = 'mouseenter focus', sticky = true, additionalClass) {
     const getTooltipContent = this.getTooltipContent.bind(this);
     return tippy(this.el, {
       target,
@@ -360,7 +376,7 @@ export default class AbstractVisualization {
       inertia: true,
       theme: 'ihr',
       html: document.createElement('div'),
-      sticky: true,
+      sticky,
       arrow: true,
       interactive: true,
       trigger,

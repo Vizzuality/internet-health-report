@@ -171,21 +171,6 @@ export default class Homepage extends AbstractVisualization {
   }
 
   /**
-   * Close the tooltip
-   */
-  closeTooltip() { // eslint-disable-line class-methods-use-this
-    // We close the tooltip, if opened
-    document.querySelectorAll('.tippy-popper')
-      .forEach((popper) => {
-        const instance = popper._tippy; // eslint-disable-line no-underscore-dangle
-        if (instance.state.visible) {
-          instance.popperInstance.disableEventListeners();
-          instance.hide();
-        }
-      });
-  }
-
-  /**
    * Return the highlighted bubble for the active issue
    * @returns {any} d3 element
    */
@@ -475,7 +460,7 @@ export default class Homepage extends AbstractVisualization {
         this.createIssueSimulation(activeIssue.issue);
 
         // We instantiate the tooltip
-        this.tippy = this.instantiateTooltip('circle', 'click', '-homepage-vis');
+        this.tippy = this.instantiateTooltip('circle', 'click', true, '-homepage-vis');
       } else {
         this.createGravitySimulation();
       }

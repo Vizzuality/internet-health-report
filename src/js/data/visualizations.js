@@ -3,7 +3,8 @@ import textures from 'textures';
 
 export default {
   vis_1_1: {
-    type: 'map'
+    type: 'map',
+    categorical: true
   },
   vis_1_2_2: {
     type: 'stacked-bar',
@@ -113,7 +114,8 @@ export default {
     valueSize: 45
   },
   vis_3_1_2: {
-    type: 'map'
+    type: 'map',
+    categorical: true
   },
   vis_3_2_1: {
     type: 'TODO'

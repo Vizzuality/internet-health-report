@@ -65,7 +65,8 @@
       visualization_error: <?php echo json_encode(translate('Unable to display this visualization.', 'ihr-2018')) ?>,
       map_category_switcher_label: <?php echo json_encode(translate('Layer', 'ihr-2018')) ?>,
       close_tooltip: <?php echo json_encode(translate('Close', 'ihr-2018')) ?>,
-      reactions: <?php echo json_encode(translate('Reaction', 'ihr-2018')) ?>
+      reactions: <?php echo json_encode(translate('Reaction', 'ihr-2018')) ?>,
+      unknown: <?php echo json_encode(translate('Unknown', 'ihr-2018')) ?>
     };
   </script>
 </head>
