@@ -72,7 +72,21 @@ get_header(); ?>
         }
 
 			?>
+      <?php if ( is_page( 'How is the health of the Internet?')): ?>
+        <div class='l-cards-grid'>
+          <div class='wrap'>
+            <div class='row'>
+              <div class="column small-12 medium-6">
+                <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'What is this' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
+              </div>
+              <div class="column small-12 medium-6">
+                <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Trending topics' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+      <?php endif; ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

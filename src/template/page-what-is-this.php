@@ -8,7 +8,7 @@ get_header();
 ?>
 
 <div id="primary" class="content-area">
-    <main id="main" class="site-main l-main" style="padding-bottom: 10px;">
+  <main id="main" class="site-main l-main" style="padding-bottom: 10px;">
 
       <?php
         // Defines active tab
@@ -88,19 +88,33 @@ get_header();
             </div>
           </div>
           <div class="what-credits row">
-            <h3><?php _e('Credits','ihr-2018' ) ?></h3>
-            <h4><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></h4>
-            <?php if( have_rows('credits') ): ?>
-              <ul>
-                <?php while( have_rows('credits') ): the_row(); ?>   
-                  <li><?php the_sub_field('name'); ?></li>         
-                <?php endwhile; ?>
-              </ul>  
-            <?php endif; ?>
+            <div class="column small-12 medium-12">
+              <h3><?php _e('Credits','ihr-2018' ) ?></h3>
+              <h4><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></h4>
+              <?php if( have_rows('credits') ): ?>
+                <ul>
+                  <?php while( have_rows('credits') ): the_row(); ?>   
+                    <li><?php the_sub_field('name'); ?></li>         
+                  <?php endwhile; ?>
+                </ul>  
+              <?php endif; ?>
+            </div>
         </div>
       </div>
+      <div class='l-cards-grid'>
+      <div class='wrap'>
+        <div class='row'>
+          <div class="column small-12 medium-6">
+            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'How is the health of the Internet?' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+          </div>
+          <div class="column small-12 medium-6">
+            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Trending topics' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    </main><!-- #main -->
+  </main><!-- #main -->
 </div><!-- #primary -->
 
 

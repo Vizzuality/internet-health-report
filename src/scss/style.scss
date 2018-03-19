@@ -788,6 +788,23 @@ a:active {
   }
 }
 
+.intro-buttons {
+  flex: 1;
+  display: flex;
+  min-height: 200px;
+  padding: 30px;
+  margin-top: 70px;
+  margin-bottom: 100px;
+  font-weight: 300;
+  font-size: 54px;
+  line-height: 54px;
+  color: black;
+  border: 3px solid black;
+    &:hover {
+     color: black;
+     box-shadow: 5px 5px 0 0 black;
+    }  
+}
 
 /*--------------------------------------------------------------
 # Footer Sticky Bar
@@ -975,9 +992,35 @@ object {
 
 
 span.button_name {
- display: none;
- margin-top: -30px;
- text-align: right;
+ visibility: hidden;
+ margin-top: -48px;
+ margin-left: -25px;
+ width: 120px;
+ height: 40px;
+ background-color: white;
+ color: black;
+ font-size: 20px;
+ text-align: center;
+ padding: 5px 0;
+ position: absolute;
+ z-index: 2;
+ border: 2px solid black;
+   &:after {
+       content: '';
+       height: 8px;
+       width: 8px;
+       display: block;
+       margin: auto;
+       background: white;
+       border-bottom: 2px solid black;
+       border-right: 2px solid black;
+       -ms-transform: rotate(45deg);
+       -webkit-transform: rotate(45deg);
+       transform: rotate(45deg);
+       top: 4px;
+       position: relative;
+    }
+
 }
 
 span.braces {
@@ -1000,6 +1043,7 @@ li.reaction_button_0 {
   background-size: auto;
   background-position: right center;
 }
+
 
 li.reaction_button_1 {
   background-image: url('/wp-content/themes/ihr-2018/images/reactions/Thinking.svg');
@@ -1029,10 +1073,11 @@ li.reaction_button_4 {
 
 /* the reaction buttons region */
 div.reaction_buttons{
-    margin-top: 5px;
-    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 0.8em;
     text-align: left;
+    
 }
 
 /* a single normal button */
@@ -1045,11 +1090,14 @@ div.reaction_buttons li.reaction_button {
     text-align: center;
     display: inline-block;
     width: 50px;
-
+ 
 }
 
 /* the button while hovering over it */
 div.reaction_buttons li.reaction_button:hover {
+  .button_name {
+    visibility: visible;
+  }
 
 }
 

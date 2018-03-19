@@ -7,8 +7,25 @@ get_header();
 
 ?>
 
+<?php
+    // To create posts list within the category
+    $args = array(
+      'posts_per_page' => 6,
+      'order'=> 'ASC',
+      'meta_key' => 'order',
+      'orderby' => 'meta_value_num',
+      'category' => get_the_category()[0]->term_id,
+      'meta_query' => array(
+         array(
+           'key' => 'home_item',
+            'value' => 1,
+            'compare' => '!=')) );
+
+    $postslist = get_posts( $args );
+  ?>
+
 <div id="primary" class="content-area">
-    <main id="main" class="site-main l-main" style="padding-bottom: 0px;">
+  <main id="main" class="site-main l-main" style="padding-bottom: 0px;">
 
       <?php
         // Defines active tab
@@ -63,47 +80,48 @@ get_header();
         }
 
       ?>
-    <div id="primary" class="content-area l-main">
-        <?php
-
-        if ( have_posts() ) :
-
-          echo "<div class='wrap'><div class='row'>";
-          if ( is_home() && ! is_front_page() ) : ?>
-            <header>
-              <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-            </header>
-
-          <?php
-          endif;
-
-          /* Start the Loop */
-          while ( have_posts() ) : the_post();
-
-            /*
-             * Include the Post-Format-specific template for the content.
-             * If you want to override this in a child theme, then include a file
-             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-             */
-
-            get_template_part( 'template-parts/content', get_post_format() );
-
-          endwhile;
-
-          the_posts_navigation();
-
-          echo "</div></div>";
-
-        else :
-          echo "<div class='wrap'><div class='row'>";
-          get_template_part( 'template-parts/content', 'none' );
-          echo "</div></div>";
-        endif;
-        ?>
+      <?php if ( have_posts() ) : ?>
+        <div class='l-cards-grid'>
+          <div class='wrap'>
+            <div class='row'>
+              <?php
+                /* Start the Loop */
+                foreach ( $postslist as $post ) :
+                  setup_postdata( $post );
+                  /*
+                   * Include the Post-Format-specific template for the content.
+                   * If you want to override this in a child theme, then include a file
+                   * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+                   */
+                  get_template_part( 'template-parts/content');
+                  wp_reset_postdata();
+                endforeach;
+              ?>
+          </div>
+        </div>
       </div>
-    </div><!-- #primary -->
-
-    </main><!-- #main -->
+    <?php else :?>
+      <div class='l-cards-grid'>
+          <div class='wrap'>
+            <div class='row'>
+              <p><?php esc_html_e( 'No posts available', 'ihr-2018' ); ?></p>
+            </div>
+        </div>
+      </div>
+    <?php endif; ?>
+    <div class='l-cards-grid'>
+      <div class='wrap'>
+        <div class='row'>
+          <div class="column small-12 medium-6">
+            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'What is this' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
+          </div>
+          <div class="column small-12 medium-6">
+            <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'How is the health of the Internet?' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main><!-- #main -->
 </div><!-- #primary -->
 
 
