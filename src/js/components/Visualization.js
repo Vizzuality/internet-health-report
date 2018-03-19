@@ -16,7 +16,7 @@ const vis = {
   'map': Map,
 
   // Custom vis
-  'wikipedia': Wikipedia
+  'wikipedia': Wikipedia,
   'app-unhappiness': AppUnhappiness
 };
 
