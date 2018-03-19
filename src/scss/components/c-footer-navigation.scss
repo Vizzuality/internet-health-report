@@ -1,41 +1,64 @@
 .c-footer-navigation {
-  .-link {
-    display: block;
-    text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
+  ul > li {
+    &:not(:first-child) {
+      margin: 10px 0 0;
     }
 
-    &.-principal {
-      margin-bottom: 20px;
+    &:nth-child(2) {
+      margin: 20px 0 0;
     }
 
-    &.-secondary {
-      margin-bottom: 10px;
+    > a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.-category {
+        font-weight: 600;
+      }
     }
   }
 
 
   .extra-links {
-    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 
-    // Link to download the report
-    a:first-of-type {
-      position: relative;
-      margin-bottom: 65px;
+    ul > li {
+      text-align: right;
 
-      .c-icon {
-        position: absolute;
-        top: 5px;
-        right: -30px;
+      &:first-child {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+        width: 100%;
+        padding: 0 30px 0 0;
+        text-decoration: none;
 
-        use { fill: $white; }
+        > a {
+          display: inline-flex;
+          align-items: center;
+
+          > .c-icon {
+            position: absolute;
+            right: 0;
+
+            use {
+              fill: $white;
+            }
+          }
+        }
       }
-    }
 
-    .text {
-      margin-bottom: 10px;
+      &:nth-child(2) {
+        visibility: hidden;
+      }
     }
   }
 
@@ -43,7 +66,6 @@
     margin-top: 70px;
     font-size: $font-xxs;
     text-align: right;
-    
 
     img {
       display: inline-block;
@@ -59,15 +81,15 @@
     font-weight: 300;
     line-height: 1.5;
     margin-top: 72px;
-     a {
-       color: $white;
-       &:hover {
-         text-decoration: underline;
-	}
-     }
-     ul, li {
+    a {
+        color: $white;
+        &:hover {
+          text-decoration: underline;
+    }
+  }
+    ul, li {
       display: inline;
       padding-right: 10px;
-     }
+    }
   }
 }
