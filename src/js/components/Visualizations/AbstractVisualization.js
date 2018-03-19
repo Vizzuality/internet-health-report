@@ -142,6 +142,12 @@ export default class AbstractVisualization {
     return this.config.categorical || false;
   }
 
+  get legend() {
+    return this.config.legend !== undefined && this.config.legend !== null
+      ? this.config.legend
+      : true;
+  }
+
   get labelFormat() {
     if (typeof this.config.labelFormat === 'function') {
       return this.config.labelFormat;
@@ -192,7 +198,9 @@ export default class AbstractVisualization {
       x: 2, // Avoid the border to be cut if no padding
       y: this.titleBounds.y + this.titleBounds.height,
       width: this.width - (2 * this.padding),
-      height: this.config.legendRows * this.titleSize
+      height: this.legend === false
+        ? 0
+        : this.config.legendRows * this.titleSize
     };
   }
 

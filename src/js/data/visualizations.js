@@ -198,12 +198,17 @@ export default {
   vis_4_4_1: {
     type: 'bar',
     direction: 'horizontal',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueSize: 30,
+    legend: false
   },
   vis_4_4_2: {
     type: 'bar',
     direction: 'horizontal',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueSize: 30,
+    labelAxisSize: 100,
+    legend: false
   },
   vis_4_5_3: {
     type: 'bar',
