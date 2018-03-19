@@ -39,5 +39,5 @@ module.exports = {
     }),
     isProduction ? new webpack.optimize.UglifyJsPlugin({ minimize: true, test: /\.js$/ }) : undefined
   ].filter(p => p !== undefined),
-  devtool: isProduction ? 'none' : 'source-map'
+  devtool: isProduction ? 'none' : 'cheap-eval-source-map'
 };
