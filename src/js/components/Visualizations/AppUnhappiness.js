@@ -1,9 +1,8 @@
 import { select } from 'd3-selection';
 import { scaleLinear } from 'd3-scale';
 import { extent, range } from 'd3-array';
-import { axisLeft } from 'd3-axis';
 import { areaRadial, lineRadial, curveLinearClosed } from 'd3-shape';
-import scaleRadial from './scale-radial';
+import scaleRadial from './helpers/scale-radial';
 import AbstractVisualization from './AbstractVisualization';
 
 export default class AppUnhappiness extends AbstractVisualization {
@@ -19,17 +18,15 @@ export default class AppUnhappiness extends AbstractVisualization {
   }
 
   renderChart() {
-    const { el, config } = this;
+    const { el } = this;
 
     // parsing data
-    const data = this.data.map((d) => {
-      return {
-        name: d.label,
-        happy_percentage: Number(d.happy_percentage * 100),
-        avg_minutes_happy: Number(d.avg_minutes_happy * 100),
-        avg_minutes_unhappy: Number(d.avg_minutes_unhappy * 100)
-      };
-    }).sort((a, b) => b.happy_percentage - a.happy_percentage);
+    const data = this.data.map(d => ({
+      name: d.label,
+      happy_percentage: Number(d.happy_percentage * 100),
+      avg_minutes_happy: Number(d.avg_minutes_happy * 100),
+      avg_minutes_unhappy: Number(d.avg_minutes_unhappy * 100)
+    })).sort((a, b) => b.happy_percentage - a.happy_percentage);
 
     // Creating svg
     const svg = select(el).append('svg');
@@ -51,7 +48,7 @@ export default class AppUnhappiness extends AbstractVisualization {
     // Scales
     const rScale = scaleLinear()
       .domain([0, 100])
-      .range([0, radius])
+      .range([0, radius]);
 
     const xScale = scaleLinear()
       .domain([0, dataLength - 1])
@@ -97,7 +94,7 @@ export default class AppUnhappiness extends AbstractVisualization {
     // Line
     const line = lineRadial()
       .angle((d, i) => xScale(i))
-      .radius((d, i) => yScale(d.happy_percentage))
+      .radius(d => yScale(d.happy_percentage))
       .curve(curveLinearClosed);
 
     g.append('g')
@@ -109,11 +106,12 @@ export default class AppUnhappiness extends AbstractVisualization {
 
     // Radial Axis
     const rAxis = g.append('g')
-        .attr('class', 'r axis')
-        .attr('transform', `translate(${width / 2}, ${height / 2})`)
+      .attr('class', 'r axis')
+      .attr('transform', `translate(${width / 2}, ${height / 2})`)
       .selectAll('g')
-        .data(rScale.ticks(5))
-      .enter().append('g');
+      .data(rScale.ticks(5))
+      .enter()
+      .append('g');
 
     rAxis.append('circle')
       .attr('r', rScale);
@@ -127,19 +125,20 @@ export default class AppUnhappiness extends AbstractVisualization {
     const labelRadius = radius + 15;
     const anglePerItem = (360 / (dataLength));
     const ga = g.append('g')
-        .attr('class', 'outer-axis-tick')
-        .attr('transform', `translate(${width / 2}, ${height / 2})`)
+      .attr('class', 'outer-axis-tick')
+      .attr('transform', `translate(${width / 2}, ${height / 2})`)
       .selectAll('g')
-        .data(range(-270, 90, anglePerItem).reverse())
-      .enter().append('g')
-        .attr('transform', d => `rotate(${-d-anglePerItem})`);
+      .data(range(-270, 90, anglePerItem).reverse())
+      .enter()
+      .append('g')
+      .attr('transform', d => `rotate(${-d - anglePerItem})`);
 
     ga.append('text')
       .attr('x', labelRadius)
       .attr('dy', 4)
       .style('text-anchor', d => ((d < 270 && d > 90) ? 'end' : null))
       .attr('transform', d => ((d < 270 && d > 90) ? `rotate(180 ${labelRadius}, 0)` : null))
-      .text((d, i) => data[i] ? data[i].name : '');
+      .text((d, i) => (data[i] ? data[i].name : ''));
   }
 
   renderLegend() {

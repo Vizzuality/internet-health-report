@@ -8,15 +8,15 @@ import Map from 'components/Visualizations/Map';
 import AppUnhappiness from 'components/Visualizations/AppUnhappiness';
 
 const vis = {
-  'bar': Bar,
+  bar: Bar,
   'stacked-bar': StackedBar,
-  'line': Line,
-  'area': Area,
-  'circle': Circle,
-  'map': Map,
+  line: Line,
+  area: Area,
+  circle: Circle,
+  map: Map,
 
   // Custom vis
-  'wikipedia': Wikipedia,
+  wikipedia: Wikipedia,
   'app-unhappiness': AppUnhappiness
 };
 
