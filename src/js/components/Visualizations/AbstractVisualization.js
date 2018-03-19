@@ -122,6 +122,23 @@ export default class AbstractVisualization {
     /* eslint-enable no-underscore-dangle */
   }
 
+  get lineStyles() {
+    const lineStyles = [
+      { dasharray: '0, 0', stroke: 3, linecap: 'butt', color: '#000' },
+      { dasharray: '15, 15', stroke: 3, linecap: 'butt', color: '#000' },
+      { dasharray: '1, 10', stroke: 3, linecap: 'round', color: '#000' },
+      { dasharray: '0, 0', stroke: 3, linecap: 'butt', color: this.color },
+      { dasharray: '15, 15', stroke: 3, linecap: 'butt', color: this.color },
+      { dasharray: '1, 10', stroke: 3, linecap: 'round', color: this.color }
+    ];
+
+    if (this.config.lineStyles) {
+      return this.config.lineStyles(this.color, lineStyles);
+    }
+
+    return lineStyles;
+  }
+
   get width() {
     return this.config.width || this.el.offsetWidth;
   }

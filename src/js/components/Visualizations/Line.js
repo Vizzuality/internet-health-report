@@ -50,8 +50,25 @@ export default class Line extends AbstractVisualization {
     const categories = this.data.map(d => d.category)
       .filter((d, i, arr) => arr.indexOf(d) === i);
 
-    const colorScale = scaleOrdinal(this.colors)
-      .domain(categories);
+    const getMarkData = () => {
+      const res = [];
+
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0, j = categories.length; i < j; i++) {
+        const category = categories[i];
+        const lineStyle = this.lineStyles[i % this.lineStyles.length];
+        if (lineStyle.length) {
+          res.push(...lineStyle.map(l => ({ category, lineStyle: l })));
+        } else {
+          res.push({
+            category,
+            lineStyle
+          });
+        }
+      }
+
+      return res;
+    };
 
     const container = svg.append('g')
       .attr('transform', `translate(${this.padding}, ${this.padding})`);
@@ -75,17 +92,24 @@ export default class Line extends AbstractVisualization {
       .enter()
       .append('g');
 
-    legendItem.append('rect')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', 15)
-      .attr('height', 15)
-      .attr('fill', c => colorScale(c))
-      .attr('stroke', 'black')
-      .attr('stroke-width', 2);
+    legendItem.selectAll('line')
+      .data((c) => {
+        const data = getMarkData().filter(d => d.category === c);
+        return data.map(d => d.lineStyle);
+      })
+      .enter()
+      .append('line')
+      .attr('x1', 0)
+      .attr('y1', 7.5)
+      .attr('x2', 50)
+      .attr('y2', 7.5)
+      .attr('stroke', d => d.color)
+      .attr('stroke-width', d => d.stroke)
+      .attr('stroke-dasharray', d => d.dasharray)
+      .attr('stroke-linecap', d => d.linecap);
 
     legendItem.insert('text')
-      .attr('x', 25)
+      .attr('x', 60)
       .attr('y', 7.5)
       .text(c => c)
       .attr('text-anchor', 'left')
@@ -206,12 +230,14 @@ export default class Line extends AbstractVisualization {
       .attr('class', 'marks')
       .attr('transform', `translate(${this.visualizationBounds.x}, ${this.visualizationBounds.y})`)
       .selectAll('path')
-      .data(categories)
+      .data(getMarkData())
       .enter()
       .append('path')
-      .attr('stroke', c => colorScale(c))
-      .attr('stroke-width', 2)
+      .attr('stroke', d => d.lineStyle.color)
+      .attr('stroke-width', d => d.lineStyle.stroke)
+      .attr('stroke-dasharray', d => d.lineStyle.dasharray)
+      .attr('stroke-linecap', d => d.lineStyle.linecap)
       .attr('fill', 'transparent')
-      .attr('d', category => line(this.data.filter(d => d.category === category)));
+      .attr('d', d => line(this.data.filter(data => data.category === d.category)));
   }
 }
