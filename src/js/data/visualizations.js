@@ -230,7 +230,7 @@ export default {
     direction: 'vertical'
   },
   vis_5_1: {
-    type: 'TODO'
+    type: 'app-unhappiness'
   },
   vis_5_2: {
     type: 'TODO'
@@ -245,5 +245,8 @@ export default {
   },
   vis_5_3: {
     type: 'TODO'
+  },
+  vis_5_6: {
+    type: 'web-literacy-crosswalk'
   }
 };

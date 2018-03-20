@@ -58,10 +58,10 @@ abstract class Field {
                 }
                 ?>
                 <div class="wpd-field-actions">
-                    <i class="fa fa-pencil" title="<?php _e('Edit', 'wpdiscuz'); ?>"></i>
+                    <i class="fas fa-pencil-alt" title="<?php _e('Edit', 'wpdiscuz'); ?>"></i>
                     <?php if (!$this->isDefault) {
                         ?>
-                        |<i class="fa fa-trash" title="<?php _e('Delete', 'wpdiscuz'); ?>"></i>
+                        |<i class="fas fa-trash-alt" title="<?php _e('Delete', 'wpdiscuz'); ?>"></i>
                     <?php }
                     ?>
                 </div>

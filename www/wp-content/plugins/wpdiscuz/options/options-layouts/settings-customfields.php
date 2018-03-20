@@ -4,8 +4,8 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Custom Fields', 'wpdiscuz'); ?></h2>
-    <table class="wp-list-table widefat plugins" style="margin-top:10px; border:none;">
+    <h2 class="wpd-subtitle"><?php _e('Custom Fields', 'wpdiscuz'); ?></h2>
+    <table class="wp-list-table widefat plugins wpdxb" style="margin-top:10px; border:none;">
         <tbody>            
             <tr valign="top">
                 <th colspan="2">

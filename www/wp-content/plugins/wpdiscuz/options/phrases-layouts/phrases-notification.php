@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     <table class="wp-list-table widefat plugins"  style="margin-top:10px; border:none;">
         <tbody>
             <tr valign="top">
-                <th scope="row"><label for="wc_subscribed_to"><?php _e("You\'re subscribed to", 'wpdiscuz'); ?></label></th>
+                <th scope="row"><label for="wc_subscribed_to"><?php _e('You\'re subscribed to', 'wpdiscuz'); ?></label></th>
                 <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_subscribed_to']; ?>" name="wc_subscribed_to" id="wc_subscribed_to" /></td>
             </tr>
             <tr valign="top">
@@ -79,7 +79,7 @@ if (!defined('ABSPATH')) {
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_deny_voting_from_same_ip"><?php _e('You are not allowed to vote for this comment (Voting from same IP)', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_deny_voting_from_same_ip']) ? $this->optionsSerialized->phrases['wc_deny_voting_from_same_ip'] : 'You are not allowed to vote for this comment'; ?>" name="wc_deny_voting_from_same_ip" id="wc_deny_voting_from_same_ip" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_deny_voting_from_same_ip']; ?>" name="wc_deny_voting_from_same_ip" id="wc_deny_voting_from_same_ip" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_invalid_captcha"><?php _e('Invalid Captcha Code', 'wpdiscuz'); ?></label></th>
@@ -104,19 +104,23 @@ if (!defined('ABSPATH')) {
 
             <tr valign="top">
                 <th scope="row"><label for="wc_comment_not_updated"><?php _e('Message if comment was not updated', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_comment_not_updated']) ? $this->optionsSerialized->phrases['wc_comment_not_updated'] : __('Sorry, the comment was not updated', 'wpdisucz'); ?>" name="wc_comment_not_updated" id="wc_comment_not_updated" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_comment_not_updated']; ?>" name="wc_comment_not_updated" id="wc_comment_not_updated" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_comment_edit_not_possible"><?php _e('Message if comment no longer possible to edit', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_comment_edit_not_possible']) ? $this->optionsSerialized->phrases['wc_comment_edit_not_possible'] : __('Sorry, this comment no longer possible to edit', 'wpdisucz'); ?>" name="wc_comment_edit_not_possible" id="wc_comment_edit_not_possible" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_comment_edit_not_possible']; ?>" name="wc_comment_edit_not_possible" id="wc_comment_edit_not_possible" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_comment_not_edited"><?php _e('Message if comment text not changed', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_comment_not_edited']) ? $this->optionsSerialized->phrases['wc_comment_not_edited'] : __('TYou\'ve not made any changes', 'wpdisucz'); ?>" name="wc_comment_not_edited" id="wc_comment_not_edited" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_comment_not_edited']; ?>" name="wc_comment_not_edited" id="wc_comment_not_edited" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_msg_required_fields"><?php _e('Please fill out required fields', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_msg_required_fields']) ? $this->optionsSerialized->phrases['wc_msg_required_fields'] : __('Please fill out required fields', 'wpdisucz'); ?>" name="wc_msg_required_fields" id="wc_msg_required_fields" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_msg_required_fields']; ?>" name="wc_msg_required_fields" id="wc_msg_required_fields" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_msg_required_fields"><?php _e('Message if commenting disabled by user role', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_roles_cannot_comment_message']; ?>" name="wc_roles_cannot_comment_message" id="wc_roles_cannot_comment_message" /></td>
             </tr>
         </tbody>
     </table>

@@ -20,5 +20,7 @@ interface wpdFormConst {
     const WPDISCUZ_FORMS_WEBSITE_FIELD                = 'wc_website';
     const WPDISCUZ_FORMS_CAPTCHA_FIELD                = 'wc_captcha';
     const WPDISCUZ_FORMS_SUBMIT_FIELD                 = 'submit';
+    /* === CAPTCHA === */
     const CAPTCHA_LENGTH                              = 5;
+    const CAPTCHA_DIR                                 = '/wpdiscuz/captcha/';
 }

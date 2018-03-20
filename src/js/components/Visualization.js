@@ -7,6 +7,7 @@ import Wikipedia from 'components/Visualizations/Wikipedia';
 import Map from 'components/Visualizations/Map';
 import AppUnhappiness from 'components/Visualizations/AppUnhappiness';
 import GenderEthnicDiversity from 'components/Visualizations/GenderEthnicDiversity';
+import WebLiteracyCrosswalk from 'components/Visualizations/WebLiteracyCrosswalk';
 
 const vis = {
   bar: Bar,

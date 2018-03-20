@@ -12,3 +12,7 @@ if (file_exists($wpdiscuzWalkerThemePath)) {
 } else {
     include_once apply_filters('wpdiscuz_walker_include', WPDISCUZ_DIR_PATH . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'comment' . DIRECTORY_SEPARATOR . 'class.WpdiscuzWalker.php');
 }
+
+function wpDiscuz(){
+    return WpdiscuzCore::getInstance();
+}

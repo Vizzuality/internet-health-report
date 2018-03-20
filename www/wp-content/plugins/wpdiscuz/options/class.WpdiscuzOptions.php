@@ -36,15 +36,15 @@ class WpdiscuzOptions {
             $this->optionsSerialized->commentEditableTime = isset($_POST['wc_comment_editable_time']) ? $_POST['wc_comment_editable_time'] : 900;
             $this->optionsSerialized->redirectPage = isset($_POST['wpdiscuz_redirect_page']) ? $_POST['wpdiscuz_redirect_page'] : 0;
             $this->optionsSerialized->isGuestCanVote = isset($_POST['wc_is_guest_can_vote']) ? $_POST['wc_is_guest_can_vote'] : 0;
+            $this->optionsSerialized->isLoadOnlyParentComments = isset($_POST['isLoadOnlyParentComments']) ? $_POST['isLoadOnlyParentComments'] : 0;
             $this->optionsSerialized->commentListLoadType = isset($_POST['commentListLoadType']) ? $_POST['commentListLoadType'] : 0;
             $this->optionsSerialized->votingButtonsShowHide = isset($_POST['wc_voting_buttons_show_hide']) ? $_POST['wc_voting_buttons_show_hide'] : 0;
             $this->optionsSerialized->votingButtonsStyle = isset($_POST['votingButtonsStyle']) ? $_POST['votingButtonsStyle'] : 0;
+            $this->optionsSerialized->votingButtonsIcon = isset($_POST['votingButtonsIcon']) ? $_POST['votingButtonsIcon'] : 'fa-plus|fa-minus';
             $this->optionsSerialized->shareButtons = isset($_POST['wpdiscuz_share_buttons']) ? $_POST['wpdiscuz_share_buttons'] : array();
             $this->optionsSerialized->headerTextShowHide = isset($_POST['wc_header_text_show_hide']) ? $_POST['wc_header_text_show_hide'] : 0;
             $this->optionsSerialized->storeCommenterData = isset($_POST['storeCommenterData']) && (intval($_POST['storeCommenterData']) || $_POST['storeCommenterData'] == 0) ? $_POST['storeCommenterData'] : -1;
-            $this->optionsSerialized->showHideLoggedInUsername = isset($_POST['wc_show_hide_loggedin_username']) ? $_POST['wc_show_hide_loggedin_username'] : 0;
-            $this->optionsSerialized->replyButtonGuestsShowHide = isset($_POST['wc_reply_button_guests_show_hide']) ? $_POST['wc_reply_button_guests_show_hide'] : 0;
-            $this->optionsSerialized->replyButtonMembersShowHide = isset($_POST['wc_reply_button_members_show_hide']) ? $_POST['wc_reply_button_members_show_hide'] : 0;
+            $this->optionsSerialized->showHideLoggedInUsername = isset($_POST['wc_show_hide_loggedin_username']) ? $_POST['wc_show_hide_loggedin_username'] : 0;            
             $this->optionsSerialized->authorTitlesShowHide = isset($_POST['wc_author_titles_show_hide']) ? $_POST['wc_author_titles_show_hide'] : 0;
             $this->optionsSerialized->simpleCommentDate = isset($_POST['wc_simple_comment_date']) ? $_POST['wc_simple_comment_date'] : 0;
             $this->optionsSerialized->subscriptionType = isset($_POST['subscriptionType']) ? $_POST['subscriptionType'] : 1;
@@ -56,20 +56,20 @@ class WpdiscuzOptions {
             $this->optionsSerialized->formBGColor = isset($_POST['wc_form_bg_color']) ? $_POST['wc_form_bg_color'] : '#f9f9f9';
             $this->optionsSerialized->commentTextSize = isset($_POST['wc_comment_text_size']) ? $_POST['wc_comment_text_size'] : '14px';
             $this->optionsSerialized->commentBGColor = isset($_POST['wc_comment_bg_color']) ? $_POST['wc_comment_bg_color'] : '#fefefe';
-            $this->optionsSerialized->replyBGColor = isset($_POST['wc_reply_bg_color']) ? $_POST['wc_reply_bg_color'] : '#f8f8f8';
-            $this->optionsSerialized->commentTextColor = isset($_POST['wc_comment_text_color']) ? $_POST['wc_comment_text_color'] : '#555';
+            $this->optionsSerialized->replyBGColor = isset($_POST['wc_reply_bg_color']) ? $_POST['wc_reply_bg_color'] : '#f8f8f8';            
             $this->optionsSerialized->primaryColor = isset($_POST['wc_comment_username_color']) ? $_POST['wc_comment_username_color'] : '#00B38F';
             $this->optionsSerialized->ratingHoverColor = isset($_POST['wc_comment_rating_hover_color']) ? $_POST['wc_comment_rating_hover_color'] : '#FFED85';
             $this->optionsSerialized->ratingInactivColor = isset($_POST['wc_comment_rating_inactiv_color']) ? $_POST['wc_comment_rating_inactiv_color'] : '#DDDDDD';
             $this->optionsSerialized->ratingActivColor = isset($_POST['wc_comment_rating_activ_color']) ? $_POST['wc_comment_rating_activ_color'] : '#FFD700';
             $this->optionsSerialized->blogRoles = isset($_POST['wc_blog_roles']) ? wp_parse_args($_POST['wc_blog_roles'], $this->optionsSerialized->blogRoles) : $this->optionsSerialized->blogRoles;
-            $this->optionsSerialized->buttonColor = isset($_POST['wc_link_button_color']) ? $_POST['wc_link_button_color'] : array('shc' => '#bbbbbb', 'shb' => '#cccccc', 'vbc' => '#aaaaaa', 'vbb' => '#bbbbbb', 'abc' => '#ffffff', 'abb' => '#888888');
+            $this->optionsSerialized->buttonColor = isset($_POST['wc_link_button_color']) ? $_POST['wc_link_button_color'] : array('primary_button_bg' => '#555555', 'primary_button_color' => '#FFFFFF', 'secondary_button_color' => '#777777', 'secondary_button_border' => '#dddddd', 'vote_up_link_color' => '#999999', 'vote_down_link_color' => '#999999');
             $this->optionsSerialized->inputBorderColor = isset($_POST['wc_input_border_color']) ? $_POST['wc_input_border_color'] : '#d9d9d9';
             $this->optionsSerialized->newLoadedCommentBGColor = isset($_POST['wc_new_loaded_comment_bg_color']) ? $_POST['wc_new_loaded_comment_bg_color'] : '#FFFAD6';
             $this->optionsSerialized->disableFontAwesome = isset($_POST['disableFontAwesome']) ? $_POST['disableFontAwesome'] : 0;
             $this->optionsSerialized->disableTips = isset($_POST['disableTips']) ? $_POST['disableTips'] : 0;
             $this->optionsSerialized->disableProfileURLs = isset($_POST['disableProfileURLs']) ? $_POST['disableProfileURLs'] : 0;
             $this->optionsSerialized->displayRatingOnPost = isset($_POST['displayRatingOnPost']) ? $_POST['displayRatingOnPost'] : array();
+            $this->optionsSerialized->ratingCssOnNoneSingular = isset($_POST['ratingCssOnNoneSingular']) ? $_POST['ratingCssOnNoneSingular'] : 0;
             $this->optionsSerialized->customCss = isset($_POST['wc_custom_css']) ? $_POST['wc_custom_css'] : '.comments-area{width:auto; margin: 0 auto;}';
             $this->optionsSerialized->showPluginPoweredByLink = isset($_POST['wc_show_plugin_powerid_by']) ? $_POST['wc_show_plugin_powerid_by'] : 0;
             $this->optionsSerialized->isUsePoMo = isset($_POST['wc_is_use_po_mo']) ? $_POST['wc_is_use_po_mo'] : 0;
@@ -79,6 +79,7 @@ class WpdiscuzOptions {
             $this->optionsSerialized->commentTextMaxLength = (isset($_POST['wc_comment_text_max_length']) && intval($_POST['wc_comment_text_max_length']) > 0) ? intval($_POST['wc_comment_text_max_length']) : '';
             $this->optionsSerialized->commentReadMoreLimit = (isset($_POST['commentWordsLimit']) && intval($_POST['commentWordsLimit']) >= 0) ? intval($_POST['commentWordsLimit']) : 100;
             $this->optionsSerialized->showHideCommentLink = isset($_POST['showHideCommentLink']) ? $_POST['showHideCommentLink'] : 0;
+            $this->optionsSerialized->hideCommentDate = isset($_POST['hideCommentDate']) ? $_POST['hideCommentDate'] : 0;
             $this->optionsSerialized->enableImageConversion = isset($_POST['enableImageConversion']) ? $_POST['enableImageConversion'] : 0;
             $this->optionsSerialized->commentLinkFilter = isset($_POST['commentLinkFilter']) ? $_POST['commentLinkFilter'] : 1;
             $this->optionsSerialized->isCaptchaInSession = isset($_POST['isCaptchaInSession']) ? $_POST['isCaptchaInSession'] : 0;
@@ -87,6 +88,11 @@ class WpdiscuzOptions {
             $this->optionsSerialized->commenterNameMaxLength = isset($_POST['commenterNameMaxLength']) && intval($_POST['commenterNameMaxLength']) >= 3 && intval($_POST['commenterNameMaxLength']) <= 50 ? $_POST['commenterNameMaxLength'] : 50;
             $this->optionsSerialized->facebookAppID = isset($_POST['facebookAppID']) ? $_POST['facebookAppID'] : '';
             $this->optionsSerialized->isNotifyOnCommentApprove = isset($_POST['isNotifyOnCommentApprove']) ? $_POST['isNotifyOnCommentApprove'] : 0;
+            $this->optionsSerialized->isGravatarCacheEnabled = isset($_POST['isGravatarCacheEnabled']) ? $_POST['isGravatarCacheEnabled'] : 0;
+            $this->optionsSerialized->gravatarCacheMethod = isset($_POST['gravatarCacheMethod']) ? $_POST['gravatarCacheMethod'] : 'cronjob';
+            $this->optionsSerialized->gravatarCacheTimeout = isset($_POST['gravatarCacheTimeout']) ? $_POST['gravatarCacheTimeout'] : 10;
+            $this->optionsSerialized->theme = isset($_POST['theme']) ? $_POST['theme'] : 'wpd-default';
+            $this->optionsSerialized->reverseChildren = isset($_POST['reverseChildren']) ? $_POST['reverseChildren'] : 0;
             do_action('wpdiscuz_save_options', $_POST);
             $this->optionsSerialized->updateOptions();
             add_settings_error('wpdiscuz', 'settings_updated', __('Settings updated', 'wpdiscuz'), 'updated');
@@ -110,10 +116,12 @@ class WpdiscuzOptions {
             $this->optionsSerialized->phrases['wc_comment_start_text'] = $_POST['wc_comment_start_text'];
             $this->optionsSerialized->phrases['wc_comment_join_text'] = $_POST['wc_comment_join_text'];
             $this->optionsSerialized->phrases['wc_email_text'] = $_POST['wc_email_text'];
+            $this->optionsSerialized->phrases['wc_subscribe_anchor'] = $_POST['wc_subscribe_anchor'];
             $this->optionsSerialized->phrases['wc_notify_of'] = $_POST['wc_notify_of'];
             $this->optionsSerialized->phrases['wc_notify_on_new_comment'] = $_POST['wc_notify_on_new_comment'];
             $this->optionsSerialized->phrases['wc_notify_on_all_new_reply'] = $_POST['wc_notify_on_all_new_reply'];
-            $this->optionsSerialized->phrases['wc_notify_on_new_reply'] = $_POST['wc_notify_on_new_reply'];
+            $this->optionsSerialized->phrases['wc_notify_on_new_reply_on'] = $_POST['wc_notify_on_new_reply_on'];
+            $this->optionsSerialized->phrases['wc_notify_on_new_reply_off'] = $_POST['wc_notify_on_new_reply_off'];
             $this->optionsSerialized->phrases['wc_sort_by'] = $_POST['wc_sort_by'];
             $this->optionsSerialized->phrases['wc_newest'] = $_POST['wc_newest'];
             $this->optionsSerialized->phrases['wc_oldest'] = $_POST['wc_oldest'];
@@ -161,7 +169,7 @@ class WpdiscuzOptions {
             $this->optionsSerialized->phrases['wc_second_text']['datetime'][0] = $_POST['wc_second_text'];
             $this->optionsSerialized->phrases['wc_second_text_plural']['datetime'][0] = $_POST['wc_second_text_plural'];
             $this->optionsSerialized->phrases['wc_right_now_text'] = $_POST['wc_right_now_text'];
-            $this->optionsSerialized->phrases['wc_ago_text'] = $_POST['wc_ago_text'];            
+            $this->optionsSerialized->phrases['wc_ago_text'] = $_POST['wc_ago_text'];
             $this->optionsSerialized->phrases['wc_you_must_be_text'] = $_POST['wc_you_must_be_text'];
             $this->optionsSerialized->phrases['wc_logged_in_as'] = $_POST['wc_logged_in_as'];
             $this->optionsSerialized->phrases['wc_log_out'] = $_POST['wc_log_out'];
@@ -198,6 +206,17 @@ class WpdiscuzOptions {
             $this->optionsSerialized->phrases['wc_form_subscription_submit'] = $_POST['wc_form_subscription_submit'];
             $this->optionsSerialized->phrases['wc_comment_approved_email_subject'] = $_POST['wc_comment_approved_email_subject'];
             $this->optionsSerialized->phrases['wc_comment_approved_email_message'] = $_POST['wc_comment_approved_email_message'];
+            $this->optionsSerialized->phrases['wc_roles_cannot_comment_message'] = $_POST['wc_roles_cannot_comment_message'];
+            $this->optionsSerialized->phrases['wc_stick_main_form_comment_on'] = $_POST['wc_stick_main_form_comment_on'];
+            $this->optionsSerialized->phrases['wc_stick_main_form_comment_off'] = $_POST['wc_stick_main_form_comment_off'];
+            $this->optionsSerialized->phrases['wc_stick_comment'] = $_POST['wc_stick_comment'];
+            $this->optionsSerialized->phrases['wc_unstick_comment'] = $_POST['wc_unstick_comment'];
+            $this->optionsSerialized->phrases['wc_sticky_comment_icon_title'] = $_POST['wc_sticky_comment_icon_title'];
+            $this->optionsSerialized->phrases['wc_close_main_form_comment_on'] = $_POST['wc_close_main_form_comment_on'];
+            $this->optionsSerialized->phrases['wc_close_main_form_comment_off'] = $_POST['wc_close_main_form_comment_off'];
+            $this->optionsSerialized->phrases['wc_close_comment'] = $_POST['wc_close_comment'];
+            $this->optionsSerialized->phrases['wc_open_comment'] = $_POST['wc_open_comment'];
+            $this->optionsSerialized->phrases['wc_closed_comment_icon_title'] = $_POST['wc_closed_comment_icon_title'];
             if (class_exists('Prompt_Comment_Form_Handling') && $this->optionsSerialized->usePostmaticForCommentNotification) {
                 $this->optionsSerialized->phrases['wc_postmatic_subscription_label'] = $_POST['wc_postmatic_subscription_label'];
             }
@@ -253,6 +272,8 @@ class WpdiscuzOptions {
         $this->addons = array(
             'emoticons' => array('version' => '1.1.1', 'requires' => '4.0.0', 'class' => 'wpDiscuzSmile', 'title' => 'Emoticons', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'emoticons' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Brings an ocean of emotions to your comments. It comes with an awesome smile package.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-emoticons/'),
             'author-info' => array('version' => '1.0.0', 'requires' => '4.0.6', 'class' => 'WpdiscuzCommentAuthorInfo', 'title' => 'Comment Author Info', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'author-info' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Extended information about comment author with Profile, Activity, Votes and Subscriptions Tabs on pop-up window.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-comment-author-info/'),
+            'online-users' => array('version' => '1.0.0', 'requires' => '4.1.0', 'class' => 'WpdiscuzOnlineUsers', 'title' => 'Online Users', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'online-users' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Real-time online user checking, pop-up notification of new online users and online/offline badges.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-online-users/'),
+            'private' => array('version' => '1.0.0', 'requires' => '5.0.0', 'class' => 'wpDiscuzPrivateComment', 'title' => 'Private Comments', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'private' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Allows to create private comment threads. Rich management options in dashboard by user roles.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-private-comments/'),
             'subscriptions' => array('version' => '1.0.0', 'requires' => '4.0.4', 'class' => 'wpdSubscribeManager', 'title' => 'Subscription Manager', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'subscriptions' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Total control over comment subscriptions. Full list, monitor, manage, filter, unsubscribe, confirm...', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-subscribe-manager/'),
             'ads-manager' => array('version' => '1.0.0', 'requires' => '4.0.0', 'class' => 'WpdiscuzAdsManager', 'title' => 'Ads Manager', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'ads-manager' . WPDISCUZ_DS . 'header.png'), 'desc' => __('A full-fledged tool-kit for advertising in comment section of your website. Separate banner and ad managment.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-ads-manager/'),
             'user-mention' => array('version' => '1.0.0', 'requires' => '4.0.0', 'class' => 'Wpdiscuz_UCM', 'title' => 'User &amp; Comment Mentioning', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'user-mention' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Allows to mention comments and users in comment text using #comment-id and @username tags.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-user-comment-mentioning/'),
@@ -265,58 +286,58 @@ class WpdiscuzOptions {
             'uploader' => array('version' => '1.1.0', 'requires' => '4.0.0', 'class' => 'WpdiscuzMediaUploader', 'title' => 'Media Uploader', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'uploader' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Extended comment attachment system. Allows to upload images, videos, audios and other file types.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-media-uploader/'),
             'recaptcha' => array('version' => '1.0.5', 'requires' => '4.0.0', 'class' => 'WpdiscuzRecaptcha', 'title' => 'Google ReCaptcha', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'recaptcha' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Adds No CAPTCHA on all comment forms. Stops spam and bot comments with Google reCAPTCHA', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-recaptcha/'),
             'mycred' => array('version' => '1.0.5', 'requires' => '4.0.0', 'class' => 'myCRED_Hook_wpDiscuz_Vote', 'title' => 'myCRED Integration', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'mycred' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Integrates myCRED Badges and Ranks. Converts wpDiscuz comment votes/likes to myCRED points. ', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/wpdiscuz-mycred/'),
-            'censure' => array('version' => '1.0.2', 'requires' => '4.0.0', 'class' => 'CommentCensure', 'title' => 'Comment Censure', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'censure' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Allows censoring comment words. Filters comments and replaces those phrases with custom words.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/comment-censure/'),
+            'censure' => array('version' => '1.0.2', 'requires' => '4.0.0', 'class' => 'CommentCensure', 'title' => 'Comment Censure', 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'censure' . WPDISCUZ_DS . 'header.png'), 'desc' => __('Allows censoring comment words. Filters comments and replaces those phrases with custom words.', 'wpdiscuz'), 'url' => 'https://gvectors.com/product/comments-censure-pro/'),
         );
     }
 
     private function initTips() {
         $this->tips = array(
-            'custom-form' => array('title' => __('Custom Comment Forms','wpdiscuz'),
-                'text' => __('You can create custom comment forms with wpDiscuz. wpDiscuz 4 comes with custom comment forms and fields. You can create custom comment forms for each post type, each form can beceated with different form fields, for eaxample: text, dropdown, rating, checkboxes, etc...','wpdiscuz'),
+            'custom-form' => array('title' => __('Custom Comment Forms', 'wpdiscuz'),
+                'text' => __('You can create custom comment forms with wpDiscuz. wpDiscuz 4 comes with custom comment forms and fields. You can create custom comment forms for each post type, each form can beceated with different form fields, for eaxample: text, dropdown, rating, checkboxes, etc...', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'img' . WPDISCUZ_DS . 'tips' . WPDISCUZ_DS . 'custom-form.png'),
                 'url' => admin_url() . 'edit.php?post_type=wpdiscuz_form'),
-            'emoticons' => array('title' => __('Emoticons','wpdiscuz'),
-                'text' => __('You can add more emotions to your comments using wpDiscuz Emoticons addon.','wpdiscuz'),
+            'emoticons' => array('title' => __('Emoticons', 'wpdiscuz'),
+                'text' => __('You can add more emotions to your comments using wpDiscuz Emoticons addon.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'emoticons' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-emoticons/'),
-            'ads-manager' => array('title' => __('Ads Manager','wpdiscuz'),
-                'text' => __('Increase your income using ad banners. Comment area is the most active sections for advertising. wpDiscuz Ads Manager addon is designed to help you add banners and control ads in this section.','wpdiscuz'),
+            'ads-manager' => array('title' => __('Ads Manager', 'wpdiscuz'),
+                'text' => __('Increase your income using ad banners. Comment area is the most active sections for advertising. wpDiscuz Ads Manager addon is designed to help you add banners and control ads in this section.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'ads-manager' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-ads-manager/'),
-            'user-mention' => array('title' => __('User and Comment Mentioning','wpdiscuz'),
-                'text' => __('Using wpDiscuz User &amp; Comment Mentioning addon you can allow commenters mention comments and users in comment text using #comment-id and @username tags.','wpdiscuz'),
+            'user-mention' => array('title' => __('User and Comment Mentioning', 'wpdiscuz'),
+                'text' => __('Using wpDiscuz User &amp; Comment Mentioning addon you can allow commenters mention comments and users in comment text using #comment-id and @username tags.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'user-mention' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-user-comment-mentioning/'),
-            'likers' => array('title' => __('Advanced Likers','wpdiscuz'),
-                'text' => __('wpDiscuz Advanced Likers addon displays likers and voters of each comment. Adds user reputation and badges based on received likes.','wpdiscuz'),
+            'likers' => array('title' => __('Advanced Likers', 'wpdiscuz'),
+                'text' => __('wpDiscuz Advanced Likers addon displays likers and voters of each comment. Adds user reputation and badges based on received likes.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'likers' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-advanced-likers/'),
-            'report-flagging' => array('title' => __('Report and Flagging','wpdiscuz'),
-                'text' => __('Let your commenters help you to determine and remove spam comments. wpDiscuz Report and Flagging addon comes with comment reporting tools. Automaticaly auto-moderates comments based on number of flags and dislikes.','wpdiscuz'),
+            'report-flagging' => array('title' => __('Report and Flagging', 'wpdiscuz'),
+                'text' => __('Let your commenters help you to determine and remove spam comments. wpDiscuz Report and Flagging addon comes with comment reporting tools. Automaticaly auto-moderates comments based on number of flags and dislikes.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'report' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-report-flagging/'),
-            'translate' => array('title' => __('Comment Translate','wpdiscuz'),
-                'text' => __('In most cases the big part of your visitors are not a native speakers of your language. Make your comments comprehensible for all visitors using wpDiscuz Comment Translation addon. It adds smart and intuitive AJAX "Translate" button with 60 language translation options. Uses free translation API.','wpdiscuz'),
+            'translate' => array('title' => __('Comment Translate', 'wpdiscuz'),
+                'text' => __('In most cases the big part of your visitors are not a native speakers of your language. Make your comments comprehensible for all visitors using wpDiscuz Comment Translation addon. It adds smart and intuitive AJAX "Translate" button with 60 language translation options. Uses free translation API.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'translate' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-comment-translation/'),
-            'search' => array('title' => __('Comment Search','wpdiscuz'),
-                'text' => __('You can let website visitor search in comments. It\'s always more attractive to find a comment about something that interest you. Using wpDiscuz Comment Search addon you\'ll get a nice, AJAX powered front-end comment search form above comment list.','wpdiscuz'),
+            'search' => array('title' => __('Comment Search', 'wpdiscuz'),
+                'text' => __('You can let website visitor search in comments. It\'s always more attractive to find a comment about something that interest you. Using wpDiscuz Comment Search addon you\'ll get a nice, AJAX powered front-end comment search form above comment list.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'search' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-comment-search/'),
-            'widgets' => array('title' => __('wpDiscuz Widgets','wpdiscuz'),
-                'text' => __('More Comment Widgets! Most voted comments, Active comment threads, Most commented posts, Active comment authors widgets are available in wpDiscuz Widgets Addon','wpdiscuz'),
+            'widgets' => array('title' => __('wpDiscuz Widgets', 'wpdiscuz'),
+                'text' => __('More Comment Widgets! Most voted comments, Active comment threads, Most commented posts, Active comment authors widgets are available in wpDiscuz Widgets Addon', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'widgets' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-widgets/'),
-            'frontend-moderation' => array('title' => __('Front-end Moderation','wpdiscuz'),
-                'text' => __('You can moderate comments on front-end using all in one powerful yet simple wpDiscuz Frontend Moderation addon.','wpdiscuz'),
+            'frontend-moderation' => array('title' => __('Front-end Moderation', 'wpdiscuz'),
+                'text' => __('You can moderate comments on front-end using all in one powerful yet simple wpDiscuz Frontend Moderation addon.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'frontend-moderation' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-frontend-moderation/'),
-            'uploader' => array('title' => __('Media Uploader','wpdiscuz'),
-                'text' => __('You can let website visitors attach images and files to comments and embed video/audio content using wpDiscuz Media Uploader addon.','wpdiscuz'),
+            'uploader' => array('title' => __('Media Uploader', 'wpdiscuz'),
+                'text' => __('You can let website visitors attach images and files to comments and embed video/audio content using wpDiscuz Media Uploader addon.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'uploader' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-media-uploader/'),
-            'recaptcha' => array('title' => __('Google ReCaptcha','wpdiscuz'),
-                'text' => __('Advanced spam protection with wpDiscuz Google reCAPTCHA addon. This addon adds No-CAPTCHA reCAPTCHA on all comment forms. Stops spam and bot comments.','wpdiscuz'),
+            'recaptcha' => array('title' => __('Google ReCaptcha', 'wpdiscuz'),
+                'text' => __('Advanced spam protection with wpDiscuz Google reCAPTCHA addon. This addon adds No-CAPTCHA reCAPTCHA on all comment forms. Stops spam and bot comments.', 'wpdiscuz'),
                 'thumb' => plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'addons' . WPDISCUZ_DS . 'recaptcha' . WPDISCUZ_DS . 'header.png'),
                 'url' => 'https://gvectors.com/product/wpdiscuz-recaptcha/'),
         );
@@ -325,6 +346,7 @@ class WpdiscuzOptions {
     public function addonNote() {
 
         $lastHash = get_option('wpdiscuz-addon-note-dismissed');
+		if( !$lastHash ) return false;
         $lastHashArray = explode(',', $lastHash);
         $currentHash = $this->addonHash();
         if ($lastHash != $currentHash) {
@@ -350,15 +372,16 @@ class WpdiscuzOptions {
     }
 
     public function tipNote() {
-        if ( isset($this->optionsSerialized->disableTips) && $this->optionsSerialized->disableTips ) {
+        if (isset($this->optionsSerialized->disableTips) && $this->optionsSerialized->disableTips) {
             return false;
         }
         if (strpos($_SERVER['REQUEST_URI'], 'edit-comments.php?') === FALSE && strpos($_SERVER['REQUEST_URI'], 'edit.php?post_type=wpdiscuz_form') === FALSE) {
             return false;
+        } else {
+            $show = mt_rand(1, 5);
+            if ($show != 1)
+                return false;
         }
-		else{
-			$show = mt_rand(1, 5); if ($show != 1) return false;
-		}
         $lastHash = get_option('wpdiscuz-tip-note-dismissed');
         $lastHashArray = explode(',', $lastHash);
         $currentHash = $this->tipHash();
@@ -374,9 +397,10 @@ class WpdiscuzOptions {
             }
             ?>
             <div class="updated notice wpdiscuz_tip_note is-dismissible" style="margin-top:10px;">
-                <p style="font-weight: 600; font-size:15px; border-bottom:1px dotted #DCDCDC; padding-bottom:10px; width:95%;"><?php _e('Do you know?','wpdiscuz'); ?></p>
+                <p style="font-weight: 600; font-size:15px; border-bottom:1px dotted #DCDCDC; padding-bottom:10px; width:95%;"><?php _e('Do you know?', 'wpdiscuz'); ?></p>
                 <div style="font-size:14px;">
-                    <?php $cTipKey = array_rand($notDisplayedTips, 1);
+                    <?php
+                    $cTipKey = array_rand($notDisplayedTips, 1);
                     $cTip = $notDisplayedTips[$cTipKey];
                     ?>
                     <div style="display:inline-block; width:100%; padding-right:10px; margin-bottom:10px;">
@@ -386,7 +410,7 @@ class WpdiscuzOptions {
                                 <tr>
                                     <td style="width:50px; vertical-align:middle; text-align:center;"><img src="<?php echo esc_url($cTip['thumb']) ?>" style="height:45px; width:auto; vertical-align:middle; margin:0px 10px; text-decoration:none;" /></td>
                                     <td style="vertical-align:middle;"><?php echo $cTip['text']; ?></td>
-                                    <td style="width:100px; text-align:center; vertical-align:middle;"><a href="<?php echo esc_url($cTip['url']); ?>" class="button button-primary button-large" target="_blank"><?php _e('More info','wpdiscuz') ?></a></td>
+                                    <td style="width:100px; text-align:center; vertical-align:middle;"><a href="<?php echo esc_url($cTip['url']); ?>" class="button button-primary button-large" target="_blank"><?php _e('More info', 'wpdiscuz') ?></a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -406,7 +430,7 @@ class WpdiscuzOptions {
 
     public function dismissTipNote() {
         //$hash = $this->tipDisplayed();
-		$hash = $this->tipHash();
+        $hash = $this->tipHash();
         update_option('wpdiscuz-tip-note-dismissed', $hash);
         exit();
     }

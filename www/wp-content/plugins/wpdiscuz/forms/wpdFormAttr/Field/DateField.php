@@ -82,12 +82,12 @@ class DateField extends Field {
                 <?php echo $args['name']; ?>
             </div>
             <?php if ($hasIcon) { ?>
-                <div class="wpd-field-icon"><i style="opacity: 0.8;" class="fa <?php echo $args['icon']; ?>"></i></div>
+                <div class="wpd-field-icon"><i style="opacity: 0.8;" class="<?php echo strpos(trim($args['icon']), ' ') ? $args['icon'] : 'fas '.$args['icon']; ?>"></i></div>
             <?php } ?>
             <?php $required = $args['required'] ? 'required="required"' : ''; ?>
             <input <?php echo $required; ?> class="<?php echo $name; ?> wpd-field wpd-field-date" type="date" name="<?php echo $name; ?>" value="" placeholder="03/28/2016"  pattern="^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$" title="03/28/2016">
             <?php if ($args['desc']) { ?>
-                <div class="wpd-field-desc"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
+                <div class="wpd-field-desc"><i class="far fa-question-circle" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
                     <?php } ?>
         </div>
         <?php
@@ -121,7 +121,7 @@ class DateField extends Field {
         $this->fieldDefaultData = array(
             'name' => '',
             'desc' => '',
-            'icon' => 'fa-calendar',
+            'icon' => 'fa-calendar-alt',
             'required' => '0',
             'loc' => 'bottom',
             'is_show_on_comment' => 1
