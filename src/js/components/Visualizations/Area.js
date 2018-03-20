@@ -50,11 +50,12 @@ export default class Area extends AbstractVisualization {
     const categories = this.data.map(d => d.category)
       .filter((d, i, arr) => arr.indexOf(d) === i);
 
-    this.patterns.forEach(p => svg.call(p));
+    const patterns = this.patterns;
+    patterns.forEach(p => svg.call(p));
 
     const categoryFillScale = scaleOrdinal()
       .domain(categories)
-      .range(this.patterns.map(p => p.url()));
+      .range(patterns.map(p => p.url()));
 
     const container = svg.append('g')
       .attr('transform', `translate(${this.padding}, ${this.padding})`);

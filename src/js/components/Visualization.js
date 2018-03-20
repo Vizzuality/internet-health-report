@@ -1,6 +1,7 @@
 import Bar from 'components/Visualizations/Bar';
 import StackedBar from 'components/Visualizations/StackedBar';
 import Line from 'components/Visualizations/Line';
+import Pie from 'components/Visualizations/Pie';
 import Area from 'components/Visualizations/Area';
 import Circle from 'components/Visualizations/Circle';
 import Wikipedia from 'components/Visualizations/Wikipedia';
@@ -16,6 +17,7 @@ const vis = {
   area: Area,
   circle: Circle,
   map: Map,
+  pie: Pie,
 
   // Custom vis
   wikipedia: Wikipedia,

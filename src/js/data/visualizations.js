@@ -1,4 +1,3 @@
-import { format } from 'd3-format';
 import textures from 'textures';
 
 export default {
@@ -105,7 +104,7 @@ export default {
     direction: 'vertical',
     valueFormat: (v) => {
       const value = v * 100;
-      return `${Math.floor(value) + (+format('.2r')(value % 1))}%`;
+      return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
     },
     valueAxisSize: 25
   },
@@ -115,7 +114,7 @@ export default {
     labelAxisSize: 45,
     valueFormat: (v) => {
       const value = v * 100;
-      return `${Math.floor(value) + (+format('.2r')(value % 1))}%`;
+      return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
     },
     valueSize: 45
   },
@@ -127,10 +126,18 @@ export default {
     categorical: true
   },
   vis_3_2_1: {
-    type: 'TODO'
+    type: 'pie',
+    valueFormat: (v) => {
+      const value = v * 100;
+      return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
+    }
   },
   vis_3_2_2: {
-    type: 'TODO'
+    type: 'pie',
+    valueFormat: (v) => {
+      const value = v * 100;
+      return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
+    }
   },
   vis_3_3_1: {
     type: 'bar',
@@ -139,7 +146,7 @@ export default {
     labelAxisSize: 125,
     valueFormat: (v) => {
       const value = v / 1e6;
-      return Math.floor(value) + (+format('.2r')(value % 1));
+      return Math.floor(value) + (Math.round((value % 1) * 100) / 100);
     },
     valueSize: 40
   },
@@ -148,7 +155,7 @@ export default {
     direction: 'vertical',
     valueFormat: (v) => {
       const value = v / 1e6;
-      return Math.floor(value) + (+format('.2r')(value % 1));
+      return Math.floor(value) + (Math.round((value % 1) * 100) / 100);
     }
   },
   vis_3_4_1: {
@@ -156,10 +163,18 @@ export default {
     direction: 'horizontal'
   },
   vis_3_4_2: {
-    type: 'TODO'
+    type: 'pie',
+    valueFormat: (v) => {
+      const value = v * 100;
+      return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
+    }
   },
   vis_3_5: {
-    type: 'TODO'
+    type: 'pie',
+    valueFormat: (v) => {
+      const value = v * 100;
+      return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
+    }
   },
   vis_3_6: {
     type: 'area',

@@ -59,11 +59,12 @@ export default class StackedBar extends AbstractVisualization {
     const categories = Object.keys(this.data[0])
       .filter(k => k !== 'label');
 
-    this.patterns.forEach(p => svg.call(p));
+    const patterns = this.patterns;
+    patterns.forEach(p => svg.call(p));
 
     const categoryFillScale = scaleOrdinal()
       .domain(categories)
-      .range(this.patterns.map(p => p.url()));
+      .range(patterns.map(p => p.url()));
 
     const container = svg.append('g')
       .attr('transform', `translate(${this.padding}, ${this.padding})`);

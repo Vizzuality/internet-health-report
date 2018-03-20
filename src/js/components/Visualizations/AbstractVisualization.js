@@ -49,77 +49,73 @@ export default class AbstractVisualization {
   }
 
   get patterns() {
-    /* eslint-disable no-underscore-dangle */
-    if (this.config.patterns && !this._patterns) {
-      this._patterns = this.config.patterns(this.color);
-    } else if (!this.config.patterns && !this._patterns) {
-      const blank = textures.lines()
-        .stroke('transparent')
-        .background(this.color);
-
-      const linesA = textures.lines()
-        .orientation('1/8')
-        .size(10)
-        .lighter()
-        .stroke('#000')
-        .background(this.color);
-
-      const linesB = textures.lines()
-        .orientation('6/8')
-        .size(20)
-        .lighter()
-        .stroke('#000')
-        .background(this.color);
-
-      const linesC = textures.lines()
-        .orientation('2/8', '6/8')
-        .size(6)
-        .lighter()
-        .stroke('#000')
-        .background(this.color);
-
-      const linesD = textures.lines()
-        .orientation('2/8')
-        .size(4)
-        .lighter()
-        .stroke('#000')
-        .background(this.color);
-
-
-      const dotsA = textures.circles()
-        .complement()
-        .size(8)
-        .lighter()
-        .fill('#000')
-        .background(this.color);
-
-      const dotsB = textures.circles()
-        .complement()
-        .size(8)
-        .radius(0.5)
-        .fill('#000')
-        .background(this.color);
-
-      const dotsC = textures.circles()
-        .complement()
-        .size(8)
-        .fill('#000')
-        .background(this.color);
-
-      this._patterns = [ // eslint-disable-line no-underscore-dangle
-        blank,
-        linesA,
-        dotsC,
-        dotsA,
-        linesB,
-        linesC,
-        linesD,
-        dotsB
-      ];
+    if (this.config.patterns) {
+      return this.config.patterns(this.color);
     }
 
-    return this._patterns;
-    /* eslint-enable no-underscore-dangle */
+    const blank = textures.lines()
+      .stroke('transparent')
+      .background(this.color);
+
+    const linesA = textures.lines()
+      .orientation('1/8')
+      .size(10)
+      .lighter()
+      .stroke('#000')
+      .background(this.color);
+
+    const linesB = textures.lines()
+      .orientation('6/8')
+      .size(20)
+      .lighter()
+      .stroke('#000')
+      .background(this.color);
+
+    const linesC = textures.lines()
+      .orientation('2/8', '6/8')
+      .size(6)
+      .lighter()
+      .stroke('#000')
+      .background(this.color);
+
+    const linesD = textures.lines()
+      .orientation('2/8')
+      .size(4)
+      .lighter()
+      .stroke('#000')
+      .background(this.color);
+
+
+    const dotsA = textures.circles()
+      .complement()
+      .size(8)
+      .lighter()
+      .fill('#000')
+      .background(this.color);
+
+    const dotsB = textures.circles()
+      .complement()
+      .size(8)
+      .radius(0.5)
+      .fill('#000')
+      .background(this.color);
+
+    const dotsC = textures.circles()
+      .complement()
+      .size(8)
+      .fill('#000')
+      .background(this.color);
+
+    return [
+      blank,
+      linesA,
+      dotsC,
+      dotsA,
+      linesB,
+      linesC,
+      linesD,
+      dotsB
+    ];
   }
 
   get lineStyles() {
