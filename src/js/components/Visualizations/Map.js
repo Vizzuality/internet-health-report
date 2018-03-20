@@ -196,7 +196,7 @@ export default class Map extends AbstractVisualization {
           <div class="box -gradient" style="background: ${this.color}"></div>
         </div>
         <div>
-          <div class="text">${this.translations.unknown}</div>
+          <div class="text">${this.noDataLabel}</div>
           <div class="box -no-data"></div>
         </div>
       `;
@@ -211,7 +211,7 @@ export default class Map extends AbstractVisualization {
           </div>
         `).join('')}
         <div class="text">
-          <div class="box -no-data"></div> ${this.translations.unknown}
+          <div class="box -no-data"></div> ${this.noDataLabel}
         </div>
       `;
     }

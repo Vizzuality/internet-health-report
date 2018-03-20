@@ -66,7 +66,7 @@
       map_category_switcher_label: <?php echo json_encode(translate('Layer', 'ihr-2018')) ?>,
       close_tooltip: <?php echo json_encode(translate('Close', 'ihr-2018')) ?>,
       reactions: <?php echo json_encode(translate('Reaction', 'ihr-2018')) ?>,
-      unknown: <?php echo json_encode(translate('Unknown', 'ihr-2018')) ?>
+      no_data: <?php echo json_encode(translate('No data', 'ihr-2018')) ?>
     };
   </script>
 </head>

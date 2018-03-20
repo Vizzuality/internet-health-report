@@ -180,6 +180,10 @@ export default class AbstractVisualization {
     return format(this.config.valueFormat || '');
   }
 
+  get noDataLabel() {
+    return this.dictionary.noDataLabel || this.translations.no_data;
+  }
+
   get valueAxisTitle() {
     return this.dictionary.valueAxisTitle;
   }
