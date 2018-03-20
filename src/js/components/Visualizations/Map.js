@@ -44,7 +44,7 @@ export default class Map extends AbstractVisualization {
     this.closeTooltip();
 
     this.selectedCategory = target.textContent.trim();
-    const filteredData = this.data.filter(d => d.category === this.selectedCategory);
+    const filteredData = this.data.filter(d => d.category.trim() === this.selectedCategory);
 
     // We remove the previous layer, if any
     if (this.map.getLayer('data-layer')) {
@@ -143,7 +143,7 @@ export default class Map extends AbstractVisualization {
     return `
       <div class="map-categories">
         ${categories.map(c => `
-          <div class="text${this.selectedCategory === c ? ' -active' : ''} js-category">
+          <div class="text${this.selectedCategory === c.trim() ? ' -active' : ''} js-category">
             ${c}
           </div>
         `).join('')}
