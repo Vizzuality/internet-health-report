@@ -119,6 +119,9 @@ export default {
     },
     valueSize: 45
   },
+  vis_2_7: {
+    type: 'gender-ethnic-diversity'
+  },
   vis_3_1_2: {
     type: 'map',
     categorical: true
