@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('ABSPATH')) {
     exit();
 }
@@ -21,17 +20,104 @@ class WpdiscuzCss {
         global $post;
         if ($this->helper->isLoadWpdiscuz($post)) {
             ?>
-<style type="text/css">#wpcomm .wc_new_comment{background:<?php echo $this->optionsSerialized->primaryColor; ?>;}#wpcomm .wc_new_reply{background:<?php echo $this->optionsSerialized->primaryColor; ?>;}#wpcomm .wc-form-wrapper{background:<?php echo isset($this->optionsSerialized->formBGColor)?$this->optionsSerialized->formBGColor:'#f9f9f9'; ?>;}#wpcomm select,#wpcomm input[type="text"],#wpcomm input[type="email"],#wpcomm input[type="url"],#wpcomm input[type="date"],#wpcomm input[type="color"]{border:<?php echo $this->optionsSerialized->inputBorderColor; ?> 1px solid;}#wpcomm .wc-comment .wc-comment-right{background:<?php echo $this->optionsSerialized->commentBGColor; ?>;}#wpcomm .wc-reply .wc-comment-right{background:<?php echo $this->optionsSerialized->replyBGColor; ?>;}#wpcomm .wc-comment-text{font-size:<?php echo isset($this->optionsSerialized->commentTextSize)?$this->optionsSerialized->commentTextSize:'14px'; ?>;color:<?php echo $this->optionsSerialized->commentTextColor; ?>;}<?php $blogRoles=$this->optionsSerialized->blogRoles;if(!$blogRoles){echo '.wc-comment-author a{color:#00B38F;} .wc-comment-label{background:#00B38F;}';}foreach($blogRoles as $role=>$color){echo '#wpcomm .wc-blog-'.$role.' > .wc-comment-right .wc-comment-author,#wpcomm .wc-blog-'.$role.' > .wc-comment-right .wc-comment-author a{color:'.$color.';}';echo '#wpcomm .wc-blog-'.$role.' > .wc-comment-left .wc-comment-label{background:'.$color.';}';}?>.wc-load-more-submit{border:1px solid <?php echo $this->optionsSerialized->inputBorderColor; ?>;}#wpcomm .wc-new-loaded-comment > .wc-comment-right{background:<?php echo $this->optionsSerialized->newLoadedCommentBGColor; ?>;}<?php echo stripslashes($this->optionsSerialized->customCss); ?>.wpdiscuz-front-actions{background:<?php echo isset($this->optionsSerialized->formBGColor)?$this->optionsSerialized->formBGColor:'#f9f9f9'; ?>;}.wpdiscuz-subscribe-bar{background:<?php echo isset($this->optionsSerialized->formBGColor)?$this->optionsSerialized->formBGColor : '#f9f9f9'; ?>;}.wpdiscuz-sort-buttons{color:<?php echo $this->optionsSerialized->buttonColor['vbb']; ?>;}.wpdiscuz-sort-button{color:<?php echo $this->optionsSerialized->buttonColor['vbb']; ?>; cursor:pointer;}.wpdiscuz-sort-button:hover{color:<?php echo $this->optionsSerialized->primaryColor; ?>;cursor:pointer;}.wpdiscuz-sort-button-active{color:<?php echo $this->optionsSerialized->primaryColor; ?>!important;cursor:default!important;}#wpcomm .page-numbers{color:<?php echo $this->optionsSerialized->commentTextColor; ?>;border:<?php echo $this->optionsSerialized->commentTextColor; ?> 1px solid;}#wpcomm span.current{background:<?php echo $this->optionsSerialized->commentTextColor; ?>;}#wpcomm .wpdiscuz-readmore{cursor:pointer;color:<?php echo $this->optionsSerialized->primaryColor; ?>;}<?php do_action('wpdiscuz_dynamic_css'); ?> #wpcomm .wpdiscuz-textarea-wrap{border:<?php echo $this->optionsSerialized->inputBorderColor; ?> 1px solid;} .wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label {color: <?php echo $this->optionsSerialized->ratingInactivColor; ?>;}#wpcomm .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover,.wpdiscuz-rating:not(:checked) > label:hover ~ label {   }#wpcomm .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color: <?php echo $this->optionsSerialized->ratingHoverColor; ?>;} #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-activ-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{ color:<?php echo $this->optionsSerialized->ratingActivColor;; ?>;} #wpcomm .wc-cta-button:hover{border: 1px solid <?php echo $this->optionsSerialized->primaryColor; ?>!important; background:<?php echo $this->optionsSerialized->primaryColor; ?>!important; color:#fff!important;} #wpcomm .wc-cta-active{border: 1px solid <?php echo $this->optionsSerialized->primaryColor; ?>!important; background:<?php echo $this->optionsSerialized->primaryColor; ?>!important; color:#fff!important;}#wpcomm .wpf-cta:hover{color:#fff!important; background:<?php echo $this->optionsSerialized->primaryColor; ?>!important; border:1px solid <?php echo $this->optionsSerialized->primaryColor; ?>!important;}
-        
-#wpcomm .wpf-cta{ border: 1px solid <?php echo $this->optionsSerialized->buttonColor['shb'] ?>; color:<?php echo $this->optionsSerialized->buttonColor['shc'] ?>; }
-#wpcomm .wc-cta-button{ background:<?php echo $this->optionsSerialized->buttonColor['abb'] ?>; border:1px solid <?php echo $this->optionsSerialized->buttonColor['abb'] ?>; color:<?php echo $this->optionsSerialized->buttonColor['abc'] ?>;}
-#wpcomm .wc-cta-button-x{ background:<?php echo $this->optionsSerialized->buttonColor['abb'] ?>; border:1px solid <?php echo $this->optionsSerialized->buttonColor['abb'] ?>; color:<?php echo $this->optionsSerialized->buttonColor['abc'] ?>;}
-#wpcomm .wc-vote-link{border:1px solid <?php echo $this->optionsSerialized->buttonColor['vbb'] ?>; color:<?php echo $this->optionsSerialized->buttonColor['vbc'] ?>;}
-#wpcomm .wc-vote-result{border-top: 1px solid <?php echo $this->optionsSerialized->buttonColor['vbb'] ?>; border-bottom: 1px solid <?php echo $this->optionsSerialized->buttonColor['vbb'] ?>; color:<?php echo $this->optionsSerialized->buttonColor['vbc'] ?>;}
-#wpcomm .wc-vote-result.wc-vote-result-like{border:1px solid <?php echo $this->optionsSerialized->buttonColor['vbb'] ?>;}
-#wpcomm .wc-vote-result.wc-vote-result-dislike{border:1px solid <?php echo $this->optionsSerialized->buttonColor['vbb'] ?>;}
-</style>
-			<?php
+            <style type="text/css">
+
+
+                #wpcomm .wc_new_comment{background:<?php echo $this->optionsSerialized->primaryColor; ?>;}
+                #wpcomm .wc_new_reply{background:<?php echo $this->optionsSerialized->primaryColor; ?>;}
+                #wpcomm .wc-form-wrapper{ background:none; } /* ->formBGColor */
+                #wpcomm .wpdiscuz-front-actions{background:<?php echo isset($this->optionsSerialized->formBGColor) ? $this->optionsSerialized->formBGColor : '#f9f9f9'; ?>;}
+                #wpcomm .wpdiscuz-subscribe-bar{background:<?php echo isset($this->optionsSerialized->formBGColor) ? $this->optionsSerialized->formBGColor : '#f9f9f9'; ?>;}
+
+                #wpcomm select,
+                #wpcomm input[type="text"],
+                #wpcomm input[type="email"],
+                #wpcomm input[type="url"],
+                #wpcomm input[type="date"],
+                #wpcomm input[type="color"]{border:<?php echo $this->optionsSerialized->inputBorderColor; ?> 1px solid;}
+
+                #wpcomm .wc-comment .wc-comment-right{background:<?php echo $this->optionsSerialized->commentBGColor; ?>;}
+
+                #wpcomm .wc-reply .wc-comment-right{background:<?php echo $this->optionsSerialized->replyBGColor; ?>;}
+
+                #wpcomm .wc-comment-right .wc-comment-text, 
+                #wpcomm .wc-comment-right .wc-comment-text *{
+                    font-size:<?php echo isset($this->optionsSerialized->commentTextSize) ? $this->optionsSerialized->commentTextSize : '14px'; ?>;
+                }
+                <?php
+                $blogRoles = $this->optionsSerialized->blogRoles;
+                if (!$blogRoles) {
+                    echo '.wc-comment-author a{color:#00B38F;} .wc-comment-label{background:#00B38F;}';
+                }
+                foreach ($blogRoles as $role => $color) {
+                    echo '#wpcomm .wc-blog-' . $role . ' > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-' . $role . ' > .wc-comment-right .wc-comment-author a{color:' . $color . ';}';
+                    echo '#wpcomm .wc-blog-' . $role . ' > .wc-comment-left .wc-comment-label{color:' . $color . '; border:none; border-bottom: 1px solid #dddddd; }';
+                }
+                ?>
+
+                #wpcomm .wc-comment .wc-comment-left .wc-comment-label{ background: #ffffff;}
+                #wpcomm .wc-load-more-submit{border:1px solid <?php echo $this->optionsSerialized->inputBorderColor; ?>;}
+                #wpcomm .wc-new-loaded-comment > .wc-comment-right{background:<?php echo $this->optionsSerialized->newLoadedCommentBGColor; ?>;}
+                #wpcomm .wpdiscuz-subscribe-bar{color:#777;}
+                #wpcomm .wpdiscuz-front-actions .wpdiscuz-sbs-wrap span{color: #777;}
+                #wpcomm .page-numbers{color:#555;border:#555 1px solid;}
+                #wpcomm span.current{background:#555;}
+                #wpcomm .wpdiscuz-readmore{cursor:pointer;color:<?php echo $this->optionsSerialized->primaryColor; ?>;}<?php do_action('wpdiscuz_dynamic_css'); ?> 
+                #wpcomm .wpdiscuz-textarea-wrap{border:<?php echo $this->optionsSerialized->inputBorderColor; ?> 1px solid;} .wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label {color: <?php echo $this->optionsSerialized->ratingInactivColor; ?>;}
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover,.wpdiscuz-rating:not(:checked) > label:hover ~ label {   }#wpcomm .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color: <?php echo $this->optionsSerialized->ratingHoverColor; ?>;} 
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-activ-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{ color:<?php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               echo $this->optionsSerialized->ratingActivColor;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ?>;} 
+                #wpcomm .wc-comment-header{border-bottom: 1px solid #dedede;}
+                #wpcomm .wc-reply .wc-comment-header{border-bottom: 1px solid #DDDDDD;}
+
+                /* Buttons */
+                #wpcomm button, 
+                #wpcomm input[type="button"], 
+                #wpcomm input[type="reset"], 
+                #wpcomm input[type="submit"]{ border: 1px solid <?php echo $this->optionsSerialized->buttonColor['primary_button_bg'] ?>; color: <?php echo $this->optionsSerialized->buttonColor['primary_button_color'] ?>; background-color: <?php echo $this->optionsSerialized->buttonColor['primary_button_bg'] ?>; }
+                #wpcomm button:hover, 
+                #wpcomm button:focus,
+                #wpcomm input[type="button"]:hover, 
+                #wpcomm input[type="button"]:focus, 
+                #wpcomm input[type="reset"]:hover, 
+                #wpcomm input[type="reset"]:focus, 
+                #wpcomm input[type="submit"]:hover, 
+                #wpcomm input[type="submit"]:focus{ border: 1px solid #333333; background-color: #333333;  }
+                #wpcomm .wpdiscuz-sort-buttons{color:#777777;}
+                #wpcomm .wpdiscuz-sort-button{color:<?php echo $this->optionsSerialized->buttonColor['secondary_button_color'] ?>; cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button:hover{color:<?php echo $this->optionsSerialized->primaryColor; ?>!important;cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button-active{color:<?php echo $this->optionsSerialized->primaryColor; ?>!important;cursor:default!important;}
+                #wpcomm .wc-cta-button, 
+                #wpcomm .wc-cta-button-x{color:<?php echo $this->optionsSerialized->buttonColor['secondary_button_color'] ?>;  border-bottom: 1px solid <?php echo $this->optionsSerialized->buttonColor['secondary_button_border'] ?>; }
+                #wpcomm .wc-vote-link.wc-up{color:<?php echo $this->optionsSerialized->buttonColor['vote_up_link_color'] ?>;}
+                #wpcomm .wc-vote-link.wc-down{color:<?php echo $this->optionsSerialized->buttonColor['vote_down_link_color'] ?>;}
+                #wpcomm .wc-vote-result{color:#999999;}
+                #wpcomm .wpf-cta{color:#999999; }
+                #wpcomm .wpf-cta:hover{background:<?php echo $this->optionsSerialized->primaryColor; ?>!important; color:#FFFFFF;}
+                #wpcomm .wc-cta-active{background:<?php echo $this->optionsSerialized->primaryColor; ?>!important; color:#FFFFFF;}
+                #wpcomm .wc-cta-button:hover{background:<?php echo $this->optionsSerialized->primaryColor; ?>!important; color:#FFFFFF;} 
+                #wpcomm .wc-footer-right .wc-toggle, 
+                #wpcomm .wc-footer-right .wc-toggle a, 
+                #wpcomm .wc-footer-right .wc-toggle i{color:<?php echo $this->optionsSerialized->primaryColor; ?>;}
+
+                /* STICKY COMMENT HEADER */
+                #wpcomm .wc-sticky-comment.wc-comment .wc-comment-header{background: #f2fcfb; border-bottom:1px dotted #00B38F;}
+                #wpcomm .wc-sticky-comment.wc-comment .wc-comment-header .wpd-sticky{color: #00B38F; border:1px dotted #00B38F;}
+                #wpcomm .wc-closed-comment.wc-comment .wc-comment-header .wpd-closed{color: #555555; border:1px dotted #555555;}
+
+                /* PRIVATE COMMENT HEADER */
+                #wpcomm .wc-private-comment.wc-comment .wc-comment-header{background: #eeeeee; border-bottom:1px solid #999999;}
+                #wpcomm .wc-private-comment.wc-comment .wc-comment-header .wpd-private{color: #000000; border:1px dotted #333333;}
+
+                <?php if ($this->optionsSerialized->theme == 'wpd-dark') { ?>
+                    #comments{ background: url(<?php echo plugins_url(WPDISCUZ_DIR_NAME . '/assets/img/dark.png') ?>) #222222; padding: 3%; box-sizing: border-box; } #respond{background: url(<?php echo plugins_url(WPDISCUZ_DIR_NAME . '/assets/img/dark.png') ?>) #222222; padding: 3%; box-sizing: border-box;} .comments-area{background: url(<?php echo plugins_url(WPDISCUZ_DIR_NAME . '/assets/img/dark.png') ?>) #222222; padding: 3%; box-sizing: border-box; ba}
+                <?php } ?>
+                <?php echo stripslashes($this->optionsSerialized->customCss); ?>
+
+            </style>
+            <?php
         }
     }
 

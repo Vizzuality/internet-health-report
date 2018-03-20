@@ -3,7 +3,7 @@
 Plugin Name: Radio Buttons for Taxonomies
 Plugin URI: http://www.kathyisawesome.com/441/radio-buttons-for-taxonomies
 Description: Use radio buttons for any taxonomy so users can only select 1 term at a time
-Version: 1.7.7
+Version: 1.8.1
 Text Domain: radio-buttons-for-taxonomies
 Author: Kathy Darling
 Author URI: http://www.kathyisawesome.com
@@ -39,6 +39,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Radio_Buttons_for_Taxonomies' ) ) :
 
 class Radio_Buttons_for_Taxonomies {
+
+	/**
+	* @constant string donate url
+	* @since 1.7.8
+	*/
+	CONST DONATE_URL = "https://www.youcaring.com/wnt-residency";
 
 	/**
 	 * @var Radio_Buttons_for_Taxonomies The single instance of the class
@@ -122,7 +128,7 @@ class Radio_Buttons_for_Taxonomies {
 			register_uninstall_hook( __FILE__, array( __CLASS__, 'delete_plugin_options' ) );
 
 			// load plugin text domain for translations
-			add_action( 'plugins_loaded', array( $this, 'load_text_domain' ) );
+			add_action( 'init', array( $this, 'load_text_domain' ) );
 
 			// launch each taxonomy class when tax is registered
 			add_action( 'registered_taxonomy', array( $this, 'launch' ) );
@@ -137,7 +143,10 @@ class Radio_Buttons_for_Taxonomies {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_script' ) );
 
 			// add settings link to plugins page
-			add_filter( 'plugin_action_links', array( $this, 'add_action_links' ), 10, 2 );
+			add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array( $this, 'add_action_links' ), 10, 2 );
+
+			// Add Donate link to plugin.
+			add_filter( 'plugin_row_meta', array( $this, 'add_meta_links' ), 10, 2 );
 
 			add_filter( 'mlp_mutually_exclusive_taxonomies', array( $this, 'multilingualpress_support' ) );
 	}
@@ -262,15 +271,26 @@ class Radio_Buttons_for_Taxonomies {
 	 */
 	public function add_action_links( $links, $file ) {
 
-		if ( $file == plugin_basename( __FILE__ ) ) {
-			$plugin_link = '<a href="'.admin_url( 'options-general.php?page=radio-buttons-for-taxonomies' ) . '">' . __( 'Settings' , 'radio-buttons-for-taxonomies' ) . '</a>';
-			// make the 'Settings' link appear first
-			array_unshift( $links, $plugin_link );
-		}
-
+		$plugin_link = '<a href="'.admin_url( 'options-general.php?page=radio-buttons-for-taxonomies' ) . '">' . __( 'Settings' , 'radio-buttons-for-taxonomies' ) . '</a>';
+		// make the 'Settings' link appear first
+		array_unshift( $links, $plugin_link );
+		
 		return $links;
 	}
 
+
+	/**
+	* Add donation link
+	* @param array $plugin_meta
+	* @param string $plugin_file
+	* @since 1.7.8
+	*/
+	public function add_meta_links( $plugin_meta, $plugin_file ) {
+		if( $plugin_file == plugin_basename(__FILE__) ){
+			$plugin_meta[] = '<a class="dashicons-before dashicons-awards" href="' . self::DONATE_URL . '" target="_blank">' . __( 'Donate', 'radio-buttons-for-taxonomies' ) . '</a>';
+		}
+		return $plugin_meta;
+	}
 
 	// ------------------------------------------------------------------------------
 	// Helper Functions

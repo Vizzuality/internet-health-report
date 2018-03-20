@@ -95,7 +95,7 @@ class SelectField extends Field {
                 <?php endforeach; ?>
             </select>
             <?php if ($args['desc']) { ?>
-                <div class="wpd-field-desc"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
+                <div class="wpd-field-desc"><i class="far fa-question-circle" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
                     <?php } ?>
         </div>
         <?php

@@ -7,7 +7,9 @@ use wpdFormAttr\Field\Field;
 
 class Captcha extends Field {
 
+    private $wpUploadsDir;
     private $captchaDir;
+    private $captchaUrl;
     private $filesPath;
     private $msgImgCreateError;
     private $msgPermsDeniedError;
@@ -32,19 +34,19 @@ class Captcha extends Field {
                 <p class="wpd-info"><?php _e('Field specific short description or some rule related to inserted information.', 'wpdiscuz'); ?></p>
             </div>
             <div class="wpd-field-option">
-                <label><?php _e('Show for guests', 'wpdiscuz'); ?>:</label> 
-                <input type="checkbox" value="1" <?php checked($this->fieldData['show_for_guests'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[show_for_guests]" />
+                <label for="wpd_captcha_show_for_guests"><?php _e('Show for guests', 'wpdiscuz'); ?>:</label> 
+                <input id="wpd_captcha_show_for_guests"  type="checkbox" value="1" <?php checked($this->fieldData['show_for_guests'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[show_for_guests]" />
             </div>
             <div class="wpd-field-option">
-                <label><?php _e('Show for logged in users', 'wpdiscuz'); ?>:</label> 
-                <input type="checkbox" value="1" <?php checked($this->fieldData['show_for_users'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[show_for_users]" />
+                <label for="wpd_captcha_show_for_users"><?php _e('Show for logged in users', 'wpdiscuz'); ?>:</label> 
+                <input id="wpd_captcha_show_for_users" type="checkbox" value="1" <?php checked($this->fieldData['show_for_users'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[show_for_users]" />
             </div>
             <div style="clear:both;"></div>
         </div>
         <?php
     }
 
-    public function frontFormHtml($name, $args, $options, $currentUser, $uniqueId,$isMainForm) {
+    public function frontFormHtml($name, $args, $options, $currentUser, $uniqueId, $isMainForm) {
         if ($options->isGoodbyeCaptchaActive) {
             echo $options->goodbyeCaptchaTocken;
         } else {
@@ -53,7 +55,7 @@ class Captcha extends Field {
                     global $wpDiscuzReCaptcha;
                     $wpDiscuzReCaptcha->recaptchaHtml($uniqueId);
                 } else {
-                    $this->generateCaptchaHtml($args,$options);
+                    $this->generateCaptchaHtml($args, $options);
                 }
             }
         }
@@ -78,8 +80,8 @@ class Captcha extends Field {
         return wp_parse_args($cleanData, $this->fieldDefaultData);
     }
 
-    public function validateFieldData($fieldName,$args, $options, $currentUser) {
-        if ($currentUser && $this->isShowCaptcha($currentUser->ID,$args) && !class_exists("wpDiscuzReCaptcha") && !$options->isGoodbyeCaptchaActive) {
+    public function validateFieldData($fieldName, $args, $options, $currentUser) {
+        if ($currentUser && $this->isShowCaptcha($currentUser->ID, $args) && !class_exists("wpDiscuzReCaptcha") && !$options->isGoodbyeCaptchaActive) {
             $captcha = isset($_POST[$fieldName]) ? trim($_POST[$fieldName]) : '';
             if ($options->isCaptchaInSession) {
                 if (!session_id()) {
@@ -109,7 +111,18 @@ class Captcha extends Field {
             'show_for_guests' => '0',
             'show_for_users' => '0'
         );
-        $this->captchaDir = WPDISCUZ_DIR_PATH . WPDISCUZ_DS . 'utils' . WPDISCUZ_DS . 'temp';
+        $this->wpUploadsDir = wp_upload_dir();
+        $this->captchaDir = $this->wpUploadsDir['basedir'] . wpdFormConst::CAPTCHA_DIR;
+        $this->captchaUrl = is_ssl() ? str_replace('http://', 'https://', $this->wpUploadsDir['baseurl']) . wpdFormConst::CAPTCHA_DIR : $this->wpUploadsDir['baseurl'] . wpdFormConst::CAPTCHA_DIR;
+        wp_mkdir_p($this->captchaDir);
+        if (!file_exists($this->captchaDir . '.htaccess')) {
+            $data = 'Order deny,allow' . PHP_EOL;
+            $data .= 'Deny from all' . PHP_EOL;
+            $data .= '<Files ~ "^[0-9A-Za-z_\-]+\.(png)$">' . PHP_EOL;
+            $data .= 'Allow from all' . PHP_EOL;
+            $data .= '</Files>' . PHP_EOL;
+            file_put_contents($this->captchaDir . '.htaccess', $data);
+        }
         $this->filesPath = WPDISCUZ_DIR_PATH . WPDISCUZ_DS . 'utils' . WPDISCUZ_DS . 'captcha' . WPDISCUZ_DS;
         $this->msgImgCreateError = __('Cannot create image file', 'wpdiscuz');
         $this->msgPermsDeniedError = __('Permission denied for file creation', 'wpdiscuz');
@@ -117,11 +130,11 @@ class Captcha extends Field {
         $this->msgPNGCreationDisabled = __('PNG image creation disabled', 'wpdiscuz');
     }
 
-    private function generateCaptchaHtml($args,$options) {
+    private function generateCaptchaHtml($args, $options) {
         ?>
         <div class="wc-field-captcha wpdiscuz-item">
             <div class="wc-captcha-input">
-                <input type="text" maxlength="5" value="" autocomplete="off" required="required" name="wc_captcha"  class="wpd-field wc_field_captcha" placeholder="<?php echo $args['name']; ?>" title="Insert the CAPTCHA code">
+                <input type="text" maxlength="5" value="" autocomplete="off" required="required" name="wc_captcha"  class="wpd-field wc_field_captcha" placeholder="<?php echo $args['name']; ?>" title="<?php _e('Insert the CAPTCHA code', 'wpdiscuz'); ?>">
             </div>
             <div class="wc-label wc-captcha-label">
                 <?php
@@ -131,7 +144,7 @@ class Captcha extends Field {
                 } else {
                     $cData = $this->createCaptchaImage();
                     $key = $cData['key'];
-                    $message = $cData['code'] ? 'src="' . plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'utils' . WPDISCUZ_DS . 'temp' . WPDISCUZ_DS . $cData['message']) . '"' : 'alt="' . $cData['message'] . '"';
+                    $message = $cData['code'] ? 'src="' . $this->captchaUrl . $cData['message'] . '"' : 'alt="' . $cData['message'] . '"';
                 }
                 ?>
                 <a class="wpdiscuz-nofollow" href="#" rel="nofollow"><img alt="wpdiscuz_captcha" class="wc_captcha_img" <?php echo $message; ?>  width="80" height="26"/></a><a class="wpdiscuz-nofollow wc_captcha_refresh_img" href="#" rel="nofollow"><img  alt="refresh" class="" src="<?php echo plugins_url(WPDISCUZ_DIR_NAME . WPDISCUZ_DS . 'assets' . WPDISCUZ_DS . 'img' . WPDISCUZ_DS . 'captcha-loading.png'); ?>" width="16" height="16"/></a>
@@ -295,9 +308,13 @@ class Captcha extends Field {
     public function isShowCaptcha($isUserLoggedIn, $args) {
         return ($isUserLoggedIn && $args['show_for_users']) || (!$isUserLoggedIn && $args['show_for_guests']);
     }
-    
-    public function editCommentHtml($key, $value ,$data,$comment) {}
-    
-    public function frontHtml($value,$args) {}
+
+    public function editCommentHtml($key, $value, $data, $comment) {
+        
+    }
+
+    public function frontHtml($value, $args) {
+        
+    }
 
 }

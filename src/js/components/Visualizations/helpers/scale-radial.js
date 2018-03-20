@@ -11,14 +11,16 @@ function scaleRadial() {
     return Math.sqrt(linear(x));
   }
 
-  scale.domain = (_) => {
+  scale.domain = function domain(_) {
     if (arguments.length) return (linear.domain(_), scale);
     return linear.domain();
   };
 
-  scale.nice = count => ((linear.nice(count), scale));
+  scale.nice = function nice(count) {
+    return (linear.nice(count), scale);
+  };
 
-  scale.range = (_) => {
+  scale.range = function range(_) {
     if (arguments.length) return (linear.range(_.map(square)), scale);
     return linear.range().map(Math.sqrt);
   };

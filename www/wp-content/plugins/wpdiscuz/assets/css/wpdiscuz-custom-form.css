@@ -7,10 +7,10 @@
 .wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head{text-align:left; font-size:12px; text-transform:uppercase; margin:0px; padding:3px; cursor:move; }
 .wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head .wpd-field-actions{float:right; color:#999999; text-transform:lowercase; font-size:14px; } 
 .wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head .wpd-field-actions i{cursor:pointer;}
-.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-pencil{color:#18CEAA; vertical-align:bottom; margin-right:5px; }
-.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-trash{color:#FF8989; vertical-align:bottom; margin-left:5px; }
-.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-pencil:hover{color:#07B290; vertical-align:bottom; }
-.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-trash:hover{color:#E53F41; vertical-align:bottom; }
+.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-pencil-alt{color:#18CEAA; vertical-align:bottom; margin-right:5px; }
+.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-trash-alt{color:#FF8989; vertical-align:bottom; margin-left:5px; }
+.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-pencil-alt:hover{color:#07B290; vertical-align:bottom; }
+.wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head i.fa-trash-alt:hover{color:#E53F41; vertical-align:bottom; }
 .wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head-new{text-align:center; font-size:15px; text-transform:uppercase; margin:0px; padding:3px; font-weight:bold;}
 .wpdiscuz-wrapper .wpd-form .wpd-field .wpd-field-head-textarea{text-align:center; font-size:14px; color:#666666; text-transform:uppercase; margin:0px; padding:20px; }
 .wpdiscuz-wrapper .wpd-form-options th, .wpdiscuz-wrapper .wpd-form-options td{padding:10px 5px; text-align:left; color:#444444; border-bottom:1px dotted #dbdbdb; font-weight:normal; font-size: 14px; line-height: 1.3em;}
@@ -45,17 +45,17 @@
 #TB_ajaxContent .wpd-info{font-size:13px; color:#999999; font-style:italic; line-height:18px; width:90%; padding: 3px 0 1px; margin:0px;}
 #TB_ajaxContent .add-to-form-button-cont{text-align:right;}
 #TB_ajaxContent .wpdiscuz-tb-title{ font-size:20px; font-weight:400; color:#555; text-align:right; padding-bottom:10px; border-bottom:1px solid #eaeaea;}
-#TB_ajaxContent .wpd-field-button.button, #TB_ajaxContent .wpd-field-button.button{ margin:2px 1px 5px 1px;}
+#TB_ajaxContent .wpd-field-button.button, #TB_ajaxContent .wpd-field-button.button{ margin:2px 1px 5px 1px; min-width: 32%;}
 
 .wpdiscuz-wrapper .wpd-form-row-wrap{box-sizing: border-box; min-height: 60px; margin-top:35px; position:relative; border:4px dashed #dedede;}
 .wpdiscuz-wrapper .wpd-form-row-wrap .wpd-form-row-actions{background: #dedede;}
 .wpdiscuz-wrapper .wpd-form-row-wrap .wpd-form-row-head{height: 30px;position: absolute;right: 0;top: -28px;}
 .wpd-form-row-actions{font-size: 18px;border-radius: 5px 5px 0 0;color: #bbb;}
-.wpd-form-row-actions .fa-arrows{cursor:move;color:#999;}
-.wpd-form-row-actions .fa-trash{cursor: pointer;color: #EF4F4F;}
+.wpd-form-row-actions .fa-arrows-alt{cursor:move;color:#999;}
+.wpd-form-row-actions .fa-trash-alt{cursor: pointer;color: #EF4F4F;}
 .wpd-form-row-actions .fa-columns{cursor: pointer;color: #999;}
 .wpd-form-columns-two{color: #2DD8B6 !important;}
-.wpd-form-row-actions .fa{padding: 5px;}
+.wpd-form-row-actions .fas{padding: 5px;}
 .wpd-form-row-body .wpd-form-add-filed{width: 100%;text-align: center;}
 .wpd-form-row-body .wpd-form-add-filed .fa-plus{cursor: pointer;padding: 10px;font-size: 20px;color: #2DD8B6;}
 .wpd-form-row-body .full-col,.wpd-form-row-body .col-body{width: 100%;}
@@ -70,7 +70,8 @@
 .wpd-default-field{background: #D0EAE5 !important;}
 .wpdiscuz-wrapper .wpd-form-table td, .wpdiscuz-wrapper .wpd-form-table th{ vertical-align:top; }
 .wpdiscuz-wrapper .wpd-form-rel-exixts span{ color:#DD0000;}
-.iconpicker-popover{z-index: 1000}
+.iconpicker-popover.popover{z-index: 1000; width:230px;}
+.iconpicker-popover .popover-title .iconpicker-search{width: 100%}
 .wpd-advaced-options.wpd-field-option{
     margin-top: 10px;
 }

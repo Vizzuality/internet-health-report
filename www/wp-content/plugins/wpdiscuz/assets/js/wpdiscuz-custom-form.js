@@ -16,7 +16,7 @@ $(document).ready(function ($) {
         wpdFormFieldSortable();
     });
 
-    $(document).delegate('.wpd-form-row-wrap .wpd-form-row-actions .fa-trash', 'click', function () {
+    $(document).delegate('.wpd-form-row-wrap .wpd-form-row-actions .fa-trash-alt', 'click', function () {
          if($(this).parents('.wpd-form-row-wrap').find('.wpd-default-field').length){
             alert(wpdFormAdminOptions.can_not_delete_field);
             return;
@@ -39,13 +39,13 @@ $(document).ready(function ($) {
         return false;
     });
 
-    $(document).delegate('.wpd-field .fa-trash', 'click', function () {
+    $(document).delegate('.wpd-field .fa-trash-alt', 'click', function () {
         if (confirm(wpdFormAdminOptions.confirm_delete_message)) {
             $(this).parents('.wpd-field').remove();
         }
     });
 
-    $(document).delegate('.wpd-field .fa-pencil', 'click', function () {
+    $(document).delegate('.wpd-field .fa-pencil-alt', 'click', function () {
         $(this).parents('.wpd-field').find('.wpd-field-body').toggle(500);
     });
 
@@ -85,8 +85,8 @@ $(document).ready(function ($) {
             var dynamicFiledCont = $('<div class="wpd-col-full wpd-field">' +
                     '<div class="wpd-field-head">' + fieldName +
                     '<div class="wpd-field-actions">' +
-                    '<i class="fa fa-pencil" title="' + wpdFormAdminOptions.edit_field + '"></i>|' +
-                    '<i class="fa fa-trash" title="' + wpdFormAdminOptions.delete + '"></i>' +
+                    '<i class="fas fa-pencil-alt" title="' + wpdFormAdminOptions.edit_field + '"></i>|' +
+                    '<i class="fas fa-trash-alt" title="' + wpdFormAdminOptions.delete + '"></i>' +
                     '</div></div></div>');
             dialogFieldHtml.hide();
             dialogFieldHtml.appendTo(dynamicFiledCont);
@@ -105,7 +105,7 @@ $(document).ready(function ($) {
     function wpdFormRowSortable() {
         $('#wpd-form-sortable-rows').sortable({
             containment: '.wpd-form',
-            cancel: '.wpd-form-row-body,.fa-columns, .fa-trash',
+            cancel: '.wpd-form-row-body,.fa-columns, .fa-trash-alt',
             update: function (event, ui) {
                 ui.item.find('.row_order').val(ui.item.index());
                 wpdiscuzForm.rebuildRowsData('#wpd-form-sortable-rows', '.wpd-form-row-wrap', 'wpd-form-row-wrap');
@@ -117,7 +117,7 @@ $(document).ready(function ($) {
         $('.col-body').sortable({
             connectWith: '.col-body',
             containment: '.wpd-form',
-            cancel: '.fa, .wpd-field-body',
+            cancel: '.fas, .wpd-field-body',
             update: function (event, ui) {
                 wpdiscuzForm.afterFieldDrag(ui.item);
             }
@@ -145,16 +145,16 @@ var wpdiscuzForm = {
                 '<input class="row_order" type="hidden" name=""/>' +
                 '<div class="wpd-form-row-head">' +
                 '<div class="wpd-form-row-actions">' +
-                '<i class="fa fa-columns" title="' + wpdFormAdminOptions.two_column + '"></i>|' +
-                '<i class="fa fa-trash" title="' + wpdFormAdminOptions.delete + '"></i>|' +
-                '<i class="fa fa-arrows" aria-hidden="true" title="' + wpdFormAdminOptions.move + '"></i>' +
+                '<i class="fas fa-columns" title="' + wpdFormAdminOptions.two_column + '"></i>|' +
+                '<i class="fas fa-trash-alt" title="' + wpdFormAdminOptions.delete + '"></i>|' +
+                '<i class="fas fa-arrows-alt" aria-hidden="true" title="' + wpdFormAdminOptions.move + '"></i>' +
                 '</div></div>' +
                 '<div  class="wpd-form-row">' +
                 '<div class="wpd-form-row-body">' +
                 '<div class="full-col wpd-form-col">' +
                 '<div class="col-body"></div>' +
                 '<div class="wpd-form-add-filed">' +
-                '<i class="fa fa-plus" title="' + wpdFormAdminOptions.add_field + '">' +
+                '<i class="fas fa-plus" title="' + wpdFormAdminOptions.add_field + '">' +
                 '</div></div>' +
                 '</div></div></div>');
         wpdiscuzForm.rebuildRowsData(selector, '.wpd-form-row-wrap', 'wpd-form-row-wrap');
@@ -195,7 +195,7 @@ var wpdiscuzForm = {
             fullColumn.after('<div class="right-col wpd-form-col">' +
                     '<div class="col-body"></div>' +
                     '<div class="wpd-form-add-filed">' +
-                    '<i class="fa fa-plus" title="' + wpdFormAdminOptions.add_field + '">' +
+                    '<i class="fas fa-plus" title="' + wpdFormAdminOptions.add_field + '">' +
                     '</div></div>');
             colNewName = 'left';
             colNewType = 'two';

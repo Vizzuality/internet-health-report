@@ -44,7 +44,7 @@ if (!defined('ABSPATH')) {
                 <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_hide_replies_text']; ?>" name="wc_hide_replies_text" id="wc_hide_replies_text" /></td>
             </tr>
             <tr valign="top">
-                <th scope="row"><label for="wc_show_replies_text"><?php _e('Show Replies', 'wpdiscuz'); ?></label></th>
+                <th scope="row"><label for="wc_show_replies_text"><?php _e('View Replies', 'wpdiscuz'); ?></label></th>
                 <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_show_replies_text']; ?>" name="wc_show_replies_text" id="wc_show_replies_text" /></td>
             </tr>
             <?php
@@ -81,20 +81,61 @@ if (!defined('ABSPATH')) {
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_comment_edit_save_button"><?php _e('Save edited comment button text', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_comment_edit_save_button']) ? $this->optionsSerialized->phrases['wc_comment_edit_save_button'] : __('Save', 'wpdisucz'); ?>" name="wc_comment_edit_save_button" id="wc_comment_edit_save_button" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_comment_edit_save_button']; ?>" name="wc_comment_edit_save_button" id="wc_comment_edit_save_button" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_comment_edit_cancel_button"><?php _e('Cancel comment editing button text', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_comment_edit_cancel_button']) ? $this->optionsSerialized->phrases['wc_comment_edit_cancel_button'] : __('Cancel', 'wpdisucz'); ?>" name="wc_comment_edit_cancel_button" id="wc_comment_edit_cancel_button" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_comment_edit_cancel_button']; ?>" name="wc_comment_edit_cancel_button" id="wc_comment_edit_cancel_button" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_read_more"><?php _e('Comment read more link text', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_read_more']) ? $this->optionsSerialized->phrases['wc_read_more'] : __('Read more &raquo;', 'wpdisucz'); ?>" name="wc_read_more" id="wc_read_more" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_read_more']; ?>" name="wc_read_more" id="wc_read_more" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_anonymous"><?php _e('Anonymous commenter name', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_anonymous']) ? $this->optionsSerialized->phrases['wc_anonymous'] : __('Anonymous', 'wpdisucz'); ?>" name="wc_anonymous" id="wc_anonymous" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_anonymous']; ?>" name="wc_anonymous" id="wc_anonymous" /></td>
             </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_stick_main_form_comment_on"><?php _e('Stick this comment - (on)', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_stick_main_form_comment_on']; ?>" name="wc_stick_main_form_comment_on" id="wc_stick_main_form_comment_on" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_stick_main_form_comment_off"><?php _e('Stick this comment - (off)', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_stick_main_form_comment_off']; ?>" name="wc_stick_main_form_comment_off" id="wc_stick_main_form_comment_off" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_stick_comment"><?php _e('Stick', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_stick_comment']; ?>" name="wc_stick_comment" id="wc_stick_comment" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_unstick_comment"><?php _e('Unstick', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_unstick_comment']; ?>" name="wc_unstick_comment" id="wc_unstick_comment" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_sticky_comment_icon_title"><?php _e('Sticky comment icon title', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_sticky_comment_icon_title']; ?>" name="wc_sticky_comment_icon_title" id="wc_sticky_comment_icon_title" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_close_main_form_comment_on"><?php _e('Close this comment - (on)', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_close_main_form_comment_on']; ?>" name="wc_close_main_form_comment_on" id="wc_close_main_form_comment_on" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_close_main_form_comment_off"><?php _e('Close this comment - (off)', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_close_main_form_comment_off']; ?>" name="wc_close_main_form_comment_off" id="wc_close_main_form_comment_off" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_close_comment"><?php _e('Close', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_close_comment']; ?>" name="wc_close_comment" id="wc_close_comment" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_open_comment"><?php _e('Open', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_open_comment']; ?>" name="wc_open_comment" id="wc_open_comment" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><label for="wc_closed_comment_icon_title"><?php _e('Closed comment icon title', 'wpdiscuz'); ?></label></th>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_closed_comment_icon_title']; ?>" name="wc_closed_comment_icon_title" id="wc_closed_comment_icon_title" /></td>
+            </tr>
+
         </tbody>
     </table>
 </div>
