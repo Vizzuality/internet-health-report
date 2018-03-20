@@ -45,7 +45,7 @@ get_header(); ?>
               </button>
             </div>
           </div>
-          <div class="row" id="description" style="display: none;">
+          <div class="row post-content" id="description" style="display: none;">
             <div class="column small-12 medium-8">
             <p><?php echo the_field('more', 'category_' . get_the_category()[0]->term_id);?></p>
             <button type="button" class="text -btn1 js-collapse" aria-expanded="true" aria-controls="description">

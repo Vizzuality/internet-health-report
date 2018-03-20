@@ -81,10 +81,6 @@
       </div>
     </div>
 
-    <?php
-      echo do_shortcode('[reaction_buttons]');
-    ?>
-
 <div id="coral_talk_stream"></div>
 <script src="https://talk.mofoprod.net/static/embed.js" async onload="
   Coral.Talk.render(document.getElementById('coral_talk_stream'), {

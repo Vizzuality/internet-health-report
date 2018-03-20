@@ -906,7 +906,14 @@ a:active {
 
 }
 
-
+li.share-icons-fb {
+  padding-top: 2px;
+  line-height: 1;
+}
+li.share-icons-tw {
+  padding-top: 5px;
+  line-height: 1;
+}
 
 /*--------------------------------------------------------------
 # Content
@@ -1027,7 +1034,7 @@ object {
 span.button_name {
  visibility: hidden;
  margin-top: -48px;
- margin-left: -25px;
+ margin-left: -40px;
  width: 120px;
  height: 40px;
  background-color: white;

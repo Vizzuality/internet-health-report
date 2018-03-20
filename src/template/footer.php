@@ -168,7 +168,7 @@
   <div class="fixedfooter">
     <div class="wrap">
       <ul>
-        <li>
+        <li class="share-icons-fb">
           <div class="fb-share-button"
               data-href="<?php the_permalink(); ?>"
               data-layout="button"
@@ -180,9 +180,8 @@
                 </a>
           </div>
         </li>
-        <li>
-
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=#internethealth" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <li class="share-icons-tw">
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=#internethealth" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </li>
         <li class="text">
           <?php _e('Share this', 'ihr-2018');?>
