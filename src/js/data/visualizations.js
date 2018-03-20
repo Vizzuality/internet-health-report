@@ -159,17 +159,13 @@ export default {
     }
   },
   vis_3_4_1: {
-    type: 'bar',
-    direction: 'horizontal'
-  },
-  vis_3_4_2: {
     type: 'pie',
     valueFormat: (v) => {
       const value = v * 100;
       return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
     }
   },
-  vis_3_5: {
+  vis_3_4_2: {
     type: 'pie',
     valueFormat: (v) => {
       const value = v * 100;
