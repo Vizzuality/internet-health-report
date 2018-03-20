@@ -1,0 +1,33 @@
+.c-download-tooltip {
+  text-align: left;
+
+  ul > li {
+    ul {
+      display: inline-flex;
+      margin: 0 0 0 5px;
+
+      > li {
+        &:not(:first-child) {
+          margin: 0 0 0 5px;
+        }
+
+        > a {
+          font-weight: 600;
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+.download-tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+  font-size: $font-s;
+  font-weight: 300;
+  text-decoration: underline;
+
+  > svg {
+    margin: 0 0 0 5px;
+  }
+}

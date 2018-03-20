@@ -32,22 +32,21 @@
     ul > li {
       text-align: right;
 
+
       &:first-child {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: flex-end;
-        position: relative;
-        width: 100%;
-        padding: 0 30px 0 0;
-        text-decoration: none;
 
-        > a {
+        > button {
           display: inline-flex;
           align-items: center;
+          color: $white;
+          line-height: 30px;
+          cursor: pointer;
 
           > .c-icon {
-            position: absolute;
-            right: 0;
+            margin: 0 0 0 5px;
 
             use {
               fill: $white;

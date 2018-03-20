@@ -65,25 +65,6 @@
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/trending-topics' ) ) ?>" class="text -light"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
                 </li>
-                <li>
-                <a href="<?php
-                  $locale = get_locale();
-                  switch(true) {
-                    case preg_match('/en.*/', $locale):
-                      echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet Health Report 2018.pdf";
-                      break;
-                    case preg_match('/fr.*/', $locale):
-                      echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin de santé dInternet 2018.pdf";
-                      break;
-                    case preg_match('/de.*/', $locale):
-                      echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht zur Internetgesundheit 2018.pdf";
-                      break;
-                    case preg_match('/es.*/', $locale):
-                      echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe de Salud de Internet 2018.pdf";
-                      break;
-                  }
-                ?>" class="text -light">Download PDF</a>
-                </li>
               </ul>
             </div>
             <div class="column small-6 medium-3">
@@ -127,7 +108,13 @@
             <div class="column small-6 medium-3">
               <div class="extra-links">
                 <ul>
-                  <li><a href="#" class="text -light -category download-pdf-link"><?php esc_html_e( 'Download PDF', 'ihr-2018' ); ?> <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg></a></li>
+                  <li>
+                    <button class="-category download-pdf-link download-tooltip-trigger">
+                      <?php esc_html_e( 'Download PDF', 'ihr-2018' ); ?>
+                      <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
+                    </button>
+                    <?php renderDownloadOptions() ?>
+                  </li>
                   <li><a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
                   <li><a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
                   <li><a href="http://blog" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a></li>
@@ -182,13 +169,13 @@
     <div class="wrap">
       <ul>
         <li>
-          <div class="fb-share-button" 
-              data-href="<?php the_permalink(); ?>" 
-              data-layout="button" 
-              data-size="small" 
+          <div class="fb-share-button"
+              data-href="<?php the_permalink(); ?>"
+              data-layout="button"
+              data-size="small"
               data-mobile-iframe="true">
-                <a target="_blank" 
-                  href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>&amp;src=sdkpreparse" 
+                <a target="_blank"
+                  href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>&amp;src=sdkpreparse"
                   class="fb-xfbml-parse-ignore">
                 </a>
           </div>
@@ -214,7 +201,7 @@
           </li>
           <li class="comments" style="display: none;">
             <span class="text"><?php echo comments_count(get_the_ID());?>
-            <svg class="c-icon"><use xlink:href="#icon-comment_icon"></use></svg>   
+            <svg class="c-icon"><use xlink:href="#icon-comment_icon"></use></svg>
           </li>
         </ul>
         <!-- <a href="https://internethealthreport.org/2018/" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
