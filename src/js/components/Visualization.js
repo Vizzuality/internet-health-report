@@ -24,35 +24,9 @@ const vis = {
 
 export default class Visualization {
   constructor(container, options) {
-    switch (options.type) {
-      case 'bar':
-        return new Bar(container, options);
-
-      case 'stacked-bar':
-        return new StackedBar(container, options);
-
-      case 'line':
-        return new Line(container, options);
-
-      case 'area':
-        return new Area(container, options);
-
-      case 'circle':
-        return new Circle(container, options);
-
-      case 'wikipedia':
-        return new Wikipedia(container, options);
-
-      case 'map':
-        return new Map(container, options);
-
-      case 'TODO':
-        // eslint-disable-next-line no-param-reassign
-        container.textContent = 'Visualization not implemented yet';
-        return null;
-
-      default:
-        console.error('Unsupported visualization');
-    }
+    const Vis = vis[options.type];
+    if (Vis) return new Vis(container, options);
+    console.error('Unsupported visualization');
+    return null;
   }
 }
