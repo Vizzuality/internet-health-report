@@ -105,10 +105,11 @@ get_header(); ?>
               <div class="slide-content js-visualization" data-issue="">
                 <h1 class="title -main"><?php echo $post->post_title; ?></h1>
                 <p> <?php echo $post->post_content; ?></p>
-                <a class="text -link -dark" href="#">
+                <button class="download-tooltip-trigger">
+                  <?php esc_html_e( 'Download report', 'ihr-2018' ); ?>
                   <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
-                  <?php esc_html_e( 'Download report', 'ihr-2018' ); ?></p>
-                </a>
+                </button>
+                <?php renderDownloadOptions() ?>
               </div>
             </div>
           </div>

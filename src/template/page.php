@@ -47,6 +47,15 @@ get_header(); ?>
                   <h2><?php echo $parent_title; ?></h2>
                   <p><?php echo $content; ?></p>
                 </div>
+                <?php if ( is_page( 'Introduction')): ?>
+                  <div class="column small-12 medium-4">
+                    <button class="download-tooltip-trigger">
+                      <?php esc_html_e( 'Download report', 'ihr-2018' ); ?>
+                      <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
+                    </button>
+                    <?php renderDownloadOptions() ?>
+                  </div>
+                <?php endif; ?>
               </div>
             </div>
           </div>

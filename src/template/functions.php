@@ -396,3 +396,113 @@ function languages_list_footer() {
 
     return $return_array;
  }
+
+function renderDownloadOptions() {
+  $locale = get_locale();
+
+  echo '<div class="c-download-tooltip download-tooltip-content" style="display: none">';
+  echo '<ul>';
+  echo '<li style="display: none"> Featured stories<ul>';
+  echo '<li><a class="text -link" href=';
+          switch(true) {
+            case preg_match('/en.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.pdf";
+              break;
+            case preg_match('/fr.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.pdf";
+              break;
+            case preg_match('/de.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht%20zur%20Internetgesundheit%202018.pdf";
+              break;
+            case preg_match('/es.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.pdf";
+              break;
+          }
+  echo'>.pdf</a></li>';
+  echo '<li><a class="text -link" href=';
+          switch(true) {
+            case preg_match('/en.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
+              break;
+            case preg_match('/fr.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.odt";
+              break;
+            case preg_match('/de.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht%20zur%20Internetgesundheit%202018.odt";
+              break;
+            case preg_match('/es.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.odt";
+              break;
+          }
+  echo'>.odt</a></li>';
+  echo '<li><a class="text -link" href=';
+          switch(true) {
+            case preg_match('/en.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
+              break;
+            case preg_match('/fr.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.epub";
+              break;
+            case preg_match('/de.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht%20zur%20Internetgesundheit%202018.epub";
+              break;
+            case preg_match('/es.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.epub";
+              break;
+          }
+  echo'>.epub</a></li>';
+  echo '</ul></li>';
+  echo '<li>Full report<ul>';
+  echo '<li><a class="text -link" href=';
+          switch(true) {
+            case preg_match('/en.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.pdf";
+              break;
+            case preg_match('/fr.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.pdf";
+              break;
+            case preg_match('/de.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht%20zur%20Internetgesundheit%202018.pdf";
+              break;
+            case preg_match('/es.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.pdf";
+              break;
+          }
+  echo'>.pdf</a></li>';
+  echo '<li style="display: none"><a class="text -link" href=';
+          switch(true) {
+            case preg_match('/en.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
+              break;
+            case preg_match('/fr.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.odt";
+              break;
+            case preg_match('/de.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht%20zur%20Internetgesundheit%202018.odt";
+              break;
+            case preg_match('/es.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.odt";
+              break;
+          }
+  echo'>.odt</a></li>';
+  echo '<li style="display: none"><a class="text -link" href=';
+          switch(true) {
+            case preg_match('/en.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
+              break;
+            case preg_match('/fr.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.epub";
+              break;
+            case preg_match('/de.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Statusbericht%20zur%20Internetgesundheit%202018.epub";
+              break;
+            case preg_match('/es.*/', $locale):
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.epub";
+              break;
+          }
+  echo'>.epub</a></li>';
+  echo '</li></ul>';
+  echo '</li></ul>';
+  echo '</div>';
+}
+
