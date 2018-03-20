@@ -6,6 +6,7 @@ import Circle from 'components/Visualizations/Circle';
 import Wikipedia from 'components/Visualizations/Wikipedia';
 import Map from 'components/Visualizations/Map';
 import AppUnhappiness from 'components/Visualizations/AppUnhappiness';
+import GenderEthnicDiversity from 'components/Visualizations/GenderEthnicDiversity';
 
 const vis = {
   bar: Bar,
@@ -17,7 +18,8 @@ const vis = {
 
   // Custom vis
   wikipedia: Wikipedia,
-  'app-unhappiness': AppUnhappiness
+  'app-unhappiness': AppUnhappiness,
+  'gender-ethnic-diversity': GenderEthnicDiversity
 };
 
 export default class Visualization {
