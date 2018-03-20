@@ -122,6 +122,23 @@ export default class AbstractVisualization {
     /* eslint-enable no-underscore-dangle */
   }
 
+  get lineStyles() {
+    const lineStyles = [
+      { dasharray: '0, 0', stroke: 3, linecap: 'butt', color: '#000' },
+      { dasharray: '15, 15', stroke: 3, linecap: 'butt', color: '#000' },
+      { dasharray: '1, 10', stroke: 3, linecap: 'round', color: '#000' },
+      { dasharray: '0, 0', stroke: 3, linecap: 'butt', color: this.color },
+      { dasharray: '15, 15', stroke: 3, linecap: 'butt', color: this.color },
+      { dasharray: '1, 10', stroke: 3, linecap: 'round', color: this.color }
+    ];
+
+    if (this.config.lineStyles) {
+      return this.config.lineStyles(this.color, lineStyles);
+    }
+
+    return lineStyles;
+  }
+
   get width() {
     return this.config.width || this.el.offsetWidth;
   }
@@ -140,6 +157,12 @@ export default class AbstractVisualization {
 
   get categorical() {
     return this.config.categorical || false;
+  }
+
+  get legend() {
+    return this.config.legend !== undefined && this.config.legend !== null
+      ? this.config.legend
+      : true;
   }
 
   get labelFormat() {
@@ -192,7 +215,9 @@ export default class AbstractVisualization {
       x: 2, // Avoid the border to be cut if no padding
       y: this.titleBounds.y + this.titleBounds.height,
       width: this.width - (2 * this.padding),
-      height: this.config.legendRows * this.titleSize
+      height: this.legend === false
+        ? 0
+        : this.config.legendRows * this.titleSize
     };
   }
 

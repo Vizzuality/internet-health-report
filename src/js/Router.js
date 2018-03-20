@@ -2,16 +2,16 @@ const baseUrl = window.BASE_URL;
 
 const routes = [
   {
-    match: /^\/?$/,
+    match: /^\/?(\?lang=[a-z]{2})?$/,
     page: 'HomePage'
   },
   {
-    match: /^\/category\/[A-z0-9-]+\/?$/,
+    match: /^\/category\/[A-z0-9-]+\/?(\?lang=[a-z]{2})?$/,
     page: 'IssuePage'
   },
   // Should be last
   {
-    match: /^\/[A-z0-9-]+\/?$/,
+    match: /^\/[A-z0-9-]+\/?(\?lang=[a-z]{2})?$/,
     page: 'PostPage'
   }
 ];

@@ -72,50 +72,52 @@ export default class Bar extends AbstractVisualization {
       .text(this.title);
 
     // Legend
-    const legendItem = container.append('g')
-      .attr('class', 'legend')
-      .attr('transform', `translate(${this.legendBounds.x}, ${this.legendBounds.y})`)
-      .selectAll('g')
-      .data(categories)
-      .enter()
-      .append('g');
+    if (this.legend) {
+      const legendItem = container.append('g')
+        .attr('class', 'legend')
+        .attr('transform', `translate(${this.legendBounds.x}, ${this.legendBounds.y})`)
+        .selectAll('g')
+        .data(categories)
+        .enter()
+        .append('g');
 
-    legendItem.append('rect')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', 15)
-      .attr('height', 15)
-      .attr('fill', c => categoryFillScale(c))
-      .attr('stroke', 'black')
-      .attr('stroke-width', 2);
+      legendItem.append('rect')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', 15)
+        .attr('height', 15)
+        .attr('fill', c => categoryFillScale(c))
+        .attr('stroke', 'black')
+        .attr('stroke-width', 2);
 
-    legendItem.insert('text')
-      .attr('x', 25)
-      .attr('y', 7.5)
-      .text(c => c)
-      .attr('text-anchor', 'left')
-      .attr('dominant-baseline', 'central');
+      legendItem.insert('text')
+        .attr('x', 25)
+        .attr('y', 7.5)
+        .text(c => c)
+        .attr('text-anchor', 'left')
+        .attr('dominant-baseline', 'central');
 
-    // We position the items as if they would
-    // follow the "inline" flow
-    this.config.legendRows = 1;
-    let currentXPosition = this.legendBounds.x;
-    let currentRow = 0;
-    const self = this;
-    legendItem
-      .attr('transform', function () { // eslint-disable-line func-names
-        const width = this.getBBox().width + 40;
-        const nextXPosition = currentXPosition + width;
-        if (nextXPosition > self.titleBounds.width) {
-          currentRow++; // eslint-disable-line no-plusplus
-          currentXPosition = self.legendBounds.x;
-        }
-        const res = `translate(${currentXPosition}, ${currentRow * (self.legendBounds.height)})`;
-        currentXPosition += width;
-        return res;
-      });
+      // We position the items as if they would
+      // follow the "inline" flow
+      this.config.legendRows = 1;
+      let currentXPosition = this.legendBounds.x;
+      let currentRow = 0;
+      const self = this;
+      legendItem
+        .attr('transform', function () { // eslint-disable-line func-names
+          const width = this.getBBox().width + 40;
+          const nextXPosition = currentXPosition + width;
+          if (nextXPosition > self.titleBounds.width) {
+            currentRow++; // eslint-disable-line no-plusplus
+            currentXPosition = self.legendBounds.x;
+          }
+          const res = `translate(${currentXPosition}, ${currentRow * (self.legendBounds.height)})`;
+          currentXPosition += width;
+          return res;
+        });
 
-    this.config.legendRows = currentRow + 1;
+      this.config.legendRows = currentRow + 1;
+    }
 
     // Value axis title
     container.append('g')

@@ -73,7 +73,13 @@ export default {
   vis_2_1_1: {
     type: 'line',
     valueFormat: '.0%',
-    valueAxisSize: 35
+    valueAxisSize: 35,
+    lineStyles: (color, lineStyles) => ([
+      [
+        { dasharray: '0, 0', stroke: 3, linecap: 'butt', color: '#000' },
+        { dasharray: '2, 10', stroke: 7, linecap: 'butt', color: '#000' }
+      ]
+    ].concat(lineStyles))
   },
   vis_2_1_2: {
     type: 'bar',
@@ -198,12 +204,17 @@ export default {
   vis_4_4_1: {
     type: 'bar',
     direction: 'horizontal',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueSize: 30,
+    legend: false
   },
   vis_4_4_2: {
     type: 'bar',
     direction: 'horizontal',
-    valueFormat: '.0%'
+    valueFormat: '.0%',
+    valueSize: 30,
+    labelAxisSize: 100,
+    legend: false
   },
   vis_4_5_3: {
     type: 'bar',

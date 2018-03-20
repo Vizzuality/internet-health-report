@@ -38,23 +38,19 @@ get_header(); ?>
             </div>
           </div>
           <div class="row">
-            <div class="column small-12 medium-6">
+            <div class="column small-12 medium-8">
               <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
-              <p>
-                <button type="button" class="text -btn1 js-learn-more" aria-expanded="false" aria-controls="description">
-                  <?php esc_html_e( 'Learn More', 'ihr-2018' ); ?>
-                </button>
-              </p>
+              <button type="button" class="text -btn1 js-learn-more" aria-expanded="false" aria-controls="description">
+                <?php esc_html_e( 'Learn More', 'ihr-2018' ); ?>
+              </button>
             </div>
           </div>
           <div class="row" id="description" style="display: none;">
-            <div class="column small-12 medium-6">
+            <div class="column small-12 medium-8">
             <p><?php echo the_field('more', 'category_' . get_the_category()[0]->term_id);?></p>
-            <p>
-              <button type="button" class="text -btn1 js-collapse" aria-expanded="true" aria-controls="description">
-                <?php esc_html_e( 'Close', 'ihr-2018' ); ?>
-              </button>
-            </p>
+            <button type="button" class="text -btn1 js-collapse" aria-expanded="true" aria-controls="description">
+              <?php esc_html_e( 'Close', 'ihr-2018' ); ?>
+            </button>
             </div>
           </div>
         </div>
