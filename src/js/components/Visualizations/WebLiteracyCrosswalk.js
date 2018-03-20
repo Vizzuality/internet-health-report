@@ -1,4 +1,5 @@
-import { View, Warn } from 'vega';
+import { parse } from 'vega-parser';
+import { View } from 'vega';
 import AbstractVisualization from './AbstractVisualization';
 import jsonSpec from './WebLiteracyCrosswalk-spec.json';
 
@@ -14,32 +15,32 @@ export default class WebLiteracyCrosswalk extends AbstractVisualization {
       .then(() => this.render());
   }
 
+  vegaSpec() {
+    jsonSpec.width = this.width;
+    jsonSpec.height = this.height;
+
+    return jsonSpec.data.map((d) => {
+      if (d.name === 'data') {
+        return Object.assign({}, d, { values: this.data });
+      }
+      return d;
+    });
+  }
+
   renderChart() {
     const { el } = this;
 
     // Vega
-    const view = new View(jsonSpec)
-      .logLevel(Warn)
+    const runtime = parse(this.vegaSpec());
+    new View(runtime) // eslint-disable-line no-new
       .initialize(el)
-      .renderer('svg');
-
-    view.run();
-  }
-
-  renderLegend() {
-    const { el } = this;
-    const legendElement = document.createElement('div');
-    legendElement.classList.add('web-literacy-crosswalk-vis-legend');
-    legendElement.innerHTML = `<ul>
-      <li class="happy-percent-icon">% Happy</li>
-      <li class="happy-icon">Happy Average on Screen (minutes)</li>
-      <li class="unhappy-icon">Unhappy Average on Screen (minutes)</li>
-    </ul>`;
-    el.appendChild(legendElement);
+      .renderer('svg')
+      .hover()
+      .run();
   }
 
   render() {
+    super.render();
     this.renderChart();
-    // this.renderLegend();
   }
 }

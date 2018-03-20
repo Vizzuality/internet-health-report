@@ -61,6 +61,7 @@
     "smooth-scroll": "^12.1.5",
     "textures": "^1.2.0",
     "tippy.js": "^2.2.3",
-    "vega": "3.1.0"
+    "vega": "3.1.0",
+    "vega-parser": "^2.6.1"
   }
 }
