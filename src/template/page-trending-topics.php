@@ -10,16 +10,16 @@ get_header();
 <?php
     // To create posts list within the category
     $args = array(
-      'posts_per_page' => 6,
+      'posts_per_page' => -1,
       'order'=> 'ASC',
       'meta_key' => 'order',
       'orderby' => 'meta_value_num',
       'category' => get_the_category()[0]->term_id,
       'meta_query' => array(
          array(
-           'key' => 'home_item',
-            'value' => 1,
-            'compare' => '!=')) );
+           'key' => 'type',
+            'value' => 'Spotlight',
+            'compare' => '==')) );
 
     $postslist = get_posts( $args );
   ?>

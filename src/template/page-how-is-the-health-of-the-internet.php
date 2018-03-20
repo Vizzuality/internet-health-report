@@ -1,17 +1,6 @@
 <?php
-/**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package ihr-2018
- *
- * EXAMPLE OF TAB: https://studiofreya.com/wordpress/how-to-show-child-pages-as-tabs/
+/*
+ Template Name: How is the health of the internet
  */
 
 get_header(); ?>
@@ -72,6 +61,18 @@ get_header(); ?>
         }
 
 			?>
+      <div class='l-cards-grid'>
+        <div class='wrap'>
+          <div class='row'>
+            <div class="column small-12 medium-6">
+              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'What is this' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
+            </div>
+            <div class="column small-12 medium-6">
+              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Trending topics' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+            </div>
+          </div>
+        </div>
+      </div>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

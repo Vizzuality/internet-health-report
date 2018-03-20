@@ -396,4 +396,3 @@ function languages_list_footer() {
 
     return $return_array;
  }
-
