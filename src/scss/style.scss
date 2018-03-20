@@ -581,7 +581,7 @@ a:active {
   @media screen and (max-width: 44em) {
     width: 100%;
   }
-  
+
 }
 
 .main-navigation a {
@@ -619,19 +619,19 @@ a:active {
       }
       .lang-selector {
         display:block;
-	
+
       }
   }
-    
+
   .menu-toggle,
   .main-navigation.toggled ul {
-    display: block; 
+    display: block;
     float: left;
     a { color: white;}
   }
   .main-navigation ul {
     display: none;
-  
+
   }
 
 }
@@ -2158,5 +2158,6 @@ div.reaction_buttons li.voted:hover {
 @import "components/c-explore-filters";
 @import "components/c-homepage-vis";
 @import "components/c-reactions-icon";
+@import "components/c-download-tooltip";
 
 @import "visualizations/*";
