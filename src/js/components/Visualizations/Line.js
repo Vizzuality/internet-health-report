@@ -1,5 +1,5 @@
 import { select } from 'd3-selection';
-import { scaleUtc, scaleLinear, scaleOrdinal } from 'd3-scale';
+import { scaleUtc, scaleLinear } from 'd3-scale';
 import { max, extent } from 'd3-array';
 import { axisRight, axisBottom } from 'd3-axis';
 import { line as d3Line } from 'd3-shape';
