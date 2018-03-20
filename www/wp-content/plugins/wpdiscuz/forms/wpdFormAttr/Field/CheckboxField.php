@@ -9,13 +9,13 @@ class CheckboxField extends Field {
         <div class="wpd-field-body" style="display: <?php echo $this->display; ?>">
             <div class="wpd-field-option wpdiscuz-item">
                 <input class="wpd-field-type" type="hidden" value="<?php echo $this->type; ?>" name="<?php echo $this->fieldInputName; ?>[type]" />
-                <label><?php _e('Name', 'wpdiscuz'); ?>:</label> 
-                <input class="wpd-field-name" type="text" value="<?php echo $this->fieldData['name']; ?>" name="<?php echo $this->fieldInputName; ?>[name]" required />
+                <label for="wpd-field-name"><?php _e('Name', 'wpdiscuz'); ?>:</label> 
+                <input id="wpd-field-name" class="wpd-field-name" type="text" value="<?php echo $this->fieldData['name']; ?>" name="<?php echo $this->fieldInputName; ?>[name]" required />
                 <p class="wpd-info"><?php _e('Also used for field placeholder', 'wpdiscuz'); ?></p>
             </div>
             <div class="wpd-field-option">
-                <label><?php _e('Description', 'wpdiscuz'); ?>:</label> 
-                <input type="text" value="<?php echo $this->fieldData['desc']; ?>" name="<?php echo $this->fieldInputName; ?>[desc]" />
+                <label for="wpd-field-desc"><?php _e('Description', 'wpdiscuz'); ?>:</label> 
+                <input id="wpd-field-desc" type="text" value="<?php echo $this->fieldData['desc']; ?>" name="<?php echo $this->fieldInputName; ?>[desc]" />
                 <p class="wpd-info"><?php _e('Field specific short description or some rule related to inserted information.', 'wpdiscuz'); ?></p>
             </div>
             <div class="wpd-field-option wpdiscuz-item">
@@ -25,32 +25,32 @@ class CheckboxField extends Field {
                     $values .= $value . "\n";
                 }
                 ?>
-                <label><?php _e('Values', 'wpdiscuz'); ?>:</label> 
-                <textarea required name="<?php echo $this->fieldInputName; ?>[values]" ><?php echo $values; ?></textarea>
+                <label for="wpd-field-values"><?php _e('Values', 'wpdiscuz'); ?>:</label> 
+                <textarea id="wpd-field-values" required name="<?php echo $this->fieldInputName; ?>[values]" ><?php echo $values; ?></textarea>
                 <p class="wpd-info"><?php _e('Please insert one value per line', 'wpdiscuz'); ?></p>
             </div>
             <div class="wpd-field-option">
-                <label><?php _e('Field is required', 'wpdiscuz'); ?>:</label> 
-                <input type="checkbox" value="1" <?php checked($this->fieldData['required'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[required]" />
+                <label for="wpd-field-is-required"><?php _e('Field is required', 'wpdiscuz'); ?>:</label> 
+                <input id="wpd-field-is-required" type="checkbox" value="1" <?php checked($this->fieldData['required'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[required]" />
             </div>
             <div class="wpd-field-option">
-                <label><?php _e('Display on reply form', 'wpdiscuz'); ?>:</label> 
-                <input type="checkbox" value="1" <?php checked($this->fieldData['is_show_sform'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[is_show_sform]" />
+                <label for="wpd-field-is-show-sform"><?php _e('Display on reply form', 'wpdiscuz'); ?>:</label> 
+                <input id="wpd-field-is-show-sform" type="checkbox" value="1" <?php checked($this->fieldData['is_show_sform'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[is_show_sform]" />
             </div>
             <div class="wpd-field-option">
-                <label><?php _e('Display on comment', 'wpdiscuz'); ?>:</label> 
-                <input type="checkbox" value="1" <?php checked($this->fieldData['is_show_on_comment'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[is_show_on_comment]" />
+                <label for="wpd-field-is-show-on-comment"><?php _e('Display on comment', 'wpdiscuz'); ?>:</label> 
+                <input id="wpd-field-is-show-on-comment" type="checkbox" value="1" <?php checked($this->fieldData['is_show_on_comment'], 1, true); ?> name="<?php echo $this->fieldInputName; ?>[is_show_on_comment]" />
             </div>
             <div class="wpd-advaced-options wpd-field-option">
                 <small class="wpd-advaced-options-title"><?php _e('Advanced Options', 'wpdiscuz'); ?></small>
                 <div class="wpd-field-option wpd-advaced-options-cont">
                     <div class="wpd-field-option">
-                        <label><?php _e('Meta Key', 'wpdiscuz'); ?>:</label> 
-                        <input type="text" value="<?php echo $this->name; ?>"  name="<?php echo $this->fieldInputName; ?>[meta_key]"  required="required"/>
+                        <label for="wpd-field-meta-key"><?php _e('Meta Key', 'wpdiscuz'); ?>:</label> 
+                        <input id="wpd-field-meta-key" type="text" value="<?php echo $this->name; ?>"  name="<?php echo $this->fieldInputName; ?>[meta_key]"  required="required"/>
                     </div>
                     <div class="wpd-field-option">
-                        <label><?php _e('Replace old meta key', 'wpdiscuz'); ?>:</label> 
-                        <input type="checkbox" value="1" checked="checked"  name="<?php echo $this->fieldInputName; ?>[meta_key_replace]" />
+                        <label for="wpd-field-old-meta-key"><?php _e('Replace old meta key', 'wpdiscuz'); ?>:</label> 
+                        <input id="wpd-field-old-meta-key" type="checkbox" value="1" checked="checked"  name="<?php echo $this->fieldInputName; ?>[meta_key_replace]" />
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@ class CheckboxField extends Field {
                 </div>
                 <?php if ($args['desc']) { ?>
                     <div class="wpd-field-desc">
-                        <i class="fa fa-question-circle-o" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span>
+                        <i class="far fa-question-circle" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span>
                     </div>
                 <?php } ?>
             </div>
@@ -106,7 +106,7 @@ class CheckboxField extends Field {
             <div class="wpdiscuz-item wpd-field-group wpd-field-checkbox <?php echo $required; ?> <?php echo $hasDesc ? 'wpd-has-desc' : '' ?>">
                 <div class="wpd-field-group-title"><?php _e($args['name'], 'wpdiscuz'); ?></div>
                 <?php if ($args['desc']) { ?>
-                    <div class="wpd-field-desc"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
+                    <div class="wpd-field-desc"><i class="far fa-question-circle" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
                 <?php } ?>
                 <div class="wpd-item-wrap">
                     <?php
@@ -130,7 +130,7 @@ class CheckboxField extends Field {
             return '';
         }
         $html = '<div class="wpd-custom-field wpd-cf-text">';
-        $html .= '<div class="wpd-cf-label">' . $args['name'] . '</div> <div class="wpd-cf-value"> ' . apply_filters('wpdiscuz_custom_field_checkbox', implode(' , ', $value) , $args)  . '</div>';
+        $html .= '<div class="wpd-cf-label">' . $args['name'] . '</div> <div class="wpd-cf-value"> ' . apply_filters('wpdiscuz_custom_field_checkbox', implode(' , ', $value), $args) . '</div>';
         $html .= '</div>';
         return $html;
     }

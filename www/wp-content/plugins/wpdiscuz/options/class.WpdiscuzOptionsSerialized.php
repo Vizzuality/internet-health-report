@@ -67,8 +67,16 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
     public $isGuestCanVote;
 
     /**
+     * Type - Checkbox
+     * Available Values - Checked/Unchecked
+     * Description - Load only parent comments
+     * Default Value - Checked
+     */
+    public $isLoadOnlyParentComments;
+
+    /**
      * Type - Radio Button
-     * Available Values - 0 Default (Load More) / 1 Load Rest Of Comments / 2 Lazy Load comments on scrolling
+     * Available Values - 0 Default (Load More) / 1 Load Rest Of Comments / 2 Lazy Load comments on scrolling / 3 Load all comments
      * Description - Comment list load type
      * Default Value - Disabled
      */
@@ -89,6 +97,14 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
      * Default Value - total
      */
     public $votingButtonsStyle;
+
+    /**
+     * Type - Radio
+     * Available Values - font awesome icons
+     * Description - Voting buttons icons
+     * Default Value - total
+     */
+    public $votingButtonsIcon;
 
     /**
      * Type - Checkbox array
@@ -121,22 +137,6 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
      * Default Value - Checked
      */
     public $showHideLoggedInUsername;
-
-    /**
-     * Type - Checkbox
-     * Available Values - Checked/Unchecked
-     * Description - Show/Hide Reply button for Guests
-     * Default Value - Unchecked
-     */
-    public $replyButtonGuestsShowHide;
-
-    /**
-     * Type - Checkbox
-     * Available Values - Checked/Unchecked
-     * Description - Show/Hide Reply button for Customers
-     * Default Value - Unchecked
-     */
-    public $replyButtonMembersShowHide;
 
     /**
      * Type - Checkbox
@@ -237,14 +237,6 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
     /**
      * Type - Input
      * Available Values - color codes
-     * Description - Comment Text Color
-     * Default Value - #555
-     */
-    public $commentTextColor;
-
-    /**
-     * Type - Input
-     * Available Values - color codes
      * Description - Comment Username Color
      * Default Value - #00B38F
      */
@@ -284,6 +276,14 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
      * Default Value - after
      */
     public $displayRatingOnPost;
+
+    /**
+     * Type - Checkbox
+     * Available Values - Checked/Unchecked
+     * Description - Display ratings on none single pages
+     * Default Value - Unchecked
+     */
+    public $ratingCssOnNoneSingular;
 
     // == RATING == //
 
@@ -431,6 +431,14 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
     /**
      * Type - Checkbox
      * Available Values - Checked/Unchecked
+     * Description - Hide comment date if checked
+     * Default Value - Unchecked
+     */
+    public $hideCommentDate;
+
+    /**
+     * Type - Checkbox
+     * Available Values - Checked/Unchecked
      * Description - Enable automatic image URL to image HTML conversion
      * Default Value - Checked
      */
@@ -497,6 +505,50 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
      */
     public $isNotifyOnCommentApprove;
 
+    /* === CACHE === */
+
+    /**
+     * Type - Select
+     * Available Values - checked / unchecked
+     * Description - Enable or disable gravatar caching
+     * Default Value - checked
+     */
+    public $isGravatarCacheEnabled;
+
+    /**
+     * Type - Radio
+     * Available Values - Runtime / Cron Job
+     * Description - Set preffered method of avatars caching
+     * Default Value - Cron Job
+     */
+    public $gravatarCacheMethod;
+
+    /**
+     * Type - Select
+     * Available Values - int numbers
+     * Description - Avatar caching time limit
+     * Default Value - 7
+     */
+    public $gravatarCacheTimeout;
+    public $isFileFunctionsExists;
+    /* === CACHE === */
+
+    /**
+     * Type - Radio
+     * Available Values - Default / Dark
+     * Description - Comment form style - default or dark
+     * Default Value - Default
+     */
+    public $theme;
+
+    /**
+     * Type - Checkbox
+     * Available Values - Checked / Unchecked
+     * Description - Reverse replies on root comment or not
+     * Default Value - Unchecked
+     */
+    public $reverseChildren;
+
     /**
      * wordpress options
      */
@@ -523,7 +575,8 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
         $this->wordpressCommentOrder = get_option('comment_order');
         $this->wordpressCommentPerPage = get_option('comments_per_page');
         $this->wordpressShowAvatars = get_option('show_avatars');
-        $this->wordpressDefaultCommentsPage = get_option('default_comments_page');        
+        $this->wordpressDefaultCommentsPage = get_option('default_comments_page');
+        $this->isFileFunctionsExists = function_exists('file_get_contents') && function_exists('file_put_contents');
         $this->initFormRelations();
         $this->initGoodbyeCaptchaField();
         add_action('init', array(&$this, 'initPhrasesOnLoad'), 2126);
@@ -539,15 +592,15 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
         $this->commentEditableTime = isset($options['wc_comment_editable_time']) ? $options['wc_comment_editable_time'] : 900;
         $this->redirectPage = isset($options['wpdiscuz_redirect_page']) ? $options['wpdiscuz_redirect_page'] : 0;
         $this->isGuestCanVote = isset($options['wc_is_guest_can_vote']) ? $options['wc_is_guest_can_vote'] : 0;
+        $this->isLoadOnlyParentComments = isset($options['isLoadOnlyParentComments']) ? $options['isLoadOnlyParentComments'] : 0;
         $this->commentListLoadType = isset($options['commentListLoadType']) ? $options['commentListLoadType'] : 0;
         $this->votingButtonsShowHide = isset($options['wc_voting_buttons_show_hide']) ? $options['wc_voting_buttons_show_hide'] : 0;
         $this->votingButtonsStyle = isset($options['votingButtonsStyle']) ? $options['votingButtonsStyle'] : 0;
+        $this->votingButtonsIcon = isset($options['votingButtonsIcon']) ? $options['votingButtonsIcon'] : 'fa-plus|fa-minus';
         $this->shareButtons = isset($options['wpdiscuz_share_buttons']) ? $options['wpdiscuz_share_buttons'] : array('fb', 'twitter', 'google');
         $this->headerTextShowHide = isset($options['wc_header_text_show_hide']) ? $options['wc_header_text_show_hide'] : 0;
         $this->storeCommenterData = isset($options['storeCommenterData']) ? $options['storeCommenterData'] : -1;
         $this->showHideLoggedInUsername = isset($options['wc_show_hide_loggedin_username']) ? $options['wc_show_hide_loggedin_username'] : 0;
-        $this->replyButtonGuestsShowHide = isset($options['wc_reply_button_guests_show_hide']) ? $options['wc_reply_button_guests_show_hide'] : 0;
-        $this->replyButtonMembersShowHide = isset($options['wc_reply_button_members_show_hide']) ? $options['wc_reply_button_members_show_hide'] : 0;
         $this->authorTitlesShowHide = isset($options['wc_author_titles_show_hide']) ? $options['wc_author_titles_show_hide'] : 0;
         $this->simpleCommentDate = isset($options['wc_simple_comment_date']) ? $options['wc_simple_comment_date'] : 0;
         $this->subscriptionType = isset($options['subscriptionType']) ? $options['subscriptionType'] : 1;
@@ -559,20 +612,20 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
         $this->commentTextSize = isset($options['wc_comment_text_size']) ? $options['wc_comment_text_size'] : '14px';
         $this->formBGColor = isset($options['wc_form_bg_color']) ? $options['wc_form_bg_color'] : '#F9F9F9';
         $this->commentBGColor = isset($options['wc_comment_bg_color']) ? $options['wc_comment_bg_color'] : '#FEFEFE';
-        $this->replyBGColor = isset($options['wc_reply_bg_color']) ? $options['wc_reply_bg_color'] : '#F8F8F8';
-        $this->commentTextColor = isset($options['wc_comment_text_color']) ? $options['wc_comment_text_color'] : '#555';
+        $this->replyBGColor = isset($options['wc_reply_bg_color']) ? $options['wc_reply_bg_color'] : '#F8F8F8';        
         $this->primaryColor = isset($options['wc_comment_username_color']) ? $options['wc_comment_username_color'] : '#00B38F';
         $this->ratingHoverColor = isset($options['wc_comment_rating_hover_color']) ? $options['wc_comment_rating_hover_color'] : '#FFED85';
         $this->ratingInactivColor = isset($options['wc_comment_rating_inactiv_color']) ? $options['wc_comment_rating_inactiv_color'] : '#DDDDDD';
         $this->ratingActivColor = isset($options['wc_comment_rating_activ_color']) ? $options['wc_comment_rating_activ_color'] : '#FFD700';
         $this->blogRoles = isset($options['wc_blog_roles']) ? $options['wc_blog_roles'] : array();
-        $this->buttonColor = isset($options['wc_link_button_color']) ? $options['wc_link_button_color'] : array('shc' => '#bbbbbb', 'shb' => '#cccccc', 'vbc' => '#aaaaaa', 'vbb' => '#bbbbbb', 'abc' => '#ffffff', 'abb' => '#888888');
+        $this->buttonColor = isset($options['wc_link_button_color']) ? $options['wc_link_button_color'] : array('primary_button_bg' => '#555555', 'primary_button_color' => '#FFFFFF', 'secondary_button_color' => '#777777', 'secondary_button_border' => '#dddddd', 'vote_up_link_color' => '#999999', 'vote_down_link_color' => '#999999');
         $this->inputBorderColor = isset($options['wc_input_border_color']) ? $options['wc_input_border_color'] : "#D9D9D9";
         $this->newLoadedCommentBGColor = isset($options['wc_new_loaded_comment_bg_color']) ? $options['wc_new_loaded_comment_bg_color'] : '#FFFAD6';
         $this->disableFontAwesome = isset($options['disableFontAwesome']) ? $options['disableFontAwesome'] : 0;
         $this->disableTips = isset($options['disableTips']) ? $options['disableTips'] : 0;
         $this->disableProfileURLs = isset($options['disableProfileURLs']) ? $options['disableProfileURLs'] : 0;
         $this->displayRatingOnPost = isset($options['displayRatingOnPost']) ? $options['displayRatingOnPost'] : array();
+        $this->ratingCssOnNoneSingular = isset($options['ratingCssOnNoneSingular']) ? $options['ratingCssOnNoneSingular'] : 0;
         $this->customCss = isset($options['wc_custom_css']) ? $options['wc_custom_css'] : '.comments-area{width:auto; margin: 0 auto;}';
         $this->showPluginPoweredByLink = isset($options['wc_show_plugin_powerid_by']) ? $options['wc_show_plugin_powerid_by'] : 0;
         $this->isUsePoMo = isset($options['wc_is_use_po_mo']) ? $options['wc_is_use_po_mo'] : 0;
@@ -582,6 +635,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
         $this->commentTextMaxLength = isset($options['wc_comment_text_max_length']) ? $options['wc_comment_text_max_length'] : '';
         $this->commentReadMoreLimit = isset($options['commentWordsLimit']) ? $options['commentWordsLimit'] : 100;
         $this->showHideCommentLink = isset($options['showHideCommentLink']) ? $options['showHideCommentLink'] : 0;
+        $this->hideCommentDate = isset($options['hideCommentDate']) ? $options['hideCommentDate'] : 0;
         $this->enableImageConversion = isset($options['enableImageConversion']) ? $options['enableImageConversion'] : 1;
         $this->commentLinkFilter = isset($options['commentLinkFilter']) ? $options['commentLinkFilter'] : 1;
         $this->isCaptchaInSession = isset($options['isCaptchaInSession']) ? $options['isCaptchaInSession'] : 0;
@@ -590,6 +644,11 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
         $this->commenterNameMaxLength = isset($options['commenterNameMaxLength']) ? $options['commenterNameMaxLength'] : 50;
         $this->facebookAppID = isset($options['facebookAppID']) ? $options['facebookAppID'] : '';
         $this->isNotifyOnCommentApprove = isset($options['isNotifyOnCommentApprove']) ? $options['isNotifyOnCommentApprove'] : 0;
+        $this->isGravatarCacheEnabled = isset($options['isGravatarCacheEnabled']) ? $options['isGravatarCacheEnabled'] : 0;
+        $this->gravatarCacheMethod = isset($options['gravatarCacheMethod']) ? $options['gravatarCacheMethod'] : 'cronjob';
+        $this->gravatarCacheTimeout = isset($options['gravatarCacheTimeout']) ? $options['gravatarCacheTimeout'] : 10;
+        $this->theme = isset($options['theme']) ? $options['theme'] : 'wpd-default';
+        $this->reverseChildren = isset($options['reverseChildren']) ? $options['reverseChildren'] : 0;
         do_action('wpdiscuz_init_options', $this);
     }
 
@@ -605,10 +664,12 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_comment_start_text' => __('Start the discussion', 'wpdiscuz'),
             'wc_comment_join_text' => __('Join the discussion', 'wpdiscuz'),
             'wc_email_text' => __('Email', 'wpdiscuz'),
+            'wc_subscribe_anchor' => __('Subscribe', 'wpdiscuz'),
             'wc_notify_of' => __('Notify of', 'wpdiscuz'),
             'wc_notify_on_new_comment' => __('new follow-up comments', 'wpdiscuz'),
             'wc_notify_on_all_new_reply' => __('new replies to my comments', 'wpdiscuz'),
-            'wc_notify_on_new_reply' => __('Notify of new replies to this comment', 'wpdiscuz'),
+            'wc_notify_on_new_reply_on' => __('Notify of new replies to this comment - (on)', 'wpdiscuz'),
+            'wc_notify_on_new_reply_off' => __('Notify of new replies to this comment - (off)', 'wpdiscuz'),
             'wc_sort_by' => __('Sort by', 'wpdiscuz'),
             'wc_newest' => __('newest', 'wpdiscuz'),
             'wc_oldest' => __('oldest', 'wpdiscuz'),
@@ -624,11 +685,11 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_share_vk' => __('Share On VKontakte', 'wpdiscuz'),
             'wc_share_ok' => __('Share On Odnoklassniki', 'wpdiscuz'),
             'wc_hide_replies_text' => __('Hide Replies', 'wpdiscuz'),
-            'wc_show_replies_text' => __('Show Replies', 'wpdiscuz'),
+            'wc_show_replies_text' => __('View Replies', 'wpdiscuz'),
             'wc_email_subject' => __('New Comment', 'wpdiscuz'),
-            'wc_email_message' => __('New comment on the discussion section you\'ve been interested in', 'wpdiscuz'),
+            'wc_email_message' => __('Hi [COMMENT_AUTHOR],<br/><br/>new comment on the discussion section you\'ve been interested in<br/><br/><a href="[COMMENT_URL]">[COMMENT_URL]</a><br/><br/>[COMMENT_CONTENT]', 'wpdiscuz'),
             'wc_new_reply_email_subject' => __('New Reply', 'wpdiscuz'),
-            'wc_new_reply_email_message' => __('New reply on the discussion section you\'ve been interested in', 'wpdiscuz'),
+            'wc_new_reply_email_message' => __('Hi [COMMENT_AUTHOR],<br/><br/>new reply on the discussion section you\'ve been interested in<br/><br/><a href="[COMMENT_URL]">[COMMENT_URL]</a><br/><br/>[COMMENT_CONTENT]', 'wpdiscuz'),
             'wc_subscribed_on_comment' => __('You\'re subscribed for new replies on this comment', 'wpdiscuz'),
             'wc_subscribed_on_all_comment' => __('You\'re subscribed for new replies on all your comments', 'wpdiscuz'),
             'wc_subscribed_on_post' => __('You\'re subscribed for new follow-up comments on this post', 'wpdiscuz'),
@@ -639,7 +700,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_confirm_email' => __('Confirm your subscription', 'wpdiscuz'),
             'wc_comfirm_success_message' => __('You\'ve successfully confirmed your subscription.', 'wpdiscuz'),
             'wc_confirm_email_subject' => __('Subscribe Confirmation', 'wpdiscuz'),
-            'wc_confirm_email_message' => __('Hi, <br/> You just subscribed for new comments on our website. This means you will receive an email when new comments are posted according to subscription option you\'ve chosen. <br/> To activate, click confirm below. If you believe this is an error, ignore this message and we\'ll never bother you again.', 'wpdiscuz'),
+            'wc_confirm_email_message' => __('Hi, <br/> You just subscribed for new comments on our website. This means you will receive an email when new comments are posted according to subscription option you\'ve chosen. <br/> To activate, click confirm below. If you believe this is an error, ignore this message and we\'ll never bother you again. <br/><br/><a href="[POST_URL]">[POST_TITLE]</a>', 'wpdiscuz'),
             'wc_error_empty_text' => __('please fill out this field to comment', 'wpdiscuz'),
             'wc_error_email_text' => __('email address is invalid', 'wpdiscuz'),
             'wc_error_url_text' => __('url is invalid', 'wpdiscuz'),
@@ -656,7 +717,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_second_text' => array('datetime' => array(__('second', 'wpdiscuz'), 6)),
             'wc_second_text_plural' => array('datetime' => array(__('seconds', 'wpdiscuz'), 6)), // PLURAL
             'wc_right_now_text' => __('right now', 'wpdiscuz'),
-            'wc_ago_text' => __('ago', 'wpdiscuz'),            
+            'wc_ago_text' => __('ago', 'wpdiscuz'),
             'wc_you_must_be_text' => __('You must be', 'wpdiscuz'),
             'wc_logged_in_as' => __('You are logged in as', 'wpdiscuz'),
             'wc_log_out' => __('Log out', 'wpdiscuz'),
@@ -693,7 +754,18 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_postmatic_subscription_label' => __('Participate in this discussion via email', 'wpdiscuz'),
             'wc_form_subscription_submit' => __('&rsaquo;', 'wpdiscuz'),
             'wc_comment_approved_email_subject' => __('Comment was approved', 'wpdiscuz'),
-            'wc_comment_approved_email_message' => __('Hi, <br/> Your comment was approved.', 'wpdiscuz'),
+            'wc_comment_approved_email_message' => __('Hi [COMMENT_AUTHOR],<br/><br/>your comment was approved.<br/><br/><a href="[COMMENT_URL]">[COMMENT_URL]</a><br/><br/>[COMMENT_CONTENT]', 'wpdiscuz'),
+            'wc_roles_cannot_comment_message' => __('Comments are closed.', 'wpdiscuz'),
+            'wc_stick_main_form_comment_on' => __('Stick this comment - (on)', 'wpdiscuz'),
+            'wc_stick_main_form_comment_off' => __('Stick this comment - (off)', 'wpdiscuz'),
+            'wc_stick_comment' => __('Stick', 'wpdiscuz'),
+            'wc_unstick_comment' => __('Unstick', 'wpdiscuz'),
+            'wc_sticky_comment_icon_title' => __('Sticky comment thread', 'wpdiscuz'),
+            'wc_close_main_form_comment_on' => __('Close this comment - (on)', 'wpdiscuz'),
+            'wc_close_main_form_comment_off' => __('Close this comment - (off)', 'wpdiscuz'),
+            'wc_close_comment' => __('Close', 'wpdiscuz'),
+            'wc_open_comment' => __('Open', 'wpdiscuz'),
+            'wc_closed_comment_icon_title' => __('Closed comment thread', 'wpdiscuz'),
         );
     }
 
@@ -707,15 +779,15 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_comment_editable_time' => $this->commentEditableTime,
             'wpdiscuz_redirect_page' => $this->redirectPage,
             'wc_is_guest_can_vote' => $this->isGuestCanVote,
+            'isLoadOnlyParentComments' => $this->isLoadOnlyParentComments,
             'commentListLoadType' => $this->commentListLoadType,
             'wc_voting_buttons_show_hide' => $this->votingButtonsShowHide,
             'votingButtonsStyle' => $this->votingButtonsStyle,
+            'votingButtonsIcon' => $this->votingButtonsIcon,
             'wpdiscuz_share_buttons' => $this->shareButtons,
             'wc_header_text_show_hide' => $this->headerTextShowHide,
             'storeCommenterData' => $this->storeCommenterData,
             'wc_show_hide_loggedin_username' => $this->showHideLoggedInUsername,
-            'wc_reply_button_guests_show_hide' => $this->replyButtonGuestsShowHide,
-            'wc_reply_button_members_show_hide' => $this->replyButtonMembersShowHide,
             'wc_author_titles_show_hide' => $this->authorTitlesShowHide,
             'wc_simple_comment_date' => $this->simpleCommentDate,
             'subscriptionType' => $this->subscriptionType,
@@ -728,7 +800,6 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_form_bg_color' => $this->formBGColor,
             'wc_comment_bg_color' => $this->commentBGColor,
             'wc_reply_bg_color' => $this->replyBGColor,
-            'wc_comment_text_color' => $this->commentTextColor,
             'wc_comment_username_color' => $this->primaryColor,
             'wc_comment_rating_hover_color' => $this->ratingHoverColor,
             'wc_comment_rating_inactiv_color' => $this->ratingInactivColor,
@@ -741,6 +812,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'disableTips' => $this->disableTips,
             'disableProfileURLs' => $this->disableProfileURLs,
             'displayRatingOnPost' => $this->displayRatingOnPost,
+            'ratingCssOnNoneSingular' => $this->ratingCssOnNoneSingular,
             'wc_custom_css' => $this->customCss,
             'wc_show_plugin_powerid_by' => $this->showPluginPoweredByLink,
             'wc_is_use_po_mo' => $this->isUsePoMo,
@@ -750,6 +822,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_comment_text_max_length' => $this->commentTextMaxLength,
             'commentWordsLimit' => $this->commentReadMoreLimit,
             'showHideCommentLink' => $this->showHideCommentLink,
+            'hideCommentDate' => $this->hideCommentDate,
             'enableImageConversion' => $this->enableImageConversion,
             'commentLinkFilter' => $this->commentLinkFilter,
             'isCaptchaInSession' => $this->isCaptchaInSession,
@@ -758,6 +831,11 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'commenterNameMaxLength' => $this->commenterNameMaxLength,
             'facebookAppID' => $this->facebookAppID,
             'isNotifyOnCommentApprove' => $this->isNotifyOnCommentApprove,
+            'isGravatarCacheEnabled' => $this->isGravatarCacheEnabled,
+            'gravatarCacheMethod' => $this->gravatarCacheMethod,
+            'gravatarCacheTimeout' => $this->gravatarCacheTimeout,
+            'theme' => $this->theme,
+            'reverseChildren' => $this->reverseChildren,
         );
         return $options;
     }
@@ -777,9 +855,11 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wpdiscuz_redirect_page' => '0',
             'wc_is_guest_can_vote' => '1',
             'commentsLoadType' => '0',
+            'isLoadOnlyParentComments' => '0',
             'commentListLoadType' => '0',
             'wc_voting_buttons_show_hide' => '0',
             'votingButtonsStyle' => '0',
+            'votingButtonsIcon' => 'fa-plus|fa-minus',
             'wpdiscuz_share_buttons' => $this->shareButtons,
             'wc_header_text_show_hide' => '0',
             'wc_avatar_show_hide' => '0',
@@ -787,8 +867,6 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_is_email_field_required' => '1',
             'storeCommenterData' => '-1',
             'wc_show_hide_loggedin_username' => '1',
-            'wc_reply_button_guests_show_hide' => '0',
-            'wc_reply_button_members_show_hide' => '0',
             'wc_author_titles_show_hide' => '0',
             'wc_simple_comment_date' => '0',
             'show_subscription_bar' => '1',
@@ -802,19 +880,19 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_form_bg_color' => '#F9F9F9',
             'wc_comment_bg_color' => '#FEFEFE',
             'wc_reply_bg_color' => '#F8F8F8',
-            'wc_comment_text_color' => '#555',
             'wc_comment_username_color' => '#00B38F',
             'wc_comment_rating_hover_color' => '#FFED85',
             'wc_comment_rating_inactiv_color' => '#DDDDDD',
             'wc_comment_rating_activ_color' => '#FFD700',
             'wc_blog_roles' => $this->blogRoles,
-            'wc_link_button_color' => array('shc' => '#bbbbbb', 'shb' => '#cccccc', 'vbc' => '#aaaaaa', 'vbb' => '#bbbbbb', 'abc' => '#ffffff', 'abb' => '#888888'),
+            'wc_link_button_color' => array('primary_button_bg' => '#555555', 'primary_button_color' => '#FFFFFF', 'secondary_button_color' => '#777777', 'secondary_button_border' => '#dddddd', 'vote_up_link_color' => '#999999', 'vote_down_link_color' => '#999999'),
             'wc_input_border_color' => '#D9D9D9',
             'wc_new_loaded_comment_bg_color' => '#FFFAD6',
             'disableFontAwesome' => '0',
             'disableTips' => '0',
             'disableProfileURLs' => '0',
             'displayRatingOnPost' => array('after'),
+            'ratingCssOnNoneSingular' => 0,
             'wc_custom_css' => '.comments-area{width:auto;}',
             'wc_show_plugin_powerid_by' => '0',
             'wc_is_use_po_mo' => '0',
@@ -824,6 +902,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'wc_comment_text_max_length' => '',
             'commentWordsLimit' => '100',
             'showHideCommentLink' => '0',
+            'hideCommentDate' => '0',
             'enableImageConversion' => '1',
             'commentLinkFilter' => '1',
             'isCaptchaInSession' => '1',
@@ -832,6 +911,11 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
             'commenterNameMaxLength' => '50',
             'facebookAppID' => '',
             'isNotifyOnCommentApprove' => '1',
+            'isGravatarCacheEnabled' => '1',
+            'gravatarCacheMethod' => 'cronjob',
+            'gravatarCacheTimeout' => '10',
+            'theme' => 'wpd-default',
+            'reverseChildren' => 0,
             'wcf_google_map_api_key' => '',
         );
         add_option(self::OPTION_SLUG_OPTIONS, serialize($options));
@@ -887,6 +971,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
         $js_options['wordpressThreadCommentsDepth'] = $this->wordpressThreadCommentsDepth;
         $js_options['wordpressIsPaginate'] = $this->wordpressIsPaginate;
         $js_options['commentTextMaxLength'] = $this->commentTextMaxLength ? $this->commentTextMaxLength : null;
+        $js_options['wordpressIsPaginate'] = $this->wordpressIsPaginate;
         if ($this->storeCommenterData < 0) {
             $js_options['storeCommenterData'] = 100000;
         } else if ($this->storeCommenterData == 0) {
@@ -901,6 +986,7 @@ class WpdiscuzOptionsSerialized implements WpDiscuzConstants {
         $js_options['isGoodbyeCaptchaActive'] = (boolean) $this->isGoodbyeCaptchaActive;
         $js_options['facebookAppID'] = $this->facebookAppID;
         $js_options['cookiehash'] = COOKIEHASH;
+        $js_options['isLoadOnlyParentComments'] = $this->isLoadOnlyParentComments;
 
         return $js_options;
     }

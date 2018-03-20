@@ -79,12 +79,12 @@ class TextField extends Field {
         ?>
         <div class="wpdiscuz-item <?php echo $hasIcon ? 'wpd-has-icon' : ''?> <?php echo $hasDesc ? 'wpd-has-desc' : ''?>">
             <?php if ($hasIcon) { ?>
-                <div class="wpd-field-icon"><i style="opacity: 0.8;" class="fa <?php echo $args['icon']; ?>"></i></div>
+                <div class="wpd-field-icon"><i style="opacity: 0.8;" class="<?php echo strpos(trim($args['icon']), ' ') ? $args['icon'] : 'fas '.$args['icon']; ?>"></i></div>
             <?php } ?>
             <?php $required = $args['required'] ? 'required="required"' : ''; ?>
             <input <?php echo $required; ?> class="<?php echo $name; ?> wpd-field wpd-field-text" type="text" name="<?php echo $name; ?>" value="" placeholder="<?php _e($args['name'], 'wpdiscuz'); ?>">
             <?php if ($args['desc']) { ?>
-            <div class="wpd-field-desc"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
+            <div class="wpd-field-desc"><i class="far fa-question-circle" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
             <?php } ?>
         </div>
         <?php

@@ -1,6 +1,9 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit();
+}
 
-class WpdiscuzHelper {
+class WpdiscuzHelper implements WpDiscuzConstants {
 
     public static $datetime = 'datetime';
     public static $year = 'wc_year_text';
@@ -20,7 +23,7 @@ class WpdiscuzHelper {
     private $dbManager;
     private $wpdiscuzForm;
 
-    function __construct($optionsSerialized, $dbManager, $wpdiscuzForm) {
+    public function __construct($optionsSerialized, $dbManager, $wpdiscuzForm) {
         $this->optionsSerialized = $optionsSerialized;
         $this->dbManager = $dbManager;
         $this->wpdiscuzForm = $wpdiscuzForm;
@@ -57,10 +60,10 @@ class WpdiscuzHelper {
 
     public function filterCommentText($commentContent) {
         kses_remove_filters();
-        remove_filter( 'comment_text', 'wp_kses_post' );
-	if ( ! current_user_can( 'unfiltered_html' ) ) {
-		$commentContent = wp_kses($commentContent, $this->filterKses());
-	}
+        remove_filter('comment_text', 'wp_kses_post');
+        if (!current_user_can('unfiltered_html')) {
+            $commentContent = wp_kses($commentContent, $this->filterKses());
+        }
         return $commentContent;
     }
 
@@ -274,6 +277,10 @@ class WpdiscuzHelper {
         } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
+
+        if ($ip == '::1') {
+            $ip = '127.0.0.1';
+        }
         return $ip;
     }
 
@@ -287,7 +294,7 @@ class WpdiscuzHelper {
             ?>
             <div id="comments" style="width: 0;height: 0;clear: both;margin: 0;padding: 0;"></div>
             <div id="respond" class="comments-area">
-        <?php } else { ?>
+            <?php } else { ?>
                 <div id="comments" class="comments-area">
                     <div id="respond" style="width: 0;height: 0;clear: both;margin: 0;padding: 0;"></div>
                     <?php
@@ -342,7 +349,7 @@ class WpdiscuzHelper {
                     $title = trim($titleMatch[1]) ? trim($titleMatch[1]) : __('Spoiler', 'wpdiscuz');
                 }
 
-                $html .= '<div class="wpdiscuz-spoiler wpdiscuz-spoiler-closed"><i class="fa fa-plus" aria-hidden="true"></i>' . $title . '</div>';
+                $html .= '<div class="wpdiscuz-spoiler wpdiscuz-spoiler-closed"><i class="fas fa-plus" aria-hidden="true"></i>' . $title . '</div>';
                 $html .= '<div class="wpdiscuz-spoiler-content">' . $matches[5] . '</div>';
                 $html .= '</div>';
                 return $html;
@@ -407,12 +414,67 @@ class WpdiscuzHelper {
                 $authorURL = apply_filters('author_link', $authorURL, $author_id, $author_nicename);
                 return $authorURL;
             }
-            
-            public function loadMoreLink($parentCommentID,$post_id){
+
+            public function loadMoreLink($parentCommentID, $post_id) {
                 global $wp_rewrite;
                 $loadMoreLink = !$wp_rewrite->using_permalinks() ? get_permalink($post_id) . "&" : get_permalink($post_id) . "?";
-                $loadMoreLink.= 'wpdParentID='.$parentCommentID;
+                $loadMoreLink .= 'wpdParentID=' . $parentCommentID;
                 return $loadMoreLink;
+            }
+
+            public static function getCurrentUser() {
+                global $user_ID;
+                if ($user_ID) {
+                    $user = get_userdata($user_ID);
+                } else {
+                    $user = wp_set_current_user(0);
+                }
+                return $user;
+            }
+
+            public function canUserEditComment($comment, $currentUser, $commentListArgs = array()) {
+                $currentIP = $this->getRealIPAddr();
+                if (isset($commentListArgs['comment_author_email'])) {
+                    $storedCookieEmail = $commentListArgs['comment_author_email'];
+                } else {
+                    $storedCookieEmail = isset($_COOKIE['comment_author_email_' . COOKIEHASH]) ? $_COOKIE['comment_author_email_' . COOKIEHASH] : '';
+                }
+                return ($storedCookieEmail == $comment->comment_author_email && $currentIP == $comment->comment_author_IP) || ($currentUser && $currentUser->ID && $currentUser->ID == $comment->user_id);
+            }
+
+            public function addCommentTypes($args) {
+                $args[self::WPDISCUZ_STICKY_COMMENT] = __('Sticky', 'woodiscuz');
+                return $args;
+            }
+
+            public function commentRowStickAction($actions, $comment) {
+                if (!$comment->comment_parent) {
+                    $stickText = $comment->comment_type == self::WPDISCUZ_STICKY_COMMENT ? $this->optionsSerialized->phrases['wc_unstick_comment'] : $this->optionsSerialized->phrases['wc_stick_comment'];
+                    if ($comment->comment_karma) {
+                        $closeText = $this->optionsSerialized->phrases['wc_open_comment'];
+                        $closeIcon = 'fa-lock';
+                    } else {
+                        $closeText = $this->optionsSerialized->phrases['wc_close_comment'];
+                        $closeIcon = 'fa-unlock';
+                    }
+                    $actions['stick'] = '<a data-comment="' . $comment->comment_ID . '" data-post="' . $comment->comment_post_ID . '" class="wc_stick_btn" href="#"> <i class="fas fa-thumbtack"></i> <span class="wc_stick_text">' . $stickText . '</span></a>';
+                    $actions['close'] = '<a data-comment="' . $comment->comment_ID . '" data-post="' . $comment->comment_post_ID . '" class="wc_close_btn" href="#"> <i class="fas ' . $closeIcon . '"></i> <span class="wc_close_text">' . $closeText . '</span></a>';
+                }
+                return $actions;
+            }
+
+            public function wpdDeactivationReasonModal() {
+                ob_start();
+                include_once 'deactivation-reason-modal.php';
+                $html = ob_get_clean();
+                echo $html;
+            }
+
+            public function disableAddonsDemo() {
+                if (current_user_can('manage_options') && isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'disableAddonsDemo') && isset($_GET['show'])) {
+                    update_option(self::OPTION_SLUG_SHOW_DEMO, intval($_GET['show']));
+                    wp_redirect(admin_url('edit-comments.php?page=' . WpdiscuzCore::PAGE_SETTINGS));
+                }
             }
 
         }

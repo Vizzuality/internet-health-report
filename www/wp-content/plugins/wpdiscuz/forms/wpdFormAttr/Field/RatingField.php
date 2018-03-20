@@ -20,7 +20,7 @@ class RatingField extends Field {
             <div class="wpd-field-option">
                 <div class="input-group">
                     <label><span class="input-group-addon"></span> <?php _e('Field icon', 'wpdiscuz'); ?>:</label>
-                    <input data-placement="bottom" class="icp icp-auto" value="<?php echo isset($this->fieldData['icon']) ? $this->fieldData['icon'] : 'fa-star' ; ?>" type="text" name="<?php echo $this->fieldInputName; ?>[icon]"/>
+                    <input data-placement="bottom" class="icp icp-auto" value="<?php echo isset($this->fieldData['icon']) ? $this->fieldData['icon'] : 'fas fa-star' ; ?>" type="text" name="<?php echo $this->fieldInputName; ?>[icon]"/>
                 </div>
                 <p class="wpd-info"><?php _e('Font-awesome icon library.', 'wpdiscuz'); ?></p>
             </div>
@@ -83,7 +83,7 @@ class RatingField extends Field {
             <div class="wpd-field-group-title">
                 <?php _e($args['name'], 'wpdiscuz'); ?>
                 <?php if ($args['desc']) { ?>
-                    <div class="wpd-field-desc"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
+                    <div class="wpd-field-desc"><i class="far fa-question-circle" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
                 <?php } ?>
             </div>
             <div class="wpd-item-wrap">
@@ -92,7 +92,7 @@ class RatingField extends Field {
                     for ($i = 5; $i >= 1; $i--) {
                         ?>
                         <input type="radio" id="wpdiscuz-star_<?php echo $uniqueId . '_' . $i; ?>" name="<?php echo $name; ?>" value="<?php echo $i; ?>" />
-                        <label class = "fa <?php echo $args['icon'];?> full" for="wpdiscuz-star_<?php echo $uniqueId . '_' . $i; ?>" title="<?php echo $i; ?>"></label>
+                        <label class = "<?php echo strpos(trim($args['icon']), ' ') ? $args['icon'] : 'fas '.$args['icon']; ?> full" for="wpdiscuz-star_<?php echo $uniqueId . '_' . $i; ?>" title="<?php echo $i; ?>"></label>
                     <?php }
                     ?>
                 </fieldset>
@@ -110,7 +110,8 @@ class RatingField extends Field {
         $html .='<div class="wpd-cf-label">' . $args['name'] . ' : </div><div class="wpd-cf-value">';
         for ($i = 0; $i < 5; $i++) {
             $colorClass = ($i < $value) ? ' wcf-activ-star ' : ' wcf-pasiv-star ';
-            $html .= '<i class="fa '.$args['icon'].' ' . $colorClass . '" aria-hidden="true"></i>&nbsp;';
+            $fa = strpos(trim($args['icon']), ' ') ? $args['icon'] : 'fas '.$args['icon'];
+            $html .= '<i class="'. $fa . ' ' . $colorClass . '" aria-hidden="true"></i>&nbsp;';
         }
         $html .= '</div></div>';
         return $html;
@@ -133,7 +134,7 @@ class RatingField extends Field {
             'desc' => '',
             'required' => '0',
             'loc' => 'top',
-            'icon' => 'fa-star',
+            'icon' => 'fas fa-star',
             'is_show_on_comment' => 1
         );
     }

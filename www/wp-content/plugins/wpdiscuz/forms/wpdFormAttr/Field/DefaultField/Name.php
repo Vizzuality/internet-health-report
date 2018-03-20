@@ -46,12 +46,12 @@ class Name extends Field {
             $nameLengthRange = (intval($options->commenterNameMinLength) >= 1 && (intval($options->commenterNameMaxLength) >= 1 && intval($options->commenterNameMaxLength) <= 50)) ? 'pattern=".{' . $options->commenterNameMinLength . ',' . $options->commenterNameMaxLength . '}"' : ''; ?>
             <div class="wpdiscuz-item <?php echo $hasIcon ? 'wpd-has-icon' : ''?>">
                 <?php if ($args['icon']) { ?>
-                <div class="wpd-field-icon"><i class="fa <?php echo $args['icon']; ?>"></i></div>
+                <div class="wpd-field-icon"><i class="<?php echo strpos(trim($args['icon']), ' ') ? $args['icon'] : 'fas '.$args['icon']; ?>"></i></div>
                 <?php } ?>
                 <?php $required = $args['required'] ? 'required="required"' : ''; ?>
                 <input <?php echo $required; ?> class="<?php echo $name; ?> wpd-field" type="text" name="<?php echo $name; ?>" value="" placeholder="<?php _e($args['name'],'wpdiscuz')//echo $args['name']; ?>" maxlength="<?php echo $options->commenterNameMaxLength; ?>" <?php echo $nameLengthRange; ?> title="">
                 <?php if ($args['desc']) { ?>
-                    <div class="wpd-field-desc"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
+                    <div class="wpd-field-desc"><i class="far fa-question-circle" aria-hidden="true"></i><span><?php echo esc_html($args['desc']); ?></span></div>
                 <?php } ?>
             </div>
             <?php
@@ -63,13 +63,13 @@ class Name extends Field {
         $this->fieldDefaultData = array(
             'name' => __('Name', 'wpdiscuz'),
             'desc' => '',
-            'icon' => 'fa-user',
+            'icon' => 'fas fa-user',
             'required' => '0'
         );
     }
 
     public function validateFieldData($fieldName,$args, $options, $currentUser) {
-        $name = isset($_POST[$fieldName]) ? filter_var($_POST[$fieldName]) : '';
+        $name = isset($_POST[$fieldName]) ? filter_var(wp_unslash($_POST[$fieldName])) : '';
         if (!$args['required']) {
             $name = !($name) ? $options->phrases['wc_anonymous'] : $name;
         }

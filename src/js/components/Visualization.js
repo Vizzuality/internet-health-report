@@ -5,6 +5,22 @@ import Area from 'components/Visualizations/Area';
 import Circle from 'components/Visualizations/Circle';
 import Wikipedia from 'components/Visualizations/Wikipedia';
 import Map from 'components/Visualizations/Map';
+import AppUnhappiness from 'components/Visualizations/AppUnhappiness';
+import WebLiteracyCrosswalk from 'components/Visualizations/WebLiteracyCrosswalk';
+
+const vis = {
+  bar: Bar,
+  'stacked-bar': StackedBar,
+  line: Line,
+  area: Area,
+  circle: Circle,
+  map: Map,
+
+  // Custom vis
+  wikipedia: Wikipedia,
+  'app-unhappiness': AppUnhappiness,
+  'web-literacy-crosswalk': WebLiteracyCrosswalk
+};
 
 export default class Visualization {
   constructor(container, options) {

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <div>
-    <h2 style="padding:5px 10px 10px 10px; margin:0px;"><?php _e('Integrations', 'wpdiscuz'); ?></h2>   
+    <h2 class="wpd-subtitle"><?php _e('Integrations', 'wpdiscuz'); ?></h2>   
     <table class="wp-list-table widefat plugins" style="margin-top:10px; border:none;" width="75">
         <tbody>
             <tr valign="top">

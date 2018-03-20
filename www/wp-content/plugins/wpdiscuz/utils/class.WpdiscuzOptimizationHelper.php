@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit();
+}
+
 class WpdiscuzOptimizationHelper {
 
     private $optionsSerialized;
@@ -43,7 +47,6 @@ class WpdiscuzOptimizationHelper {
         }
     }
 
-  
     /**
      * add new comment id in comment meta if status is approved
      * @param type $newStatus the comment new status
@@ -107,6 +110,11 @@ class WpdiscuzOptimizationHelper {
         if ($res) {
             wp_redirect(admin_url('edit-comments.php?page=' . WpdiscuzCore::PAGE_SETTINGS));
         }
+    }
+    
+    public function cleanCommentRelatedRows($commentId) {
+        $this->dbManager->deleteSubscriptions($commentId);
+        $this->dbManager->deleteVotes($commentId);
     }
 
 }

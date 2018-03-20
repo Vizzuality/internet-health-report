@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_year_text_plural"><?php _e('Years (Plural Form)', 'wpdiscuz'); ?></label></th>
-                <td colspan="3"><input type="text" value="<?php echo isset($this->optionsSerialized->phrases['wc_year_text_plural']['datetime'][0]) ? $this->optionsSerialized->phrases['wc_year_text_plural']['datetime'][0] : __('Years', 'wpdiscuz'); ?>" name="wc_year_text_plural" id="wc_year_text_plural" /></td>
+                <td colspan="3"><input type="text" value="<?php echo $this->optionsSerialized->phrases['wc_year_text_plural']['datetime'][0]; ?>" name="wc_year_text_plural" id="wc_year_text_plural" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row"><label for="wc_month_text"><?php _e('Month', 'wpdiscuz'); ?></label></th>

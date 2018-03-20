@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) {
 ?>
 <div class="wrap wpdiscuz_options_page">
     <div style="float:left; width:50px; height:55px; margin:10px 10px 20px 0px;">
-        <img src="<?php echo plugins_url(WPDISCUZ_DIR_NAME . '/assets/img/plugin-icon/plugin-icon-48.png'); ?>" style="border:2px solid #fff;"/>
+        <img src="<?php echo plugins_url(WPDISCUZ_DIR_NAME . '/assets/img/plugin-icon/plugin-icon-48.png'); ?>" style="border:1px solid #fff;"/>
     </div>
     <h1 style="padding-bottom:20px; padding-top:15px;"><?php _e('wpDiscuz General Settings', 'wpdiscuz'); ?></h1>
     <br style="clear:both" />
@@ -16,10 +16,10 @@ if (!defined('ABSPATH')) {
             <td valign="top" style="padding:3px;">
                 <table width="100%" border="0" cellspacing="2">
                     <tr>
-                        <th style="font-size:16px;"><a href="https://wordpress.org/support/view/plugin-reviews/wpdiscuz?filter=5" target="_blank" title="We'd greatly appreciate your feedback on WordPress.org"><?php _e('Like wpDiscuz?', 'wpdiscuz'); ?></a></th>
-                        <th style="font-size:16px; width:135px; text-align:center;"><a href="http://wpdiscuz.com/wpdiscuz-documentation/" style="color:#008EC2; overflow:hidden; outline:none;" target="_blank"><?php _e('Documentation', 'wpdiscuz'); ?></a></th>
-                        <th style="font-size:16px; width:75px; text-align:center;"><a href="https://gvectors.com/forum/" style="color:#008EC2; overflow:hidden; outline:none;" target="_blank"><?php _e('Support', 'wpdiscuz'); ?></a></th>
-                        <th style="font-size:16px; width:75px; text-align:center;"><a href="http://wpdiscuz.com/addons/" style="color:#008EC2; overflow:hidden; outline:none;" target="_blank"><?php _e('Addons', 'wpdiscuz'); ?></a></th>
+                        <th style="font-size:16px;"><a href="https://gvectors.com/product-category/wpdiscuz/" target="_blank" title="Find all wpDiscuz Addons on gVectors Team Store"><?php _e('Need More Features?', 'wpdiscuz'); ?></a></th>
+                        <th style="font-size:16px; width:135px; text-align:center;"><a href="http://wpdiscuz.com/wpdiscuz-documentation/" style="overflow:hidden; outline:none;" target="_blank"><?php _e('Documentation', 'wpdiscuz'); ?></a></th>
+                        <th style="font-size:16px; width:75px; text-align:center;"><a href="https://gvectors.com/forum/" style="overflow:hidden; outline:none;" target="_blank"><?php _e('Support', 'wpdiscuz'); ?></a></th>
+                        <th style="font-size:16px; width:75px; text-align:center;"><a href="https://gvectors.com/product-category/wpdiscuz/" style="overflow:hidden; outline:none;" target="_blank"><?php _e('Addons', 'wpdiscuz'); ?></a></th>
                     </tr>
                 </table>
             </td>
@@ -52,23 +52,27 @@ if (!defined('ABSPATH')) {
         <h2>&nbsp;</h2>
         <div id="optionsTab">
             <ul class="resp-tabs-list options_tab_id">
-                <li><?php _e('General Settings', 'wpdiscuz'); ?></li>
+                <li><?php _e('General', 'wpdiscuz'); ?></li>
+                <li><?php _e('Comment Form', 'wpdiscuz'); ?></li>
+                <li><?php _e('Comment List', 'wpdiscuz'); ?></li>
                 <li><?php _e('Live Update', 'wpdiscuz'); ?></li>
-                <li><?php _e('Show/Hide', 'wpdiscuz'); ?></li>
+
                 <li><?php _e('Subscription', 'wpdiscuz'); ?> <?php if (class_exists('Prompt_Comment_Form_Handling')): ?> <?php _e('and Postmatic', 'wpdiscuz'); ?> <?php endif; ?></li>
                 <li><?php _e('Styling', 'wpdiscuz'); ?></li>
-                <li><?php _e('Social Login', 'wpdiscuz'); ?></li>
+                <li><?php _e('Cache', 'wpdiscuz'); ?></li>
                 <li><?php _e('Integrations', 'wpdiscuz'); ?></li>
                 <li><?php _e('Addons', 'wpdiscuz'); ?></li>
             </ul>
             <div class="resp-tabs-container options_tab_id">
                 <?php
                 include 'options-layouts/settings-general.php';
+                include 'options-layouts/settings-form.php';
+                include 'options-layouts/settings-list.php';
                 include 'options-layouts/settings-live-update.php';
-                include 'options-layouts/settings-show-hide.php';
                 include 'options-layouts/settings-subscription.php';
                 include 'options-layouts/settings-style.php';
-                include 'options-layouts/settings-social.php';
+                include 'options-layouts/settings-cache.php';
+                //include 'options-layouts/settings-social.php';
                 include 'options-layouts/settings-integrations.php';
                 include 'options-layouts/settings-addons.php';
                 ?>
@@ -149,7 +153,7 @@ if (!defined('ABSPATH')) {
                             ?>
                             <a id="wpdiscuz-reset-options" style="float: left;" class="button button-secondary" href="<?php echo $resetOptionsUrl; ?>"><?php _e('Reset Options', 'wpdiscuz'); ?></a>                            
                             <?php $voteUrl = admin_url('admin-post.php/?action=removeVoteData&remove=1'); ?>
-                            <a id="wpdiscuz-remove-votes" href="<?php echo wp_nonce_url($voteUrl, 'remove_vote_data'); ?>" class="button button-secondary" style="margin-left: 5px;" id="wpdiscuz_clear_votes"><?php _e('Remove vote data', 'wpdiscuz'); ?></a>
+                            <a id="wpdiscuz-remove-votes" href="<?php echo wp_nonce_url($voteUrl, 'remove_vote_data'); ?>" class="button button-secondary" style="margin-left: 5px;"><?php _e('Remove vote data', 'wpdiscuz'); ?></a>
                             <input style="float: right;" type="submit" class="button button-primary" name="wc_submit_options" value="<?php _e('Save Changes', 'wpdiscuz'); ?>" />                                
                         </p>
                     </td>
