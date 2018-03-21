@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import { csvParse } from 'd3-dsv';
 import { format } from 'd3-format';
 import { utcFormat } from 'd3-time-format';
@@ -464,7 +465,17 @@ export default class AbstractVisualization {
       })
       .then((data) => {
         if (isCSVFile) {
-          this.data = csvParse(data);
+          this.data = csvParse(data, (d) => {
+            const newData = Object.assign({}, d);
+            const keys = Object.keys(newData);
+            // Detecting numbers
+            keys.forEach((key) => {
+              const valueNumber = Number(newData[key]);
+              const isNumber = (typeof valueNumber === 'number' && !isNaN(valueNumber));
+              if (isNumber) newData[key] = valueNumber;
+            });
+            return newData;
+          });
         } else {
           this.data = data;
         }

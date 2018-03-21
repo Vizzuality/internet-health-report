@@ -1,5 +1,4 @@
-import { parse } from 'vega-parser';
-import { View, Warn } from 'vega';
+import * as vega from 'vega';
 import AbstractVisualization from './AbstractVisualization';
 import jsonSpec from './WebLiteracyCrosswalk-spec.json';
 
@@ -21,7 +20,7 @@ export default class WebLiteracyCrosswalk extends AbstractVisualization {
     spec.height = this.height;
     spec.padding = this.padding;
 
-    spec.data.map((d) => {
+    spec.data = spec.data.map((d) => {
       if (d.name === 'data') {
         return Object.assign({}, d, { values: this.data });
       }
@@ -33,12 +32,11 @@ export default class WebLiteracyCrosswalk extends AbstractVisualization {
 
   renderChart() {
     const { el } = this;
-    // console.log(this.vegaSpec());
 
     // Vega
-    const runtime = parse(this.vegaSpec());
-    new View(runtime) // eslint-disable-line no-new
-      .logLevel(Warn)
+    const runtime = vega.parse(this.vegaSpec());
+    new vega.View(runtime) // eslint-disable-line no-new
+      .logLevel(vega.Warn)
       .initialize(el)
       .renderer('svg')
       .hover()
@@ -47,7 +45,7 @@ export default class WebLiteracyCrosswalk extends AbstractVisualization {
 
   render() {
     super.render();
-    this.el.setAttribute('style', `width: ${this.width}px; height: ${this.height}px`);
+    // this.el.setAttribute('style', `width: ${this.width}px; height: ${this.height}px`);
     this.renderChart();
   }
 }
