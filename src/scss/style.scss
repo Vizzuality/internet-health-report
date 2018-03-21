@@ -853,7 +853,7 @@ a:active {
   position: fixed;
   height: 50px;
   width: 100%;
-  z-index: 50; // z-index lower than the actual footer
+  z-index: 48; // z-index lower than the actual footer
   margin: 0px 0 0;
   opacity: 1;
   border-top: 2px solid black;
