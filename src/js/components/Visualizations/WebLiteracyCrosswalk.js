@@ -1,11 +1,16 @@
-import * as vega from 'vega';
 import AbstractVisualization from './AbstractVisualization';
 import jsonSpec from './WebLiteracyCrosswalk-spec.json';
+
+let vega = null;
 
 export default class WebLiteracyCrosswalk extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
-    this.initialize();
+    import(/* webpackChunkName: "vega" */ 'vega')
+      .then((lib) => {
+        vega = lib;
+        this.initialize();
+      });
   }
 
   initialize() {
@@ -38,14 +43,13 @@ export default class WebLiteracyCrosswalk extends AbstractVisualization {
     new vega.View(runtime) // eslint-disable-line no-new
       .logLevel(vega.Warn)
       .initialize(el)
-      .renderer('svg')
+      .renderer('canvas')
       .hover()
       .run();
   }
 
   render() {
     super.render();
-    // this.el.setAttribute('style', `width: ${this.width}px; height: ${this.height}px`);
     this.renderChart();
   }
 }
