@@ -80,16 +80,16 @@ export default class AppUnhappiness extends AbstractVisualization {
     g.append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2})`)
       .append('path')
-      .attr('class', 'area unhappy')
+      .attr('class', 'area happy')
       .datum(data)
-      .attr('d', unHappyArea);
+      .attr('d', happyArea);
 
     g.append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2})`)
       .append('path')
-      .attr('class', 'area happy')
+      .attr('class', 'area unhappy')
       .datum(data)
-      .attr('d', happyArea);
+      .attr('d', unHappyArea);
 
     // Line
     const line = lineRadial()

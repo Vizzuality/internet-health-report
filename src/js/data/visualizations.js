@@ -280,6 +280,7 @@ export default {
   },
   vis_5_6: {
     type: 'web-literacy-crosswalk',
+    height: 800,
     padding: 20
   }
 };
