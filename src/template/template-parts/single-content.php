@@ -75,7 +75,7 @@
             <?php echo the_title(); ?>
           </h1>
           <span class="post-date">
-            <?php esc_html_e( 'March 2018', 'ihr-2018' ); ?>
+            <?php esc_html_e( 'April 2018', 'ihr-2018' ); ?>
           </span>
           <div class="post-content">
             <?php the_content(); ?>
