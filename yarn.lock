@@ -7282,7 +7282,7 @@ vega-loader@2:
     topojson-client "3"
     vega-util "1"
 
-vega-parser@2, vega-parser@^2.5, vega-parser@^2.6.1:
+vega-parser@2, vega-parser@^2.5:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/vega-parser/-/vega-parser-2.6.1.tgz#7cde99153392c7452c53cac2c9d0726aead72912"
   dependencies:

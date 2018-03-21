@@ -93,7 +93,7 @@ gulp.task('css', ['images'], () => {
   return gulp.src(css.src)
     .pipe(bulkSass())
     .pipe(sass(css.sassOpts))
-    // .pipe(postcss(css.processors))
+    .pipe(postcss(css.processors))
     .pipe(gulp.dest(css.build))
     .pipe(browsersync ? browsersync.reload({ stream: true }) : gutil.noop());
 });
@@ -142,7 +142,7 @@ gulp.task('watch', ['browsersync'], () => {
   gulp.watch(php.src, ['php'], browsersync ? browsersync.reload : {});
 
   // Image changes
-  // gulp.watch(images.src, ['images']);
+  gulp.watch(images.src, ['images']);
 
   // CSS changes
   gulp.watch(css.watch, ['css']);
