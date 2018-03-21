@@ -154,6 +154,35 @@ export default class Bar extends AbstractVisualization {
       .attr('text-anchor', 'middle')
       .text(this.labelAxisTitle);
 
+    // Label axis
+    // NOTE: must be before the value axis for the dynamic label wrapping feature
+    const labelScale = scaleBand()
+      .domain(labels)
+      .rangeRound(this.direction === 'horizontal' ? [0, this.visualizationBounds.height] : [0, this.visualizationBounds.width])
+      .paddingInner(0.2)
+      .paddingOuter(0.2);
+
+    const labelAxis = (this.direction === 'horizontal' ? axisRight : axisBottom)(labelScale)
+      .tickPadding(10)
+      .tickSize(0);
+
+    const labelAxisContainer = container.append('g')
+      .attr('class', 'label-axis')
+      .attr('transform', `translate(${this.labelAxisBounds.x}, ${this.labelAxisBounds.y})`)
+      .call(labelAxis);
+
+    if (this.dynamicLabelWrapping) {
+      labelAxisContainer.selectAll('.tick text')
+        .call(this.wrapText, labelScale.bandwidth());
+
+      // We update the size of the axis
+      const labelAxisSize = labelAxisContainer.node().getBBox().height;
+      this.config.labelAxisSize = labelAxisSize;
+
+      // And recalculate its position
+      labelAxisContainer.attr('transform', `translate(${this.labelAxisBounds.x}, ${this.labelAxisBounds.y})`);
+    }
+
     // Value axis
     let valueScale;
     if (this.categorical) {
@@ -240,22 +269,6 @@ export default class Bar extends AbstractVisualization {
         }
         return valueScale(d);
       });
-
-    // Label axis
-    const labelScale = scaleBand()
-      .domain(labels)
-      .rangeRound(this.direction === 'horizontal' ? [0, this.visualizationBounds.height] : [0, this.visualizationBounds.width])
-      .paddingInner(0.2)
-      .paddingOuter(0.2);
-
-    const labelAxis = (this.direction === 'horizontal' ? axisRight : axisBottom)(labelScale)
-      .tickPadding(10)
-      .tickSize(0);
-
-    container.append('g')
-      .attr('class', 'label-axis')
-      .attr('transform', `translate(${this.labelAxisBounds.x}, ${this.labelAxisBounds.y})`)
-      .call(labelAxis);
 
     // Marks
     const categoryScale = scaleBand()

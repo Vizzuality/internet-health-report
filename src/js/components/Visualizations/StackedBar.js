@@ -98,32 +98,54 @@ export default class StackedBar extends AbstractVisualization {
       .attr('stroke-width', 2);
 
     legendItem.insert('text')
-      .attr('x', 25)
-      .attr('y', 7.5)
+      .attr('transform', 'translate(25, 7.5)')
+      .attr('x', 0)
+      .attr('y', 0)
       .text(c => c)
       .attr('text-anchor', 'left')
       .attr('dominant-baseline', 'central');
 
-    // We position the items as if they would
-    // follow the "inline" flow
-    this.config.legendRows = 1;
-    let currentXPosition = this.legendBounds.x;
-    let currentRow = 0;
-    const self = this;
-    legendItem
-      .attr('transform', function () { // eslint-disable-line func-names
-        const width = this.getBBox().width + 40;
-        const nextXPosition = currentXPosition + width;
-        if (nextXPosition > self.titleBounds.width) {
-          currentRow++; // eslint-disable-line no-plusplus
-          currentXPosition = self.legendBounds.x;
-        }
-        const res = `translate(${currentXPosition}, ${currentRow * (self.legendBounds.height)})`;
-        currentXPosition += width;
+    if (this.breakdownLegend) {
+      // Each item of the legend is on a different line and if
+      // the text associated to an item is too long, it's wrapped
+      // into a new line
+      let currentHeight = 0;
+      const initialSize = this.legendBounds.height;
+
+      legendItem.selectAll('text')
+        .call(this.wrapText, this.legendBounds.width - 25, 25, 1, 0);
+
+      legendItem.attr('transform', function () { // eslint-disable-line func-names
+        const res = `translate(0, ${currentHeight})`;
+        // The 10px are a space between two items of the legend
+        currentHeight += this.getBBox().height + 10;
         return res;
       });
 
-    this.config.legendRows = currentRow + 1;
+      // The 10px are a space between the legend and the chart
+      this.config.legendRows = (currentHeight + 10) / initialSize;
+    } else {
+      // We position the items as if they would
+      // follow the "inline" flow
+      this.config.legendRows = 1;
+      let currentXPosition = this.legendBounds.x;
+      let currentRow = 0;
+      const self = this;
+      legendItem
+        .attr('transform', function () { // eslint-disable-line func-names
+          const width = this.getBBox().width + 40;
+          const nextXPosition = currentXPosition + width;
+          if (nextXPosition > self.titleBounds.width) {
+            currentRow++; // eslint-disable-line no-plusplus
+            currentXPosition = self.legendBounds.x;
+          }
+          const res = `translate(${currentXPosition}, ${currentRow * (self.legendBounds.height)})`;
+          currentXPosition += width;
+          return res;
+        });
+
+      this.config.legendRows = currentRow + 1;
+    }
 
     // Value axis title
     container.append('g')
@@ -158,6 +180,35 @@ export default class StackedBar extends AbstractVisualization {
       .attr('dominant-baseline', 'central')
       .attr('text-anchor', 'middle')
       .text(this.labelAxisTitle);
+
+    // Label axis
+    // NOTE: must be before the value axis for the dynamic label wrapping feature
+    const labelScale = scaleBand()
+      .domain(labels)
+      .rangeRound(this.direction === 'horizontal' ? [0, this.visualizationBounds.height] : [0, this.visualizationBounds.width])
+      .paddingInner(0.2)
+      .paddingOuter(0.2);
+
+    const labelAxis = (this.direction === 'horizontal' ? axisRight : axisBottom)(labelScale)
+      .tickPadding(10)
+      .tickSize(0);
+
+    const labelAxisContainer = container.append('g')
+      .attr('class', 'label-axis')
+      .attr('transform', `translate(${this.labelAxisBounds.x}, ${this.labelAxisBounds.y})`)
+      .call(labelAxis);
+
+    if (this.dynamicLabelWrapping) {
+      labelAxisContainer.selectAll('.tick text')
+        .call(this.wrapText, labelScale.bandwidth());
+
+      // We update the size of the axis
+      const labelAxisSize = labelAxisContainer.node().getBBox().height;
+      this.config.labelAxisSize = labelAxisSize;
+
+      // And recalculate its position
+      labelAxisContainer.attr('transform', `translate(${this.labelAxisBounds.x}, ${this.labelAxisBounds.y})`);
+    }
 
     // Value axis
     const valueScale = scaleLinear()
@@ -214,22 +265,6 @@ export default class StackedBar extends AbstractVisualization {
         return valueScale(d);
       });
 
-    // Label axis
-    const labelScale = scaleBand()
-      .domain(labels)
-      .rangeRound(this.direction === 'horizontal' ? [0, this.visualizationBounds.height] : [0, this.visualizationBounds.width])
-      .paddingInner(0.2)
-      .paddingOuter(0.2);
-
-    const labelAxis = (this.direction === 'horizontal' ? axisRight : axisBottom)(labelScale)
-      .tickPadding(10)
-      .tickSize(0);
-
-    container.append('g')
-      .attr('class', 'label-axis')
-      .attr('transform', `translate(${this.labelAxisBounds.x}, ${this.labelAxisBounds.y})`)
-      .call(labelAxis);
-
     // Marks
     const stack = d3Stack()
       .keys(categories);
@@ -279,7 +314,7 @@ export default class StackedBar extends AbstractVisualization {
 
     // Value above the rectangle
     const maxData = stackedData[stackedData.length - 1]
-      .map(arr => ({ value: arr[1], label: arr.data.label }));
+      .map(arr => ({ value: arr[1] || arr[0], label: arr.data.label }));
 
     container.append('g')
       .attr('class', 'value-outline')
