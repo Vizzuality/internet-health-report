@@ -37,8 +37,7 @@ module.exports = {
       'process.env.MAPBOX_API_TOKEN': JSON.stringify(process.env.MAPBOX_API_TOKEN),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-    isProduction ? new webpack.optimize.UglifyJsPlugin({ minimize: true, test: /\.js$/ }) : undefined,
-    isProduction ? new webpack.optimize.DedupePlugin() : undefined
+    isProduction ? new webpack.optimize.UglifyJsPlugin({ minimize: true, test: /\.js$/ }) : undefined
   ].filter(p => p !== undefined),
   devtool: isProduction ? 'none' : 'cheap-eval-source-map'
 };
