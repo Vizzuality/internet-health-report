@@ -7,7 +7,7 @@
  * @package ihr-2018
  */
 
-get_header(); 
+get_header();
 get_template_part('template-parts/search-bar');
 ?>
 
@@ -39,9 +39,9 @@ get_template_part('template-parts/search-bar');
 
     			endwhile;
 
-    			the_posts_navigation();
-
-          echo "</div></div>";
+          echo "</div><div class='row'><div class='column small-12'>";
+          the_posts_navigation();
+          echo "</div></div></div>";
 
     		else :
           echo "<div class='wrap'><div class='row'>";
