@@ -2,6 +2,7 @@ import 'whatwg-fetch';
 import { csvParse } from 'd3-dsv';
 import { format } from 'd3-format';
 import { utcFormat } from 'd3-time-format';
+import { select } from 'd3-selection';
 import tippy from 'tippy.js/dist/tippy.min';
 import textures from 'textures';
 
@@ -160,6 +161,20 @@ export default class AbstractVisualization {
     return this.config.legend !== undefined && this.config.legend !== null
       ? this.config.legend
       : true;
+  }
+
+  get breakdownLegend() {
+    return this.config.breakdownLegend !== null
+      && this.config.breakdownLegend !== undefined
+      ? this.config.breakdownLegend
+      : false;
+  }
+
+  get dynamicLabelWrapping() {
+    return this.config.dynamicLabelWrapping !== null
+      && this.config.dynamicLabelWrapping !== undefined
+      ? this.config.dynamicLabelWrapping
+      : false;
   }
 
   get labelFormat() {
@@ -445,6 +460,51 @@ export default class AbstractVisualization {
   */
   getTooltipContent(target) { // eslint-disable-line
     return '';
+  }
+
+  /**
+   * Wrap the text of the SVG "text" elements into several
+   * lines taking into account the maximum width and the size of
+   * the text
+   * @param {any} text D3 text elements
+   * @param {number} width Maximum width of the line
+   * @param {number} [fontSize=20] Font size of the text
+   * @param {number} [lineHeight=0.8] Line height of the text
+   * @param {number} [initialPosition=20] Initial vertical position of the text
+   */
+  wrapText(text, width, fontSize = 20, lineHeight = 0.8, initialPosition = 20) { // eslint-disable-line class-methods-use-this, max-len
+    text.each(function () { // eslint-disable-line func-names, prefer-arrow-callback
+      const textEl = select(this);
+      const words = textEl.text().split(/\s+/);
+      let line = [];
+      let lineCount = 0;
+      let tspan = textEl.text(null)
+        .append('tspan')
+        .attr('x', 0)
+        .attr('y', initialPosition)
+        .attr('dy', 0);
+
+      words.forEach((word) => {
+        line.push(word);
+        tspan.text(line.join(' '));
+        if (tspan.node().getComputedTextLength() > width) {
+          if (line.length === 1) {
+            tspan.text(`${word.slice(0, Math.floor(word.length / 2))}-`);
+            line = [word.slice(Math.floor(word.length / 2), word.length)];
+          } else {
+            line.pop();
+            tspan.text(line.join(' '));
+            line = [word];
+          }
+
+          lineCount += 1;
+          tspan = textEl.append('tspan')
+            .attr('x', 0)
+            .attr('y', initialPosition + (lineCount * fontSize * lineHeight))
+            .text(line.join(' '));
+        }
+      });
+    });
   }
 
   /**

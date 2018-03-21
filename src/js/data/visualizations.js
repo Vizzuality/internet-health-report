@@ -245,26 +245,31 @@ export default {
     labelAxisSize: 100,
     legend: false
   },
+  vis_4_5_1: {
+    type: 'bar',
+    direction: 'vertical'
+  },
+  vis_4_5_2: {
+    type: 'stacked-bar',
+    direction: 'vertical',
+    valueFormat: '.0%',
+    dynamicLabelWrapping: true,
+    breakdownLegend: true,
+    height: 800
+  },
   vis_4_5_3: {
     type: 'bar',
     direction: 'vertical',
     valueFormat: '.0%',
-    valueAxisSize: 35
-  },
-  vis_4_5_1: {
-    type: 'bar',
-    direction: 'vertical'
+    valueAxisSize: 35,
+    legend: false,
+    dynamicLabelWrapping: true
   },
   vis_5_1: {
     type: 'app-unhappiness'
   },
   vis_5_2: {
     type: 'TODO'
-  },
-  vis_4_5_2: {
-    type: 'stacked-bar',
-    direction: 'horizontal',
-    valueFormat: '.0%'
   },
   vis_5_4: {
     type: 'TODO'
