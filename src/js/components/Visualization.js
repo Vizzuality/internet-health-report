@@ -20,6 +20,7 @@ const vis = {
   // Custom vis
   wikipedia: Wikipedia,
   'app-unhappiness': AppUnhappiness,
+  'web-literacy-crosswalk': WebLiteracyCrosswalk,
   'gender-ethnic-diversity': GenderEthnicDiversity
 };
 
