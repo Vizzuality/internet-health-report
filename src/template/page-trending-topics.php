@@ -114,8 +114,8 @@ get_header();
         <div class='row'>
           <div class="column small-12">
             <div class="intro-buttons-container">
-              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'What is this' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
-              <a href="<?php echo esc_url( get_permalink( get_page_by_title( 'How is the health of the Internet?' ) ) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+              <a href="<?php echo esc_url( get_permalink(93) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
+              <a href="<?php echo esc_url( get_permalink(95) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
             </div>
           </div>
         </div>
