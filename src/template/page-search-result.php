@@ -3,7 +3,7 @@
  Template Name: Search Page
  */
 
-get_header(); 
+get_header();
 get_template_part('template-parts/search-bar');
 
 
