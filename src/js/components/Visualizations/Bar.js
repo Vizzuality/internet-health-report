@@ -270,19 +270,80 @@ export default class Bar extends AbstractVisualization {
         return valueScale(d);
       });
 
+    // Mark rules
+    const markContainer = container.append('g')
+      .attr('class', 'marks')
+      .attr('transform', `translate(${this.visualizationBounds.x}, ${this.visualizationBounds.y})`);
+
+    if (this.rules.length) {
+      const markRuleItem = markContainer.append('g')
+        .selectAll('g')
+        .data(this.rules)
+        .enter()
+        .append('g')
+        .attr('class', 'mark-rule');
+
+      markRuleItem.append('line')
+        .attr('x1', (d) => {
+          if (this.direction === 'horizontal') {
+            return valueScale(d);
+          }
+          return this.visualizationBounds.x;
+        })
+        .attr('x2', (d) => {
+          if (this.direction === 'horizontal') {
+            return valueScale(d);
+          }
+          return this.valueAxisBounds.x + this.valueAxisBounds.width;
+        })
+        .attr('y1', (d) => {
+          if (this.direction === 'horizontal') {
+            return 0;
+          }
+          return valueScale(d);
+        })
+        .attr('y2', (d) => {
+          if (this.direction === 'horizontal') {
+            return this.labelAxisBounds.height + this.valueAxisBounds.height;
+          }
+          return valueScale(d);
+        })
+        .attr('stroke', this.lineStyles[0].color)
+        .attr('stroke-width', this.lineStyles[0].stroke)
+        .attr('stroke-dasharray', this.lineStyles[0].dasharray)
+        .attr('stroke-linecap', this.lineStyles[0].linecap);
+
+      markRuleItem.append('text')
+        // For some reasons the axis ticks are moved by 10px
+        .attr('x', (d) => {
+          if (this.direction === 'horizontal') {
+            return valueScale(d);
+          }
+          return this.valueAxisBounds.x + 10;
+        })
+        .attr('y', (d) => {
+          if (this.direction === 'horizontal') {
+            return this.labelAxisBounds.height + this.valueAxisBounds.height;
+          }
+          return valueScale(d);
+        })
+        .attr('dy', '0.32em') // Value got from the ticks
+        .attr('dominant-baseline', this.direction === 'horizontal' ? 'central' : '')
+        .attr('text-anchor', this.direction === 'horizontal' ? 'start' : 'middle')
+        .text(d => this.valueFormat(d));
+    }
+
     // Marks
     const categoryScale = scaleBand()
       .domain(categories)
       .rangeRound([0, labelScale.bandwidth()])
       .paddingInner(0.1);
 
-    const markItem = container.append('g')
-      .attr('class', 'marks')
-      .attr('transform', `translate(${this.visualizationBounds.x}, ${this.visualizationBounds.y})`)
-      .selectAll('g')
+    const markItem = markContainer.selectAll('.group')
       .data(labels)
       .enter()
       .append('g')
+      .attr('class', 'group')
       .attr('transform', (d) => {
         if (this.direction === 'horizontal') {
           return `translate(0, ${labelScale(d)})`;

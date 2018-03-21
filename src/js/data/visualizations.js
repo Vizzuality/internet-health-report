@@ -106,7 +106,8 @@ export default {
       const value = v * 100;
       return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
     },
-    valueAxisSize: 25
+    valueAxisSize: 25,
+    rules: [0.02]
   },
   vis_2_5_2: {
     type: 'bar',

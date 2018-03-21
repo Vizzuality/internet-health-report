@@ -177,6 +177,10 @@ export default class AbstractVisualization {
       : false;
   }
 
+  get rules() {
+    return this.config.rules || [];
+  }
+
   get labelFormat() {
     if (typeof this.config.labelFormat === 'function') {
       return this.config.labelFormat;
