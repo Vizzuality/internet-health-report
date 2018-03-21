@@ -1,0 +1,161 @@
+.c-reactions-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 2px solid $black;
+  background: $white;
+  z-index: 48; // z-index lower than the actual footer
+
+  .reactions-bar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+
+    .social-list {
+      display: flex;
+      align-items: center;
+
+      > .social-item {
+        display: inline-flex;
+        align-items: center;
+
+        &:not(:first-child) {
+          margin: 0 0 0 15px;
+        }
+
+        > div,
+        a {
+          display: inline-flex;
+        }
+      }
+    }
+
+    .reactions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}
+
+// overrides default styles
+.reaction_buttons_tagline {
+  display: none;
+}
+
+.reaction_buttons {
+  margin: 0 0 0 25px;
+
+  .reaction_button {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: right center;
+    cursor: pointer;
+
+    &.reaction_button_0 {
+      background-image: url('/wp-content/themes/ihr-2018/images/reactions/Surprised.svg');
+    }
+
+    &.reaction_button_1 {
+      background-image: url('/wp-content/themes/ihr-2018/images/reactions/Thinking.svg');
+    }
+
+    &.reaction_button_2 {
+      background-image: url('/wp-content/themes/ihr-2018/images/reactions/Happy.svg');
+    }
+
+    &.reaction_button_3 {
+      background-image: url('/wp-content/themes/ihr-2018/images/reactions/Sad.svg');
+    }
+
+    &.reaction_button_4 {
+      background-image: url('/wp-content/themes/ihr-2018/images/reactions/Angry.svg');
+    }
+
+    &:hover {
+      .button_name {
+        visibility: visible;
+      }
+    }
+
+    &:not(:first-child) {
+      margin: 0 0 0 15px;
+    }
+
+    &.voted {
+      cursor: default;
+    }
+
+    .button_name {
+      visibility: hidden;
+      z-index: 2;
+      position: absolute;
+      top: -100%;
+      left: calc(50% + 12px);
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 40px;
+      background-color: $white;
+      color: $black;
+      font-size: 20px;
+      text-align: center;
+      padding: 5px 0;
+      border: 2px solid $black;
+
+      &:after {
+        content: '';
+        position: relative;
+        top: -1px;
+        display: block;
+        height: 8px;
+        width: 8px;
+        margin: auto;
+        transform: rotate(45deg);
+        background: $white;
+        border-bottom: 2px solid $black;
+        border-right: 2px solid $black;
+      }
+    }
+
+    .braces {
+      display: none;
+    }
+
+    .count_number {
+      font-size: $font-s;
+      color: black;
+    }
+  }
+}
+
+//  @media (min-width: 700px) {
+//      div.reaction_buttons ul.graph {
+//          height: 250px;
+//          width: 100%;
+//      }
+//      div.reaction_buttons ul.graph li.reaction_button {
+//          height: 250px;
+//          margin: 0 1.8% 0 0;
+//          padding: 0;
+//          width: 17%;
+//          display: inline-block;
+//      }
+//      div.reaction_buttons ul.graph li.reaction_button span.button_name {
+//          bottom: -4em;
+//          position: absolute;
+//      }
+//      div.reaction_buttons ul.graph li.reaction_button span.braces {
+//          display: none;
+//      }
+//      div.reaction_buttons ul.graph li.reaction_button span.count_number {
+//          bottom: 3px;
+//          position: absolute;
+//          font-size: 2em;
+//          font-weight: bold;
+//      }
+// }

@@ -165,54 +165,57 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-  <div class="fixedfooter">
+  <div class="c-reactions-bar">
     <div class="wrap">
-      <ul>
-        <li class="share-icons-fb">
-          <div class="fb-share-button"
-              data-href="<?php the_permalink(); ?>"
-              data-layout="button"
-              data-size="small"
-              data-mobile-iframe="true">
-                <a target="_blank"
-                  href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>&amp;src=sdkpreparse"
-                  class="fb-xfbml-parse-ignore">
+      <div class="row">
+        <div class="reactions-bar-container">
+          <div class="column small-12 medium-6">
+            <ul class="social-list">
+              <li class="social-item">
+                <div
+                  class="fb-share-button"
+                  data-href="<?php the_permalink(); ?>"
+                  data-layout="button"
+                  data-size="small"
+                  data-mobile-iframe="true">
+                    <a target="_blank"
+                      href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>&amp;src=sdkpreparse"
+                      class="fb-xfbml-parse-ignore">
+                      <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
+                    </a>
+                </div>
+              </li>
+              <li class="social-item">
+                <a
+                  href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=internethealth"
+                  class="twitter-share-button"
+                  data-show-count="false">
+                    <svg class="c-icon -x-small"><use xlink:href="#icon-twitter"></use></svg>
                 </a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </li>
+            </ul>
           </div>
-        </li>
-        <li class="share-icons-tw">
-          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=#internethealth" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </li>
-        <li class="text">
-          <?php _e('Share this', 'ihr-2018');?>
-        </li>
-      </ul>
-      <div>
-        <ul>
-          <li class="text">
-            <?php _e('Tell us how you feel:', 'ihr-2018');?>
-          </li>
-          <li>
-            <?php
-              $reactions = reaction_count(get_the_ID());
-              echo do_shortcode('[reaction_buttons]');
-            ?>
-          </li>
-          <li class="comments" style="display: none;">
-            <span class="text"><?php echo comments_count(get_the_ID());?>
-            <svg class="c-icon"><use xlink:href="#icon-comment_icon"></use></svg>
-          </li>
-        </ul>
-        <!-- <a href="https://internethealthreport.org/2018/" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
-          <span class="text -large">&#43;</span>
-        </a> -->
+          <div class="column small-12 medium-6">
+            <div class="reactions">
+              <span class="text"><?php _e('Tell us how you feel:', 'ihr-2018');?></span>
+              <?php
+                $reactions = reaction_count(get_the_ID());
+                echo do_shortcode('[reaction_buttons]');
+              ?>
+
+              <div class="comments" style="display: none;">
+                <span class="text"><?php echo comments_count(get_the_ID());?>
+                <svg class="c-icon"><use xlink:href="#icon-comment_icon"></use></svg>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
 <?php endif; ?>
-
-
 
 </div>
 </div>
