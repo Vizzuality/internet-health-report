@@ -12,35 +12,35 @@ body {
   color: $black;
 
   &.category {
-    &.category-digital-inclusion .content-area {
+    &.category-5fa1f4 .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_blue@2x.png') no-repeat top left / 100% auto, #E9F1FD;
       }
     }
 
-    &.category-openness .content-area {
+    &.category-ff5c73 .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_red@2x.png') no-repeat top left / 100% auto, #FEE3E7;
       }
     }
 
-    &.category-decentralization .content-area {
+    &.category-ffe159 .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_yellow@2x.png') no-repeat top left / 100% auto, #FFF9E5;
       }
     }
 
-    &.category-web-literacy .content-area {
+    &.category-6dd8af .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_green@2x.png') no-repeat top left / 100% auto, #E9F9F3;
       }
     }
 
-    &.category-privacy-and-security .content-area {
+    &.category-76e1f4 .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_lightblue@2x.png') no-repeat top left / 100% auto, #EBFAFD;

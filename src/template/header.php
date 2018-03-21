@@ -71,7 +71,7 @@
   </script>
 </head>
 <body
-  <?php body_class( $category ); ?>
+  <?php body_class('category-'.substr(get_field('color', 'category_' . get_the_category()[0]->term_id), 1)); ?>
   <?php
     if(is_single()) {
       $bgColor = get_field('color', 'category_' . get_the_category()[0]->term_id);
