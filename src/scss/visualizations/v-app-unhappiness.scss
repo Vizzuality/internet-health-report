@@ -50,10 +50,13 @@
   position: relative;
 }
 .app-unhappiness-vis .app-unhappiness-vis-legend ul {
-  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+
+  @media screen and (min-width: $screen-m) {
+    display: flex;
+  }
 }
 .app-unhappiness-vis .app-unhappiness-vis-legend ul > li {
   display: flex;
@@ -61,27 +64,30 @@
   margin-right: 40px;
   font-size: 16px;
   line-height: 17px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: $screen-m) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 .app-unhappiness-vis .app-unhappiness-vis-legend ul > li:last-child {
   margin-right: 0;
 }
-.app-unhappiness-vis .app-unhappiness-vis-legend li:before {
-  display: inline-block;
+.app-unhappiness-vis .app-unhappiness-vis-legend li > span {
+  display: block;
   content: " ";
   height: 17px;
   width: 17px;
   margin-right: 5px;
+  border: 2px solid;
   box-sizing: border-box;
 }
-.app-unhappiness-vis .app-unhappiness-vis-legend .happy-percent-icon:before {
-  background-color: white;
-  border: 2px solid #000;
+.app-unhappiness-vis .app-unhappiness-vis-legend .icon-line {
+  border-color: #000;
 }
-.app-unhappiness-vis .app-unhappiness-vis-legend .happy-icon:before {
-  background-color: #6DD8AF;
-  border: 0;
-}
-.app-unhappiness-vis .app-unhappiness-vis-legend .unhappy-icon:before {
+
+.app-unhappiness-vis .app-unhappiness-vis-legend .unhappy-icon {
   background-color: rgba(0, 0, 0, .2);
-  border: 0;
+  border-color: rgba(0, 0, 0, .2);
 }
