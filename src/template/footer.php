@@ -156,15 +156,6 @@
 <?php wp_footer(); ?>
 
 <?php if (is_single()): ?>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
   <div class="c-reactions-bar">
     <div class="wrap">
       <div class="row">
@@ -172,18 +163,13 @@
           <div class="column small-12 medium-6">
             <ul class="social-list">
               <li class="social-item">
-                <div
-                  class="fb-share-button"
-                  data-href="<?php the_permalink(); ?>"
-                  data-layout="button"
-                  data-size="small"
-                  data-mobile-iframe="true">
-                    <a target="_blank"
-                      href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>&amp;src=sdkpreparse"
-                      class="fb-xfbml-parse-ignore">
-                      <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
-                    </a>
-                </div>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>"
+                >
+                  <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
+                </a>
               </li>
               <li class="social-item">
                 <a
