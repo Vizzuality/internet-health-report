@@ -18,7 +18,6 @@ export default class AbstractVisualization {
         .map(o => ({ [o.key]: o.value }))
         .reduce((res, o) => Object.assign(res, o), {});
     }
-
     return this._dictionary;
     /* eslint-enable no-underscore-dangle */
   }

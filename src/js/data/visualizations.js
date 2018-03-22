@@ -235,7 +235,8 @@ export default {
     dynamicLabelWrapping: true
   },
   vis_5_1: {
-    type: 'app-unhappiness'
+    type: 'app-unhappiness',
+    height: 800
   },
   vis_5_2: {
     type: 'day-on-the-web'

@@ -144,26 +144,28 @@ export default class AppUnhappiness extends AbstractVisualization {
       .attr('transform', d => `rotate(${-d - anglePerItem})`);
 
     ga.append('text')
-      .data(data)
+
       .attr('class', 'label')
       .attr('x', labelRadius)
       .attr('dy', 4)
-      .style('text-anchor', d => ((d < 270 && d > 90) ? 'end' : null))
-      .attr('transform', d => ((d < 270 && d > 90) ? `rotate(180 ${labelRadius}, 0)` : null))
-      .text((d) => d.name)
-      .attr('title', (d) => d.name);
+      .style('text-anchor', d => ((d >= -270 && d < -90) ? 'end' : null))
+      .attr('transform', d => ((d >= -270 && d < -90) ? `rotate(180 ${labelRadius}, 0)` : null))
+      .data(data)
+      .text(d => d.name)
+      .attr('title', d => d.name);
 
     this.instantiateTooltip('.label');
   }
 
   renderLegend() {
-    const { el } = this;
+    const { el, config, dictionary } = this;
+    const mainColor = config.color || '#6dd8af';
     const legendElement = document.createElement('div');
     legendElement.classList.add('app-unhappiness-vis-legend');
     legendElement.innerHTML = `<ul>
-      <li class="happy-percent-icon">% Happy</li>
-      <li class="happy-icon">Happy Average on Screen (minutes)</li>
-      <li class="unhappy-icon">Unhappy Average on Screen (minutes)</li>
+      <li><span class="icon-line"></span> ${dictionary.happy_percentage}</li>
+      <li><span style="background-color: ${mainColor}; border-color: ${mainColor}"></span>${dictionary.happy_avg_minutes}</li>
+      <li><span class="unhappy-icon"></span>${dictionary.unhappy_avg_minutes}</li>
     </ul>`;
     el.appendChild(legendElement);
   }

@@ -22,8 +22,8 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
     const data = select(target).datum();
-    const result = this.data.find((d) => data.Company);
-    const list = Object.keys(result).map((key) =>
+    const result = this.data.find(d => (d.Company === data.Company));
+    const list = Object.keys(result).map(key =>
       (key !== 'Company' ? `<p class="note">${key}: ${result[key]}%</p>` : '')
     );
     return `
@@ -106,8 +106,8 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
         const yFirstPoint = this.yScale(0) + 15;
         return `translate(${yFirstPoint}, 0)`;
       })
-      .text((d, i) => d.Company)
-      .attr('title', (d) => d)
+      .text(d => d.Company)
+      .attr('title', d => d)
       .call(wrap, 120);
   }
 
