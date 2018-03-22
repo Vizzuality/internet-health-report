@@ -51,10 +51,6 @@ export default class AbstractVisualization {
   }
 
   get patterns() {
-    if (this.config.patterns) {
-      return this.config.patterns(this.color);
-    }
-
     const blank = textures.lines()
       .stroke('transparent')
       .background(this.color);
@@ -87,7 +83,6 @@ export default class AbstractVisualization {
       .stroke('#000')
       .background(this.color);
 
-
     const dotsA = textures.circles()
       .complement()
       .size(8)
@@ -105,10 +100,10 @@ export default class AbstractVisualization {
     const dotsC = textures.circles()
       .complement()
       .size(8)
-      .fill('#000')
-      .background(this.color);
+      .fill(this.color)
+      .background('#000');
 
-    return [
+    const patterns = [
       blank,
       linesA,
       dotsC,
@@ -118,6 +113,12 @@ export default class AbstractVisualization {
       linesD,
       dotsB
     ];
+
+    if (this.config.patterns) {
+      return this.config.patterns(this.color, patterns);
+    }
+
+    return patterns;
   }
 
   get lineStyles() {

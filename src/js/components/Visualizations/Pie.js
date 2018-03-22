@@ -78,7 +78,7 @@ export default class Pie extends AbstractVisualization {
     const labels = this.data.map(d => d.label)
       .filter((d, i, arr) => arr.indexOf(d) === i);
 
-    const whitePatterns = this.patterns.map(p => p.background('#fff'));
+    const whitePatterns = this.patterns.map((p, i) => (i === 2 ? p.fill('#fff') : p.background('#fff')));
     const patterns = this.patterns.slice(0, this.data.filter(d => !d.grouped).length)
       .concat(whitePatterns.slice(1));
 
