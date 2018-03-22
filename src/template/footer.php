@@ -156,6 +156,14 @@
 <?php wp_footer(); ?>
 
 <?php if (is_single()): ?>
+<script>
+  function fbShare(url, title, descr, winWidth, winHeight) {
+    var winTop = (screen.height / 2) - (winHeight / 2);
+    var winLeft = (screen.width / 2) - (winWidth / 2);
+    window.open('https://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=', 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+  }
+</script>
+
   <div class="c-reactions-bar">
     <div class="wrap">
       <div class="row">
@@ -164,19 +172,17 @@
             <ul class="social-list">
               <li class="social-item">
                 <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://www.facebook.com/sharer/sharer.php?u=<?php print(urlencode(get_permalink())); ?>"
+                  href="javascript:fbShare(<?php print(urlencode(get_permalink())); ?>, 'Share this via Facebbok', 'Facebook share popup', 550, 250)"
                 >
                   <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
                 </a>
               </li>
               <li class="social-item">
                 <a
-                  href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=internethealth"
-                  class="twitter-share-button"
-                  data-show-count="false">
-                    <svg class="c-icon -x-small"><use xlink:href="#icon-twitter"></use></svg>
+                  target="_blank"
+                  href="https://twitter.com/intent/tweet/?url=<?php print(urlencode(get_permalink())); ?>&hashtags=internethealth"
+                >
+                  <svg class="c-icon -x-small"><use xlink:href="#icon-twitter"></use></svg>
                 </a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
               </li>
