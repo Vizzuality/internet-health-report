@@ -117,7 +117,7 @@
                   </li>
                   <li><a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
                   <li><a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
-                  <li><a href="http://blog" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a></li>
+                  <li><a href="https://internethealthreport.org/blog/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/2018/sitemap.xml" class="text -light -category"><?php esc_html_e( 'Sitemap', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/2017/" class="text -light -category"><?php esc_html_e( 'Previous report', 'ihr-2018' ); ?></a></li>
                 </ul>
