@@ -238,7 +238,7 @@ export default {
     type: 'app-unhappiness'
   },
   vis_5_2: {
-    type: 'TODO'
+    type: 'day-on-the-web'
   },
   vis_5_4: {
     type: 'TODO'
