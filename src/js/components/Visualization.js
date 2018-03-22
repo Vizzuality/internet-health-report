@@ -9,6 +9,7 @@ import Map from 'components/Visualizations/Map';
 import AppUnhappiness from 'components/Visualizations/AppUnhappiness';
 import GenderEthnicDiversity from 'components/Visualizations/GenderEthnicDiversity';
 import WebLiteracyCrosswalk from 'components/Visualizations/WebLiteracyCrosswalk';
+import DayOnTheWeb from 'components/Visualizations/DayOnTheWeb';
 
 const vis = {
   bar: Bar,
@@ -23,7 +24,8 @@ const vis = {
   wikipedia: Wikipedia,
   'app-unhappiness': AppUnhappiness,
   'web-literacy-crosswalk': WebLiteracyCrosswalk,
-  'gender-ethnic-diversity': GenderEthnicDiversity
+  'gender-ethnic-diversity': GenderEthnicDiversity,
+  'day-on-the-web': DayOnTheWeb
 };
 
 export default class Visualization {
