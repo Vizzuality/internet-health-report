@@ -1,0 +1,29 @@
+/** Gender and Ethnic Diversity */
+.gender-etchnic-diversity-legend {
+  position: relative;
+}
+.gender-etchnic-diversity-legend ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gender-etchnic-diversity-legend ul > li {
+  display: flex;
+  vertical-align: middle;
+  margin-right: 40px;
+  font-size: 16px;
+  line-height: 17px;
+}
+.gender-etchnic-diversity-legend ul > li:last-child {
+  margin-right: 0;
+}
+.gender-etchnic-diversity-legend li > span {
+  display: inline-block;
+  content: " ";
+  height: 17px;
+  width: 17px;
+  margin-right: 5px;
+  box-sizing: border-box;
+  border: 2px solid;
+}

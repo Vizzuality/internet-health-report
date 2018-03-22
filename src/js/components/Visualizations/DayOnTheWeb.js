@@ -18,12 +18,23 @@ class DayOnTheWeb extends AbstractVisualization {
     this.numberCircles = 7;
 
     this.initialize();
+    this.dateFormat = timeFormat('%A %H');
   }
 
   initialize() {
     // fetch and then render
     this.fetchData()
       .then(() => this.render());
+  }
+
+  getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const data = select(target).datum();
+    return `
+      <p class="title">${data.category}</p>
+      <p class="note">${this.dateFormat(data.date)}:00</p>
+      <p class="note">Average ${data.average} minutes</p>
+      <p class="note">Value ${data.value} minutes</p>
+    `;
   }
 
   moveHandle(positionX) {
@@ -166,7 +177,8 @@ class DayOnTheWeb extends AbstractVisualization {
         class: 'circle circle--average',
         r: d => radiusScale(DayOnTheWeb.areaToRadius(d.average)),
         cx: (d, i) => (circleDimension * i),
-        data: d => d.average
+        data: d => d.average,
+        title: d => d
       });
 
     dataCircles.selectAll('circle')
@@ -177,8 +189,11 @@ class DayOnTheWeb extends AbstractVisualization {
         class: 'circle circle--active',
         r: d => radiusScale(DayOnTheWeb.areaToRadius(d.value)),
         cx: (d, i) => (circleDimension * i),
-        data: d => d.value
+        data: d => d.value,
+        title: d => d
       });
+
+    this.instantiateTooltip('.circle--active');
 
     this.radiusScale = radiusScale;
   }

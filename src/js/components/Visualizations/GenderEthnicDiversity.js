@@ -20,6 +20,18 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
       });
   }
 
+  getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const data = select(target).datum();
+    const result = this.data.find((d) => data.Company);
+    const list = Object.keys(result).map((key) =>
+      (key !== 'Company' ? `<p class="note">${key}: ${result[key]}%</p>` : '')
+    );
+    return `
+      <p class="title">${result.Company}</p>
+      ${list.join('')}
+    `;
+  }
+
   serializeData() {
     const { data, config } = this;
 
@@ -85,6 +97,7 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
   renderLabels() {
     const bars = this.bars.selectAll('.bar');
     bars.append('text')
+      .attr('class', 'label')
       .attr('dy', '0.31em')
       .style('font-size', '11px')
       .attr('opacity', 0.6)
@@ -93,7 +106,8 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
         const yFirstPoint = this.yScale(0) + 15;
         return `translate(${yFirstPoint}, 0)`;
       })
-      .text((d, i) => this.mappedLabels[i])
+      .text((d, i) => d.Company)
+      .attr('title', (d) => d)
       .call(wrap, 120);
   }
 
@@ -114,7 +128,7 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
 
   // Finds the original data set
   findOriginalData(data) {
-    return this.data.filter(d => d[this.config.orderBy] === data.company)[0];
+    return this.data.filter(d => d[this.config.orderBy] === data.Company)[0];
   }
 
   handleMouseOver(data) {
@@ -190,10 +204,26 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
     });
 
     this.renderLabels(this.mappedLabels);
+
+    this.instantiateTooltip('.label');
+  }
+
+  renderLegend() {
+    const { el } = this;
+    const legendElement = document.createElement('div');
+    const legendItems = this.data.columns.slice(-this.data.columns.length + 1)
+      .map(d => `<li><span style="border-color: ${this.config.colors[d]}"></span> ${d}</li>`);
+    legendElement.classList.add('gender-etchnic-diversity-legend');
+    legendElement.innerHTML = `<ul>
+      ${legendItems.join('')}
+    </ul>`;
+    el.appendChild(legendElement);
   }
 
   render() {
     const { config } = this;
+
+    this.renderLegend();
 
     this.margin = config.margin || 0;
     this.radius = config.radius || 600;
