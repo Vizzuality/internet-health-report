@@ -16,7 +16,11 @@
 }
 
 .l-main {
-  padding: 60px 0 100px 0;
+  padding: 30px 0 50px;
+
+  @media screen and (min-width: 1024px) {
+    padding: 60px 0 100px;
+  }
 }
 
 .l-tabs {
@@ -25,7 +29,7 @@
 }
 
 .l-categories {
-  margin-top: 50px;
+  margin: 40px 0;
 }
 
 .l-related-posts {
@@ -79,36 +83,46 @@
 }
 
 .l-tab-content {
-  padding-top: 140px;
-  text-decoration: none;
-   h1, h2, h3 {
-    padding: 140px 0 30px 0;
+  margin: 40px 0 0;
+
+  h1, h2, h3 {
+    padding: 40px 0 15px 0;
     font-weight: 600;
     font-size: $font-mb-xl;
     line-height: 40px;
 
-  @media screen and (min-width: $screen-l) {
-    font-size: $font-xxxl;
-    line-height: 80px;
+    @media screen and (min-width: $screen-l) {
+      padding: 130px 0 30px 0;
+      font-size: $font-xxxl;
+      line-height: 80px;
+    }
   }
 
-   }
-   p, li, div {
-     font-weight: 300;
-     line-height: 30px;
-     font-size: 20px;
-   }
-   a {
+  p, li {
+    font-size: $font-s;
+    line-height: 30px;
+    font-weight: 300;
+  }
+
+  p {
+    padding-bottom: 30px;
+  }
+
+  a {
     color: $black;
-   }
-   a:visited {
-    color: $black;
-   }
-   a:hover,
-   a:focus,
-   a:active {
-    color: $black;
-   }
+    text-decoration: none;
+
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $black;
+    }
+  }
+
+  @media screen and (min-width: $screen-l) {
+    margin: 140px 0 0;
+  }
 }
 
 .l-footer {

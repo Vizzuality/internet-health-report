@@ -6,7 +6,7 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main l-main">
+		<main id="main" class="l-main site-main">
 
 			<?php
         // Defines active tab
@@ -62,17 +62,17 @@ get_header(); ?>
 
 			?>
       <div class='l-cards-grid'>
-      <div class='wrap'>
-        <div class='row'>
-          <div class="column small-12">
-            <div class="intro-buttons-container">
-              <a href="<?php echo esc_url( get_permalink(93) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
-              <a href="<?php echo esc_url( get_permalink(97) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+        <div class='wrap'>
+          <div class='row'>
+            <div class="column small-12">
+              <div class="intro-buttons-container">
+                <a href="<?php echo esc_url( get_permalink(93) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
+                <a href="<?php echo esc_url( get_permalink(97) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
