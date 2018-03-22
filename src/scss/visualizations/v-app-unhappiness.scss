@@ -1,6 +1,5 @@
 .app-unhappiness-vis {
   width: 100%;
-  height: 840px;
   position: relative;
 }
 
@@ -48,9 +47,7 @@
 
 /* Legend */
 .app-unhappiness-vis .app-unhappiness-vis-legend {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  position: relative;
 }
 .app-unhappiness-vis .app-unhappiness-vis-legend ul {
   display: flex;

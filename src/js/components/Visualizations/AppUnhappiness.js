@@ -17,6 +17,16 @@ export default class AppUnhappiness extends AbstractVisualization {
       .then(() => this.render());
   }
 
+  getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const data = select(target).datum();
+    return `
+      <p class="title">${data.name}</p>
+      <p class="number">${data.happy_percentage}%</p>
+      <p class="note">${Math.round(data.avg_minutes_happy)} minutes</p>
+      <p class="note">${Math.round(data.avg_minutes_unhappy)} minutes</p>
+    `;
+  }
+
   renderChart() {
     const { el } = this;
 
@@ -30,15 +40,15 @@ export default class AppUnhappiness extends AbstractVisualization {
 
     // Creating svg
     const svg = select(el).append('svg');
-    const margin = { top: 170, left: 50, right: 50, bottom: 50 };
-    const width = el.clientWidth - margin.left - margin.right;
-    const height = el.clientHeight - margin.top - margin.bottom;
+    const margin = { top: 170, left: 50, right: 50, bottom: 70 };
+    const width = this.width - margin.left - margin.right;
+    const height = this.height - margin.top - margin.bottom;
     const radius = height / 2;
     const dataLength = data.length;
 
     svg
-      .attr('width', el.clientWidth)
-      .attr('height', el.clientHeight);
+      .attr('width', this.width)
+      .attr('height', this.height);
 
     const g = svg.append('g')
       .attr('width', width)
@@ -134,11 +144,16 @@ export default class AppUnhappiness extends AbstractVisualization {
       .attr('transform', d => `rotate(${-d - anglePerItem})`);
 
     ga.append('text')
+      .data(data)
+      .attr('class', 'label')
       .attr('x', labelRadius)
       .attr('dy', 4)
       .style('text-anchor', d => ((d < 270 && d > 90) ? 'end' : null))
       .attr('transform', d => ((d < 270 && d > 90) ? `rotate(180 ${labelRadius}, 0)` : null))
-      .text((d, i) => (data[i] ? data[i].name : ''));
+      .text((d) => d.name)
+      .attr('title', (d) => d.name);
+
+    this.instantiateTooltip('.label');
   }
 
   renderLegend() {
@@ -154,7 +169,7 @@ export default class AppUnhappiness extends AbstractVisualization {
   }
 
   render() {
-    this.renderChart();
     this.renderLegend();
+    this.renderChart();
   }
 }
