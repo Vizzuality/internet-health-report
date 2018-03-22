@@ -788,56 +788,74 @@ a:active {
 --------------------------------------------------------------*/
 
 .what-credits {
-  margin-bottom: 50px;
-  h2 {
+  margin-bottom: 0px;
+  h3 {
     padding-top: 50px;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
   }
   h4 {
-   font-size: 40px;
-   padding-bottom: 50px;
+   font-size: 30px;
+   padding: 10px 0 30px;
    font-weight: 200;
   }
   li {
     font-size: 20px;
     font-family: "ZillaSlab", serif;
     float: left;
-    width: 25%;
+    width: 50%;
     padding: 10px;
-    @media screen and (max-width: 37.5em) {
-     width: 50%;
-    }
   }
   p {
     font-size: 40px;
     margin-bottom: 50px;
   }
+  @media screen and (min-width: 37.5em) {
+    margin-bottom: 50px;
+    h3 {
+    padding-top: 50px;
+    padding-bottom: 40px;
+    }
+    h4 {
+     font-size: 40px;
+     padding-bottom: 50px;
+    }
+    li {
+     width: 25%;
+    }
+
+
+  }
 }
 
 .intro-buttons-container {
   display: flex;
-  margin: 70px 0 100px;
+  margin: 40px 0 50px;
   flex-direction: column;
-
   @media screen and (min-width: 768px) {
     flex-direction: row;
+    margin: 70px 0 100px;
   }
 
   > .intro-buttons {
     flex: 1;
     display: flex;
-    padding: 30px 30px 145px;
-    font-weight: 300;
-    font-size: 54px;
-    line-height: 54px;
+    padding: 30px 30px 95px;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 26px;
     color: black;
     border: 3px solid black;
-
+    max-height: 150px;
     &:not(:first-child) {
       margin: 10px 0 0;
     }
 
     @media screen and (min-width: 768px) {
+      padding: 30px 30px 125px;
+      max-height: 300px;
+      font-size: 52px;
+      line-height: 52px;
+      font-weight: 300;
       &:not(:first-child) {
         margin: 0 0 0 10px;
       }

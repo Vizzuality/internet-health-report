@@ -63,7 +63,7 @@ get_header();
         }
 
       ?>
-      <div class="l-tab-content" style="padding-top: 0;">
+      <div class='l-cards-grid'>
         <div class="wrap">
           <h3><?php _e('Issues','ihr-2018' ) ?></h3>
           <div class="l-categories">
@@ -99,20 +99,17 @@ get_header();
                 </ul>
               <?php endif; ?>
             </div>
-        </div>
-      </div>
-      <div class='l-cards-grid'>
-      <div class='wrap'>
-        <div class='row'>
-          <div class="column small-12">
-            <div class="intro-buttons-container">
-              <a href="<?php echo esc_url( get_permalink(95) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
-              <a href="<?php echo esc_url( get_permalink(97) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+          </div>
+          <div class='row'>
+            <div class="column small-12">
+              <div class="intro-buttons-container">
+                <a href="<?php echo esc_url( get_permalink(95) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+                <a href="<?php echo esc_url( get_permalink(97) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
   </main><!-- #main -->
 </div><!-- #primary -->

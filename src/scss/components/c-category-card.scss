@@ -1,13 +1,19 @@
 .c-category-card {
   width: 100%;
-  min-height: 320px;
+  min-height: 200px;
   padding: 20px;
-  margin: 20px 0;
+  margin: 8px 0;
   text-decoration: none;
   color: $black;
   cursor: pointer;
+  @media screen and (min-width: $screen-l) {
+    min-height: 320px;
+    padding: 20px;
+    margin: 20px 0;
+  }
 
   .category-description {
     font-size: 30px;
+
   }
 }
