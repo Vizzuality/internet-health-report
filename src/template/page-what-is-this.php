@@ -8,7 +8,7 @@ get_header();
 ?>
 
 <div id="primary" class="content-area">
-  <main id="main" class="site-main l-main" style="padding-bottom: 10px;">
+  <main id="main" class="site-main l-main">
 
       <?php
         // Defines active tab
@@ -65,9 +65,13 @@ get_header();
       ?>
       <div class='l-cards-grid'>
         <div class="wrap">
-          <h3><?php _e('Issues','ihr-2018' ) ?></h3>
+          <div class="row">
+            <div class="column small-12">
+              <h3><?php _e('Issues','ihr-2018' ) ?></h3>
+            </div>
+          </div>
           <div class="l-categories">
-            <div class="row">
+            <div class="row -equal-height">
               <?php $exclude_category = '';
                 if(is_category()) {
                   $exclude_category = get_the_category()[0]->cat_ID;
@@ -78,26 +82,29 @@ get_header();
                 $categories = get_categories($args);
                 foreach($categories as $category){
               ?>
-              <a href="<?php echo get_category_link($category->term_id) ?>" class="column small-12 medium-4 l-category-card" >
+              <div class="column small-12 medium-4">
                 <div class="c-category-card" data-image="<?php echo get_field('image', 'category_' . $category->term_id) ?>" data-color="<?php echo get_field('color', 'category_' . $category->term_id) ?>" <?php post_class(); ?> style="background-color:<?php echo get_field('color', 'category_' . $category->term_id) ?>">
+                  <a href="<?php echo get_category_link($category->term_id) ?>"></a>
                   <h4 class="category-name">#<?php echo $category->name ?></h4>
                   <p class="text -box1"><?php echo $category->description ?></p>
                 </div>
-              </a>
+              </div>
               <?php }?>
             </div>
           </div>
-          <div class="what-credits row">
-            <div class="column small-12 medium-12">
-              <h3><?php _e('Credits','ihr-2018' ) ?></h3>
-              <h4><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></h4>
-              <?php if( have_rows('credits') ): ?>
-                <ul>
-                  <?php while( have_rows('credits') ): the_row(); ?>
-                    <li><?php the_sub_field('name'); ?></li>
-                  <?php endwhile; ?>
-                </ul>
-              <?php endif; ?>
+          <div class="what-credits">
+            <div class="row">
+              <div class="column small-12 medium-12">
+                <h3><?php _e('Credits','ihr-2018' ) ?></h3>
+                <h4><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></h4>
+                <?php if( have_rows('credits') ): ?>
+                  <ul>
+                    <?php while( have_rows('credits') ): the_row(); ?>
+                      <li><?php the_sub_field('name'); ?></li>
+                    <?php endwhile; ?>
+                  </ul>
+                <?php endif; ?>
+              </div>
             </div>
           </div>
           <div class='row'>

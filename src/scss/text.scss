@@ -88,9 +88,6 @@ p,
   font-weight: 600;
   font-size: $font-s;
   line-height: 25px;
-
-  @media screen and (min-width: $screen-l) {
-  }
 }
 
 .text.-btn3 {
@@ -173,6 +170,4 @@ h1, h2, h3, h4, h5, h6, p,
     color: $black;
   }
 }
-
-
 

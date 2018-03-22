@@ -25,7 +25,7 @@ get_header();
   ?>
 
 <div id="primary" class="content-area">
-  <main id="main" class="site-main l-main" style="padding-bottom: 0px;">
+  <main id="main" class="site-main l-main">
 
       <?php
         // Defines active tab

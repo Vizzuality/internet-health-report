@@ -788,74 +788,78 @@ a:active {
 --------------------------------------------------------------*/
 
 .what-credits {
-  margin-bottom: 0px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 50px;
+  }
+
   h3 {
-    padding-top: 50px;
-    padding-bottom: 30px;
+    margin: 50px 0 30px;
+
+    @media screen and (min-width: 768px) {
+      margin: 50px 0 40px;
+    }
   }
+
   h4 {
-   font-size: 30px;
-   padding: 10px 0 30px;
-   font-weight: 200;
+    margin: 10px 0 30px;
+    font-size: 30px;
+    font-weight: 200;
+
+    @media screen and (min-width: 768px) {
+      margin: 10px 0 50px;
+      font-size: 40px;
+    }
   }
+
   li {
-    font-size: 20px;
-    font-family: "ZillaSlab", serif;
     float: left;
     width: 50%;
     padding: 10px;
+    font-size: 20px;
+    font-family: "ZillaSlab", serif;
+
+    @media screen and (min-width: 37.5em) {
+      width: 25%;
+    }
   }
   p {
+    margin-bottom: 50px;
     font-size: 40px;
-    margin-bottom: 50px;
-  }
-  @media screen and (min-width: 37.5em) {
-    margin-bottom: 50px;
-    h3 {
-    padding-top: 50px;
-    padding-bottom: 40px;
-    }
-    h4 {
-     font-size: 40px;
-     padding-bottom: 50px;
-    }
-    li {
-     width: 25%;
-    }
-
-
   }
 }
 
 .intro-buttons-container {
   display: flex;
-  margin: 40px 0 50px;
   flex-direction: column;
+  margin: 40px 0 0;
+
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    margin: 70px 0 100px;
+    margin: 70px 0 0;
   }
 
   > .intro-buttons {
     flex: 1;
     display: flex;
+    min-height: 150px;
     padding: 30px 30px 95px;
+    border: 3px solid black;
     font-weight: 400;
     font-size: 26px;
     line-height: 26px;
     color: black;
-    border: 3px solid black;
-    max-height: 150px;
+
     &:not(:first-child) {
       margin: 10px 0 0;
     }
 
     @media screen and (min-width: 768px) {
       padding: 30px 30px 125px;
-      max-height: 300px;
+      min-height: 275px;
       font-size: 52px;
       line-height: 52px;
       font-weight: 300;
+
       &:not(:first-child) {
         margin: 0 0 0 10px;
       }
@@ -1048,6 +1052,14 @@ object {
 
     @media screen and (min-width: 1024px) {
       width: 150%;
+
+  &.-equal-height {
+    margin-top: -0.625rem;
+
+    div[class^=column], div[class*=column] {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0.625rem;
     }
   }
 }
