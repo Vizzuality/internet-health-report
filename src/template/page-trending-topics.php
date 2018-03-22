@@ -114,8 +114,29 @@ get_header();
         <div class='row'>
           <div class="column small-12">
             <div class="intro-buttons-container">
-              <a href="<?php echo esc_url( get_permalink(93) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
-              <a href="<?php echo esc_url( get_permalink(95) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+            <?php
+              $hithoti_args = array(
+                'post_parent' => $parent,
+                'post_type'   => 'page', 
+                'numberposts' => -1,
+                'post_status' => 'published',
+                'meta_key' => '_wp_page_template',
+                'meta_value' => 'page-how-is-the-health-of-the-internet.php'      
+              );
+              $hithoti = get_children($hithoti_args);
+
+              $what_is_this_args = array(
+                'post_parent' => $parent,
+                'post_type'   => 'page', 
+                'numberposts' => -1,
+                'post_status' => 'published',
+                'meta_key' => '_wp_page_template',
+                'meta_value' => 'page-what-is-this.php'      
+              );
+              $what_is_this = get_children($what_is_this_args);
+            ?>
+              <a href="<?php echo esc_url( get_permalink( array_values($what_is_this)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
+              <a href="<?php echo esc_url( get_permalink( array_values($hithoti)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
             </div>
           </div>
         </div>
