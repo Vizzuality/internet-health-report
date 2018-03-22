@@ -110,8 +110,30 @@ get_header();
           <div class='row'>
             <div class="column small-12">
               <div class="intro-buttons-container">
-                <a href="<?php echo esc_url( get_permalink(95) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
-                <a href="<?php echo esc_url( get_permalink(97) ); ?>" class="intro-buttons"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+                <?php
+                  $hithoti_args = array(
+                    'post_parent' => $parent,
+                    'post_type'   => 'page', 
+                    'numberposts' => -1,
+                    'post_status' => 'published',
+                    'meta_key' => '_wp_page_template',
+                    'meta_value' => 'page-how-is-the-health-of-the-internet.php'      
+                  );
+                  $hithoti = get_children($hithoti_args);
+
+                  $spotlight_args = array(
+                    'post_parent' => $parent,
+                    'post_type'   => 'page', 
+                    'numberposts' => -1,
+                    'post_status' => 'published',
+                    'meta_key' => '_wp_page_template',
+                    'meta_value' => 'page-trending-topics.php'      
+                  );
+                  $spotlight = get_children($spotlight_args);
+                ?>
+
+                <a href="<?php echo esc_url( get_permalink( array_values($what_is_this)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+                <a href="<?php echo esc_url( get_permalink( array_values($spotlight)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'Spotlight 2018', 'ihr-2018' ); ?></a>
               </div>
             </div>
           </div>
