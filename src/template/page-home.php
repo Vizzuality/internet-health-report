@@ -87,7 +87,7 @@ get_header(); ?>
         <li class="home-index-item"><a class="item-1" href="#non-category"></a></li>
         <li class="home-index-item"><a class="item-2" href="#privacy-and-security"></a></li>
         <li class="home-index-item"><a class="item-3" href="#openness"></a></li>
-        <li class="home-index-item"><a class="item-4" href="#digital-nclusion"></a></li>
+        <li class="home-index-item"><a class="item-4" href="#digital-inclusion"></a></li>
         <li class="home-index-item"><a class="item-5" href="#web-literacy"></a></li>
         <li class="home-index-item"><a class="item-6" href="#decentralization"></a></li>
       </ul>
