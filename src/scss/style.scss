@@ -1022,6 +1022,16 @@ object {
   -webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
+
+  &.-wider {
+    @media screen and (min-width: 768px) {
+      width: 155%;
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: 150%;
+    }
+  }
 }
 
 .row .row {
