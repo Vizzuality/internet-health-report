@@ -20,51 +20,19 @@ export default {
     direction: 'vertical',
     valueFormat: '.0%',
     valueAxisSize: 35,
-    patterns: color => [
-      textures.lines()
+    patterns: (_, p) => {
+      const whiteLinesA = textures.lines()
         .orientation('1/8')
         .size(10)
         .lighter()
-        .stroke('#000'),
-      textures.lines()
-        .stroke('transparent')
-        .background(color),
-      textures.circles()
-        .complement()
-        .size(8)
-        .fill('#000')
-        .background(color),
-      textures.circles()
-        .complement()
-        .size(8)
-        .lighter()
-        .fill('#000')
-        .background(color),
-      textures.lines()
-        .orientation('6/8')
-        .size(20)
-        .lighter()
         .stroke('#000')
-        .background(color),
-      textures.lines()
-        .orientation('2/8', '6/8')
-        .size(6)
-        .lighter()
-        .stroke('#000')
-        .background(color),
-      textures.lines()
-        .orientation('2/8')
-        .size(4)
-        .lighter()
-        .stroke('#000')
-        .background(color),
-      textures.circles()
-        .complement()
-        .size(8)
-        .radius(0.5)
-        .fill('#000')
-        .background(color)
-    ]
+        .background('#fff');
+
+      const patterns = p.slice(0);
+      patterns.splice(1, 1);
+
+      return [whiteLinesA].concat(patterns);
+    }
   },
   vis_1_4: {
     type: 'wikipedia'

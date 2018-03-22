@@ -325,22 +325,42 @@ export default class Homepage extends AbstractVisualization {
       .duration(750)
       .ease(easeElasticOut);
 
+    const clampedRadiusTransition = transition()
+      .duration(750)
+      .ease(t => Math.min(1, easeElasticOut(t))); // We avoid sizes below 0
+
     this.bubbles
       .style('cursor', 'pointer');
 
-    const getRadius = d => (d.issue.name === issueName && d.depth === 0 ? d.r : 0);
+    const willDisappear = d => d.issue.name !== issueName || d.depth !== 0;
 
     this.circles
+      .filter(d => willDisappear(d))
+      .attr('title', d => d.issue.name)
+      .transition(clampedRadiusTransition)
+      .attr('r', 0);
+
+    this.circles
+      .filter(d => !willDisappear(d))
       .attr('title', d => d.issue.name)
       .transition(radiusTransition)
-      .attr('r', d => getRadius(d));
+      .attr('r', d => d.r);
 
     this.faces
-      .transition(radiusTransition)
-      .attr('x', d => -1 * getRadius(d))
-      .attr('y', d => -1 * getRadius(d))
-      .attr('width', d => getRadius(d) * 2)
-      .attr('height', d => getRadius(d) * 2);
+      .filter(d => willDisappear(d))
+      .transition(clampedRadiusTransition)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', 0)
+      .attr('height', 0);
+
+    this.faces
+      .filter(d => !willDisappear(d))
+      .transition(clampedRadiusTransition)
+      .attr('x', d => -1 * d.r)
+      .attr('y', d => -1 * d.r)
+      .attr('width', d => d.r * 2)
+      .attr('height', d => d.r * 2);
   }
 
   render() {
