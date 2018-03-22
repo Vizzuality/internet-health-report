@@ -98,7 +98,7 @@ class DayOnTheWeb extends AbstractVisualization {
       return Object.assign({}, d, { date: newDate });
     });
 
-    const chartContainer = select(this.el);
+    const chartContainer = select('#vis-day-on-the-web');
     const width = this.width;
     const margin = { right: 50, left: 50, top: 70 };
     const circleDimension = this.width / this.numberCircles;
