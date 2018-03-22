@@ -25,26 +25,12 @@ export default class Homepage extends AbstractVisualization {
   }
 
   setListeners() {
-    // We detect if we can use passive event listeners
-    let passiveSupported = false;
-    try {
-      window.addEventListener('test', null, Object.defineProperty(
-        {},
-        'passive',
-        { get: () => { passiveSupported = true; } }
-      ));
-    } catch (err) {} // eslint-disable-line no-empty
+    super.setListeners();
 
     window.addEventListener(
       'scroll',
       throttle(this.onScroll.bind(this), 16),
-      passiveSupported ? { passive: false } : false
-    );
-
-    window.addEventListener(
-      'resize',
-      throttle(this.onResize.bind(this), 16),
-      passiveSupported ? { passive: false } : false
+      this.supportPassiveListeners ? { passive: false } : false
     );
   }
 
@@ -219,13 +205,13 @@ export default class Homepage extends AbstractVisualization {
     const containers = document.querySelectorAll('.js-visualization');
     return Array.prototype.slice.call(containers)
       .map((container) => {
-        const isMobile = this.width <= 640;
+        const isMobile = this.el.offsetWidth <= 640;
         const boundingRects = container.getBoundingClientRect();
         return {
           center: [
             isMobile
-              ? this.width / 2
-              : (boundingRects.x + boundingRects.width + this.width) / 2,
+              ? this.el.offsetWidth / 2
+              : (boundingRects.x + boundingRects.width + this.el.offsetWidth) / 2,
             window.scrollY + boundingRects.y + (boundingRects.height / 2)
           ],
           issue: container.getAttribute('data-issue')
@@ -365,7 +351,7 @@ export default class Homepage extends AbstractVisualization {
 
   render() {
     this.svg = select(this.el).append('svg')
-      .attr('width', this.width)
+      .attr('width', this.el.offsetWidth)
       .attr('height', this.height)
       .attr('role', 'img');
 
@@ -394,7 +380,7 @@ export default class Homepage extends AbstractVisualization {
     const realNodes = window.POSTS
       .map((d, i) => ({
         index: i,
-        x: random(0, this.width),
+        x: random(0, this.el.offsetWidth),
         y: random(0, this.height),
         r: radiusScale(d.reactionsCount),
         depth: 0,
@@ -411,7 +397,7 @@ export default class Homepage extends AbstractVisualization {
       .fill(0)
       .map((_, i) => ({
         index: realNodes.length + i,
-        x: random(0, this.width),
+        x: random(0, this.el.offsetWidth),
         y: random(0, this.height),
         r: random(20, 40),
         depth: random(1, blurDeviations.length - 1),

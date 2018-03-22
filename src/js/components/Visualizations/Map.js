@@ -63,16 +63,27 @@ export default class Map extends AbstractVisualization {
     this.mapContainer.classList.add('map-container');
     this.el.appendChild(this.mapContainer);
 
-    return new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/vizz-mozilla/cjdvvwlcu6hh92ss3hjrs8f8s',
-      center: [10.282177814440729, 44.54101006950887],
-      zoom: 1,
       maxZoom: 3,
       attributionControl: false,
       renderWorldCopies: true,
       scrollZoom: false
     });
+
+    const controls = new mapboxgl.NavigationControl({
+      showCompass: false,
+      showZoom: true
+    });
+
+    map.addControl(controls,
+      window.innerWidth < 540
+        ? 'bottom-right'
+        : 'top-left'
+    );
+
+    return map;
   }
 
   /**
@@ -158,12 +169,12 @@ export default class Map extends AbstractVisualization {
   createLegend(options) {
     // If the legend has already been created, we re-create it
     if (this.legendContainer) {
-      this.mapContainer.removeChild(this.legendContainer);
+      this.el.removeChild(this.legendContainer);
     }
 
     this.legendContainer = document.createElement('div');
     this.legendContainer.classList.add('legend-container');
-    this.mapContainer.append(this.legendContainer);
+    this.el.insertBefore(this.legendContainer, this.mapContainer);
 
     const switcher = document.createElement('div');
     switcher.classList.add('category-switcher');
@@ -322,9 +333,11 @@ export default class Map extends AbstractVisualization {
     // Creating map
     this.map = this.createMapInstance();
 
-    // Creating zoom and compass control
-    const nav = new mapboxgl.NavigationControl();
-    this.map.addControl(nav, 'top-left');
+    // We center the map
+    this.map.fitBounds([
+      [-168, -59],
+      [192, 76]
+    ]);
 
     this.map.on('load', () => {
       // Source needed for the layers we create below

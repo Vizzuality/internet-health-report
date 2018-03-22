@@ -1,5 +1,7 @@
 .v-map {
+  position: relative;
   height: 600px;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
 
@@ -14,19 +16,31 @@
   .map-container {
     flex-basis: 100%;
     flex-grow: 1;
+    width: calc(120% + 24px);
+    margin-left: calc(-12px - 10%);
+    border-top: 3px solid $black;
+    border-bottom: 3px solid $black;
   }
 
   .legend-container {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    padding: 25px;
-    width: 340px;
+    width: calc(120% + 24px);
+    margin-left: calc(-12px - 10%);
+    padding: 15px;
+    border-top: 3px solid $black;
     background: $white;
-    z-index: 1;
-    border: 3px solid $black;
-    box-shadow: $box-shadow;
-    font-family: $font-family-1;
+
+    @media screen and (min-width: $screen-s) {
+      position: absolute;
+      bottom: 30px;
+      right: calc(30px - 12px - 10%);
+      width: 340px;
+      padding: 25px;
+      margin-left: 0;
+      z-index: 1;
+      border: 3px solid $black;
+      box-shadow: $box-shadow;
+      font-family: $font-family-1;
+    }
 
     .category-switcher {
       .label {

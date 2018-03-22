@@ -1,5 +1,5 @@
 import { select, event } from 'd3-selection';
-import { zoom } from 'd3-zoom';
+import { zoom, zoomIdentity } from 'd3-zoom';
 import { forceSimulation, forceX, forceY, forceLink, forceManyBody } from 'd3-force';
 import { format } from 'd3-format';
 
@@ -15,6 +15,7 @@ export default class Bar extends AbstractVisualization {
     this.config.nodeSizes = [50, 20, 5];
 
     this.initialize();
+    this.setListeners();
   }
 
   initialize() {
@@ -98,22 +99,30 @@ export default class Bar extends AbstractVisualization {
     super.render();
     if (!this.data) return;
 
-    const width = this.el.offsetWidth;
-    const height = this.config.height;
     const z = zoom()
       .scaleExtent([1 / 5, 2])
       .on('zoom', this.onZoom.bind(this));
 
-    const svg = select(this.el).append('svg')
-      .attr('width', width)
-      .attr('height', height)
-      .call(z);
+    this.svg = select(this.el).append('svg')
+      .attr('width', this.width * this.scale)
+      .attr('height', this.height * this.scale)
+      .attr('role', 'img')
+      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`)
+      .attr('viewBox', `0 0 ${this.width} ${this.height}`)
 
-    this.g = svg.append('g');
+    this.svg.append('title')
+      .attr('id', `title_${this.id}`)
+      .text(this.title);
+
+    this.svg.append('desc')
+      .attr('id', `desc_${this.id}`)
+      .text(this.description);
+
+    this.g = this.svg.append('g');
 
     // We set the default zoom and center
-    z.scaleBy(svg, 0.7);
-    z.translateBy(svg, width / 2, height / 2);
+    this.svg.call(z)
+      .call(z.transform, zoomIdentity.translate(this.width / 2, this.height / 2).scale(0.7, 0.7));
 
     const nodes = this.data.nodes;
     const links = this.data.links;
@@ -129,8 +138,8 @@ export default class Bar extends AbstractVisualization {
         // visualization when it's searching for a
         // stability point
         const total = node.depth === 1 ? firstDepthNodeCount : secondDepthNodeCount;
-        node.x = width * Math.cos((index / total) * 2 * Math.PI);
-        node.y = width * Math.sin((index / total) * 2 * Math.PI);
+        node.x = this.width * Math.cos((index / total) * 2 * Math.PI);
+        node.y = this.width * Math.sin((index / total) * 2 * Math.PI);
       } else {
         // We fix the central node at the center
         // of the screen (a translation has been made

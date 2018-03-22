@@ -9,6 +9,7 @@ export default class Pie extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
     this.initialize();
+    this.setListeners();
   }
 
   initialize() {
@@ -61,17 +62,18 @@ export default class Pie extends AbstractVisualization {
     this.config.valueAxisSize = 0;
     this.config.labelAxisSize = 0;
 
-    const svg = select(this.el).append('svg')
-      .attr('width', this.width)
-      .attr('height', this.height)
+    this.svg = select(this.el).append('svg')
+      .attr('width', this.width * this.scale)
+      .attr('height', this.height * this.scale)
       .attr('role', 'img')
-      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`);
+      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`)
+      .attr('viewBox', `0 0 ${this.width} ${this.height}`);
 
-    svg.append('title')
+    this.svg.append('title')
       .attr('id', `title_${this.id}`)
       .text(this.title);
 
-    svg.append('desc')
+    this.svg.append('desc')
       .attr('id', `desc_${this.id}`)
       .text(this.description);
 
@@ -82,13 +84,13 @@ export default class Pie extends AbstractVisualization {
     const patterns = this.patterns.slice(0, this.data.filter(d => !d.grouped).length)
       .concat(whitePatterns.slice(1));
 
-    patterns.forEach(p => svg.call(p));
+    patterns.forEach(p => this.svg.call(p));
 
     const patternsScale = scaleOrdinal()
       .domain(labels)
       .range(patterns.map(p => p.url()));
 
-    const container = svg.append('g')
+    const container = this.svg.append('g')
       .attr('transform', `translate(${this.padding}, ${this.padding})`);
 
     // Title

@@ -5,8 +5,23 @@ import { utcFormat } from 'd3-time-format';
 import { select } from 'd3-selection';
 import tippy from 'tippy.js/dist/tippy.min';
 import textures from 'textures';
+import throttle from 'lodash/throttle';
 
 export default class AbstractVisualization {
+  get supportPassiveListeners() { // eslint-disable-line class-methods-use-this
+    // We detect if we can use passive event listeners
+    let passiveSupported = false;
+    try {
+      window.addEventListener('test', null, Object.defineProperty(
+        {},
+        'passive',
+        { get: () => { passiveSupported = true; } }
+      ));
+    } catch (err) {} // eslint-disable-line no-empty
+
+    return passiveSupported;
+  }
+
   get translations() { // eslint-disable-line class-methods-use-this
     return window.TRANSLATIONS || {};
   }
@@ -138,11 +153,19 @@ export default class AbstractVisualization {
   }
 
   get width() {
-    return this.config.width || this.el.offsetWidth;
+    return Math.max(950, this.el.offsetWidth);
   }
 
   get height() {
     return this.config.height || 600;
+  }
+
+  get scale() {
+    const width = this.el.offsetWidth;
+    if (width >= 950) {
+      return 1;
+    }
+    return width / 950;
   }
 
   get padding() {
@@ -383,6 +406,18 @@ export default class AbstractVisualization {
   }
 
   /**
+   * Event handler executed when the user resizes
+   * the window
+   */
+  onResize() { // eslint-disable-line class-methods-use-this
+    if (this.svg) {
+      this.svg
+        .attr('width', this.width * this.scale)
+        .attr('height', this.height * this.scale);
+    }
+  }
+
+  /**
    * Event handler executed when the tooltip is beginning
    * to hide
    */
@@ -402,6 +437,18 @@ export default class AbstractVisualization {
           instance.hide();
         }
       });
+  }
+
+  /**
+   * Set event listeners that aren't attached to any
+   * specific DOM node
+   */
+  setListeners() { // eslint-disable-line class-methods-use-this
+    window.addEventListener(
+      'resize',
+      throttle(this.onResize.bind(this), 16),
+      this.supportPassiveListeners ? { passive: false } : false
+    );
   }
 
   /**

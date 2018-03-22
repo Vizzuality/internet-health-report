@@ -10,6 +10,7 @@ export default class StackedBar extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
     this.initialize();
+    this.setListeners();
   }
 
   initialize() {
@@ -39,17 +40,18 @@ export default class StackedBar extends AbstractVisualization {
     super.render();
     if (!this.data) return;
 
-    const svg = select(this.el).append('svg')
-      .attr('width', this.width)
-      .attr('height', this.height)
+    this.svg = select(this.el).append('svg')
+      .attr('width', this.width * this.scale)
+      .attr('height', this.height * this.scale)
       .attr('role', 'img')
-      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`);
+      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`)
+      .attr('viewBox', `0 0 ${this.width} ${this.height}`);
 
-    svg.append('title')
+    this.svg.append('title')
       .attr('id', `title_${this.id}`)
       .text(this.title);
 
-    svg.append('desc')
+    this.svg.append('desc')
       .attr('id', `desc_${this.id}`)
       .text(this.description);
 
@@ -60,13 +62,13 @@ export default class StackedBar extends AbstractVisualization {
       .filter(k => k !== 'label');
 
     const patterns = this.patterns;
-    patterns.forEach(p => svg.call(p));
+    patterns.forEach(p => this.svg.call(p));
 
     const categoryFillScale = scaleOrdinal()
       .domain(categories)
       .range(patterns.map(p => p.url()));
 
-    const container = svg.append('g')
+    const container = this.svg.append('g')
       .attr('transform', `translate(${this.padding}, ${this.padding})`);
 
     // Title
