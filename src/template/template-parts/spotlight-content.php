@@ -3,7 +3,7 @@
   $image = get_post_meta($post->ID, 'image', true);
 ?>
 
-<div class="column small-12 medium-6 large-4 l-card">
+<div class="column small-12 large-12 l-card">
   <a href="<?php echo get_permalink() ?>" class="c-single-post <?php echo $type ?>" id="post-<?php the_ID(); ?>">
 
     <span class="color-border" <?php post_class(); ?> style="background-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></span>
