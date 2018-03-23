@@ -128,7 +128,7 @@ export default class Bar extends AbstractVisualization {
 
     // We set the default zoom and center
     this.svg.call(z)
-      .call(z.transform, zoomIdentity.translate(this.width / 2, this.height / 2).scale(0.7, 0.7));
+      .call(z.transform, zoomIdentity.translate(this.width / 2, this.height / 2).scale(0.4, 0.4));
 
     const nodes = this.data.nodes;
     const links = this.data.links;
