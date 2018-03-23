@@ -1,4 +1,5 @@
 .c-reactions-bar {
+  display: none; // temporal patch until we have responsive version of this component
   position: fixed;
   bottom: 0;
   left: 0;
@@ -6,6 +7,10 @@
   border-top: 2px solid $black;
   background: $white;
   z-index: 48; // z-index lower than the actual footer
+
+  @media screen and (min-width: $screen-m) {
+    display: inline-block;
+  }
 
   .reactions-bar-container {
     display: flex;

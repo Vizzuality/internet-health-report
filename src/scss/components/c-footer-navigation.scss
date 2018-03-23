@@ -1,5 +1,41 @@
 .c-footer-navigation {
 
+  .logo {
+
+    @media screen and (min-width: $screen-l) {
+      display: none;
+    }
+  }
+
+  ul {
+    &.-no-mobile {
+      display: none;
+
+      @media screen and (min-width: $screen-l) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &.-only-mobile {
+
+      @media screen and (min-width: $screen-l) {
+        display: none;
+      }
+    }
+
+    &.menu-nav-mobile {
+      margin: 5px 0 0;
+      column-count: 2;
+
+      > li {
+        &:nth-child(2) {
+          margin: inherit;
+        }
+      }
+    }
+  }
+
   ul > li {
     &:not(:first-child) {
       margin: 10px 0 0;
@@ -30,11 +66,12 @@
     height: 100%;
 
     ul > li {
+      display: inline-block;
       text-align: right;
 
 
       &:first-child {
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: flex-end;
 
@@ -53,18 +90,33 @@
             }
           }
         }
+
+        @media screen and (min-width: $screen-l) {
+          display: flex;
+        }
       }
 
       &:nth-child(2) {
-        visibility: hidden;
+        display: none;
+
+        @media screen and (min-width: $screen-l) {
+          display: inline-block;
+          visibility: hidden;
+        }
       }
     }
   }
 
   .powered-by {
-    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    margin: 35px 0 0;
     font-size: $font-xxs;
-    text-align: right;
+
+    @media screen and (min-width: $screen-m) {
+      justify-content: flex-end;
+      margin: 50px 0 0;
+    }
 
     img {
       display: inline-block;
@@ -73,22 +125,38 @@
       vertical-align: middle;
     }
   }
+
   .legal-advice {
-    vertical-align: text-bottom;
-    color: $white;
     font-size: 1rem;
     font-weight: 300;
     line-height: 1.5;
-    margin-top: 72px;
+    color: $white;
+    width: 100%;
+    margin: 65px 0 0 0;
+
     a {
-        color: $white;
-        &:hover {
-          text-decoration: underline;
+      color: $white;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
-  }
-    ul, li {
-      display: inline;
-      padding-right: 10px;
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      @media screen and (min-width: $screen-m) {
+        justify-content: flex-end;
+      }
+
+      > li {
+        display: inline-block;
+
+        &:not(:first-child) {
+          margin: 0 0 0 15px;
+        }
+      }
     }
   }
 }

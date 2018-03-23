@@ -17,19 +17,21 @@
     <div class="l-footer-top">
       <div class="wrap">
         <div class="row">
-          <div class="column small-12 medium-12">
+          <div class="column small-12">
           <div class="c-footer-options">
             <div class="column small-6 medium-12 large-3">
-              <img src="/wp-content/themes/ihr-2018/images/logos/internethealth-white.svg" alt="Mozilla" class="logo" />
+              <a href="/" alt="home">
+                <img src="/wp-content/themes/ihr-2018/images/logos/internethealth-white.svg" alt="Mozilla" class="logo" />
+              </a>
             </div>
-            <div class="column small-12 medium-12 large-6">
+            <div class="column small-12 medium-8 large-6">
               <form class="c-newsletter" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
                 <input id="fmt" name="fmt" value="H" type="hidden">
                 <input id="lang" name="lang" value="<?php echo ICL_LANGUAGE_CODE; ?>" type="hidden">
                 <input id="newsletters" name="newsletters" value="internet-health-report-group" type="hidden">
                 <div class="email-button">
                   <input id="email" name="email" required="required" placeholder="<?php esc_html_e( 'Write your email here', 'ihr-2018' ); ?>" aria-label="Email address" type="email">
-                  <button id="newsletter_submit" type="submit" class="btn"><?php esc_html_e( 'Subscribe', 'ihr-2018' ); ?></button>
+                  <button id="newsletter_submit" type="submit" class="btn -secondary"><?php esc_html_e( 'Subscribe', 'ihr-2018' ); ?></button>
                 </div>
                 <div class="privacy">
                   <label for="privacy">
@@ -39,7 +41,7 @@
                 </div>
               </form>
             </div>
-            <div class="column small-6 medium-12 large-3">
+            <div class="column small-12 large-3">
               <?php languages_list_footer(); ?>
             </div>
           </div>
@@ -51,8 +53,13 @@
       <div class="c-footer-navigation">
         <div class="wrap">
           <div class="row">
+            <div class="column small-12">
+              <a href="/" alt="home">
+                <img src="/wp-content/themes/ihr-2018/images/logos/internethealth-white.svg" alt="Mozilla" class="logo" />
+              </a>
+            </div>
             <div class="column small-6 medium-3">
-              <ul>
+              <ul class="-no-mobile">
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
                 </li>
@@ -68,7 +75,7 @@
               </ul>
             </div>
             <div class="column small-6 medium-3">
-              <ul>
+              <ul class="-no-mobile">
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'issues' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Issues', 'ihr-2018' ); ?></a>
                 </li>
@@ -90,7 +97,7 @@
               </ul>
             </div>
             <div class="column small-6 medium-3">
-              <ul>
+              <ul class="-no-mobile">
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Participate', 'ihr-2018' ); ?></a>
                 </li>
@@ -107,7 +114,7 @@
             </div>
             <div class="column small-6 medium-3">
               <div class="extra-links">
-                <ul>
+                <ul class="-no-mobile">
                   <li>
                     <button class="-category download-pdf-link download-tooltip-trigger">
                       <?php esc_html_e( 'Download PDF', 'ihr-2018' ); ?>
@@ -123,22 +130,53 @@
                 </ul>
               </div>
             </div>
+            <div class="column small-12">
+              <ul class="menu-nav-mobile -only-mobile">
+                <li>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
+                </li>
+                <li>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'issues' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Issues', 'ihr-2018' ); ?></a>
+                </li>
+                <li>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Participate', 'ihr-2018' ); ?></a>
+                </li>
+                <li>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
+                </li>
+                <li>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
+                </li>
+                <li>
+                  <a href="https://internethealthreport.org/blog/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a>
+                </li>
+                <li>
+                  <a href="https://internethealthreport.org/2018/sitemap.xml" class="text -light -category"><?php esc_html_e( 'Sitemap', 'ihr-2018' ); ?></a>
+                </li>
+                <li>
+                  <a href="https://internethealthreport.org/2017/" class="text -light -category"><?php esc_html_e( 'Previous report', 'ihr-2018' ); ?></a>
+                </li>
+
+              </ul>
+            </div>
           </div>
           <div class="row">
             <div class="column small-12 medium-6">
              <p class="legal-advice"><?php esc_html_e( "This website is licensed under a ", 'ihr-2018' ); ?><a href="https://creativecommons.org/licenses/by/4.0/"><?php esc_html_e( 'Creative Commons BY 4.0 license', 'ihr-2018' ); ?></a>,<?php esc_html_e( " excluding portions of the content attributed to third parties", 'ihr-2018' ); ?>.</p>
             </div>
-            <div class="column small-12 medium-3 legal-advice">
-              <ul>
-                <li><a href="https://www.mozilla.org/en-US/privacy/websites/"><?php esc_html_e( 'Privacy', 'ihr-2018' ); ?></a>
-                </li>
-                <li><a href="https://www.mozilla.org/en-US/privacy/websites/#cookies"><?php esc_html_e( 'Cookies', 'ihr-2018' ); ?></a>
-                </li>
-                <li><a href="https://www.mozilla.org/en-US/about/legal/terms/mozilla/"><?php esc_html_e( 'Terms of Use', 'ihr-2018' ); ?></a>
-                </li>
-              </ul>
+            <div class="column small-12 medium-6">
+              <div class="legal-advice">
+                <ul>
+                  <li><a href="https://www.mozilla.org/en-US/privacy/websites/"><?php esc_html_e( 'Privacy', 'ihr-2018' ); ?></a>
+                  </li>
+                  <li><a href="https://www.mozilla.org/en-US/privacy/websites/#cookies"><?php esc_html_e( 'Cookies', 'ihr-2018' ); ?></a>
+                  </li>
+                  <li><a href="https://www.mozilla.org/en-US/about/legal/terms/mozilla/"><?php esc_html_e( 'Terms of Use', 'ihr-2018' ); ?></a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="column small-12 medium-3">
+            <div class="column small-12">
               <p class="powered-by -light">
               <?php esc_html_e( 'Powered by', 'ihr-2018' ); ?>
                 <a href="https://www.mozilla.org/">
@@ -168,7 +206,7 @@
     <div class="wrap">
       <div class="row">
         <div class="reactions-bar-container">
-          <div class="column small-12 medium-6">
+          <div class="column small-12 medium-2">
             <ul class="social-list">
               <li class="social-item">
                 <a
@@ -188,7 +226,7 @@
               </li>
             </ul>
           </div>
-          <div class="column small-12 medium-6">
+          <div class="column small-12 medium-10">
             <div class="reactions">
               <span class="text"><?php _e('Tell us how you feel:', 'ihr-2018');?></span>
               <?php

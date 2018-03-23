@@ -10,6 +10,7 @@ get_header();
 <?php
     // To create posts list within the category
     $args = array(
+      'suppress_filters' => false,
       'posts_per_page' => -1,
       'order'=> 'ASC',
       'meta_key' => 'order',
