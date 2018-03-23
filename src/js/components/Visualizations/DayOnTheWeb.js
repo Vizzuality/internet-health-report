@@ -100,9 +100,9 @@ class DayOnTheWeb extends AbstractVisualization {
     });
 
     const chartContainer = select('#vis-day-on-the-web');
-    const width = this.width;
     const margin = { right: 50, left: 50, top: 70 };
-    const circleDimension = this.width / this.numberCircles;
+    const width = this.width - margin.right - margin.left;
+    const circleDimension = width / this.numberCircles;
     const height = this.sliderHeight + margin.top + circleDimension;
     const axisWidth = width - margin.left - margin.right;
 
@@ -161,7 +161,7 @@ class DayOnTheWeb extends AbstractVisualization {
 
     const margin = { top: 70 };
     const padding = 10;
-    const circleDimension = this.width / this.numberCircles;
+    const circleDimension = (this.width - 100) / this.numberCircles;
 
     const radiusScale = scaleLinear()
       .domain([0, DayOnTheWeb.areaToRadius(max([avgMax, valMax]))])
