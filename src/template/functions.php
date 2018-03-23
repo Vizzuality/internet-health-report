@@ -239,7 +239,10 @@ function nav_items( $items, $menu, $args )
 
     foreach( $items as $item )
     {
-        if( 'Explore' == $item->post_title)
+        if( 'Rechercher' == $item->post_title ||
+            'Buscar' == $item->post_title ||
+            'Search' == $item->post_title ||
+            'Suchen' == $item->post_title )
             $item->url = get_bloginfo( 'url' ) . '?s=';
 
     }
