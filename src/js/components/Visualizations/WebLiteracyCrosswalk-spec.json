@@ -1,7 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v3.json",
-  "width": 600,
-  "height": 600,
   "autosize": {
     "type": "fit",
     "resize": true,
@@ -20,10 +18,10 @@
   "data": [{
     "name": "data",
     "values": [],
-    "parse": {
+    "format":{"parse": {
       "size": "number",
       "value": "number"
-    },
+    }},
     "transform": [{
       "type": "stack",
       "groupby": [
