@@ -206,7 +206,7 @@
     <div class="wrap">
       <div class="row">
         <div class="reactions-bar-container">
-          <div class="column small-12 medium-6">
+          <div class="column small-12 medium-2">
             <ul class="social-list">
               <li class="social-item">
                 <a
@@ -226,7 +226,7 @@
               </li>
             </ul>
           </div>
-          <div class="column small-12 medium-6">
+          <div class="column small-12 medium-10">
             <div class="reactions">
               <span class="text"><?php _e('Tell us how you feel:', 'ihr-2018');?></span>
               <?php
