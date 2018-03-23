@@ -54,11 +54,12 @@
     }
   }
 
-  &:not(.v-circle) {
+  &:not(.v-circle),
+  &:not(.v-vega) {
     .marks,
     .value-outline,
     .value {
-      > text {
+      text {
         transform: translateY(-#{$font-xxs / 2});
         font-family: $font-family-1;
         font-size: $font-xxxs;

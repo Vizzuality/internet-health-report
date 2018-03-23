@@ -87,7 +87,7 @@ class DayOnTheWeb extends AbstractVisualization {
 
   initCanvas() {
     const startDate = new Date();
-    startDate.setDate(startDate.getDate() - startDate.getDay()); // setting on monday
+    startDate.setDate(startDate.getDate() - startDate.getDay() + 1 ); // setting on monday
     startDate.setHours(0); // setting first milisecond on midnight
     startDate.setMinutes(0);
     startDate.setSeconds(0);
@@ -140,6 +140,12 @@ class DayOnTheWeb extends AbstractVisualization {
 
   static areaToRadius(area) {
     return Math.sqrt(area / Math.PI);
+  }
+
+  static centerTickLabels(labels, timeScale) {
+    const day = timeDay(new Date);
+    const dayWidth = Math.abs(timeScale(day) - timeScale(timeDay.offset(day, 1)));
+    labels.attr('transform', `translate(${dayWidth/2}, -10)`);
   }
 
   initCircles() {
@@ -230,14 +236,22 @@ class DayOnTheWeb extends AbstractVisualization {
       .tickPadding(0)
       .tickFormat(timeFormat('%A'));
 
-    sliderComponent.call(ticks);
+    sliderComponent
+      .call(ticks);
+
+    const labels = sliderComponent.selectAll('.tick text');
+    DayOnTheWeb.centerTickLabels(labels, this.xAxis);
+
+    labels.filter(function(d, i, arr) {
+      return i === arr.length - 1;
+    }).attr('display', 'none');
 
     // Add slider axis and handle
     sliderComponent.append('line')
       .attrs({
         class: 'track',
-        x1: this.xAxis.range()[0],
-        x2: this.xAxis.range()[1]
+        x1: this.xAxis.range()[0] + .5,
+        x2: this.xAxis.range()[1] + .5
       })
       .select(function n() { return this.parentNode.appendChild(this.cloneNode(true)); })
       .attr('class', 'track-inset')
