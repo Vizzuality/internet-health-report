@@ -3,9 +3,13 @@
 }
 
 .wrap {
+  padding: 0 15px;
   margin: 0 auto;
-  padding: 0 30px;
   max-width: 1240px;
+
+  @media screen and (min-width: $screen-l) {
+    padding: 0 30px;
+  }
 }
 
 .l-header {
@@ -137,7 +141,9 @@
 }
 
 .l-footer-bottom {
-  padding: 40px 0 60px;
+  padding: 40px 0 30px;
+
+  @media screen and (min-width: $screen-l) {
+    padding: 40px 0 60px;
+  }
 }
-
-

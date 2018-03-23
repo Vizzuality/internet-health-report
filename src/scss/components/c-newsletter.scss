@@ -1,17 +1,23 @@
 .c-newsletter {
-  .logo {
-    width: 110px;
+  margin: 15px 0 0;
+
+  @media screen and (min-width: $screen-l) {
+    margin: 0;
   }
 
   .email-button {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    flex-direction: column;
+
+    @media screen and (min-width: $screen-l) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
 
     input {
       flex-grow: 1;
       height: 35px;
-      margin-right: 20px;
       border: 0;
       border-radius: 0;
       border-bottom: 3px solid $white;
@@ -20,10 +26,23 @@
       font-size: $font-s;
       color: $white;
       background: transparent;
+
+      @media screen and (min-width: $screen-l) {
+        max-width: 55%;
+        margin-right: 20px;
+      }
+
+      &:focus {
+        border: 0;
+      }
     }
 
     .btn.-secondary {
-      margin: 0;
+      margin: 25px 0 0;
+
+      @media screen and (min-width: $screen-l) {
+        margin: 0;
+      }
 
       &:hover {
         border-color: $white;
