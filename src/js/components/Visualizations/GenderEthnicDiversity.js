@@ -22,17 +22,29 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
     const data = select(target).datum();
-    const result = this.data.find(d => (d.Company === data.Company));
+    const result = this.data.find(d => (d[this.orderBy] === data[this.orderBy]));
     const list = Object.keys(result).map(key =>
-      (key !== 'Company' ? `<p class="note">${key}: ${result[key]}%</p>` : '')
+      (key !== this.orderBy ? `<p class="note">${key}: ${result[key]}%</p>` : '')
     );
     return `
-      <p class="title">${result.Company}</p>
+      <p class="title">${result[this.orderBy]}</p>
       ${list.join('')}
     `;
   }
 
   serializeData() {
+    this.mappedLines = [];
+    this.mappedBars = [];
+
+    this.data.columns.forEach((col, k) => {
+      // First column are labels
+      if (k === 0) this.orderBy = col;
+      // Second column are bars
+      else if (k === 1)  this.mappedBars = [col];
+      // The rest are lines
+      else this.mappedLines.push(col);
+    });
+
     const { data, config } = this;
 
     const mappedData = {};
@@ -40,7 +52,7 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
 
     if (data && data.length) {
       Object.keys(data[0]).forEach((label) => {
-        if (label !== config.orderBy) {
+        if (label !== this.orderBy) {
           mappedData[label] = { data: [] };
         }
       });
@@ -48,15 +60,15 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
 
     data.forEach((d) => {
       Object.keys(d).forEach((l) => {
-        if (l !== this.config.orderBy) {
+        if (l !== this.orderBy) {
           const value = parseFloat(d[l]);
           mappedData[l].data.push({
-            [config.orderBy]: d[config.orderBy],
+            [this.orderBy]: d[this.orderBy],
             value: isNaN(value) ? 0 : value
           });
         }
       });
-      labels.push(d[config.orderBy]);
+      labels.push(d[this.orderBy]);
     });
 
     this.mappedLabels = labels;
@@ -106,12 +118,12 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
         const yFirstPoint = this.yScale(0) + 15;
         return `translate(${yFirstPoint}, 0)`;
       })
-      .text(d => d.Company)
+      .text(d => d[this.orderBy])
       .attr('title', d => d)
       .call(wrap, 120);
   }
 
-  generateRadialLine(data, label) {
+  generateRadialLine(data, key) {
     const radialLine = lineRadial()
       .angle((d, i) => this.xScale(i))
       .radius(d => this.yScale(d.value))
@@ -122,13 +134,13 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
       .attr('class', 'line')
       .attr('fill', 'none')
       .attr('stroke-width', 2)
-      .attr('stroke', () => this.config.colors[label])
+      .attr('stroke', this.config.colors[key])
       .attr('d', radialLine);
   }
 
   // Finds the original data set
   findOriginalData(data) {
-    return this.data.filter(d => d[this.config.orderBy] === data.Company)[0];
+    return this.data.filter(d => d[this.orderBy] === data[this.orderBy])[0];
   }
 
   handleMouseOver(data) {
@@ -184,21 +196,21 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
   paintChart() {
     const { config } = this;
 
-    let bars = config.bars || [];
-    let lines = config.lines || [];
+    let bars = this.mappedBars;
+    let lines = this.mappedLines;
 
     this.renderWrapperArc();
 
-    Object.keys(this.mappedData).forEach((label) => {
+    Object.keys(this.mappedData).forEach((label, i) => {
       if (bars.indexOf(label) > -1) {
         this.generateRadialBars(this.getData(label), {
-          color: this.config.colors[label]
+          color: this.config.colors[i]
         });
         bars = bars.filter(b => b !== label);
       }
 
       if (lines.indexOf(label) > -1) {
-        this.generateRadialLine(this.getData(label), label);
+        this.generateRadialLine(this.getData(label), i);
         lines = lines.filter(l => l !== label);
       }
     });
@@ -212,7 +224,7 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
     const { el } = this;
     const legendElement = document.createElement('div');
     const legendItems = this.data.columns.slice(-this.data.columns.length + 1)
-      .map(d => `<li><span style="border-color: ${this.config.colors[d]}"></span> ${d}</li>`);
+      .map((d, i) => `<li><span style="border-color: ${this.config.colors[i]}"></span> ${d}</li>`);
     legendElement.classList.add('gender-etchnic-diversity-legend');
     legendElement.innerHTML = `<ul>
       ${legendItems.join('')}
