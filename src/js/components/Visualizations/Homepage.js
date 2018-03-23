@@ -18,6 +18,12 @@ export default class Homepage extends AbstractVisualization {
 
     this.openDefaultTooltip = debounce(this.openDefaultTooltip, 200);
 
+    // We temporarily disable the homepage visualisation
+    // for performance and UX reasons on smaller devices
+    if (this.el.offsetWidth <= 640) {
+      return;
+    }
+
     this.setListeners();
     this.visualizationBreakpoints = this.getVisualizationBreakpoints();
     this.render();
