@@ -8,8 +8,6 @@
 
     <span class="color-border" <?php post_class(); ?> style="background-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></span>
 
-    <?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>
-
     <div class="single-post-body <?php if($image){echo '-image';}; ?>">
     	<header class="single-post-header">
         <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php echo the_field('type')?></p>
