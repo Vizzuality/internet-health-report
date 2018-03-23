@@ -19,7 +19,9 @@ export default class Area extends AbstractVisualization {
         // We properly format the labels as dates and
         // the values as numbers
         this.data = this.data.map(d => Object.assign(d, {
-          label: new Date(d.label),
+          // If d.label is a number like "2010", then the date
+          // parser will fail
+          label: new Date(`${d.label}`),
           value: +d.value
         }));
       })
