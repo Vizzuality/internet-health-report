@@ -23,11 +23,12 @@ export default class WebLiteracyCrosswalk extends AbstractVisualization {
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
     const { datum } = select(target).datum();
+    const { dictionary } = this;
 
     return `
       <p class="title">${datum.subcategory}</p>
       <p class="note">${datum.category}</p>
-      <p class="number" style="color: ${this.color}">${(datum.value === 1 ? 'Yes' : 'No')}</p>
+      <p class="number" style="color: ${this.color}">${(datum.value === 1 ? dictionary.yes : dictionary.no)}</p>
       <p class="note" style="max-width: 200px">${datum.label}</p>
     `;
   }
@@ -115,7 +116,10 @@ export default class WebLiteracyCrosswalk extends AbstractVisualization {
   }
 
   render() {
-    super.render();
+    if (!this.data) {
+      this.el.innerHTML = 'Unable to load the data!';
+    }
+
     this.renderChart();
   }
 }
