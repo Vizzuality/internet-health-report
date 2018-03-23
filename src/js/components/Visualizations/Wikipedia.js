@@ -1,6 +1,6 @@
 import { select, event } from 'd3-selection';
 import { zoom, zoomIdentity } from 'd3-zoom';
-import { forceSimulation, forceX, forceY, forceLink, forceManyBody } from 'd3-force';
+import { forceSimulation, forceLink, forceManyBody } from 'd3-force';
 import { format } from 'd3-format';
 
 import AbstractVisualization from 'components/Visualizations/AbstractVisualization';
@@ -68,21 +68,27 @@ export default class Bar extends AbstractVisualization {
     if (data.depth === 1) {
       let link = data.homepage;
       if (!link) {
-        if (data.plateform === 'NPM') {
+        if (data.platform === 'NPM') {
           link = `https://www.npmjs.com/package/${data.name}`;
-        } else if (data.plateform === 'Packagist') {
+        } else if (data.platform === 'Packagist') {
           link = `https://packagist.org/packages/${data.name}`;
         }
       }
 
-      return `
-        <a href="${link}" target="_blank" rel="noopener noreferrer">${data.name}</a>
-      `;
+      return link
+        ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${data.name}</a>`
+        : data.name;
     }
 
     const link = this.data.links.find(l => l.target.index === data.index);
     const totalCommits = link ? link.source.totalCommits : null;
-    const percentage = format('.1%')(data.commits / totalCommits) || '';
+    let percentage = '–%';
+    if (totalCommits) {
+      percentage = format('.1%')(data.commits / totalCommits) || '';
+    }
+    if (percentage === '0.0%') {
+      percentage = '< 0.1%';
+    }
 
     // Contributor
     return `
@@ -108,7 +114,7 @@ export default class Bar extends AbstractVisualization {
       .attr('height', this.height * this.scale)
       .attr('role', 'img')
       .attr('aria-labelledby', `title_${this.id} desc_${this.id}`)
-      .attr('viewBox', `0 0 ${this.width} ${this.height}`)
+      .attr('viewBox', `0 0 ${this.width} ${this.height}`);
 
     this.svg.append('title')
       .attr('id', `title_${this.id}`)
@@ -127,30 +133,14 @@ export default class Bar extends AbstractVisualization {
     const nodes = this.data.nodes;
     const links = this.data.links;
 
-    const firstDepthNodeCount = nodes.filter(n => n.depth === 1).length;
-    const secondDepthNodeCount = nodes.filter(n => n.depth === 2).length;
-
-    /* eslint-disable no-param-reassign */
-    nodes.forEach((node, index) => {
-      if (node.depth !== 0) {
-        // By spreading the nodes around the central
-        // one, we improve the visual aspect of the
-        // visualization when it's searching for a
-        // stability point
-        const total = node.depth === 1 ? firstDepthNodeCount : secondDepthNodeCount;
-        node.x = this.width * Math.cos((index / total) * 2 * Math.PI);
-        node.y = this.width * Math.sin((index / total) * 2 * Math.PI);
-      } else {
-        // We fix the central node at the center
-        // of the screen (a translation has been made
-        // right above so (0, 0) is the center)
-        node.x = 0;
-        node.y = 0;
-        node.fy = 0;
-        node.fx = 0;
-      }
-    });
-    /* eslint-enable no-param-reassign */
+    // We fix the central node at the center
+    // of the screen (a translation has been made
+    // right above so (0, 0) is the center)
+    const staticNode = nodes.find(node => node.depth === 0);
+    staticNode.x = 0;
+    staticNode.y = 0;
+    staticNode.fy = 0;
+    staticNode.fx = 0;
 
     this.g.append('g')
       .attr('class', 'links')
@@ -205,24 +195,23 @@ export default class Bar extends AbstractVisualization {
       .attr('dx', d => d.x)
       .attr('dy', d => d.y)
       .attr('text-anchor', 'middle')
-      .attr('alignment-baseline', 'middle');
+      .attr('dominant-baseline', 'middle');
 
     const charge = forceManyBody()
-      .strength(-300);
+      .strength(-15);
 
     const linksForce = forceLink(links)
       .distance(d => this.config.nodeSizes[d.source.depth]
         + this.config.nodeSizes[d.target.depth]
-        + 10
+        + ((d.target.depth + 1) * 5)
       )
       .strength(d => (d.source.depth === 0 || d.target.depth === 0 ? 0.1 : 0.5))
-      .iterations(10);
+      .iterations(1);
 
     forceSimulation(nodes)
+      .alphaDecay(0.03)
       .force('charge', charge)
       .force('link', linksForce)
-      .force('x', forceX())
-      .force('y', forceY())
       .on('tick', this.onTick.bind(this));
 
     // We instantiate the tooltip
