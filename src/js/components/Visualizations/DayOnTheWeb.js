@@ -28,12 +28,13 @@ class DayOnTheWeb extends AbstractVisualization {
   }
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const { dictionary } = this;
     const data = select(target).datum();
     return `
       <p class="title">${data.category}</p>
       <p class="note">${this.dateFormat(data.date)}:00</p>
-      <p class="note">Average ${data.average} minutes</p>
-      <p class="note">Value ${data.value} minutes</p>
+      <p class="note">Average ${data.average} ${dictionary.time_unit}</p>
+      <p class="note">Value ${data.value} ${dictionary.time_unit}</p>
     `;
   }
 
@@ -86,7 +87,7 @@ class DayOnTheWeb extends AbstractVisualization {
 
   initCanvas() {
     const startDate = new Date();
-    startDate.setDate(startDate.getDate() - startDate.getDay()); // setting on monday
+    startDate.setDate(startDate.getDate() - startDate.getDay() + 1 ); // setting on monday
     startDate.setHours(0); // setting first milisecond on midnight
     startDate.setMinutes(0);
     startDate.setSeconds(0);
@@ -99,9 +100,9 @@ class DayOnTheWeb extends AbstractVisualization {
     });
 
     const chartContainer = select('#vis-day-on-the-web');
-    const width = this.width;
     const margin = { right: 50, left: 50, top: 70 };
-    const circleDimension = this.width / this.numberCircles;
+    const width = this.width - margin.right - margin.left;
+    const circleDimension = width / this.numberCircles;
     const height = this.sliderHeight + margin.top + circleDimension;
     const axisWidth = width - margin.left - margin.right;
 
@@ -141,6 +142,12 @@ class DayOnTheWeb extends AbstractVisualization {
     return Math.sqrt(area / Math.PI);
   }
 
+  static centerTickLabels(labels, timeScale) {
+    const day = timeDay(new Date);
+    const dayWidth = Math.abs(timeScale(day) - timeScale(timeDay.offset(day, 1)));
+    labels.attr('transform', `translate(${dayWidth/2}, -10)`);
+  }
+
   initCircles() {
     // Takes first filtered average from data rather than calculating average
     const averageData = this.data.filter((obj, pos, arr) =>
@@ -154,7 +161,7 @@ class DayOnTheWeb extends AbstractVisualization {
 
     const margin = { top: 70 };
     const padding = 10;
-    const circleDimension = this.width / this.numberCircles;
+    const circleDimension = (this.width - 100) / this.numberCircles;
 
     const radiusScale = scaleLinear()
       .domain([0, DayOnTheWeb.areaToRadius(max([avgMax, valMax]))])
@@ -229,14 +236,22 @@ class DayOnTheWeb extends AbstractVisualization {
       .tickPadding(0)
       .tickFormat(timeFormat('%A'));
 
-    sliderComponent.call(ticks);
+    sliderComponent
+      .call(ticks);
+
+    const labels = sliderComponent.selectAll('.tick text');
+    DayOnTheWeb.centerTickLabels(labels, this.xAxis);
+
+    labels.filter(function(d, i, arr) {
+      return i === arr.length - 1;
+    }).attr('display', 'none');
 
     // Add slider axis and handle
     sliderComponent.append('line')
       .attrs({
         class: 'track',
-        x1: this.xAxis.range()[0],
-        x2: this.xAxis.range()[1]
+        x1: this.xAxis.range()[0] + .5,
+        x2: this.xAxis.range()[1] + .5
       })
       .select(function n() { return this.parentNode.appendChild(this.cloneNode(true)); })
       .attr('class', 'track-inset')
