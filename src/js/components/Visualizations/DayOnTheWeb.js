@@ -28,12 +28,13 @@ class DayOnTheWeb extends AbstractVisualization {
   }
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const { dictionary } = this;
     const data = select(target).datum();
     return `
       <p class="title">${data.category}</p>
       <p class="note">${this.dateFormat(data.date)}:00</p>
-      <p class="note">Average ${data.average} minutes</p>
-      <p class="note">Value ${data.value} minutes</p>
+      <p class="note">Average ${data.average} ${dictionary.time_unit}</p>
+      <p class="note">Value ${data.value} ${dictionary.time_unit}</p>
     `;
   }
 

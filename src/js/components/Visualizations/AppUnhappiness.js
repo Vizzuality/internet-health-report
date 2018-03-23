@@ -18,12 +18,13 @@ export default class AppUnhappiness extends AbstractVisualization {
   }
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
+    const { dictionary } = this;
     const data = select(target).datum();
     return `
       <p class="title">${data.name}</p>
       <p class="number">${data.happy_percentage}%</p>
-      <p class="note">${Math.round(data.avg_minutes_happy)} minutes</p>
-      <p class="note">${Math.round(data.avg_minutes_unhappy)} minutes</p>
+      <p class="note">${Math.round(data.avg_minutes_happy)} ${dictionary.minutes}</p>
+      <p class="note">${Math.round(data.avg_minutes_unhappy)} ${dictionary.minutes}</p>
     `;
   }
 
