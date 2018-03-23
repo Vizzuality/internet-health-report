@@ -24,12 +24,8 @@
 
     figcaption {
       display: inline-block;
-      position: absolute;
-      bottom: 0;
-      right: 0;
       margin: 0;
       padding: 5px 15px;
-      max-width: 90%;
       font-size: 14px;
       font-weight: 500;
       line-height: 15px;
@@ -37,33 +33,53 @@
       border-left: 3px solid $black;
       border-top: 3px solid $black;
       background-color: $white;
+
+      @media screen and (min-width: $screen-m) {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        max-width: 90%;
+      }
     }
 
     &.alignleft {
-      margin-right: 100px;
+
+      @media screen and (min-width: $screen-m) {
+        margin-right: 100px;
+      }
 
       figcaption {
         top: 0;
         right: 0;
         bottom: auto;
         border-top: 0;
-        border-bottom: 3px solid $black;
-        border-left: 3px solid $black;
         border-right: 0;
+
+        @media screen and (min-width: $screen-m) {
+          border-bottom: 3px solid $black;
+          border-left: 3px solid $black;
+        }
       }
     }
 
     &.alignright {
-      margin-left: 100px;
+
+      @media screen and (min-width: $screen-m) {
+        margin-left: 100px;
+      }
 
       figcaption {
         top: 0;
         left: 0;
         bottom: auto;
         border-top: 0;
-        border-right: 3px solid $black;
+
         border-left: 0;
-        border-bottom: 3px solid $black;
+
+        @media screen and (min-width: $screen-m) {
+          border-right: 3px solid $black;
+          border-bottom: 3px solid $black;
+        }
       }
     }
   }
