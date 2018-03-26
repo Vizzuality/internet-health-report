@@ -43,6 +43,7 @@ get_header(); ?>
         echo 'title: ' . json_encode($post->post_title ). ',';
         echo 'url: ' . json_encode(get_permalink($post)) . ',';
         echo 'highlighted: ' . json_encode(get_field('highlighted', $post->ID)) . ',';
+        echo 'image: ' . json_encode(get_field('image', $post->ID)) . ',';
         // The next line is off until finding a faster approach
         //echo 'commentsCount: ' . (comments_count($post->ID) ? comments_count($post->ID) : 0). ',';
         echo 'reactionsCount: ' . ($reactions['total_reactions'] ? $reactions['total_reactions'] : 0) . ',';

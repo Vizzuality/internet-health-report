@@ -61,6 +61,16 @@
     .single-post-body {
       height: auto;
       flex-basis: 100%;
+
+      &.-image {
+        flex-basis: 66%;
+      }
+    }
+
+    .single-post-image {
+      flex-basis: 34%;
+      flex-shrink: 0;
+      border-left-width: 2px;
     }
   }
 }

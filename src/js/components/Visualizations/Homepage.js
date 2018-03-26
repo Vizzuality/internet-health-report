@@ -132,7 +132,7 @@ export default class Homepage extends AbstractVisualization {
 
     return `
       <a href="${d.url}" class="c-single-post">
-        <div class="single-post-body">
+        <div class="single-post-body${d.image ? ' -image' : ''}">
           <header class="single-post-header">
             <p class="text -link -secondary">${d.issue.name} // ${d.type}</p>
           </header>
@@ -155,6 +155,7 @@ export default class Homepage extends AbstractVisualization {
             </span>
           </div>
         </div>
+        ${d.image ? `<div class="single-post-image" style="background-image:url('${d.image}')"></div>` : ''}
       </a>
       <button type="button" class="close-button js-close" aria-label="${this.translations.close_tooltip}">
         <svg class="c-icon -medium"><use xlink:href="#icon-close_normal"></use></svg>
@@ -396,7 +397,8 @@ export default class Homepage extends AbstractVisualization {
         url: d.url,
         reactionsCount: d.reactionsCount,
         highlighted: d.highlighted,
-        reactions: d.reactions
+        reactions: d.reactions,
+        image: d.image
       }));
 
     const randomNodes = new Array(10)
