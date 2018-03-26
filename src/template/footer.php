@@ -36,7 +36,7 @@
                 <div class="privacy">
                   <label for="privacy">
                     <input id="privacy" name="privacy" required="" type="checkbox">
-                    <?php esc_html_e( "I'm ok with mozilla handling my info as explained in this ", 'ihr-2018' ); ?><a href="https://www.mozilla.org/privacy/websites/"><?php esc_html_e( 'privacy notice', 'ihr-2018' ); ?></a>.
+                    <?php esc_html_e( "I'm ok with mozilla handling my info as explained in this ", 'ihr-2018' ); ?><a href="<?php esc_html_e( "https://www.mozilla.org/privacy/websites/", 'ihr-2018' ); ?>"><?php esc_html_e( 'privacy notice', 'ihr-2018' ); ?></a>.
                   </label>
                 </div>
               </form>
@@ -64,13 +64,13 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/what-is-this' ) ) ?>" class="text -light"><?php esc_html_e( 'What is this?', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light"><?php esc_html_e( 'Readme', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-is-the-health-of-the-internet' ) ) ?>" class="text -light"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/trending-topics' ) ) ?>" class="text -light"><?php esc_html_e( 'Trending topics', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/spotlights' ) ) ?>" class="text -light"><?php esc_html_e( 'Spotlights', 'ihr-2018' ); ?></a>
                 </li>
               </ul>
             </div>
@@ -105,13 +105,22 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate/what-you-can-do' ) ) ?>" class="text -light"><?php esc_html_e( 'What you can do', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'participate/contact-us' ) ) ?>" class="text -light"><?php esc_html_e( 'Contact us', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'participate/feedback' ) ) ?>" class="text -light"><?php esc_html_e( 'Feedback', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate/recent-comments' ) ) ?>" class="text -light"><?php esc_html_e( 'Recent Comments', 'ihr-2018' ); ?></a>
                 </li>
               </ul>
             </div>
+            <?php 
+                  $explore_link = get_site_url(null, '', 'relative');
+                  if (ICL_LANGUAGE_CODE == 'en') {
+                    $explore_link = $explore_link . '?s=';
+                  }
+                  else {
+                    $explore_link = $explore_link . '?s=' . '&lang=' . ICL_LANGUAGE_CODE;
+                  }
+            ?>
             <div class="column small-6 medium-3">
               <div class="extra-links">
                 <ul class="-no-mobile">
@@ -122,8 +131,8 @@
                     </button>
                     <?php renderDownloadOptions() ?>
                   </li>
-                  <li><a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
-                  <li><a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
+                  <li><a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
+                  <li><a href="<?php echo $explore_link ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/blog/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/2018/sitemap.xml" class="text -light -category"><?php esc_html_e( 'Sitemap', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/2017/" class="text -light -category"><?php esc_html_e( 'Previous report', 'ihr-2018' ); ?></a></li>
@@ -142,10 +151,10 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Participate', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'search-result' ) ) ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo $explore_link ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="https://internethealthreport.org/blog/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a>
@@ -167,11 +176,11 @@
             <div class="column small-12 medium-6">
               <div class="legal-advice">
                 <ul>
-                  <li><a href="https://www.mozilla.org/en-US/privacy/websites/"><?php esc_html_e( 'Privacy', 'ihr-2018' ); ?></a>
+                  <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/privacy/websites/', 'ihr-2018' ); ?>"><?php esc_html_e( 'Privacy', 'ihr-2018' ); ?></a>
                   </li>
-                  <li><a href="https://www.mozilla.org/en-US/privacy/websites/#cookies"><?php esc_html_e( 'Cookies', 'ihr-2018' ); ?></a>
+                  <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/privacy/websites/#cookies', 'ihr-2018' ); ?>"><?php esc_html_e( 'Cookies', 'ihr-2018' ); ?></a>
                   </li>
-                  <li><a href="https://www.mozilla.org/en-US/about/legal/terms/mozilla/"><?php esc_html_e( 'Terms of Use', 'ihr-2018' ); ?></a>
+                  <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/about/legal/terms/mozilla/', 'ihr-2018' ); ?>"><?php esc_html_e( 'Terms of Use', 'ihr-2018' ); ?></a>
                   </li>
                 </ul>
               </div>
