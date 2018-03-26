@@ -1,0 +1,14 @@
+.-only-mobile {
+
+  @media screen and (min-width: $screen-m) {
+    display: none;
+  }
+}
+
+.-only-tablet {
+  display: none;
+
+  @media screen and (min-width: $screen-m) {
+    display: inherit;
+  }
+}
