@@ -28,8 +28,39 @@
 }
 
 .l-tabs {
+  position: relative;
   border-top: $border-black;
   border-bottom: $border-black;
+
+  &:before {
+    content: '';
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    width: 30px;
+    background: linear-gradient(to left, rgba($white, 0), $white);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: inline-block;
+    width: 30px;
+    background: linear-gradient(to right, rgba($white, 0), $white);
+  }
+
+  @media screen and (min-width: 768px) {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
 }
 
 .l-categories {

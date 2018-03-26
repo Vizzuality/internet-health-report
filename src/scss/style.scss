@@ -636,8 +636,8 @@ a:active {
         border-left: 10px solid white;
         a {
           margin-left: -10px;
-        } 
-      }  
+        }
+      }
    }
   .menu-toggle,
   .main-navigation.toggled ul {
@@ -648,7 +648,7 @@ a:active {
   .main-navigation ul {
     display: none;
   }
-  
+
 }
 
 // pagination
@@ -1972,6 +1972,7 @@ object {
 @import "../../node_modules/tippy.js/dist/tippy";
 @import "font";
 @import "settings";
+@import "helpers";
 @import "general";
 @import "text";
 @import "layout";

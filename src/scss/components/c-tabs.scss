@@ -9,10 +9,19 @@
   @media screen and (min-width: $screen-m) {
     overflow-x: visible;
     white-space: normal;
+    padding: 20px 0;
   }
 
   li {
     position: relative;
+
+    &:first-child {
+      padding: 0 0 0 30px;
+    }
+
+    &:last-child {
+      padding: 0 30px 0 0;
+    }
 
     &:not(:first-child) {
       margin: 0 0 0 15px;
@@ -44,6 +53,13 @@
           border-radius: 50%;
           background-color: $black;
         }
+      }
+    }
+
+    @media screen and (min-width: $screen-m) {
+      &:first-child,
+      &:last-child {
+        padding: 0;
       }
     }
   }
