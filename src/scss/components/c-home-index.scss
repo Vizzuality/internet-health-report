@@ -28,7 +28,11 @@
     &.item-6 { background-color: $decentralization;}
 
     &:hover {
-      width: 30px;
+      width: 15px;
+
+      @media screen and (min-width: $screen-m) {
+        width: 30px;
+      }
     }
   }
 }

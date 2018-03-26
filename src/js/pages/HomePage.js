@@ -25,7 +25,9 @@ export default class HomePage {
 
       if (!destinyElement) return;
 
-      scroll.animateScroll(destinyElement, null, { offset: ((window.innerHeight / 2) - 95) });
+      scroll.animateScroll(destinyElement, null, {
+        offset: ((window.innerHeight / 2) - (destinyElement.clientHeight / 2))
+      });
     }));
   }
 }
