@@ -27,7 +27,8 @@ export default class PostPage {
         const pageHistory = Router.getPageHistory();
         if (pageHistory.length > 1) {
           const previousPage = pageHistory[1];
-          if (previousPage.page === 'IssuePage' && new RegExp(`/${window.CATEGORY}/?$`).test(previousPage.url)) {
+          // eslint-disable-next-line no-useless-escape
+          if (previousPage.page === 'IssuePage' && new RegExp(`/${window.CATEGORY}((\/?\?.*)|\/)?$`).test(previousPage.url)) {
             e.preventDefault();
             history.back();
           }
