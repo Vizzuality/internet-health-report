@@ -607,22 +607,38 @@ a:active {
     top: 20px;
     right: 30px;
   }
-  nav#site-navigation.main-navigation.c-main-navigation.toggled {
+  nav.toggled {
     position: absolute;
     background: black;
     left:0;
     top: 0;
     width: 100%;
-    padding: 100px 40px;
+    padding: 100px 0px 100% 0px;
       button {
         color: white;
       }
       .lang-selector {
         display:block;
-
       }
-  }
-
+      ul {
+       padding-bottom: 40px;
+       border-bottom: 2px solid white;
+       width: 100%;
+      }
+      li {
+        padding: 8px 50px;
+      }
+      select {
+        margin-top: 40px;
+        margin-left: 50px;
+      }
+      .current-menu-item {
+        border-left: 10px solid white;
+        a {
+          margin-left: -10px;
+        } 
+      }  
+   }
   .menu-toggle,
   .main-navigation.toggled ul {
     display: block;
@@ -631,9 +647,8 @@ a:active {
   }
   .main-navigation ul {
     display: none;
-
   }
-
+  
 }
 
 // pagination
