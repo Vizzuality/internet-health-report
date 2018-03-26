@@ -10,6 +10,12 @@
     line-height: 1.25;
   }
 
+  .label {
+    font-size: $font-xxs;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
   .number {
     margin: 5px 0;
     font-size: $font-l;
@@ -71,6 +77,37 @@
       flex-basis: 34%;
       flex-shrink: 0;
       border-left-width: 2px;
+    }
+  }
+
+  .app-unhappiness {
+    text-align: left;
+
+    .title {
+      margin-bottom: 5px;
+    }
+
+    .label {
+      margin-bottom: 7px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        &:first-of-type {
+          margin-right: 30px;
+        }
+
+        > div:not(:last-of-type) {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .c-icon {
+      vertical-align: middle;
     }
   }
 }

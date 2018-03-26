@@ -1,93 +1,19 @@
-.app-unhappiness-vis {
-  width: 100%;
-  position: relative;
-}
-
-.app-unhappiness-vis .axis line,
-.app-unhappiness-vis .axis circle {
-  fill: none;
-  stroke: rgba(0, 0, 0, .1);
-}
-
-.app-unhappiness-vis .axis text {
-  font-size: 12px;
-  color: black;
-  text-anchor: start;
-}
-
-.app-unhappiness-vis .outer-axis .domain {
-  stroke: transparent;
-}
-.app-unhappiness-vis .outer-axis .tick {
-  stroke: transparent;
-  stroke-width: 0;
-}
-.app-unhappiness-vis .outer-axis .tick text,
-.app-unhappiness-vis .outer-axis-tick text {
-  font-size: 10px;
-  color: black;
-  text-anchor: start;
-}
-
-.app-unhappiness-vis .line {
-  fill: none;
-  stroke: #000;
-  stroke-linejoin: 'round';
-  stroke-linecap: 'round';
-  stroke-width: 2;
-}
-
-.app-unhappiness-vis .area.happy {
-  fill: #6DD8AF;
-}
-
-.app-unhappiness-vis .area.unhappy {
-  fill: rgba(0, 0, 0, .2);
-}
-
-/* Legend */
-.app-unhappiness-vis .app-unhappiness-vis-legend {
-  position: relative;
-}
-.app-unhappiness-vis .app-unhappiness-vis-legend ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  @media screen and (min-width: $screen-m) {
-    display: flex;
+.v-app-unhappiness {
+  circle {
+    fill: none;
+    stroke: rgba($black, .1);
+    stroke-width: 1;
   }
-}
-.app-unhappiness-vis .app-unhappiness-vis-legend ul > li {
-  display: flex;
-  vertical-align: middle;
-  margin-right: 40px;
-  font-size: 16px;
-  line-height: 17px;
-  margin-bottom: 10px;
 
-  @media screen and (min-width: $screen-m) {
-    margin-top: 0;
-    margin-bottom: 0;
+  .axis text {
+    font-size: $font-xxxs;
+    color: black;
+    text-anchor: start;
+    transform: translateY(#{-$font-xxxs / 2});
   }
-}
-.app-unhappiness-vis .app-unhappiness-vis-legend ul > li:last-child {
-  margin-right: 0;
-}
-.app-unhappiness-vis .app-unhappiness-vis-legend li > span {
-  display: block;
-  content: " ";
-  height: 17px;
-  width: 17px;
-  margin-right: 5px;
-  border: 2px solid;
-  box-sizing: border-box;
-}
-.app-unhappiness-vis .app-unhappiness-vis-legend .icon-line {
-  border-color: #000;
-}
 
-.app-unhappiness-vis .app-unhappiness-vis-legend .unhappy-icon {
-  background-color: rgba(0, 0, 0, .2);
-  border-color: rgba(0, 0, 0, .2);
+  .labels text {
+    font-size: $font-xxxs;
+    color: black;
+  }
 }

@@ -236,7 +236,7 @@ export default {
   },
   vis_5_1: {
     type: 'app-unhappiness',
-    height: 800
+    height: 900
   },
   vis_5_2: {
     type: 'day-on-the-web'
