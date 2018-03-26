@@ -4,7 +4,6 @@
   width: 100%;
   height: 100%;
   padding: 20px;
-  cursor: pointer;
 
   > a {
     position: absolute;
@@ -16,9 +15,5 @@
 
   @media screen and (min-width: $screen-l) {
     min-height: 320px;
-  }
-
-  .category-description {
-    font-size: $font-ml;
   }
 }
