@@ -33,7 +33,11 @@
 }
 
 .l-categories {
-  margin: 40px 0;
+  margin: -15px 0;
+
+  .card-column {
+    margin: 15px 0 0;
+  }
 }
 
 .l-related-posts {
@@ -45,10 +49,6 @@
 }
 
 .l-card {
-  display: flex;
-}
-
-.l-category-card {
   display: flex;
 }
 
@@ -83,7 +83,7 @@
 
 
 .l-section-header {
-  padding-bottom: 65px;
+  padding: 0 0 65px;
 }
 
 .l-tab-content {

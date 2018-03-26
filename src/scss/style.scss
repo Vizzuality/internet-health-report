@@ -636,8 +636,8 @@ a:active {
         border-left: 10px solid white;
         a {
           margin-left: -10px;
-        } 
-      }  
+        }
+      }
    }
   .menu-toggle,
   .main-navigation.toggled ul {
@@ -648,7 +648,7 @@ a:active {
   .main-navigation ul {
     display: none;
   }
-  
+
 }
 
 // pagination
@@ -899,9 +899,9 @@ a:active {
   display: block;
 }
 
-.hentry {
-  margin: 0 0 1.5em;
-}
+// .hentry {
+//   margin: 0 0 1.5em;
+// }
 
 .updated:not(.published) {
   display: none;
