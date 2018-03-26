@@ -1,8 +1,8 @@
 h1,
 .title.-main {
   font-weight: 700;
-  font-size: $font-mb-l;
-  line-height: 35px;
+  font-size: $font-xl;
+  line-height: 1;
   margin-bottom: 10px;
 
   @media screen and (min-width: $screen-l) {
@@ -13,7 +13,7 @@ h1,
 }
 
 .title.-main {
-  display: inline;
+  display: inline-block;
   background-color: $black;
   color: $white;
 
