@@ -110,6 +110,19 @@
       vertical-align: middle;
     }
   }
+
+  .web-literacy-crosswalk {
+    text-align: left;
+    max-width: 220px;
+
+    .title {
+      margin-bottom: 5px;
+    }
+
+    .label {
+      margin-bottom: 5px;
+    }
+  }
 }
 
 // Styles for tippy

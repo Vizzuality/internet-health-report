@@ -54,7 +54,7 @@
     }
   }
 
-  &:not(.v-circle) {
+  &:not(.v-circle):not(.v-web-literacy-crosswalk) {
     .marks,
     .value-outline,
     .value {
