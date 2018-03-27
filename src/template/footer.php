@@ -238,7 +238,7 @@
             <ul class="social-list">
               <li class="social-item">
                 <a
-                  href="javascript:fbShare(<?php print(urlencode(get_permalink())); ?>, 'Share this via Facebbok', 'Facebook share popup', 550, 250)"
+                  href="javascript:fbShare('<?php print(urlencode(get_permalink())); ?>', 'Share this via Facebbok', 'Facebook share popup', 550, 250)"
                 >
                   <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
                 </a>
