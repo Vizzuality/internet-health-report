@@ -101,6 +101,9 @@
     color: $black;
     text-decoration: underline;
   }
+  p + p {
+    margin-top: 30px;
+  }
 }
 
 //Override WP styles
