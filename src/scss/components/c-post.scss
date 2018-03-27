@@ -96,6 +96,12 @@
   }
 }
 
+.post-content {
+  a {
+    color: $black;
+  }
+}
+
 //Override WP styles
 .wp-caption .wp-caption-text {
   margin: 0;
