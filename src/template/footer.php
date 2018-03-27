@@ -189,7 +189,7 @@
           <div class="credits">
             <div class="row">
               <div class="column small-12 medium-6">
-                <div class="credits-designed">
+                <div class="credits-designed" style="display: none">
                   <span class="powered-by -light">
                   <?php esc_html_e( 'Designed by', 'ihr-2018' ); ?>
                     <a href="https://vizzuality.com/" target="_blank" rel="noreferrer noopener">
