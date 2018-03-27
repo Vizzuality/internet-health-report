@@ -86,11 +86,11 @@ get_header(); ?>
 
       <ul class="c-home-index">
         <li class="home-index-item"><a class="item-1" href="#non-category"></a></li>
-        <li class="home-index-item"><a class="item-2" href="#privacy-and-security"></a></li>
-        <li class="home-index-item"><a class="item-3" href="#openness"></a></li>
-        <li class="home-index-item"><a class="item-4" href="#digital-inclusion"></a></li>
-        <li class="home-index-item"><a class="item-5" href="#web-literacy"></a></li>
-        <li class="home-index-item"><a class="item-6" href="#decentralization"></a></li>
+        <li class="home-index-item"><a class="item-2" href="#<?php esc_html_e( 'privacy-and-security', 'ihr-2018' ); ?>"></a></li>
+        <li class="home-index-item"><a class="item-3" href="#<?php esc_html_e( 'openness', 'ihr-2018' ); ?>"></a></li>
+        <li class="home-index-item"><a class="item-4" href="#<?php esc_html_e( 'digital-inclusion', 'ihr-2018' ); ?>"></a></li>
+        <li class="home-index-item"><a class="item-5" href="#<?php esc_html_e( 'web-literacy', 'ihr-2018' ); ?>"></a></li>
+        <li class="home-index-item"><a class="item-6" href="#<?php esc_html_e( 'decentralization', 'ihr-2018' ); ?>"></a></li>
       </ul>
 
       <?php
@@ -122,7 +122,7 @@ get_header(); ?>
           <div class="row">
             <div class="column small-12 medium-7">
               <div class="slide-content js-visualization"
-                id="<?php echo sanitize_title(get_the_category()[0]->cat_name) ?>"
+                id="<?php echo esc_html_e( sanitize_title(get_the_category()[0]->cat_name), 'ihr-2018' ); ?>"
                 data-issue="<?php echo get_the_category()[0]->cat_name ?>"
               >
                 <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
