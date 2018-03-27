@@ -5,4 +5,8 @@
     position: relative; // Needed for the homepage vis
     z-index: 2; // Needed for the homepage vis
   }
+
+  a {
+    color: $black;
+  }
 }
