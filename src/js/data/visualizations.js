@@ -65,7 +65,22 @@ export default {
     type: 'circle'
   },
   vis_2_4: {
-    type: 'TODO'
+    type: 'gender-ethnic-diversity',
+    bars: ['Female'],
+    lines: ['White', 'Asian', 'Latino', 'Black', 'Multi', 'Other', 'Undeclared'],
+    orderBy: 'Company',
+    colors: {
+      Female: '#c1d1ef',
+      White: '#f29833',
+      Asian: '#4d961d',
+      Latino: '#9b3999',
+      Black: '#3f99c6',
+      Multi: '#dd4476',
+      Other: '#65aa03',
+      Undeclared: '#b8302e'
+    },
+    height: 800,
+    radius: 700
   },
   vis_2_5_1: {
     type: 'bar',
@@ -86,24 +101,6 @@ export default {
       return `${Math.floor(value) + (Math.round((value % 1) * 100) / 100)}%`;
     },
     valueSize: 45
-  },
-  vis_2_7: {
-    type: 'gender-ethnic-diversity',
-    bars: ['Female'],
-    lines: ['White', 'Asian', 'Latino', 'Black', 'Multi', 'Other', 'Undeclared'],
-    orderBy: 'Company',
-    colors: {
-      Female: '#c1d1ef',
-      White: '#f29833',
-      Asian: '#4d961d',
-      Latino: '#9b3999',
-      Black: '#3f99c6',
-      Multi: '#dd4476',
-      Other: '#65aa03',
-      Undeclared: '#b8302e'
-    },
-    height: 800,
-    radius: 700
   },
   vis_3_1_2: {
     type: 'map',
