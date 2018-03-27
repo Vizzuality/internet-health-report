@@ -17,6 +17,10 @@ h1,
   background-color: $black;
   color: $white;
 
+  @media screen and (min-width: $screen-s) {
+    display: inline-block;
+  }
+
   @media screen and (min-width: $screen-l) {
     line-height: 90px;
   }
@@ -56,8 +60,6 @@ p,
   font-size: $font-s;
   line-height: 30px;
   color: $black;
-  // @media screen and (min-width: $screen-l) {
-  // }
 }
 
 .text.-large {
