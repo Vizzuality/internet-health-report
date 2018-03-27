@@ -1,10 +1,15 @@
 .c-footer-options {
   display: flex;
   flex-direction: column-reverse ;
-  align-items: flex-start;
 
   @media screen and (min-width: $screen-l) {
     flex-direction: row;
+    height: 100%;
+  }
+
+  .ihr-logo {
+    display: inline-flex;
+    height: 100%;
   }
 
   .logo {
@@ -13,9 +18,5 @@
     @media screen and (min-width: $screen-l) {
       display: inline-block;
     }
-  }
-
-  .c-language-switcher {
-    display: inline-block;
   }
 }
