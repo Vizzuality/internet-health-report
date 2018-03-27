@@ -94,8 +94,11 @@
     .container {
       display: flex;
       justify-content: space-between;
+      align-items: flex-end;
 
       > div {
+        max-width: 280px;
+
         &:first-of-type {
           margin-right: 30px;
         }
