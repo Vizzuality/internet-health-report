@@ -66,21 +66,18 @@ export default {
   },
   vis_2_4: {
     type: 'gender-ethnic-diversity',
-    bars: ['Female'],
-    lines: ['White', 'Asian', 'Latino', 'Black', 'Multi', 'Other', 'Undeclared'],
-    orderBy: 'Company',
-    colors: {
-      Female: '#c1d1ef',
-      White: '#f29833',
-      Asian: '#4d961d',
-      Latino: '#9b3999',
-      Black: '#3f99c6',
-      Multi: '#dd4476',
-      Other: '#65aa03',
-      Undeclared: '#b8302e'
-    },
-    height: 800,
-    radius: 700
+    colors: [
+      '#c1d1ef',
+      '#f29833',
+      '#4d961d',
+      '#9b3999',
+      '#3f99c6',
+      '#dd4476',
+      '#65aa03',
+      '#b8302e'
+    ],
+    radius: 700,
+    height: 800
   },
   vis_2_5_1: {
     type: 'bar',
