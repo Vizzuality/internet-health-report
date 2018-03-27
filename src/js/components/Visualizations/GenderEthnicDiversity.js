@@ -8,6 +8,7 @@ import AbstractVisualization from './AbstractVisualization';
 export default class GenderEthnicDiversityOriginal extends AbstractVisualization {
   constructor(el, config) {
     super(el, config);
+    this.setListeners();
     this.initialize();
   }
 
@@ -20,15 +21,27 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
       });
   }
 
+  roundNumber(n) { // eslint-disable-line class-methods-use-this
+    const parsed = parseFloat(n);
+    return isNaN(parsed) ? '-' : Math.round(parsed * 10) / 10;
+  }
+
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
     const data = select(target).datum();
     const result = this.data.find(d => (d[this.orderBy] === data[this.orderBy]));
     const list = Object.keys(result).map(key =>
-      (key !== this.orderBy ? `<p class="note">${key}: ${result[key]}%</p>` : '')
+      (key !== this.orderBy
+        ? `<div><span class="note">${this.roundNumber(result[key])}%</span> <span class="label">${key}</span></div>`
+        : ''
+      )
     );
     return `
-      <p class="title">${result[this.orderBy]}</p>
-      ${list.join('')}
+      <div class="gender-ethnic-diversity">
+        <p class="title">${result[this.orderBy]}</p>
+        <div class="container">
+          ${list.join('')}
+        </div>
+      </div>
     `;
   }
 
@@ -40,12 +53,12 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
       // First column are labels
       if (k === 0) this.orderBy = col;
       // Second column are bars
-      else if (k === 1)  this.mappedBars = [col];
+      else if (k === 1) this.mappedBars = [col];
       // The rest are lines
       else this.mappedLines.push(col);
     });
 
-    const { data, config } = this;
+    const { data } = this;
 
     const mappedData = {};
     const labels = [];
@@ -107,16 +120,23 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
   }
 
   renderLabels() {
+    const getAngle = i => this.xScale(i);
+    const FIRST_CIRCLE_HALF = ((Math.PI * 2) / 2);
+
     const bars = this.bars.selectAll('.bar');
+
     bars.append('text')
       .attr('class', 'label')
       .attr('dy', '0.31em')
-      .style('font-size', '11px')
-      .attr('opacity', 0.6)
-      .attr('text-anchor', 'start')
-      .attr('transform', () => {
+      .style('font-size', '13px')
+      .attr('opacity', 0.8)
+      .attr('text-anchor', (_, i) => (getAngle(i) > FIRST_CIRCLE_HALF ? 'end' : 'start'))
+      .attr('transform', (_, i) => {
         const yFirstPoint = this.yScale(0) + 15;
-        return `translate(${yFirstPoint}, 0)`;
+        if (getAngle(i) > FIRST_CIRCLE_HALF) {
+          return `translate(${yFirstPoint}, 0) rotate(180)`;
+        }
+        return `translate(${yFirstPoint}, 0) rotate(0)`;
       })
       .text(d => d[this.orderBy])
       .attr('title', d => d)
@@ -194,8 +214,6 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
   }
 
   paintChart() {
-    const { config } = this;
-
     let bars = this.mappedBars;
     let lines = this.mappedLines;
 
@@ -235,6 +253,8 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
   render() {
     const { config } = this;
 
+    this.el.classList.add('v-gender-ethnic-diversity');
+
     this.renderLegend();
 
     this.margin = config.margin || 0;
@@ -249,7 +269,18 @@ export default class GenderEthnicDiversityOriginal extends AbstractVisualization
 
     this.svg = select(this.el).append('svg')
       .attr('width', this.width)
-      .attr('height', this.height);
+      .attr('height', this.height)
+      .attr('viewBox', `0 0 ${this.width} ${this.height}`)
+      .attr('role', 'img')
+      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`);
+
+    this.svg.append('title')
+      .attr('id', `title_${this.id}`)
+      .text(this.title);
+
+    this.svg.append('desc')
+      .attr('id', `desc_${this.id}`)
+      .text(this.description);
 
     const container = this.svg.append('g')
       .attr('class', 'container')
