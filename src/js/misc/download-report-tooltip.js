@@ -13,6 +13,7 @@ if (triggerElements.length) {
       theme: 'ihr',
       interactive: true,
       distance: 15,
+      zIndex: 51,
       onShow: () => {
         tooltipContent.removeAttribute('style');
       },
