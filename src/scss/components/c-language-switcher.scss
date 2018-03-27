@@ -1,5 +1,8 @@
 .c-language-switcher {
-  select {
+  display: inline-flex;
+  height: 100%;
+
+  > select {
     appearance: none;
     width: 100%;
     border: 0;

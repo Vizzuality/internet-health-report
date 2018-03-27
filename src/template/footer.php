@@ -19,12 +19,12 @@
         <div class="row">
           <div class="column small-12">
           <div class="c-footer-options">
-            <div class="column small-6 medium-12 large-3">
-              <a href="/" alt="home">
+            <div class="column small-6 medium-12 large-3 -full-height">
+              <a href="/" alt="home" class="ihr-logo">
                 <img src="/wp-content/themes/ihr-2018/images/logos/internethealth-white.svg" alt="Mozilla" class="logo" />
               </a>
             </div>
-            <div class="column small-12 medium-8 large-6">
+            <div class="column small-12 medium-8 large-6 -full-height">
               <form class="c-newsletter" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
                 <input id="fmt" name="fmt" value="H" type="hidden">
                 <input id="lang" name="lang" value="<?php echo ICL_LANGUAGE_CODE; ?>" type="hidden">
@@ -41,7 +41,7 @@
                 </div>
               </form>
             </div>
-            <div class="column small-12 large-3">
+            <div class="column small-12 large-3 -full-height">
               <?php languages_list_footer(); ?>
             </div>
           </div>
@@ -112,7 +112,7 @@
                 </li>
               </ul>
             </div>
-            <?php 
+            <?php
                   $explore_link = get_site_url(null, '', 'relative');
                   if (ICL_LANGUAGE_CODE == 'en') {
                     $explore_link = $explore_link . '?s=';
@@ -185,13 +185,29 @@
                 </ul>
               </div>
             </div>
-            <div class="column small-12">
-              <p class="powered-by -light">
-              <?php esc_html_e( 'Powered by', 'ihr-2018' ); ?>
-                <a href="https://www.mozilla.org/">
-                  <img src="/wp-content/themes/ihr-2018/images/logos/mozilla-white.svg" alt="Mozilla" />
-                </a>
-              </p>
+          </div>
+          <div class="credits">
+            <div class="row">
+              <div class="column small-12 medium-6">
+                <div class="credits-designed">
+                  <span class="powered-by -light">
+                  <?php esc_html_e( 'Designed by', 'ihr-2018' ); ?>
+                    <a href="https://vizzuality.com/" target="_blank" rel="noreferrer noopener">
+                      <svg class="c-icon icon-vizzuality"><use xlink:href="#icon-vizzuality"></use></svg>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="column small-12 medium-6">
+                <div class="credits-powered">
+                  <span class="powered-by -light">
+                  <?php esc_html_e( 'Powered by', 'ihr-2018' ); ?>
+                    <a href="https://www.mozilla.org/">
+                      <svg class="c-icon icon-mozilla-white"><use xlink:href="#icon-mozilla-white"></use></svg>
+                    </a>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
