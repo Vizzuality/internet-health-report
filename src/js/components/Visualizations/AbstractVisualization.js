@@ -113,7 +113,8 @@ export default class AbstractVisualization {
 
     const dotsC = textures.circles()
       .complement()
-      .size(8)
+      .radius(2.5)
+      .size(12)
       .fill(this.color)
       .background('#000');
 

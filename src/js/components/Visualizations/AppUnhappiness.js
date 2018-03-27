@@ -89,7 +89,7 @@ export default class AppUnhappiness extends AbstractVisualization {
       .sort((a, b) => a.value - b.value)
       .map(d => d.label);
 
-    const maxRadius = (this.visualizationBounds.height / 2) - 120;
+    const maxRadius = (this.visualizationBounds.height / 2) - 160;
 
     const radiusScale = scaleLinear()
       .domain([0, 100])

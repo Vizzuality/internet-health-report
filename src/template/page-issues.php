@@ -1,7 +1,6 @@
 <?php
 /**
- * The template for displaying:
- * - ISSUES page
+ *  Template Name: Issues
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
