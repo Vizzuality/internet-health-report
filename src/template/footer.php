@@ -64,7 +64,7 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light"><?php esc_html_e( 'Readme', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light"><?php esc_html_e( 'README', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-healthy-is-the-internet' ) ) ?>" class="text -light"><?php esc_html_e( 'How healthy the Internet?', 'ihr-2018' ); ?></a>
@@ -131,11 +131,11 @@
                     </button>
                     <?php renderDownloadOptions() ?>
                   </li>
-                  <li><a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
-                  <li><a href="<?php echo $explore_link ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a></li>
-                  <li><a href="https://internethealthreport.org/blog/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a></li>
+                  <li><a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Search', 'ihr-2018' ); ?></a></li>
+                  <li><a href="<?php echo $explore_link ?>" class="text -light"><?php esc_html_e( 'Search', 'ihr-2018' ); ?></a></li>
+                  <li><a href="https://internethealthreport.org/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/2018/sitemap.xml" class="text -light -category"><?php esc_html_e( 'Sitemap', 'ihr-2018' ); ?></a></li>
-                  <li><a href="https://internethealthreport.org/2017/" class="text -light -category"><?php esc_html_e( 'Previous report', 'ihr-2018' ); ?></a></li>
+                  <li><a href="https://internethealthreport.org/v01/" class="text -light -category"><?php esc_html_e( 'Previous report', 'ihr-2018' ); ?></a></li>
                 </ul>
               </div>
             </div>
@@ -151,10 +151,10 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Participate', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Search', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo $explore_link ?>" class="text -light"><?php esc_html_e( 'Explore', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo $explore_link ?>" class="text -light"><?php esc_html_e( 'Search', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="https://internethealthreport.org/blog/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a>
@@ -180,7 +180,10 @@
                   </li>
                   <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/privacy/websites/#cookies', 'ihr-2018' ); ?>"><?php esc_html_e( 'Cookies', 'ihr-2018' ); ?></a>
                   </li>
-                  <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/about/legal/terms/mozilla/', 'ihr-2018' ); ?>"><?php esc_html_e( 'Terms of Use', 'ihr-2018' ); ?></a>
+                  <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/about/legal/terms/mozilla/', 'ihr-2018' ); ?>"><?php esc_html_e( 'Legal', 'ihr-2018' ); ?></a>
+                  </li>
+                  </li>
+                  <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/about/governance/policies/participation/', 'ihr-2018' ); ?>"><?php esc_html_e( 'Community', 'ihr-2018' ); ?></a>
                   </li>
                 </ul>
               </div>
