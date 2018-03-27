@@ -242,9 +242,6 @@ export default {
     type: 'TODO'
   },
   vis_5_3: {
-    type: 'TODO'
-  },
-  vis_5_6: {
     type: 'web-literacy-crosswalk',
     height: 800,
     padding: 20
