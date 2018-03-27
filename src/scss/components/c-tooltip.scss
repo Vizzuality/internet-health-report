@@ -123,6 +123,19 @@
       margin-bottom: 5px;
     }
   }
+
+  .gender-ethnic-diversity {
+    text-align: left;
+
+    .title {
+      margin-bottom: 5px;
+    }
+
+    .container {
+      column-count: 2;
+      column-gap: 15px;
+    }
+  }
 }
 
 // Styles for tippy
