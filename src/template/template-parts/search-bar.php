@@ -2,6 +2,7 @@
 <div class="row">
   <div class="column small-12">
     <form id="archive-filters" class="wrap c-explore-filters" method="get">
+      <input type="hidden" name="lang" value="<?php echo(ICL_LANGUAGE_CODE); ?>"/>
       <div class="selectors">
         <select class="js-filter" name="issue" aria-label="<?php _e( 'Filter by issue', 'ihr-2018' ); ?>">
           <?php
