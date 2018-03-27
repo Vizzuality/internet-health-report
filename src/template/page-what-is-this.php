@@ -96,7 +96,7 @@ get_header();
             <div class="row">
               <div class="column small-12 medium-12">
                 <h3><?php _e('Credits','ihr-2018' ) ?></h3>
-                <h4><?php _e('If you believe your name is missing from this list, just let us know.','ihr-2018' ) ?></h4>
+                <h4><?php _e('If you believe your name is missing from this list, <a href="mailto:internethealth@mozillafoundation.org">just let us know.</a>','ihr-2018' ) ?></h4>
                 <?php if( have_rows('credits') ): ?>
                   <ul>
                     <?php while( have_rows('credits') ): the_row(); ?>
