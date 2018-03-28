@@ -113,8 +113,10 @@
     }
   }
   ul {
-    list-style: disc;
     padding-left: 20px;
+  }
+  ul, ol, li {
+    list-style: disc;
   }
   li + li {
     margin-top: 10px;

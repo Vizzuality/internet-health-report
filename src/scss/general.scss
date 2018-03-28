@@ -2,7 +2,6 @@ h1, h2, h3, h4, h5, h6, p, * {
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: $font-family-1;
   -webkit-font-smoothing: antialiased;
@@ -10,7 +9,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: $black;
-
   &.category {
     &.category-5fa1f4 .content-area {
       &:before,
@@ -18,40 +16,34 @@ body {
         background: url('images/background/bg_blue@2x.png') no-repeat top left / 100% auto, #E9F1FD;
       }
     }
-
     &.category-ff5c73 .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_red@2x.png') no-repeat top left / 100% auto, #FEE3E7;
       }
     }
-
     &.category-ffe159 .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_yellow@2x.png') no-repeat top left / 100% auto, #FFF9E5;
       }
     }
-
     &.category-6dd8af .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_green@2x.png') no-repeat top left / 100% auto, #E9F9F3;
       }
     }
-
     &.category-76e1f4 .content-area {
       &:before,
       &:after {
         background: url('images/background/bg_lightblue@2x.png') no-repeat top left / 100% auto, #EBFAFD;
       }
     }
-
     .content-area {
       position: relative;
       // Needed for the backgrounds to be in sync
       min-height: 75vw;
-
       &:before {
         display: block;
         position: absolute;
@@ -62,7 +54,6 @@ body {
         content: '';
         z-index: -2;
       }
-
       &:after {
         display: block;
         position: absolute;
@@ -77,19 +68,16 @@ body {
     }
   }
 }
-
 ul, ol, li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-
 a {
     &:-webkit-any-link {
     text-decoration: none;
   }
 }
-
 button {
   appearance: none;
   box-shadow: none;
@@ -101,11 +89,12 @@ button {
   padding: 0;
   font-family: $font-family-1;
 }
-
 .-is-hidden {
   display: none;
 }
-
 $box-shadow: 5px 5px 0 0 $black;
 $box-shadow-white: 5px 5px 0 0 $white;
 $border-black: 3px solid $black;
+p {
+  word-break: break-all;
+}

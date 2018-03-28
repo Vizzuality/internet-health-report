@@ -10,6 +10,10 @@ body.embed-stream-page {
   font-size: 18px;
 }
 
+* {
+  font-family: "ZillaSlab", serif;
+}
+
 .Slot__inline___3gBcm.talk-slot-comment-reactions,
 .Stream__filterWrapper___1A4eQ,
 .Comment__commentInfoBar___3R1RT,
@@ -39,6 +43,7 @@ body.embed-stream-page {
   float: right;
   width: 20%;
   margin-top: -43px;
+  font-family: "ZillaSlab", serif;
 }
 
 .Comment__footer___3AWk_.talk-stream-comment-footer {
@@ -62,7 +67,7 @@ body.embed-stream-page {
   margin-bottom: 40px;
 }
 
-talk-stream-comment.talk-stream-comment-level-2.Comment__comment___3_T6p.Comment__commentLevel2___1iprR.Comment__commentLevel2___1iprR {
+.talk-stream-comment.talk-stream-comment-level-2.Comment__comment___3_T6p.Comment__commentLevel2___1iprR.Comment__commentLevel2___1iprR {
   border-left: none;
 }
 
@@ -82,12 +87,14 @@ button.Button__button___2b6ei {
   font-size: 18px;
   width: auto;
   border-radius: 0;
+  font-family: "ZillaSlab", serif;
 }
 
 button.Button__button___2b6ei:disabled {
   background: black;
   color: whitesmoke;
   font-weight: 300;
+  font-family: "ZillaSlab", serif;
 }
 
 .talk-plugin-replies-reply-button.ReplyButton__button___2DJKT.reset__buttonReset___1atdk.ReplyButton__button___2DJKT {
@@ -103,6 +110,7 @@ button.Button__button___2b6ei:disabled {
 .talk-plugin-replies-reply-button.ReplyButton__button___2DJKT.reset__buttonReset___1atdk.ReplyButton__button___2DJKT:hover {
   color: black;
   box-shadow: 5px 5px 0 0 black;
+  font-family: "ZillaSlab", serif;
 }
 
 span.Comment__bylineSecondary___3wA7v {
@@ -113,16 +121,19 @@ span.Comment__bylineSecondary___3wA7v {
   display: block;
   border-right: 1px solid black;
   padding-right: 10px;
+  font-family: "ZillaSlab", serif;
 }
 
 .CommentTimestamp__timestamp___2Ejbf.talk-comment-timestamp {
   display: inline-block;
   color: black;
   font-size: 18px;
+  font-family: "ZillaSlab", serif;
 }
 
 .Comment__tagsContainer___3_las {
   margin-left: -95px;
+  font-family: "ZillaSlab", serif;
 }
 
 .Slot__inline___3gBcm.talk-stream-comment-author-tags.talk-slot-comment-author-tags {
@@ -133,6 +144,7 @@ span.Comment__bylineSecondary___3wA7v {
   border-color: transparent #000000 transparent transparent !important;
   line-height: 0px;
   filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+  font-family: "ZillaSlab", serif;
 }
 
 .talk-plugin-infobox-info  {
@@ -146,4 +158,9 @@ span.Comment__bylineSecondary___3wA7v {
 .talk-plugin-commentbox-char-count {
   color: black !important;
   font-size: 12px !important;
+  font-family: "ZillaSlab", serif;
+}
+
+.Comment__link___1quD0 {
+  color: #000;
 }
