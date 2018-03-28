@@ -5,7 +5,7 @@
 body.embed-stream-page {
   background: transparent;
   float: right;
-  width: 80%;
+  width: 100%;
   font-family: "ZillaSlab", serif;
   font-size: 18px;
 }
@@ -72,6 +72,7 @@ talk-stream-comment.talk-stream-comment-level-2.Comment__comment___3_T6p.Comment
   padding-bottom: 50px;
   min-height: 600px;
   width: 75%;
+  margin-left: 50px;
 }
 
 button.Button__button___2b6ei {
@@ -79,7 +80,7 @@ button.Button__button___2b6ei {
   color: white;
   font-weight: 400;
   font-size: 18px;
-  width: 70%;
+  width: auto;
   border-radius: 0;
 }
 
@@ -96,6 +97,7 @@ button.Button__button___2b6ei:disabled {
   padding: 8px;
   width: 100%;
   font-size: 18px;
+  border: 3px solid black !important;
 }
 
 .talk-plugin-replies-reply-button.ReplyButton__button___2DJKT.reset__buttonReset___1atdk.ReplyButton__button___2DJKT:hover {
@@ -128,8 +130,20 @@ span.Comment__bylineSecondary___3wA7v {
   height: 0;
   border-style: solid;
   border-width: 0 16px 16px 0;
-  border-color: transparent #000000 transparent transparent;
+  border-color: transparent #000000 transparent transparent !important;
   line-height: 0px;
-  border-color: #000000 #007bff #000000 #000000;
   filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+.talk-plugin-infobox-info  {
+  background: transparent !important;
+}
+
+.talk-plugin-commentbox-textarea {
+  border: 3px solid black !important;
+}
+
+.talk-plugin-commentbox-char-count {
+  color: black !important;
+  font-size: 12px !important;
 }

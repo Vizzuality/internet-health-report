@@ -1,37 +1,30 @@
 .l-main-layout {
   margin: 0 auto;
 }
-
 .wrap {
   padding: 0 15px;
   margin: 0 auto;
   max-width: 1240px;
-
   @media screen and (min-width: $screen-l) {
     padding: 0 30px;
   }
 }
-
 .l-header {
   width: 100%;
   padding: 30px 0;
   position: relative; // Needed for homepage vis
   z-index: 3; // Needed for homepage vis, make sure it's above .c-home-slide .slide-content
 }
-
 .l-main {
   padding: 30px 0 50px;
-
   @media screen and (min-width: 1024px) {
     padding: 60px 0 100px;
   }
 }
-
 .l-tabs {
   position: relative;
   border-top: $border-black;
   border-bottom: $border-black;
-
   &:before {
     content: '';
     z-index: 2;
@@ -43,7 +36,6 @@
     width: 30px;
     background: linear-gradient(to left, rgba($white, 0), $white);
   }
-
   &:after {
     content: '';
     position: absolute;
@@ -54,7 +46,6 @@
     width: 30px;
     background: linear-gradient(to right, rgba($white, 0), $white);
   }
-
   @media screen and (min-width: 768px) {
     &:before,
     &:after {
@@ -62,27 +53,21 @@
     }
   }
 }
-
 .l-categories {
   margin: -15px 0;
-
   .card-column {
     margin: 15px 0 0;
   }
 }
-
 .l-related-posts {
   margin-bottom: 100px;
 }
-
 .l-cards-grid {
   padding-top: 50px;
 }
-
 .l-card {
   display: flex;
 }
-
 .l-block-detail {
   position: relative;
   padding: 95px 0 90px;
@@ -90,7 +75,6 @@
   background-color: $white;
   margin-bottom: 115px;
 }
-
 .l-social {
   display: flex;
   position: fixed;
@@ -100,53 +84,52 @@
   height: 45px;
   background-color: $white;
   border-top: $border-black;
-
   .wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
   }
-
   &.-emotions {
     transform: translatex(-100%);
   }
 }
-
-
 .l-section-header {
   padding: 0 0 65px;
 }
-
 .l-tab-content {
   margin: 40px 0 0;
-
+  @media screen and (min-width: $screen-l) {
+    margin: 70px 0 0;
+  }
   h1, h2, h3 {
     padding: 40px 0 15px 0;
     font-weight: 600;
     font-size: $font-mb-xl;
     line-height: 40px;
-
     @media screen and (min-width: $screen-l) {
       padding: 130px 0 30px 0;
       font-size: $font-xxxl;
       line-height: 80px;
     }
   }
-
+  ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+  li + li {
+    margin-top: 10px;
+  }
   p, li {
     font-size: $font-s;
     line-height: 30px;
     font-weight: 300;
   }
-
   p {
     padding-bottom: 30px;
   }
-
   a {
     color: $black;
     text-decoration: underline;
-
     &:visited,
     &:hover,
     &:focus,
@@ -154,26 +137,18 @@
       color: $black;
     }
   }
-
-  @media screen and (min-width: $screen-l) {
-    margin: 140px 0 0;
-  }
 }
-
 .l-footer {
   position: relative;
   z-index: 50; // Need to be higher than 2 for the homepage visualisation
   background-color: $black;
 }
-
 .l-footer-top {
   border-bottom: 2px solid $white;
   padding: 40px 0;
 }
-
 .l-footer-bottom {
   padding: 40px 0 30px;
-
   @media screen and (min-width: $screen-l) {
     padding: 40px 0 60px;
   }
