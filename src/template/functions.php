@@ -239,12 +239,14 @@ function nav_items( $items, $menu, $args )
 
     foreach( $items as $item )
     {
-        if( 'Rechercher' == $item->post_title ||
-            'Buscar' == $item->post_title ||
-            'Search' == $item->post_title ||
-            'Suchen' == $item->post_title )
-            $item->url = get_bloginfo( 'url' ) . '?s=';
-
+        if( 'Search' == $item->post_title) {
+          $item->url = get_bloginfo( 'url' ) . '?s=';
+        }
+        if( 'Buscar' == $item->post_title ||
+            'Rechercher' == $item->post_title ||
+            'Suchen' == $item->post_title ) {
+          $item->url = get_bloginfo( 'url' ) . '&s=';
+        }
     }
     return $items;
 }
