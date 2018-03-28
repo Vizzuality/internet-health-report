@@ -10,12 +10,10 @@
   background-color: $white;
   cursor: pointer;
   text-decoration: none;
-
   &:hover {
     box-shadow: $box-shadow;
     color: $black;
   }
-
   .color-border {
     position: absolute;
     top: 0;
@@ -23,21 +21,17 @@
     left: 0;
     width: 8px;
   }
-
   .single-post-header {
     margin-bottom: 15px;
   }
-
   .single-post-body {
     position: relative;
     height: 100%;
     padding: 20px;
-
     &.-image {
       width: 66%;
     }
   }
-
   .single-post-image {
     position: absolute;
     top: 0;
@@ -47,8 +41,8 @@
     border-left: $border-black;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
   }
-
   .visited {
     position: absolute;
     top: -3px;
@@ -57,7 +51,6 @@
     height: 20px;
     border-bottom: 20px solid $black;
     border-right: 20px solid $white;
-
     &:before {
       content: "";
       position: absolute;
@@ -70,17 +63,11 @@
       border-right: 23px solid $white;
     }
   }
-
   &:visited {
     color: $black;
-
     .visited {
-
-
       &:before {
-
       }
     }
   }
 }
-
