@@ -28,7 +28,11 @@
 
     <div class="single-post-body <?php if($image){echo '-image';}; ?>">
     	<header class="single-post-header">
-        <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php echo the_field('type')['label']?></p>
+        <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php 
+        $field = get_field_object('type');
+        $value = $field['value'];
+        $label = $field['choices'][ $value ];
+        echo $label; ?></p>
     	</header><!-- .entry-header -->
 
       <div class="single-post-title">
