@@ -541,7 +541,13 @@ export default class AbstractVisualization {
         tspan.text(line.join(' '));
         if (tspan.node().getComputedTextLength() > width) {
           if (line.length === 1) {
-            tspan.text(`${word.slice(0, Math.floor(word.length / 2))}-`);
+            // If the last character of the line is a
+            // separator, we don't add a dash
+            if (word[Math.floor(word.length / 2) - 1] === '/') {
+              tspan.text(word.slice(0, Math.floor(word.length / 2)));
+            } else {
+              tspan.text(`${word.slice(0, Math.floor(word.length / 2))}-`);
+            }
             line = [word.slice(Math.floor(word.length / 2), word.length)];
           } else {
             line.pop();

@@ -235,12 +235,12 @@ export default {
   vis_5_2: {
     type: 'day-on-the-web'
   },
-  vis_5_4: {
-    type: 'TODO'
-  },
   vis_5_3: {
     type: 'web-literacy-crosswalk',
     height: 800,
     padding: 20
+  },
+  vis_5_4: {
+    type: 'bubble'
   }
 };

@@ -1,0 +1,75 @@
+.c-modal {
+  &[aria-hidden='true'] {
+    display: none;
+  }
+
+  [role='dialog'] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    z-index: 100002;
+
+    [role='document'] {
+      position: relative;
+      width: 100%;
+      max-height: calc(100vh - 20px);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      background: $white;
+      border: 3px solid $black;
+
+      > h1 {
+        font-size: $font-s;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 25px;
+        right: -15px;
+        outline: inherit;
+
+        > .c-icon {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      .content {
+        flex-shrink: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: $font-xs;
+
+        ol {
+          text-align: left;
+
+          li {
+            margin-left: 25px;
+            list-style-type: decimal;
+
+            &:not(:last-of-type) {
+              margin-bottom: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.c-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($black, .4);
+  z-index: 100001;
+}

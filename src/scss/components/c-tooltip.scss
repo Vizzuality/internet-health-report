@@ -1,6 +1,22 @@
 .c-tooltip {
+  font-weight: 300;
+
   a {
     color: $black;
+  }
+
+  ol {
+    max-width: 330px;
+    text-align: left;
+
+    li {
+      margin-left: 2ch;
+      list-style-type: decimal;
+
+      &:not(:last-of-type) {
+        margin-bottom: 1em;
+      }
+    }
   }
 
   .title {

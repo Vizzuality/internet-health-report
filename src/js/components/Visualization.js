@@ -5,6 +5,7 @@ import Pie from 'components/Visualizations/Pie';
 import Area from 'components/Visualizations/Area';
 import Circle from 'components/Visualizations/Circle';
 import Wikipedia from 'components/Visualizations/Wikipedia';
+import Bubble from 'components/Visualizations/Bubble';
 import Map from 'components/Visualizations/Map';
 import AppUnhappiness from 'components/Visualizations/AppUnhappiness';
 import GenderEthnicDiversity from 'components/Visualizations/GenderEthnicDiversity';
@@ -22,6 +23,7 @@ const vis = {
 
   // Custom vis
   wikipedia: Wikipedia,
+  bubble: Bubble,
   'app-unhappiness': AppUnhappiness,
   'web-literacy-crosswalk': WebLiteracyCrosswalk,
   'gender-ethnic-diversity': GenderEthnicDiversity,

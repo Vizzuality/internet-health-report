@@ -54,7 +54,7 @@
     }
   }
 
-  &:not(.v-circle):not(.v-web-literacy-crosswalk) {
+  &:not(.v-circle):not(.v-bubble):not(.v-web-literacy-crosswalk) {
     .marks,
     .value-outline,
     .value {
@@ -63,6 +63,14 @@
         font-family: $font-family-1;
         font-size: $font-xxxs;
       }
+    }
+  }
+
+  &.v-bubble {
+    .marks text {
+      font-family: $font-family-1;
+      font-size: $font-s;
+      font-weight: 700;
     }
   }
 

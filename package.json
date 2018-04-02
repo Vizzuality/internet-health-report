@@ -41,6 +41,7 @@
     "test": "eslint --ext .js src/js/**/*"
   },
   "dependencies": {
+    "a11y-dialog": "^4.0.1",
     "d3-array": "^1.2.1",
     "d3-axis": "^1.0.8",
     "d3-drag": "^1.2.1",
