@@ -187,12 +187,6 @@ export default {
     valueFormat: '.0%',
     valueAxisSize: 35
   },
-  vis_4_2_2: {
-    type: 'TODO'
-  },
-  vis_4_3: {
-    type: 'TODO'
-  },
   vis_4_4_1: {
     type: 'bar',
     direction: 'horizontal',
