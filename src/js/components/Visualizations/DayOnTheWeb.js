@@ -1,298 +1,414 @@
 import 'd3-selection-multi';
 import { select, event } from 'd3-selection';
-import { scaleLinear, scaleTime } from 'd3-scale';
-import { max, extent } from 'd3-array';
+import { scalePow, scaleTime } from 'd3-scale';
+import { max, extent, bisectLeft } from 'd3-array';
 import { axisTop } from 'd3-axis';
-import { timer } from 'd3-timer';
-import { easeCircle } from 'd3-ease';
-import { drag } from 'd3-drag';
-import { timeDay } from 'd3-time';
-import { timeFormat } from 'd3-time-format';
+import { drag as d3Drag } from 'd3-drag';
+import { timeHour } from 'd3-time';
+import throttle from 'lodash/throttle';
+
 import AbstractVisualization from './AbstractVisualization';
 
 class DayOnTheWeb extends AbstractVisualization {
+  get days() {
+    return [
+      this.dictionary.monday,
+      this.dictionary.tuesday,
+      this.dictionary.wednesday,
+      this.dictionary.thursday,
+      this.dictionary.friday,
+      this.dictionary.saturday,
+      this.dictionary.sunday
+    ];
+  }
+
   constructor(el, config) {
     super(el, config);
-    this.moveTween = this.moveTween.bind(this);
-    this.sliderHeight = 150;
-    this.numberCircles = 7;
+
+    this.sample = 10000;
+
+    this.sliderHeight = 180;
+    this.sliderMargin = 40;
+    this.sliderPadding = 90;
+    this.sliderLabelMargin = 35;
+
+    this.circleInnerPadding = 20; // Minimum space between the circles
+
+    this.labelsMargin = 20; // Minimum space with the circles
+    this.labelsAngle = -45;
 
     this.initialize();
-    this.dateFormat = timeFormat('%A %H');
+    this.setListeners();
   }
 
   initialize() {
     // fetch and then render
     this.fetchData()
+      .then(() => {
+        // First monday of 1070
+        // The year doesn't matter, we just want a Date object
+        // so we can use a temporal scale
+        const baseTimestamp = 345600000;
+
+        this.data = this.data.map(d => ({
+          category: d.category,
+          date: new Date(baseTimestamp + (3600 * 1000 * (+d.hour))),
+          duration: +d.duration,
+          visits: +d.visits
+        }));
+
+        this.currentDate = this.data[0].date;
+      })
       .then(() => this.render());
   }
 
   getTooltipContent(target) { // eslint-disable-line class-methods-use-this
-    const { dictionary } = this;
-    const data = select(target).datum();
+    const d = select(target).datum();
+
+    let dayIndex = this.currentDate.getUTCDay() - 1;
+    if (dayIndex === -1) {
+      dayIndex = 6;
+    }
+
+    const formatter = (v) => {
+      const value = v / (60 * this.sample);
+      return Math.floor(value) + (Math.round((value % 1) * 100) / 100);
+    };
+
+    const value = formatter(this.getCurrentValuePerCategory()[this.categories.indexOf(d.category)]);
+    const average = formatter(d.value);
+
     return `
-      <p class="title">${data.category}</p>
-      <p class="note">${this.dateFormat(data.date)}:00</p>
-      <p class="note">Average ${data.average} ${dictionary.time_unit}</p>
-      <p class="note">Value ${data.value} ${dictionary.time_unit}</p>
+      <p class="title">${d.category}</p>
+      <p class="note">${this.dictionary.browsingActivity}: ${value === 0 ? '< 0.01' : value} ${this.dictionary.min_pers_unit}</p>
+      <p class="note">${this.dictionary.weekAverage}: ${average === 0 ? '< 0.01' : average} ${this.dictionary.min_pers_unit}</p>
+      <p class="note">${this.days[dayIndex]}, ${this.currentDate.getUTCHours()}:00</p>
     `;
   }
 
-  moveHandle(positionX) {
-    this.handleConfig.target = positionX;
-    this.handleConfig.timer.restart(this.moveTween);
+  /**
+   * Get the value of each category for the current date
+   * @returns {number[]}
+   */
+  getCurrentValuePerCategory() {
+    return this.categories.map(c => (
+      this.data.find(d => d.category === c && +d.date === +this.currentDate).duration
+    ));
   }
 
-  moveTween() {
-    const { actual, target, alpha } = this.handleConfig;
-    const error = target - actual;
+  /**
+   * Update the visualisation according to the new
+   * current date
+   */
+  update() {
+    this.circles
+      .data(this.getCurrentValuePerCategory())
+      .attr('r', d => this.radiusScale(d))
+      .attr('fill', this.color);
 
-    if (Math.abs(error) < 1e-3) {
-      this.handleConfig.actual = target;
-      this.handleConfig.timer.stop();
-    } else {
-      const xValue = this.xAxis(this.xAxis.invert(this.handleConfig.actual));
-      const date = this.xAxis.invert(this.handleConfig.actual);
-      const time = `${date.getHours()}:00`;
-      this.handleConfig.actual += error * alpha;
-      this.handle.select('.handle__inner').attr('cx', xValue);
-      this.handle.select('.handle__outer').attr('cx', xValue);
-      this.handle.select('.handle__text')
-        .attrs({
-          x: xValue
-        })
-        .text(`${time}`);
-    }
+    this.handle
+      .attr('transform', `translate(${this.timeScale(this.currentDate)}, 0)`)
+      .select('text')
+      .text(`${this.currentDate.getUTCHours()}:00`);
   }
 
-  updateCircles(xValue) {
-    const date = this.xAxis.invert(xValue);
-    date.setMinutes(0);
-    date.setSeconds(0);
-    date.setMilliseconds(0);
+  /**
+   * Render the legend component
+   */
+  renderLegend() {
+    const legendItem = this.container.append('g')
+      .attr('class', 'legend')
+      .attr('transform', `translate(${this.legendBounds.x}, ${(this.visualizationBounds.y + this.visualizationBounds.height) - this.legendBounds.height})`)
+      .selectAll('g')
+      .data([
+        this.dictionary.browsingActivity,
+        this.dictionary.weekAverage
+      ])
+      .enter()
+      .append('g');
 
-    const data = this.data.filter(row => row.date.getTime() === date.getTime());
+    legendItem.append('circle')
+      .attr('cx', 7.5)
+      .attr('cy', 7.5)
+      .attr('r', 7.5)
+      .attr('fill', (_, i) => (i === 0 ? this.color : 'transparent'))
+      .attr('stroke', (_, i) => (i === 0 ? 'transparent' : 'black'))
+      .attr('stroke-width', (_, i) => (i === 0 ? 0 : 2))
+      .attr('stroke-dasharray', '5 5');
 
-    const dataCircles = select('.data-circles');
-    const circles = dataCircles
-      .selectAll('circle')
-      .data(data);
+    legendItem.insert('text')
+      .attr('x', 25)
+      .attr('y', 7.5)
+      .text(c => c)
+      .attr('text-anchor', 'left')
+      .attr('dominant-baseline', 'central');
 
-    circles
-      .transition()
-      .duration(450)
-      .ease(easeCircle)
-      .attr('r', d => this.radiusScale(DayOnTheWeb.areaToRadius(d.value)));
+    // We position the items as if they would
+    // follow the "inline" flow
+    this.config.legendRows = 1;
+    let currentXPosition = this.legendBounds.x;
+    let currentRow = 0;
+    const self = this;
+    legendItem
+      .attr('transform', function () { // eslint-disable-line func-names
+        const width = this.getBBox().width + 40;
+        const nextXPosition = currentXPosition + width;
+        if (nextXPosition > self.titleBounds.width) {
+          currentRow++; // eslint-disable-line no-plusplus
+          currentXPosition = self.legendBounds.x;
+        }
+        const res = `translate(${currentXPosition}, ${currentRow * (self.legendBounds.height)})`;
+        currentXPosition += width;
+        return res;
+      });
+
+    this.config.legendRows = currentRow + 1;
   }
 
-  initCanvas() {
-    const startDate = new Date();
-    startDate.setDate(startDate.getDate() - startDate.getDay() + 1 ); // setting on monday
-    startDate.setHours(0); // setting first milisecond on midnight
-    startDate.setMinutes(0);
-    startDate.setSeconds(0);
-    startDate.setMilliseconds(0);
+  /**
+   * Render the slider component
+   */
+  renderSlider() {
+    const sliderContainer = this.container.append('g')
+      .attr('class', 'slider')
+      .attr('transform', `translate(${this.visualizationBounds.x}, ${this.legendBounds.y})`);
 
-    this.data = this.data.map((d) => {
-      const newDate = new Date(startDate);
-      newDate.setTime(newDate.getTime() + (d.index * 60 * 60 * 1000));
-      return Object.assign({}, d, { date: newDate });
-    });
+    sliderContainer.append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dy', '1em')
+      .text(this.dictionary.dragDot);
 
-    const chartContainer = select('#vis-day-on-the-web');
-    const margin = { right: 50, left: 50, top: 70 };
-    const width = this.width - margin.right - margin.left;
-    const circleDimension = width / this.numberCircles;
-    const height = this.sliderHeight + margin.top + circleDimension;
-    const axisWidth = width - margin.left - margin.right;
+    sliderContainer.append('rect')
+      .attr('x', 7)
+      .attr('y', this.sliderLabelMargin + 7)
+      .attr('width', this.visualizationBounds.width - 7)
+      .attr('height', this.sliderHeight - this.sliderLabelMargin - 7)
+      .attr('fill', '#000');
 
-    this.chartEl = chartContainer.append('svg');
-    this.chartEl.attrs({ width, height });
+    sliderContainer.append('rect')
+      .attr('x', 3)
+      .attr('y', this.sliderLabelMargin + 3)
+      .attr('width', this.visualizationBounds.width - 7 - 6)
+      .attr('height', this.sliderHeight - this.sliderLabelMargin - 7 - 6)
+      .attr('fill', '#fff')
+      .attr('stroke', '#000')
+      .attr('stroke-width', 3);
 
-    this.xAxis = scaleTime()
+    this.timeScale = scaleTime()
       .domain(extent(this.data, d => d.date))
-      .range([0, axisWidth])
+      .range([0, this.visualizationBounds.width - 7 - 6 - (this.sliderPadding * 2)])
       .clamp(true);
 
-    this.handleConfig = {
-      actual: 0,
-      target: 0,
-      alpha: 0.2,
-      timer: timer(this.moveTween)
-    };
-  }
-
-  addLabels() {
-    const data = this.data.filter(
-      (obj, pos, arr) => arr.map(mapObj => mapObj.category).indexOf(obj.category) === pos
-    ).map(row => row.category);
-
-    const labelsEl = document.querySelector('#labels');
-
-    data.forEach((d) => {
-      const node = document.createElement('p');
-      node.className += 'labels__label';
-      const textnode = document.createTextNode(d);
-      node.appendChild(textnode);
-      labelsEl.appendChild(node);
-    });
-  }
-
-  static areaToRadius(area) {
-    return Math.sqrt(area / Math.PI);
-  }
-
-  static centerTickLabels(labels, timeScale) {
-    const day = timeDay(new Date);
-    const dayWidth = Math.abs(timeScale(day) - timeScale(timeDay.offset(day, 1)));
-    labels.attr('transform', `translate(${dayWidth/2}, -10)`);
-  }
-
-  initCircles() {
-    // Takes first filtered average from data rather than calculating average
-    const averageData = this.data.filter((obj, pos, arr) =>
-      arr.map(mapObj => mapObj.category).indexOf(obj.category) === pos);
-
-    const initData = this.data.filter(row =>
-      row.date.getTime() === this.xAxis.invert(this.handleConfig.target).getTime());
-
-    const avgMax = max(averageData, d => d.average);
-    const valMax = max(this.data, d => d.value);
-
-    const margin = { top: 70 };
-    const padding = 10;
-    const circleDimension = (this.width - 100) / this.numberCircles;
-
-    const radiusScale = scaleLinear()
-      .domain([0, DayOnTheWeb.areaToRadius(max([avgMax, valMax]))])
-      .range([0, (circleDimension / 2) - padding])
-      .clamp(true);
-
-    const dataCircles = this.chartEl.append('g')
-      .attr('class', 'data-circles')
-      .attr('transform', `translate(${(circleDimension / 2)}, ${this.sliderHeight + margin.top + (circleDimension / 2)})`);
-
-    const averageCircles = this.chartEl.append('g')
-      .attr('class', 'average-circles')
-      .attr('transform', `translate(${(circleDimension / 2)}, ${this.sliderHeight + margin.top + (circleDimension / 2)})`);
-
-    averageCircles.selectAll('circle')
-      .data(averageData)
-      .enter()
-      .append('circle')
-      .attrs({
-        class: 'circle circle--average',
-        r: d => radiusScale(DayOnTheWeb.areaToRadius(d.average)),
-        cx: (d, i) => (circleDimension * i),
-        data: d => d.average,
-        title: d => d
-      });
-
-    dataCircles.selectAll('circle')
-      .data(initData)
-      .enter()
-      .append('circle')
-      .attrs({
-        class: 'circle circle--active',
-        r: d => radiusScale(DayOnTheWeb.areaToRadius(d.value)),
-        cx: (d, i) => (circleDimension * i),
-        data: d => d.value,
-        title: d => d
-      });
-
-    this.instantiateTooltip('.circle--active');
-
-    this.radiusScale = radiusScale;
-  }
-
-  initSlider() {
-    const totalBorderWidth = 3;
-    const shadowWidth = 7;
-    const width = Number(this.chartEl.attr('width')) - totalBorderWidth;
-    const height = this.sliderHeight - totalBorderWidth;
-    const margin = { right: 50, left: 50 };
-
-    const slider = this.chartEl.append('g')
-      .attr('class', 'slider');
-
-    // Add slider container
-    slider.append('rect')
-      .attrs({ class: 'slider__container', x: 2, y: 2, width: width - shadowWidth, height });
-
-    slider.insert('rect', '.slider__container')
-      .attrs({ class: 'slider__container slider__container--background', x: 2, y: 2, width: width - shadowWidth, height })
-      .attr('transform', `translate(${shadowWidth}, ${shadowWidth})`);
-
-    const sliderComponent = slider.append('g')
-      .attrs({
-        class: 'slider__component',
-        transform: `translate(${margin.left}, ${height / 2})`
-      });
-
-    // Add ticks
-    const ticks = axisTop(this.xAxis)
-      .ticks(timeDay.every(1))
+    const timeAxis = axisTop(this.timeScale)
+      .ticks(8)
       .tickSize(10)
-      .tickPadding(0)
-      .tickFormat(timeFormat('%A'));
+      .tickPadding(0);
 
-    sliderComponent
-      .call(ticks);
+    const slider = sliderContainer.append('g')
+      .attr('transform', `translate(${this.sliderPadding}, ${this.sliderLabelMargin + (((this.sliderHeight - this.sliderLabelMargin - 7 - 6) + 20) / 2)})`)
+      .call(timeAxis);
 
-    const labels = sliderComponent.selectAll('.tick text');
-    DayOnTheWeb.centerTickLabels(labels, this.xAxis);
+    slider.selectAll('.tick text')
+      .attr('transform', `translate(${-(this.timeScale.range()[1] / 7) / 2}, -20)`)
+      .text((_, i) => this.days[i]);
 
-    labels.filter(function(d, i, arr) {
-      return i === arr.length - 1;
-    }).attr('display', 'none');
+    slider.selectAll('path, line')
+      .attr('stroke-width', 3);
 
-    // Add slider axis and handle
-    sliderComponent.append('line')
-      .attrs({
-        class: 'track',
-        x1: this.xAxis.range()[0] + .5,
-        x2: this.xAxis.range()[1] + .5
-      })
-      .select(function n() { return this.parentNode.appendChild(this.cloneNode(true)); })
-      .attr('class', 'track-inset')
-      .select(function m() { return this.parentNode.appendChild(this.cloneNode(true)); })
-      .attr('class', 'track-overlay')
-      .call(drag()
-        .on('start.interrupt', () => { slider.interrupt(); })
-        .on('start drag', () => {
-          this.moveHandle(event.x);
-          this.updateCircles(event.x);
-        }));
+    // Handle
+    const ticks = timeHour.range(...[
+      this.timeScale.domain()[0],
+      // The second value is exclusive, that's why we add another hour
+      new Date(+this.timeScale.domain()[1] + (3600 * 1000))
+    ]);
+    const drag = d3Drag()
+      .on('start drag', throttle(() => {
+        this.currentDate = ticks[bisectLeft(ticks, this.timeScale.invert(event.x))];
+        this.update();
+      }), 16);
 
-    // Add Handle
-    this.handle = sliderComponent.insert('g', '.track-overlay')
-      .attr('class', 'handle');
+    this.handle = slider.append('g')
+      .attr('class', 'handle')
+      .attr('transform', `translate(${this.timeScale(this.currentDate)}, 0)`)
+      .call(drag);
 
     this.handle.append('circle')
-      .attrs({
-        class: 'handle__outer',
-        r: 15
-      });
+      .attr('r', 12)
+      .attr('fill', '#fff')
+      .attr('stroke', '#000')
+      .attr('stroke-width', 3)
+      .attr('cursor', 'pointer');
 
     this.handle.append('circle')
-      .attrs({
-        class: 'handle__inner',
-        r: 3
-      });
+      .attr('r', 5)
+      .attr('fill', '#000')
+      .attr('cursor', 'pointer');
 
     this.handle.append('text')
-      .attrs({
-        class: 'handle__text',
-        'text-anchor': 'middle',
-        transform: `translate(${0}, ${40})`
+      .attr('transform', 'translate(0, 30)')
+      .attr('dominant-baseline', 'central')
+      .attr('text-anchor', 'middle')
+      .text(`${this.currentDate.getUTCHours()}:00`);
+  }
+
+  /**
+   * Render the circles
+   */
+  renderMarks() {
+    const marksContainer = this.container.append('g')
+      .attr('class', 'marks')
+      .attr('transform', `translate(${this.visualizationBounds.x}, ${this.legendBounds.y + this.sliderHeight + this.sliderMargin})`);
+
+    // Maximum size of the circles
+    const maxRadius = (this.visualizationBounds.width -
+      ((this.categories.length - 1) * this.circleInnerPadding))
+      / (this.categories.length * 2);
+
+    this.radiusScale = scalePow()
+      .exponent(0.5)
+      .domain([0, max(this.data, d => d.duration)])
+      .range([
+        1,
+        Math.min(this.visualizationBounds.height - this.sliderHeight - this.sliderMargin, maxRadius)
+      ]);
+
+    // Circles representing the current date
+    let position = -this.circleInnerPadding - maxRadius;
+    this.circles = marksContainer.append('g')
+      .attr('class', 'current')
+      .selectAll('circle')
+      .data(this.getCurrentValuePerCategory())
+      .enter()
+      .append('circle')
+      .attr('cx', () => {
+        position += (2 * maxRadius) + this.circleInnerPadding;
+        return position;
+      })
+      .attr('cy', this.radiusScale.range()[1])
+      .attr('r', d => this.radiusScale(d))
+      .attr('fill', this.color);
+
+    // Average duration per category
+    const averagePerCategory = this.categories.map((c) => {
+      const data = this.data.filter(d => d.category === c);
+      return {
+        category: c,
+        value: data.reduce((res, d) => res + d.duration, 0) / data.length
+      };
+    });
+
+    // Circles representing the average by category
+    position = -this.circleInnerPadding - maxRadius;
+    marksContainer.append('g')
+      .attr('class', 'average')
+      .selectAll('circle')
+      .data(averagePerCategory)
+      .enter()
+      .append('circle')
+      .attr('cx', () => {
+        position += (2 * maxRadius) + this.circleInnerPadding;
+        return position;
+      })
+      .attr('cy', this.radiusScale.range()[1])
+      .attr('r', d => this.radiusScale(d.value))
+      .attr('fill', 'transparent')
+      .attr('stroke', 'black')
+      .attr('stroke-width', 2)
+      .attr('stroke-dasharray', '5 5')
+      .attr('title', d => d);
+  }
+
+  /**
+   * Render the labels below the circles
+   */
+  renderLabels() {
+    // Maximum size of the circles
+    const maxRadius = (this.visualizationBounds.width -
+      ((this.categories.length - 1) * this.circleInnerPadding))
+      / (this.categories.length * 2);
+
+    const labelsContainer = this.container.append('g')
+      .attr('class', 'labels')
+      .attr('transform', `translate(${this.visualizationBounds.x}, ${this.legendBounds.y + this.sliderHeight + this.sliderMargin + (2 * maxRadius) + this.labelsMargin})`);
+
+    // Circles representing the current date
+    labelsContainer.selectAll('text')
+      .data(this.categories)
+      .enter()
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'central')
+      .text(d => d);
+
+    const self = this;
+    let position = -this.circleInnerPadding - maxRadius;
+    labelsContainer.selectAll('text')
+      .attr('transform', function () { // eslint-disable-line func-names
+        position += (2 * maxRadius) + self.circleInnerPadding;
+        const offset = (this.getComputedTextLength() / 2)
+          * Math.abs(Math.sin(self.labelsAngle * (Math.PI / 180)));
+        return `translate(${position}, ${offset}) rotate(${self.labelsAngle})`;
       });
   }
 
   render() {
-    this.initCanvas();
-    this.initSlider();
-    this.initCircles();
-    this.addLabels();
+    super.render();
+    if (!this.data) return;
+
+    this.el.classList.add('v-day-on-the-web');
+
+    // We remove the space reserved for the axes
+    this.config.valueAxisSize = 0;
+    this.config.labelAxisSize = 0;
+
+    this.svg = select(this.el).append('svg')
+      .attr('width', this.width * this.scale)
+      .attr('height', this.height * this.scale)
+      .attr('role', 'img')
+      .attr('aria-labelledby', `title_${this.id} desc_${this.id}`)
+      .attr('viewBox', `0 0 ${this.width} ${this.height}`);
+
+    this.svg.append('title')
+      .attr('id', `title_${this.id}`)
+      .text(this.title);
+
+    this.svg.append('desc')
+      .attr('id', `desc_${this.id}`)
+      .text(this.description);
+
+    this.categories = this.data.map(d => d.category)
+      .filter((d, i, arr) => arr.indexOf(d) === i);
+
+    this.container = this.svg.append('g')
+      .attr('transform', `translate(${this.padding}, ${this.padding})`);
+
+    // Title
+    this.container.append('g')
+      .attr('class', 'title')
+      .attr('transform', `translate(${this.titleBounds.x}, ${this.titleBounds.y})`)
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dominant-baseline', 'hanging')
+      .text(this.title);
+
+    // Legend
+    // NOTE: the legend is at the bottom of the visualisation
+    this.renderLegend();
+
+    // Slider
+    this.renderSlider();
+
+    // Marks
+    this.renderMarks();
+
+    // Labels
+    this.renderLabels();
+
+    this.instantiateTooltip('circle');
   }
 }
 
