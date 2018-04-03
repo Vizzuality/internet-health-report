@@ -182,8 +182,9 @@
                   </li>
                   <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/about/legal/terms/mozilla/', 'ihr-2018' ); ?>"><?php esc_html_e( 'Legal', 'ihr-2018' ); ?></a>
                   </li>
-                  </li>
                   <li><a href="<?php esc_html_e( 'https://www.mozilla.org/en-US/about/governance/policies/participation/', 'ihr-2018' ); ?>"><?php esc_html_e( 'Community', 'ihr-2018' ); ?></a>
+                  </li>
+                  <li><a href="<?php esc_html_e( 'https://internethealthreport.org/2018/feed/', 'ihr-2018' ); ?>"><?php esc_html_e( 'RSS', 'ihr-2018' ); ?></a>
                   </li>
                 </ul>
               </div>
@@ -238,7 +239,7 @@
             <ul class="social-list">
               <li class="social-item">
                 <a
-                  href="javascript:fbShare('<?php print(urlencode(get_permalink())); ?>', 'Share this via Facebbok', 'Facebook share popup', 550, 250)"
+                  href="javascript:fbShare('<?php print(urlencode(get_permalink())); ?>', 'Share this via Facebook', 'Facebook share popup', 550, 250)"
                 >
                   <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
                 </a>
