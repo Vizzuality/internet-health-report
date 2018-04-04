@@ -75,9 +75,11 @@ body.embed-stream-page {
   position: relative;
   margin-top: 28px;
   padding-bottom: 50px;
-  min-height: 600px;
-  width: 75%;
   margin-left: 50px;
+}
+
+.talk-slot-stream {
+  text-align: center;
 }
 
 button.Button__button___2b6ei {
@@ -167,4 +169,8 @@ span.Comment__bylineSecondary___3wA7v {
 
 .NoComments__message___3Sqah {
   background-color: transparent;
+}
+
+.DraftArea__charCount___2gmAg {
+  text-align: left;
 }

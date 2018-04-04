@@ -1,19 +1,15 @@
 .c-post {
   @extend %text;
-
   > .post-date {
     display: inline-block;
     margin: 5px 0 15px;
-
     font-size: $font-xxs;
   }
-
   figure {
     position: relative;
     margin: 50px 0 60px;
     border: $border-black;
     min-height: 125px;
-
     > img {
       position: relative;
       top: 0;
@@ -21,7 +17,6 @@
       width: 100%;
       height: 100%;
     }
-
     figcaption {
       position: relative;
       bottom: 2px;
@@ -35,7 +30,6 @@
       font-weight: 500;
       line-height: 15px;
       text-align: left;
-
       @media screen and (min-width: $screen-m) {
         position: absolute;
         bottom: 0;
@@ -44,40 +38,32 @@
         border-left: 3px solid $black;
       }
     }
-
     &.alignleft {
-
       @media screen and (min-width: $screen-m) {
         margin-right: 100px;
       }
-
       figcaption {
         top: 0;
         right: 0;
         bottom: auto;
         border-top: 0;
         border-right: 0;
-
         @media screen and (min-width: $screen-m) {
           border-bottom: 3px solid $black;
           border-left: 3px solid $black;
         }
       }
     }
-
     &.alignright {
-
       @media screen and (min-width: $screen-m) {
         margin-left: 100px;
       }
-
       figcaption {
         top: 0;
         left: 0;
         bottom: auto;
         border-top: 0;
         border-left: 0;
-
         @media screen and (min-width: $screen-m) {
           border-right: 3px solid $black;
           border-bottom: 3px solid $black;
@@ -85,17 +71,21 @@
       }
     }
   }
-
   p + p {
     margin-top: 30px;
   }
-
   a {
     color: $black;
     text-decoration: underline;
   }
+  .further-reading {
+    border-top: 3px solid black;
+    margin-top: 30px;
+    @media screen and (min-width: $screen-m) {
+      margin-top: 60px;
+    }
+  }
 }
-
 .post-content {
   a {
     color: $black;
@@ -105,7 +95,6 @@
     margin-top: 30px;
   }
 }
-
 //Override WP styles
 .wp-caption .wp-caption-text {
   margin: 0;
