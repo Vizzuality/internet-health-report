@@ -87,8 +87,8 @@ get_header(); ?>
                 );
                 $what_is_this = get_children($what_is_this_args);
               ?>
-                <a href="<?php echo esc_url( get_permalink( array_values($what_is_this)[0]->ID ) ); ?>" class="intro-buttons"><?php esc_html_e( 'What is this', 'ihr-2018' ); ?></a>
-                <a href="<?php echo esc_url( get_permalink( array_values($spotlight)[0]->ID ) ); ?>" class="intro-buttons"><?php esc_html_e( 'Spotlight 2018', 'ihr-2018' ); ?></a>
+                <a href="<?php echo esc_url( get_permalink( array_values($what_is_this)[0]->ID ) ); ?>" class="intro-buttons"><?php esc_html_e( 'README', 'ihr-2018' ); ?></a>
+                <a href="<?php echo esc_url( get_permalink( array_values($spotlight)[0]->ID ) ); ?>" class="intro-buttons"><?php esc_html_e( '2018 Spotlights', 'ihr-2018' ); ?></a>
               </div>
             </div>
           </div>
