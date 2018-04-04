@@ -411,7 +411,7 @@ function renderDownloadOptions() {
   echo '<li><a class="text -link" href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
-              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.pdf";
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/ShortVersionInternetHealthReport_2018.pdf";
               break;
             case preg_match('/fr.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.pdf";
