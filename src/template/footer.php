@@ -61,7 +61,7 @@
             <div class="column small-6 medium-3">
               <ul class="-no-mobile">
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light"><?php esc_html_e( 'README', 'ihr-2018' ); ?></a>
@@ -142,7 +142,7 @@
             <div class="column small-12">
               <ul class="menu-nav-mobile -only-mobile">
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'readme' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Introduction', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'issues' ) ) ?>" class="text -light -category"><?php esc_html_e( 'Issues', 'ihr-2018' ); ?></a>
