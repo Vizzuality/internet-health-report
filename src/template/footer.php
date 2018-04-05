@@ -67,7 +67,7 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light"><?php esc_html_e( 'README', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-healthy-is-the-internet' ) ) ?>" class="text -light"><?php esc_html_e( 'How healthy the Internet?', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-healthy-is-the-internet' ) ) ?>" class="text -light"><?php esc_html_e( 'How healthy is the Internet?', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/spotlights' ) ) ?>" class="text -light"><?php esc_html_e( 'Spotlights', 'ihr-2018' ); ?></a>
