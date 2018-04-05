@@ -94,14 +94,16 @@ export default class Pie extends AbstractVisualization {
       .attr('transform', `translate(${this.padding}, ${this.padding})`);
 
     // Title
-    container.append('g')
-      .attr('class', 'title')
-      .attr('transform', `translate(${this.titleBounds.x}, ${this.titleBounds.y})`)
-      .append('text')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('dominant-baseline', 'hanging')
-      .text(this.title);
+    // NOTE: the title of the visualisations is now
+    // displayed in the Wysiwyg
+    // container.append('g')
+    //   .attr('class', 'title')
+    //   .attr('transform', `translate(${this.titleBounds.x}, ${this.titleBounds.y})`)
+    //   .append('text')
+    //   .attr('x', 0)
+    //   .attr('y', 0)
+    //   .attr('dominant-baseline', 'hanging')
+    //   .text(this.title);
 
     // Legend
     const legendItem = container.append('g')

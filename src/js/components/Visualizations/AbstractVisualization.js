@@ -241,8 +241,11 @@ export default class AbstractVisualization {
       || (this.direction === 'horizontal' ? 20 : 10);
   }
 
-  get titleSize() {
-    return this.config.titleSize || 40;
+  get titleSize() { // eslint-disable-line class-methods-use-this
+    return 0;
+    // NOTE: the title of the visualisations is now
+    // displayed in the Wysiwyg
+    // return this.config.titleSize || 40;
   }
 
   get titleBounds() {
@@ -257,11 +260,12 @@ export default class AbstractVisualization {
   get legendBounds() {
     return {
       x: 2, // Avoid the border to be cut if no padding
-      y: this.titleBounds.y + this.titleBounds.height,
+      // 2px to avoid the border to be cut
+      y: this.titleBounds.y + this.titleBounds.height + 2,
       width: this.width - (2 * this.padding),
       height: this.legend === false
         ? 0
-        : this.config.legendRows * this.titleSize
+        : this.config.legendRows * 40
     };
   }
 

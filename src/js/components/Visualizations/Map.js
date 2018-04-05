@@ -317,17 +317,19 @@ export default class Map extends AbstractVisualization {
     this.el.setAttribute('role', 'img');
     this.el.setAttribute('aria-labelledby', `title_${this.id} desc_${this.id}`);
 
-    const title = document.createElement('div');
-    title.classList.add('title');
-    title.setAttribute('id', `title_${this.id}`);
-    title.innerText = this.title;
+    // NOTE: the title of the visualisations is now
+    // displayed in the Wysiwyg
+    // const title = document.createElement('div');
+    // title.classList.add('title');
+    // title.setAttribute('id', `title_${this.id}`);
+    // title.innerText = this.title;
 
     const description = document.createElement('div');
     description.setAttribute('id', `desc_${this.id}`);
     description.innerText = this.description;
     description.style.display = 'none';
 
-    this.el.appendChild(title);
+    // this.el.appendChild(title);
     this.el.appendChild(description);
 
     // Creating map
