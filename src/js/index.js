@@ -4,6 +4,7 @@ import 'misc/analytics';
 import 'misc/language-switcher';
 import 'misc/explore-filters';
 import 'misc/download-report-tooltip';
+import 'misc/social';
 
 import Router from 'Router';
 

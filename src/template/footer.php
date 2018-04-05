@@ -237,14 +237,22 @@
         <div class="reactions-bar-container">
           <div class="column small-12 medium-2">
             <ul class="social-list">
-              <li class="social-item">
+              <li
+                class="social-item"
+                data-ga-action=<?php echo get_post()->post_title; ?>
+                data-ga-label="facebook"
+              >
                 <a
                   href="javascript:fbShare('<?php print(urlencode(get_permalink())); ?>', 'Share this via Facebook', 'Facebook share popup', 550, 250)"
                 >
                   <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
                 </a>
               </li>
-              <li class="social-item">
+              <li
+                class="social-item"
+                data-ga-action=<?php echo get_post()->post_title; ?>
+                data-ga-label="twitter"
+              >
                 <a
                   target="_blank"
                   href="https://twitter.com/intent/tweet/?url=<?php print(urlencode(get_permalink())); ?>&hashtags=internethealth"
