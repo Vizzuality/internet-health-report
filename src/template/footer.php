@@ -67,7 +67,7 @@
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -light"><?php esc_html_e( 'README', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-healthy-is-the-internet' ) ) ?>" class="text -light"><?php esc_html_e( 'How healthy the Internet?', 'ihr-2018' ); ?></a>
+                  <a href="<?php echo get_permalink( get_page_by_path( 'introduction/how-healthy-is-the-internet' ) ) ?>" class="text -light"><?php esc_html_e( 'How healthy is the Internet?', 'ihr-2018' ); ?></a>
                 </li>
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'introduction/spotlights' ) ) ?>" class="text -light"><?php esc_html_e( 'Spotlights', 'ihr-2018' ); ?></a>
@@ -237,14 +237,22 @@
         <div class="reactions-bar-container">
           <div class="column small-12 medium-2">
             <ul class="social-list">
-              <li class="social-item">
+              <li
+                class="social-item"
+                data-ga-action=<?php echo get_post()->post_title; ?>
+                data-ga-label="facebook"
+              >
                 <a
                   href="javascript:fbShare('<?php print(urlencode(get_permalink())); ?>', 'Share this via Facebook', 'Facebook share popup', 550, 250)"
                 >
                   <svg class="c-icon -x-small"><use xlink:href="#icon-facebook"></use></svg>
                 </a>
               </li>
-              <li class="social-item">
+              <li
+                class="social-item"
+                data-ga-action=<?php echo get_post()->post_title; ?>
+                data-ga-label="twitter"
+              >
                 <a
                   target="_blank"
                   href="https://twitter.com/intent/tweet/?url=<?php print(urlencode(get_permalink())); ?>&hashtags=internethealth"
@@ -256,7 +264,7 @@
             </ul>
           </div>
           <div class="column small-12 medium-10">
-            <div class="reactions">
+            <div class="reactions" data-ga-action=<?php echo get_post()->post_title; ?>>
               <span class="text"><?php _e('Tell us how you feel:', 'ihr-2018');?></span>
               <?php
                 $reactions = reaction_count(get_the_ID());
