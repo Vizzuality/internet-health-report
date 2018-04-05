@@ -100,6 +100,9 @@ export default class Homepage extends AbstractVisualization {
   getTooltipContent(target, provideCallback) { // eslint-disable-line class-methods-use-this
     const d = select(target).datum();
 
+    // GA
+    window.logEvent('Homepage visualisation', 'Clicks to open a story', d.title);
+
     const callback = (tooltip) => {
       const closeButton = tooltip.querySelector('.js-close');
       if (closeButton) {

@@ -40,7 +40,13 @@ get_header(); ?>
           <div class="row">
             <div class="column small-12 medium-8">
               <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
-              <button type="button" class="text -btn1 js-learn-more" aria-expanded="false" aria-controls="description">
+              <button
+                type="button"
+                class="text -btn1 js-learn-more"
+                aria-expanded="false"
+                aria-controls="description"
+                data-ga-label="<?php echo get_the_category()[0]->cat_name ?>"
+              >
                 <?php esc_html_e( 'Learn More', 'ihr-2018' ); ?>
               </button>
             </div>
