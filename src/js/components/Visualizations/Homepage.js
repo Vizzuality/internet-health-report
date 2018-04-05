@@ -173,11 +173,17 @@ export default class Homepage extends AbstractVisualization {
   }
 
   /**
-   * Opent the tooltip of the highlighted post for the active
+   * Open the tooltip of the highlighted post for the active
    * issue
    * NOTE: this function is debounced
    */
   openDefaultTooltip() {
+    // Because this method is debounced, it can be sometimes
+    // called when there isn't any active issue anymore
+    if (!this.currentActiveIssue) {
+      return;
+    }
+
     // We open the tooltip of the highlighted circle, if any
     const highlightedBubble = this.getHighlightedBubble();
 
@@ -450,25 +456,31 @@ export default class Homepage extends AbstractVisualization {
     if (!this.simulations) {
       this.simulations = [];
     }
-
-    this.createGravitySimulation();
   }
 
   update() {
-    const activeIssue = this.visualizationBreakpoints.find(b => b.center[1] > window.scrollY)
-      || this.visualizationBreakpoints[this.visualizationBreakpoints.length - 1];
+    // The active issue is the first one which is still (at least)
+    // half visible
+    const activeIssue = this.visualizationBreakpoints.find(b => b.center[1] > window.scrollY);
+
+    // If the last issue is half hidden, this means we've reached
+    // the footer. We then hide the tooltip.
+    if (!activeIssue) {
+      this.currentActiveIssue = null;
+      this.closeTooltip();
+
+      // We render the simulation of the last issue anyway so
+      // if the user arrives on the page, directly at the bottom,
+      // the visualisation is in the correct state
+      this.createIssueSimulation(
+        this.visualizationBreakpoints[this.visualizationBreakpoints.length - 1].issue
+      );
+      return;
+    }
 
     if (!this.currentActiveIssue || activeIssue.issue !== this.currentActiveIssue.issue) {
       // We hide all the tooltips
-      if (this.tippy) {
-        this.tippy.destroyAll();
-
-        // FIXME: Tippy.js introduces a title attribute with the value "null"
-        // to this.el when we call destroyAll. To prevent having a native
-        // tooltip with the same value, we delete the temporary title.
-        // https://github.com/atomiks/tippyjs/issues/207
-        this.el.removeAttribute('title');
-      }
+      this.closeTooltip();
 
       if (activeIssue.issue) {
         this.createIssueSimulation(activeIssue.issue);
