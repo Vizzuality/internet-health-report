@@ -24,6 +24,10 @@ export default class IssuePage {
   onToggleDescription({ target }) { // eslint-disable-line class-methods-use-this
     const currentRow = target.closest('.row');
     const descriptionRow = document.querySelector('#description');
+    const topic = target.getAttribute('data-ga-label');
+
+    // GA
+    window.logEvent('Topics', 'Expand Read more', topic);
 
     if (target.classList.contains('js-learn-more')) {
       // We hide the button
