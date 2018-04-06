@@ -207,9 +207,8 @@ export default class Homepage extends AbstractVisualization {
   getFaceIconHref(reactionName, size = 'big') { // eslint-disable-line class-methods-use-this
     let reaction = reactionName.trim().toLowerCase();
     if (reaction === 'fired up') {
-      reaction = 'angry';
+      reaction = 'firedup';
     }
-
     return `#icon-${reaction}${size ? `-${size}` : ''}-reaction`;
   }
 
