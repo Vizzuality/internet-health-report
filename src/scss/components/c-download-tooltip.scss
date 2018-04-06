@@ -30,4 +30,9 @@
   > svg {
     margin: 0 0 0 5px;
   }
+
+  & + *  {
+    display: inline-block;
+    margin: 10px 0 0 15px;
+  }
 }

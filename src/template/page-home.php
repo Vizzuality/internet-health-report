@@ -96,11 +96,12 @@ get_header(); ?>
               <div class="slide-content js-visualization" data-issue="">
                 <h1 class="title -main"><?php echo $post->post_title; ?></h1>
                 <p> <?php echo $post->post_content; ?></p>
-                <button class="download-tooltip-trigger">
+                <button class="text -btn1 download-tooltip-trigger">
                   <?php esc_html_e( 'Download report', 'ihr-2018' ); ?>
                   <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
                 </button>
                 <?php renderDownloadOptions() ?>
+                <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -btn1"><?php esc_html_e( 'README', 'ihr-2018' ); ?></a>
               </div>
             </div>
           </div>
@@ -116,7 +117,9 @@ get_header(); ?>
                 data-issue="<?php echo get_the_category()[0]->cat_name ?>"
               >
                 <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
-                  <?php echo get_the_category()[0]->cat_name ?>
+                  <a href="<?php echo get_category_link(get_the_category()[0]); ?>">
+                    <?php echo get_the_category()[0]->cat_name ?>
+                  </a>
                 </div>
 
                 <h1>

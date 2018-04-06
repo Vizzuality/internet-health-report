@@ -113,21 +113,21 @@ get_header();
                 <?php
                   $hithoti_args = array(
                     'post_parent' => $parent,
-                    'post_type'   => 'page', 
+                    'post_type'   => 'page',
                     'numberposts' => -1,
                     'post_status' => 'published',
                     'meta_key' => '_wp_page_template',
-                    'meta_value' => 'page-how-is-the-health-of-the-internet.php'      
+                    'meta_value' => 'page-how-is-the-health-of-the-internet.php'
                   );
                   $hithoti = get_children($hithoti_args);
 
                   $spotlight_args = array(
                     'post_parent' => $parent,
-                    'post_type'   => 'page', 
+                    'post_type'   => 'page',
                     'numberposts' => -1,
                     'post_status' => 'published',
                     'meta_key' => '_wp_page_template',
-                    'meta_value' => 'page-trending-topics.php'      
+                    'meta_value' => 'page-trending-topics.php'
                   );
                   $spotlight = get_children($spotlight_args);
                 ?>
