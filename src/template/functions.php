@@ -407,7 +407,7 @@ function renderDownloadOptions() {
 
   echo '<div class="c-download-tooltip download-tooltip-content" style="display: none">';
   echo '<ul>';
-  echo '<li style="display: none">Featured stories<ul>';
+  echo '<li style="display: none">' . translate( 'Featured stories', 'ihr-2018' ) . '<ul>';
   echo '<li
           class="ga-download-link"
           data-ga-action="featured-stories-pdf"

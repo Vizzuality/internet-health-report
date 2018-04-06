@@ -96,11 +96,12 @@ get_header(); ?>
               <div class="slide-content js-visualization" data-issue="">
                 <h1 class="title -main"><?php echo $post->post_title; ?></h1>
                 <p> <?php echo $post->post_content; ?></p>
-                <button class="download-tooltip-trigger">
+                <button class="text -btn1 download-tooltip-trigger">
                   <?php esc_html_e( 'Download report', 'ihr-2018' ); ?>
                   <svg class="c-icon -small"><use xlink:href="#icon-download"></use></svg>
                 </button>
                 <?php renderDownloadOptions() ?>
+                <a href="<?php echo get_permalink( get_page_by_path( 'introduction/readme' ) ) ?>" class="text -btn1"><?php esc_html_e( 'Why this report?', 'ihr-2018' ); ?></a>
               </div>
             </div>
           </div>
