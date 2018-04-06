@@ -33,7 +33,11 @@ get_header(); ?>
         <div class="wrap">
           <div class="row">
             <div class="column small-12 medium-10">
-              <span class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>"><?php echo single_cat_title( '', true); ?></span>
+              <span class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
+                <a href="<?php echo get_category_link(get_the_category()[0]); ?>">
+                  <?php echo single_cat_title( '', true); ?>
+                </a>
+              </span>
               <h2><?php echo the_archive_description();?></h2>
             </div>
           </div>
