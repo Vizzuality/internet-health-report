@@ -132,7 +132,7 @@ get_header();
                   $spotlight = get_children($spotlight_args);
                 ?>
 
-                <a href="<?php echo esc_url( get_permalink( array_values($hithoti)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+                <a href="<?php echo esc_url( get_permalink( array_values($hithoti)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'How healthy is the Internet?', 'ihr-2018' ); ?></a>
                 <a href="<?php echo esc_url( get_permalink( array_values($spotlight)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( '2018 Spotlights', 'ihr-2018' ); ?></a>
               </div>
             </div>

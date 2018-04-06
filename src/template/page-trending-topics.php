@@ -137,7 +137,7 @@ get_header();
               $what_is_this = get_children($what_is_this_args);
             ?>
               <a href="<?php echo esc_url( get_permalink( array_values($what_is_this)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'README', 'ihr-2018' ); ?></a>
-              <a href="<?php echo esc_url( get_permalink( array_values($hithoti)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'How is the health of the Internet?', 'ihr-2018' ); ?></a>
+              <a href="<?php echo esc_url( get_permalink( array_values($hithoti)[0]->ID) ); ?>" class="intro-buttons"><?php esc_html_e( 'How healthy is the Internet?', 'ihr-2018' ); ?></a>
             </div>
           </div>
         </div>
