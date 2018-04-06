@@ -94,7 +94,11 @@ get_header(); ?>
           <div class="row">
             <div class="column small-12 medium-7" id="non-category">
               <div class="slide-content js-visualization" data-issue="">
-                <h1 class="title -main"><?php echo $post->post_title; ?></h1>
+                <h1 class="title -main">
+                  <a href="<?php echo get_permalink( get_page_by_path('introduction/how-healthy-is-the-internet')) ?>">
+                    <?php echo $post->post_title; ?>
+                  </a>
+                </h1>
                 <p> <?php echo $post->post_content; ?></p>
                 <button class="text -btn1 download-tooltip-trigger">
                   <?php esc_html_e( 'Download report', 'ihr-2018' ); ?>

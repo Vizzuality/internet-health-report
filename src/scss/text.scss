@@ -13,7 +13,11 @@ h1,
 .title.-main {
   display: inline-block;
   background-color: $black;
-  color: $white;
+
+  a {
+    color: $white;
+  }
+
   @media screen and (min-width: $screen-s) {
     display: inline;
   }
