@@ -2,6 +2,11 @@
 # Talk
 --------------------------------------------------------------*/
 
+#coral_talk_stream {
+  position: relative;
+  z-index: 10;
+}
+
 body.embed-stream-page {
   background: transparent;
   float: right;
@@ -76,6 +81,7 @@ body.embed-stream-page {
   margin-top: 28px;
   padding-bottom: 50px;
   margin-left: 50px;
+  min-height: 50px;
 }
 
 .talk-slot-stream {
@@ -189,14 +195,6 @@ span.Comment__bylineSecondary___3wA7v {
   margin-right: 50px;
 }
 
-.Tab__buttonActive___2Tiaz,
-.Tab__buttonActive___2Tiaz:focus,
-.Tab__buttonActive___2Tiaz:hover {
-  background-color: black;
-  color: white;
-  border-bottom: none;
-}
-
 .Tab__button___25mye {
   border: 3px solid black;
   border-top-left-radius: 0;
@@ -204,6 +202,15 @@ span.Comment__bylineSecondary___3wA7v {
   font-size: 20px;
   padding: 20px 30px;
   background: white;
+  color: #000;
+}
+
+.Tab__buttonActive___2Tiaz,
+.Tab__buttonActive___2Tiaz:focus,
+.Tab__buttonActive___2Tiaz:hover {
+  background-color: black !important;
+  color: white;
+  border-bottom: none;
 }
 
 .Comment__viewLink___2eHWl {
