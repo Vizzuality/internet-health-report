@@ -18,33 +18,34 @@
       <div class="wrap">
         <div class="row">
           <div class="column small-12">
-          <div class="c-footer-options">
-            <div class="column small-6 medium-12 large-3 -full-height">
-              <a href="/" alt="home" class="ihr-logo">
-                <img src="/wp-content/themes/ihr-2018/images/logos/internethealth-white.svg" alt="Mozilla" class="logo" />
-              </a>
-            </div>
-            <div class="column small-12 medium-8 large-6 -full-height">
-              <form class="c-newsletter" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
-                <input id="fmt" name="fmt" value="H" type="hidden">
-                <input id="lang" name="lang" value="<?php echo ICL_LANGUAGE_CODE; ?>" type="hidden">
-                <input id="newsletters" name="newsletters" value="internet-health-report-group" type="hidden">
-                <div class="email-button">
-                  <input id="email" name="email" required="required" placeholder="<?php esc_html_e( 'Write your email here', 'ihr-2018' ); ?>" aria-label="Email address" type="email">
-                  <button id="newsletter_submit" type="submit" class="btn -secondary"><?php esc_html_e( 'Subscribe', 'ihr-2018' ); ?></button>
+            <div class="c-footer-options">
+              <div class="row">
+                <div class="column small-6 medium-12 large-3 -full-height">
+                  <p class="text -light"><strong><?php esc_html_e( 'Keep me updated', 'ihr-2018' ); ?></strong></p>
+                  <p class="text -light"><?php esc_html_e( 'Receive emails about this project and Mozilla', 'ihr-2018' ); ?></p>
                 </div>
-                <div class="privacy">
-                  <label for="privacy">
-                    <input id="privacy" name="privacy" required="" type="checkbox">
-                    <?php esc_html_e( "I'm ok with mozilla handling my info as explained in this ", 'ihr-2018' ); ?><a href="<?php esc_html_e( "https://www.mozilla.org/privacy/websites/", 'ihr-2018' ); ?>"><?php esc_html_e( 'privacy notice', 'ihr-2018' ); ?></a>.
-                  </label>
+                <div class="column small-12 medium-8 large-6 -full-height">
+                  <form class="c-newsletter" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+                    <input id="fmt" name="fmt" value="H" type="hidden">
+                    <input id="lang" name="lang" value="<?php echo ICL_LANGUAGE_CODE; ?>" type="hidden">
+                    <input id="newsletters" name="newsletters" value="internet-health-report-group" type="hidden">
+                    <div class="email-button">
+                      <input id="email" name="email" required="required" placeholder="<?php esc_html_e( 'Write your email here', 'ihr-2018' ); ?>" aria-label="Email address" type="email">
+                      <button id="newsletter_submit" type="submit" class="btn -secondary"><?php esc_html_e( 'Subscribe', 'ihr-2018' ); ?></button>
+                    </div>
+                    <div class="privacy">
+                      <label for="privacy">
+                        <input id="privacy" name="privacy" required="" type="checkbox">
+                        <?php esc_html_e( "I'm ok with mozilla handling my info as explained in this ", 'ihr-2018' ); ?><a href="<?php esc_html_e( "https://www.mozilla.org/privacy/websites/", 'ihr-2018' ); ?>"><?php esc_html_e( 'privacy notice', 'ihr-2018' ); ?></a>.
+                      </label>
+                    </div>
+                  </form>
                 </div>
-              </form>
+                <div class="column small-12 large-3 -full-height">
+                  <?php languages_list_footer(); ?>
+                </div>
+              </div>
             </div>
-            <div class="column small-12 large-3 -full-height">
-              <?php languages_list_footer(); ?>
-            </div>
-          </div>
           </div>
         </div>
       </div>
