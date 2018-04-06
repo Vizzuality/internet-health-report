@@ -8,6 +8,7 @@ body.embed-stream-page {
   width: 100%;
   font-family: "ZillaSlab", serif;
   font-size: 18px;
+  padding: 0;
 }
 
 * {
@@ -19,7 +20,6 @@ body.embed-stream-page {
 .Comment__commentInfoBar___3R1RT,
 .commentActionsRight,
 .ReplyButton__icon___2O9tT,
-.TabBar__root___15OQR,
 .talk-plugin-tag-label,
 .Slot__inline___3gBcm.talk-slot-comment-input-detail-area {
   display: none;
@@ -151,6 +151,7 @@ span.Comment__bylineSecondary___3wA7v {
 
 .talk-plugin-infobox-info  {
   background: transparent !important;
+  font-style: italic;
 }
 
 .talk-plugin-commentbox-textarea {
@@ -173,4 +174,38 @@ span.Comment__bylineSecondary___3wA7v {
 
 .DraftArea__charCount___2gmAg {
   text-align: left;
+}
+
+.talk-tab-bar.TabBar__root___15OQR {
+
+}
+
+.TabBar__root___15OQR {
+  border-bottom: none;
+}
+
+.Tab__root___2JtBW {
+  border: 3px solid black;
+  margin-right: 50px;
+}
+
+.Tab__buttonActive___2Tiaz,
+.Tab__buttonActive___2Tiaz:focus,
+.Tab__buttonActive___2Tiaz:hover {
+  background-color: black;
+  color: white;
+  border-bottom: none;
+}
+
+.Tab__button___25mye {
+  border: 3px solid black;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  font-size: 20px;
+  padding: 20px 30px;
+  background: white;
+}
+
+.Comment__viewLink___2eHWl {
+  color: black;
 }
