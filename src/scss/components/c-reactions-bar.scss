@@ -4,19 +4,25 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  padding: 20px 0;
   border-top: 2px solid $black;
   background: $white;
   z-index: 48; // z-index lower than the actual footer
 
   @media screen and (min-width: $screen-m) {
     display: inline-block;
+    padding: 0;
   }
 
   .reactions-bar-container {
-    display: flex;
-    align-items: center;
     width: 100%;
     height: 50px;
+
+    @media screen and (min-width: $screen-m) {
+      display: flex;
+      align-items: center;
+      height: 50px;
+    }
 
     .social-list {
       display: flex;
@@ -37,9 +43,14 @@
     }
 
     .reactions {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+      margin-top: 15px;
+
+      @media screen and (min-width: $screen-m) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 0;
+      }
     }
   }
 }
@@ -50,16 +61,29 @@
 }
 
 .reaction_buttons {
-  margin: 0 0 0 25px;
+  @media screen and (min-width: $screen-m) {
+    margin-left: 25px;
+  }
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 
   .reaction_button {
     position: relative;
     display: inline-block;
     width: 50px;
+    margin: 5px;
     background-repeat: no-repeat;
     background-size: auto;
     background-position: right center;
     cursor: pointer;
+
+    @media screen and (min-width: $screen-m) {
+      margin: 0;
+    }
 
     &.reaction_button_0 {
       background-image: url('/wp-content/themes/ihr-2018/images/reactions/Surprised.svg');
@@ -87,8 +111,10 @@
       }
     }
 
-    &:not(:first-child) {
-      margin: 0 0 0 15px;
+    @media screen and (min-width: $screen-m) {
+      &:not(:first-child) {
+        margin: 0 0 0 15px;
+      }
     }
 
     &.voted {

@@ -80,6 +80,7 @@
           <div class="post-content">
             <?php the_content(); ?>
           </div>
+          <?php get_template_part('template-parts/reactions-bar'); ?>
         </div><!-- .entry-content -->
       </div>
     </div>
