@@ -3,9 +3,15 @@ import tippy from 'tippy.js/dist/tippy.min';
 let downloadItems = [];
 
 const onDownloadItem = (e) => {
+  e.preventDefault();
+
   const action = e.currentTarget.getAttribute('data-ga-action');
   const label = e.currentTarget.getAttribute('data-ga-label');
   window.logEvent('Download', action, label);
+
+  setTimeout(() => {
+    location.href = e.target.getAttribute('href')
+  }, 0);
 };
 
 const trackDownloadinks = () => {

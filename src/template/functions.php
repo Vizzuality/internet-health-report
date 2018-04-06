@@ -412,7 +412,7 @@ function renderDownloadOptions() {
           class="ga-download-link"
           data-ga-action="featured-stories-pdf"
           data-ga-label=' . $locale . '
-        ><a class="text -link" href=';
+        ><a class="text -link" download href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/ShortVersionInternetHealthReport_2018.pdf";
@@ -432,7 +432,7 @@ function renderDownloadOptions() {
           class="ga-download-link"
           data-ga-action="featured-stories-odt"
           data-ga-label=' . $locale . '
-        ><a class="text -link" href=';
+        ><a class="text -link" download href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
@@ -452,7 +452,7 @@ function renderDownloadOptions() {
           class="ga-download-link"
           data-ga-action="featured-stories-epub"
           data-ga-label=' . $locale . '
-        ><a class="text -link" href=';
+        ><a class="text -link" download href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
@@ -474,7 +474,7 @@ function renderDownloadOptions() {
           class="ga-download-link"
           data-ga-action="download-report-pdf"
           data-ga-label=' . $locale . '
-        ><a class="text -link" href=';
+        ><a class="text -link" download href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/ShortVersionInternetHealthReport_2018.pdf";
@@ -495,7 +495,7 @@ function renderDownloadOptions() {
           data-ga-action="download-report-odt"
           data-ga-label=' . $locale . '
           style="display: none"
-        ><a class="text -link" href=';
+        ><a class="text -link" download href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
@@ -516,7 +516,7 @@ function renderDownloadOptions() {
           data-ga-action="download-report-epub"
           data-ga-label=' . $locale . '
           style="display: none"
-        ><a class="text -link" href=';
+        ><a class="text -link" download href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
