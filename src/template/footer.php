@@ -266,7 +266,7 @@
           </div>
           <div class="column small-12 medium-10">
             <div class="reactions" data-ga-action=<?php echo get_post()->post_title; ?>>
-              <span class="text"><?php _e('Tell us how you feel:', 'ihr-2018');?></span>
+              <span class="text"><?php _e('How does this article make you feel?', 'ihr-2018');?></span>
               <?php
                 $reactions = reaction_count(get_the_ID());
                 echo do_shortcode('[reaction_buttons]');
