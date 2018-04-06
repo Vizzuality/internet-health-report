@@ -68,7 +68,12 @@
       close_tooltip: <?php echo json_encode(translate('Close', 'ihr-2018')) ?>,
       reactions: <?php echo json_encode(translate('Reaction', 'ihr-2018')) ?>,
       no_data: <?php echo json_encode(translate('No data', 'ihr-2018')) ?>,
-      close_modal: <?php echo json_encode(translate('Close modal', 'ihr-2018')) ?>
+      close_modal: <?php echo json_encode(translate('Close modal', 'ihr-2018')) ?>,
+      reaction_surprised: <?php echo json_encode(translate('Surprised', 'ihr-2018')) ?>,
+      reaction_thinking: <?php echo json_encode(translate('Thinking', 'ihr-2018')) ?>,
+      reaction_happy: <?php echo json_encode(translate('Happy', 'ihr-2018')) ?>,
+      reaction_sad: <?php echo json_encode(translate('Sad', 'ihr-2018')) ?>,
+      reaction_fired_up: <?php echo json_encode(translate('Fired Up', 'ihr-2018')) ?>
     };
   </script>
 </head>
