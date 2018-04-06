@@ -20,6 +20,12 @@
   @media screen and (min-width: 1024px) {
     padding: 60px 0 100px;
   }
+
+  .page-header {
+    .btn {
+      margin-top: 15px;
+    }
+  }
 }
 .l-tabs {
   position: relative;

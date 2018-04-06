@@ -42,19 +42,19 @@ get_header(); ?>
               <p><?php echo the_field('summary', 'category_' . get_the_category()[0]->term_id);?></p>
               <button
                 type="button"
-                class="text -btn1 js-learn-more"
+                class="btn -primary js-learn-more"
                 aria-expanded="false"
                 aria-controls="description"
                 data-ga-label="<?php echo get_the_category()[0]->cat_name ?>"
               >
-                <?php esc_html_e( 'Learn More', 'ihr-2018' ); ?>
+                <?php esc_html_e( 'Understand the issue', 'ihr-2018' ); ?>
               </button>
             </div>
           </div>
           <div class="row post-content" id="description" style="display: none;">
             <div class="column small-12 medium-8">
             <p><?php echo the_field('more', 'category_' . get_the_category()[0]->term_id);?></p>
-            <button type="button" class="text -btn1 js-collapse" aria-expanded="true" aria-controls="description">
+            <button type="button" class="btn -primary js-collapse" aria-expanded="true" aria-controls="description">
               <?php esc_html_e( 'Close', 'ihr-2018' ); ?>
             </button>
             </div>

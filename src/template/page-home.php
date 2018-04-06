@@ -119,8 +119,12 @@ get_header(); ?>
                   <?php echo get_the_category()[0]->cat_name ?>
                 </div>
 
-                <h1><?php echo $post->post_title; ?></h1>
-                <p> <?php echo $post->post_content; ?></p>
+                <h1>
+                  <a href="<?php echo get_category_link(get_the_category()[0]); ?>">
+                    <?php echo $post->post_title; ?>
+                  </a>
+                </h1>
+                <p><?php echo $post->post_content; ?></p>
               </div>
             </div>
           </div>
