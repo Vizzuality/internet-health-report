@@ -81,7 +81,7 @@ body.embed-stream-page {
   position: relative;
   margin-top: 28px;
   padding-bottom: 0;
-  margin-left: 50px;
+  margin-left: 0;
   min-height: 50px;
 }
 
@@ -95,6 +95,7 @@ button.Button__button___2b6ei {
   font-weight: 400;
   font-size: 18px;
   width: auto;
+  min-width: 100px;
   border-radius: 0;
   font-family: "ZillaSlab", serif;
 
@@ -200,13 +201,8 @@ span.Comment__bylineSecondary___3wA7v {
 .Tab__root___2JtBW {
   border: 3px solid black;
   margin-right: 50px;
-  width: 100%;
+  width: auto;
   margin-bottom: 10px;
-
-  @media screen and (min-width: 768px) {
-    width: auto;
-    margin-bottom: 0;
-  }
 }
 
 .Tab__button___25mye {
