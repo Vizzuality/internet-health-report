@@ -26,6 +26,10 @@
     background-color: $white;
     border: $border-black;
 
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
+
     &:after {
        content: '';
        height: 10px;
@@ -43,7 +47,7 @@
     }
 
     li {
-    padding:8px 0px 8px 30px;
+      padding:8px 0px 8px 30px;
     }
 
     a {
