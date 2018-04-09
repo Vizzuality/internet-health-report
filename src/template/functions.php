@@ -465,7 +465,7 @@ function renderDownloadOptions() {
           }
   echo'>.epub</a></li>';
   echo '</ul></li>';
-  echo '<li>Full report<ul>';
+  echo '<li>' . translate( 'Short version', 'ihr-2018' ) . '<ul>';
   echo '<li
           class="ga-download-link"
           data-ga-action="download-report-pdf"
