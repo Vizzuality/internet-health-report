@@ -206,7 +206,8 @@ export default class Bar extends AbstractVisualization {
         .rangeRound(
           this.direction === 'horizontal'
             ? [0, this.valueAxisBounds.width]
-            : [this.valueAxisBounds.height, 0]
+            // 15px for the values above the rectangles
+            : [this.valueAxisBounds.height, 15]
         );
     }
 
