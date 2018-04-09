@@ -1,12 +1,6 @@
 /*--------------------------------------------------------------
 # Talk
 --------------------------------------------------------------*/
-
-#coral_talk_stream {
-  position: relative;
-  z-index: 10;
-}
-
 body.embed-stream-page {
   background: transparent;
   float: right;
@@ -47,8 +41,11 @@ body.embed-stream-page {
 .CommentForm__buttonContainer___3ZJZG.talk-plugin-commentbox-button-container {
   float: right;
   width: 20%;
-  margin-top: -43px;
   font-family: "ZillaSlab", serif;
+
+  @media screen and (min-width: 768px) {
+    margin-top: -43px;
+  }
 }
 
 .Comment__footer___3AWk_.talk-stream-comment-footer {
@@ -64,8 +61,12 @@ body.embed-stream-page {
   box-sizing: border-box;
   border-radius: 0;
   height: 100%;
-  width: 80%;
+  width: 100%;
   margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 80%;
+  }
 }
 
 .Comment__content___H2nSW {
@@ -79,7 +80,7 @@ body.embed-stream-page {
 .Stream__tabContainer___2trkn {
   position: relative;
   margin-top: 28px;
-  padding-bottom: 50px;
+  padding-bottom: 0;
   margin-left: 50px;
   min-height: 50px;
 }
@@ -96,11 +97,16 @@ button.Button__button___2b6ei {
   width: auto;
   border-radius: 0;
   font-family: "ZillaSlab", serif;
+
+  border: 3px solid black;
+  font-size: 20px;
+  padding: 20px 30px;
+  height: auto;
 }
 
 button.Button__button___2b6ei:disabled {
   background: black;
-  color: whitesmoke;
+  color: white;
   font-weight: 300;
   font-family: "ZillaSlab", serif;
 }
@@ -140,6 +146,7 @@ span.Comment__bylineSecondary___3wA7v {
 }
 
 .Comment__tagsContainer___3_las {
+  display: none;
   margin-left: -95px;
   font-family: "ZillaSlab", serif;
 }
@@ -196,6 +203,8 @@ span.Comment__bylineSecondary___3wA7v {
 }
 
 .Tab__button___25mye {
+  width: 100%;
+  margin-bottom: 10px;
   border: 3px solid black;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -203,6 +212,16 @@ span.Comment__bylineSecondary___3wA7v {
   padding: 20px 30px;
   background: white;
   color: #000;
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+    margin-bottom: 0;
+  }
+}
+
+.Tab__button___25mye:focus, 
+.Tab__button___25mye:hover {
+  border: 3px solid black;
 }
 
 .Tab__buttonActive___2Tiaz,
@@ -216,3 +235,36 @@ span.Comment__bylineSecondary___3wA7v {
 .Comment__viewLink___2eHWl {
   color: black;
 }
+
+.NotLoggedIn__message___34YIo {
+  font-size: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.NotLoggedIn__message___34YIo a {
+  text-decoration: underline;
+}
+
+.AuthorName__root___37mwx {
+  position: relative;
+  margin-left: 20px;
+}
+
+.AuthorName__root___37mwx:before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 15px 0;
+  border-color: transparent #000000 transparent transparent !important;
+}
+
+
+
+    
