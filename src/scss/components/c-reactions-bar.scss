@@ -16,12 +16,14 @@
 
   .reactions-bar-container {
     width: 100%;
-    height: 50px;
 
     @media screen and (min-width: $screen-m) {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
+    }
+
+    @media screen and (min-width: $screen-l) {
       height: 50px;
     }
 
@@ -48,8 +50,9 @@
 
       @media screen and (min-width: $screen-m) {
         display: flex;
-        align-items: center;
         justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
         margin-top: 0;
       }
     }
