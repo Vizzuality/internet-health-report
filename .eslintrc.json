@@ -8,7 +8,7 @@
   "globals": {
     "config": true,
     "Stats": true,
-    "ga": true
+    "gtag": true
   },
   "parserOptions": {
     "ecmaVersion": 2017,
