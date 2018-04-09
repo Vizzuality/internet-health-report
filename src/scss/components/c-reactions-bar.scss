@@ -21,6 +21,7 @@
     @media screen and (min-width: $screen-m) {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       height: 50px;
     }
 
