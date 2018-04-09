@@ -20,11 +20,11 @@
           <div class="column small-12">
             <div class="c-footer-options">
               <div class="row">
-                <div class="column small-6 medium-12 large-3 -full-height">
+                <div class="column small-12 medium-6 large-3 -full-height">
                   <p class="text -light"><strong><?php esc_html_e( 'Keep me updated', 'ihr-2018' ); ?></strong></p>
                   <p class="text -light"><?php esc_html_e( 'Receive emails about this project and Mozilla', 'ihr-2018' ); ?></p>
                 </div>
-                <div class="column small-12 medium-8 large-6 -full-height">
+                <div class="column small-12 medium-6 large-6 -full-height">
                   <form class="c-newsletter" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
                     <input id="fmt" name="fmt" value="H" type="hidden">
                     <input id="lang" name="lang" value="<?php echo ICL_LANGUAGE_CODE; ?>" type="hidden">
@@ -41,7 +41,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="column small-12 large-3 -full-height">
+                <div class="column small-12 medium-5 large-3 -full-height">
                   <?php languages_list_footer(); ?>
                 </div>
               </div>
@@ -133,7 +133,7 @@
                     <?php renderDownloadOptions() ?>
                   </li>
                   <li><a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Search', 'ihr-2018' ); ?></a></li>
-                  <li><a href="<?php echo $explore_link ?>" class="text -light"><?php esc_html_e( 'Search', 'ihr-2018' ); ?></a></li>
+                  <li><a href="<?php echo $explore_link ?>" class="text -light -category"><?php esc_html_e( 'Search', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/" class="text -light -category"><?php esc_html_e( 'Blog', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/2018/sitemap.xml" class="text -light -category"><?php esc_html_e( 'Sitemap', 'ihr-2018' ); ?></a></li>
                   <li><a href="https://internethealthreport.org/v01/" class="text -light -category"><?php esc_html_e( 'Previous report', 'ihr-2018' ); ?></a></li>

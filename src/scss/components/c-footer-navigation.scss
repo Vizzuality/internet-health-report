@@ -165,6 +165,8 @@
     ul {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
 
       @media screen and (min-width: $screen-m) {
         justify-content: flex-end;
