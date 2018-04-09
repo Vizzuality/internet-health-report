@@ -238,11 +238,7 @@ span.Comment__bylineSecondary___3wA7v {
 }
 
 .NotLoggedIn__message___34YIo {
-  font-size: 16px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 20px;
-  }
+  font-size: 20px;
 }
 
 .NotLoggedIn__message___34YIo a {
