@@ -108,9 +108,6 @@
                 <li>
                   <a href="<?php echo get_permalink( get_page_by_path( 'participate/feedback' ) ) ?>" class="text -light"><?php esc_html_e( 'Feedback', 'ihr-2018' ); ?></a>
                 </li>
-                <li>
-                  <a href="<?php echo get_permalink( get_page_by_path( 'participate/recent-comments' ) ) ?>" class="text -light"><?php esc_html_e( 'Recent Comments', 'ihr-2018' ); ?></a>
-                </li>
               </ul>
             </div>
             <?php
