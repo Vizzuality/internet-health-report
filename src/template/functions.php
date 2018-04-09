@@ -218,7 +218,9 @@ function my_pre_get_posts( $query ) {
   $query->set('meta_query', $meta_query);
 
   // search only for posts
-  $query->set('post_type', 'post');
+  if ($query->is_search) {
+    $query->set('post_type', 'post');
+  }
 
   if( !empty($_GET[ 'issue' ]) ) {
     $query->set('category__in', get_cat_ID($_GET[ 'issue' ]));
