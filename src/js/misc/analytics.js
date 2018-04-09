@@ -2,7 +2,7 @@
 window.logEvent = (category = '', action = '', label = '') => {
   if (process.env.NODE_ENV === 'production') {
     if (category && action) {
-      ga.apply(['send', 'event', category, action, label]);
+      gtag('event', action, { event_category: category, event_label: label });
     }
   } else {
     console.info(`[GA] Event: ${category}, ${action}, ${label}`);
