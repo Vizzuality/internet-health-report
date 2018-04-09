@@ -55,6 +55,10 @@
         flex-direction: column;
         margin-top: 0;
       }
+
+      @media screen and (min-width: $screen-l) {
+        flex-direction: row;
+      }
     }
   }
 }
