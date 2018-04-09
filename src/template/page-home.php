@@ -75,12 +75,24 @@ get_header(); ?>
       <div class="wrap">
 
       <ul class="c-home-index">
-        <li class="home-index-item"><a class="item-1" href="#non-category"></a></li>
-        <li class="home-index-item"><a class="item-2" href="#<?php esc_html_e( 'privacy-and-security', 'ihr-2018' ); ?>"></a></li>
-        <li class="home-index-item"><a class="item-3" href="#<?php esc_html_e( 'openness', 'ihr-2018' ); ?>"></a></li>
-        <li class="home-index-item"><a class="item-4" href="#<?php esc_html_e( 'digital-inclusion', 'ihr-2018' ); ?>"></a></li>
-        <li class="home-index-item"><a class="item-5" href="#<?php esc_html_e( 'web-literacy', 'ihr-2018' ); ?>"></a></li>
-        <li class="home-index-item"><a class="item-6" href="#<?php esc_html_e( 'decentralization', 'ihr-2018' ); ?>"></a></li>
+        <?php
+          $counter = 0;
+          foreach ( $postslist as $post ) :
+            setup_postdata( $post );
+            if ( $counter == 0 ) :
+        ?>
+          <li class="home-index-item"><a href="#non-category"></a></li>
+        <?php else : ?>
+          <li class="home-index-item">
+            <a href="#<?php echo esc_html_e( sanitize_title(get_the_category()[0]->cat_name), 'ihr-2018' ); ?>" aria-label="<?php echo get_the_category()[0]->cat_name ?>" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id);?>">
+            </a>
+          </li>
+        <?php
+            endif;
+            $counter++;
+            wp_reset_postdata();
+          endforeach;
+        ?>
       </ul>
 
       <?php

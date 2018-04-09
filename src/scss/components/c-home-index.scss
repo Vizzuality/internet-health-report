@@ -17,21 +17,17 @@
   a {
     display: block;
     height: 36px;
-    width: 10px;
-    transition: width .1s ease-in;
-
-    &.item-1 { background-color: $black;}
-    &.item-2 { background-color: $light-blue;}
-    &.item-3 { background-color: $openess;}
-    &.item-4 { background-color: $digital-inclusion;}
-    &.item-5 { background-color: $web-literacy;}
-    &.item-6 { background-color: $decentralization;}
+    width: 30px;
+    transform: scaleX(0.33);
+    transform-origin: center left;
+    transition: transform .1s ease-in;
+    background-color: $black;
 
     &:hover {
-      width: 15px;
+      transform: scaleX(0.5);
 
       @media screen and (min-width: $screen-m) {
-        width: 30px;
+        transform: scaleX(1);
       }
     }
   }
