@@ -126,10 +126,6 @@ add_action( 'widgets_init', 'ihr_2018_widgets_init' );
 function ihr_2018_scripts() {
 	wp_enqueue_style( 'ihr-2018-style', get_stylesheet_uri() );
 
-  wp_enqueue_script( 'ihr-2018-script', get_template_directory_uri() . '/js/script.js', array(), false, true );
-
-	wp_enqueue_script( 'ihr-2018-navigation', get_template_directory_uri() . '/js/navigation.js', array(), false, true );
-
   wp_enqueue_script( 'ihr-2018-js-app', get_template_directory_uri() . '/js/main.bundle.js', array(), false, true );
 
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
