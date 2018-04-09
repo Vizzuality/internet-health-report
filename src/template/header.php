@@ -31,7 +31,6 @@
   <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages0.bundle.js" as="script">
   <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages1.bundle.js" as="script">
   <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages2.bundle.js" as="script">
-  <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/pages3.bundle.js" as="script">
   <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/mapbox.bundle.js" as="script">
   <link rel="prefetch" href="/wp-content/themes/ihr-2018/js/vega.bundle.js" as="script">
 
