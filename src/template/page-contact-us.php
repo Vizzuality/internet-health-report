@@ -62,13 +62,18 @@ get_header(); ?>
           }
 
           ?>
-
-          <div id="coral_talk_stream"></div>
-          <script src="https://talk.mofoprod.net/static/embed.js" async onload="
-          Coral.Talk.render(document.getElementById('coral_talk_stream'), {
-              talk: 'https://talk.mofoprod.net/'
-          });
-          "></script>
+          <div class="wrap">
+            <div class="row">
+              <div class="column small-12">
+                <div id="coral_talk_stream"></div>
+                <script src="https://talk.mofoprod.net/static/embed.js" async onload="
+                Coral.Talk.render(document.getElementById('coral_talk_stream'), {
+                    talk: 'https://talk.mofoprod.net/'
+                });
+                "></script>
+              </div>
+            </div>            
+          </div>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
