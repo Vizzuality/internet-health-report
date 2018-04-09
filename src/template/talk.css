@@ -200,11 +200,17 @@ span.Comment__bylineSecondary___3wA7v {
 .Tab__root___2JtBW {
   border: 3px solid black;
   margin-right: 50px;
+  width: 100%;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+    margin-bottom: 0;
+  }
 }
 
 .Tab__button___25mye {
   width: 100%;
-  margin-bottom: 10px;
   border: 3px solid black;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -212,11 +218,6 @@ span.Comment__bylineSecondary___3wA7v {
   padding: 20px 30px;
   background: white;
   color: #000;
-
-  @media screen and (min-width: 768px) {
-    width: auto;
-    margin-bottom: 0;
-  }
 }
 
 .Tab__button___25mye:focus, 
@@ -263,6 +264,12 @@ span.Comment__bylineSecondary___3wA7v {
   border-style: solid;
   border-width: 0 15px 15px 0;
   border-color: transparent #000000 transparent transparent !important;
+}
+
+.ReplyButton__label___KiL96 {
+  @media (max-width: 425px) {
+    display: block;
+  }
 }
 
 
