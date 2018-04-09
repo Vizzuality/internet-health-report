@@ -576,12 +576,16 @@ a:active {
 }
 
 .main-navigation li {
-  float: left;
+  // float: left;
   position: relative;
+
+  @media screen and (min-width: $screen-l) {
+    float: left;
+  }
+
   @media screen and (max-width: 44em) {
     width: 100%;
   }
-
 }
 
 .main-navigation a {
