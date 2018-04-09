@@ -5,6 +5,7 @@
 
   .selectors {
     display: flex;
+    flex-wrap: wrap;
 
     select {
       border: none;
