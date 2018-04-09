@@ -10,8 +10,8 @@ const onDownloadItem = (e) => {
   window.logEvent('Download', action, label);
 
   setTimeout(() => {
-    location.href = e.target.getAttribute('href')
-  }, 0);
+    location.href = e.target.getAttribute('href');
+  }, 1000);
 };
 
 const trackDownloadinks = () => {
