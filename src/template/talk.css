@@ -259,8 +259,10 @@ span.Comment__bylineSecondary___3wA7v {
 }
 
 .ReplyButton__label___KiL96 {
+  display: block !important;
+
   @media (max-width: 425px) {
-    display: block;
+    display: block !important;
   }
 }
 
