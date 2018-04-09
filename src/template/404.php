@@ -14,9 +14,9 @@ get_header(); ?>
 			<div class="wrap">
 				<div class="row">
 					<div class="column small-12">
-						<section class="error-404 not-found">
+						<section class="error-404 not-found l-main">
 							<header class="page-header">
-								<h1 class="page-title title -main"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'ihr-2018' ); ?></h1>
+								<h1 class="page-title title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'ihr-2018' ); ?></h1>
 							</header><!-- .page-header -->
 
 							<div class="page-content">
