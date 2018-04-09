@@ -511,7 +511,6 @@ function renderDownloadOptions() {
           class="ga-download-link"
           data-ga-action="download-report-epub"
           data-ga-label=' . $locale . '
-          style="display: none"
         ><a class="text -link" download href=';
           switch(true) {
             case preg_match('/en.*/', $locale):
