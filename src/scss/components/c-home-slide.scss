@@ -1,5 +1,9 @@
 .c-home-slide {
-  padding: 120px 0 240px;
+  padding: 40px 0 100px;
+
+  @media screen and (min-width: $screen-m) {
+    padding: 120px 0 240px;
+  }
 
   h1 {
     a {
