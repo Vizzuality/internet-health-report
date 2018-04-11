@@ -62,14 +62,14 @@
       </div>
 
       <div class="row">
-        <div class="column small-10 small-offset-1">
+        <div class="column small-12 medium-10 medium-offset-1">
           <div class="c-tag" style="background-color:<?php echo the_field('color', 'category_' . get_the_category()[0]->term_id); ?>">
             <a href="<?php echo get_category_link(get_the_category()[0]); ?>"><?php echo get_the_category()[0]->cat_name ?></a>
           </div>
         </div>
       </div>
 
-      <div class="column small-10 small-offset-1">
+      <div class="column small-12 medium-10 medium-offset-1">
         <div class="c-post">
           <h1 class="post-title">
             <?php echo the_title(); ?>

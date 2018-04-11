@@ -89,11 +89,16 @@
   .c-reactions-bar {
     position: relative;
     display: block;
-    width: calc(120% + 24px);
-    max-width: calc(120% + 24px);
-    margin-left: calc(-12px - 10%);
+    width: calc(100% + 20px);
+    margin-left: -10px;
     margin-top: 30px;
     border: 0;
+
+    @media screen and (min-width: 40em) {
+      width: calc(120% + 24px);
+      max-width: calc(120% + 24px);
+      margin-left: calc(-12px - 10%);
+    }
 
     @media screen and (min-width: $screen-m) {
       position: absolute;
@@ -114,7 +119,15 @@
     }
 
     > .wrap {
-      @extend .column, .small-10, .small-offset-1;
+      @extend .column, .small-12;
+
+      @media screen and (min-width: 40em) {
+        // .medium-10
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+        // .medium-offset-1
+        margin-left: 8.33333%;
+      }
 
       @media screen and (min-width: $screen-m) {
         padding: 0;
