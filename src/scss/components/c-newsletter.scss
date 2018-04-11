@@ -23,9 +23,13 @@
       border-bottom: 3px solid $white;
       font-family: $font-family-1;
       font-weight: 300;
-      font-size: $font-s;
+      font-size: $font-xs;
       color: $white;
       background: transparent;
+
+      @media screen and (min-width: $screen-m) {
+        font-size: $font-s;
+      }
 
       @media screen and (min-width: $screen-l) {
         max-width: 55%;

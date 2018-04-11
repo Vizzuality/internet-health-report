@@ -165,8 +165,12 @@
     }
 
     .count_number {
-      font-size: $font-s;
-      color: black;
+      font-size: $font-xs;
+      color: $black;
+
+      @media screen and (min-width: $screen-m) {
+        font-size: $font-s;
+      }
     }
   }
 }

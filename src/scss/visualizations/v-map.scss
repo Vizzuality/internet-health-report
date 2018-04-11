@@ -8,9 +8,13 @@
   .title {
     flex-shrink: 0;
     font-family: $font-family-1;
-    font-size: $font-s;
+    font-size: $font-xs;
     font-weight: 600;
     line-height: 1.75;
+
+    @media screen and (min-width: $screen-m) {
+      font-size: $font-s;
+    }
   }
 
   .map-container {

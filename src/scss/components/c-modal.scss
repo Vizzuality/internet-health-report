@@ -26,7 +26,11 @@
       border: 3px solid $black;
 
       > h1 {
-        font-size: $font-s;
+        font-size: $font-xs;
+
+        @media screen and (min-width: $screen-m) {
+          font-size: $font-s;
+        }
       }
 
       .close-button {

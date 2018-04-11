@@ -23,9 +23,13 @@
 .download-tooltip-trigger {
   display: inline-flex;
   align-items: center;
-  font-size: $font-s;
+  font-size: $font-xs;
   font-weight: 300;
   text-decoration: underline;
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-s;
+  }
 
   > svg {
     margin: 0 0 0 5px;

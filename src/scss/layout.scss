@@ -107,22 +107,30 @@
 .l-section-header {
   padding: 0 0 65px;
 }
+
 .l-tab-content {
   margin: 40px 0 0;
+
   @media screen and (min-width: $screen-l) {
     margin: 70px 0 0;
   }
+
   h1, h2, h3 {
     padding: 40px 0 15px 0;
     font-weight: 600;
-    font-size: $font-mb-xl;
-    line-height: 40px;
+    font-size: $font-l;
+    line-height: 1;
+
+    @media screen and (min-width: $screen-m) {
+      font-size: $font-xl;
+    }
+
     @media screen and (min-width: $screen-l) {
       padding: 130px 0 30px 0;
       font-size: $font-xxxl;
-      line-height: 80px;
     }
   }
+
   ul {
     padding-left: 20px;
   }
@@ -132,11 +140,17 @@
   li + li {
     margin-top: 10px;
   }
+
   p, li {
-    font-size: $font-s;
-    line-height: 30px;
+    font-size: $font-xs;
+    line-height: 1.5;
     font-weight: 300;
+
+    @media screen and (min-width: $screen-m) {
+      font-size: $font-s;
+    }
   }
+
   p {
     padding-bottom: 30px;
   }

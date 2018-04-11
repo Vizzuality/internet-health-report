@@ -22,8 +22,12 @@
   .title {
     margin: 0;
     font-weight: 600;
-    font-size: $font-s;
+    font-size: $font-xs;
     line-height: 1.25;
+
+    @media screen and (min-width: $screen-m) {
+      font-size: $font-s;
+    }
   }
 
   .label {
@@ -34,8 +38,16 @@
 
   .number {
     margin: 5px 0;
-    font-size: $font-l;
+    font-size: $font-mb-s;
     line-height: 1.25;
+
+    @media screen and (min-width: $screen-m) {
+    font-size: $font-m;
+  }
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-l;
+  }
   }
 
   .note {
@@ -167,9 +179,14 @@
   background-color: $white;
   color: $black;
   font-family: $font-family-1;
-  font-size: $font-s;
+  font-size: $font-xs;
   border: 2px solid $black;
   border-radius: 0;
+
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-s;
+  }
 
   .tippy-arrow {
     [x-placement^=top] & {
@@ -211,10 +228,14 @@
     background-color: $white;
     color: $black;
     font-family: $font-family-1;
-    font-size: $font-s;
+    font-size: $font-xs;
     border: 2px solid $black;
     border-radius: 0;
     text-align: center;
+
+    @media screen and (min-width: $screen-m) {
+      font-size: $font-s;
+    }
   }
 
   .mapboxgl-popup-tip {

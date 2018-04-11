@@ -1,15 +1,20 @@
 h1,
 .title.-main {
   font-weight: 700;
-  font-size: $font-xl;
+  font-size: $font-mb-l;
   line-height: 1;
   margin-bottom: 10px;
+
+  @media screen and (min-width: $screen-m) {
+    margin-bottom: 15px;
+    font-size: $font-xl;
+  }
+
   @media screen and (min-width: $screen-l) {
     font-size: $font-xxl;
-    line-height: 75px;
-    margin-bottom: 15px;
   }
 }
+
 .title.-main {
   display: inline-block;
   background-color: $black;
@@ -25,119 +30,163 @@ h1,
     line-height: 90px;
   }
 }
+
 h2,
 h2 p,
 .title.-section {
   font-weight: 600;
-  font-size: $font-mb-xl;
+  font-size: $font-mb-l;
   line-height: 35px;
   margin-bottom: 15px;
+
+  @media screen and (min-width: $screen-m) {
+    margin-bottom: 20px;
+    font-size: $font-xl;
+  }
+
   @media screen and (min-width: $screen-l) {
     font-size: $font-xxxxl;
-    line-height: 100px;
-    margin-bottom: 20px;
+    line-height: .8;
   }
 }
+
 h3,
 .title.-detail {
   font-weight: 600;
-  font-size: $font-mb-xl;
-  line-height: 40px;
+  font-size: $font-l;
+  line-height: 1;
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-xl;
+  }
+
   @media screen and (min-width: $screen-l) {
     font-size: $font-xxxl;
-    line-height: 80px;
   }
 }
+
 p,
 .text,
 %text {
   font-weight: 300;
-  font-size: $font-s;
-  line-height: 30px;
+  font-size: $font-xs;
+  line-height: 1.5;
   color: $black;
-}
-.text.-large {
-  font-weight: 300;
-  font-size: $font-mb-l;
-  line-height: 30px;
-  @media screen and (min-width: $screen-l) {
-    font-size: $font-l;
-    line-height: 50px;
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-s;
   }
 }
+
+.text.-large {
+  font-weight: 300;
+  font-size: $font-mb-s;
+  line-height: 1.25;
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-m;
+  }
+
+  @media screen and (min-width: $screen-l) {
+    font-size: $font-l;
+  }
+}
+
 .text.-btn1,
 %text-btn-1 {
   font-weight: 600;
   font-size: $font-xs;
-  line-height: 22px;
-  @media screen and (min-width: $screen-l) {
+  line-height: 1.2;
+
+  @media screen and (min-width: $screen-m) {
     font-size: $font-s;
-    line-height: 35px;
+    line-height: 1.75;
   }
 }
+
 .text.-btn2,
 %text-btn-2 {
   font-weight: 600;
-  font-size: $font-s;
-  line-height: 25px;
+  font-size: $font-xs;
+  line-height: 1.25;
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-s;
+  }
 }
+
 .text.-btn3 {
   font-weight: 500;
   font-size: $font-xs;
-  line-height: 22px;
-  @media screen and (min-width: $screen-l) {
+  line-height: 1.2;
+
+  @media screen and (min-width: $screen-m) {
     font-size: $font-s;
-    line-height: 35px;
+    line-height: 1.75;
   }
 }
+
 .text.-btn4 {
   font-weight: 600;
-  font-size: $font-mb-l;
-  line-height: 60px;
+  font-size: $font-mb-s;
+  line-height: 1.1;
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-mb-l;
+  }
+
   @media screen and (min-width: $screen-l) {
-    font-weight: 600;
     font-size: $font-xl;
-    line-height: 60px;
   }
 }
+
 //Footer
 .text.-link.-secondary {
   font-weight: 300;
   font-size: $font-xs;
-  line-height: 20px;
-  @media screen and (min-width: $screen-l) {
+  line-height: 1.2;
+
+  @media screen and (min-width: $screen-m) {
     font-size: $font-s;
-    line-height: 25px;
   }
 }
+
 //Footer
 .text.-link.-principal {
   font-weight: 600;
   font-size: $font-xs;
-  line-height: 20px;
-  @media screen and (min-width: $screen-l) {
+  line-height: 1.2;
+
+  @media screen and (min-width: $screen-m) {
     font-size: $font-s;
-    line-height: 25px;
   }
 }
+
 .text.-box1 {
   font-weight: 300;
-  font-size: $font-m;
-  line-height: 34px;
+  font-size: $font-mb-s;
+  line-height: 1.1;
+
+  @media screen and (min-width: $screen-m) {
+    font-size: $font-mb-l;
+  }
+
   @media screen and (min-width: $screen-l) {
     font-size: $font-xl;
-    line-height: 60px;
   }
 }
+
 .text.-box2 {
   font-weight: 300;
   font-size: $font-m;
-  line-height: 34px;
+  line-height: 1.4;
+
   @media screen and (min-width: $screen-l) {
     font-size: $font-ml;
-    line-height: 36px;
+    line-height: 1.3;
   }
 }
+
 h1, h2, h3, h4, h5, h6, p,
 .text,
 .title {

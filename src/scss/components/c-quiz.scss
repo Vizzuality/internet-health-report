@@ -4,11 +4,20 @@
     > .quiz-question-title {
       margin: 0;
       font-family: $font-family-1;
-      font-size: $font-l;
-      line-height: 30px;
+      font-size: $font-mb-s;
+      line-height: 1.25;
       text-align: left;
       font-weight: 300;
+
+      @media screen and (min-width: $screen-m) {
+        font-size: $font-m;
+      }
+
+      @media screen and (min-width: $screen-l) {
+        font-size: $font-l;
+      }
     }
+
     > .quiz-question-answers {
       display: flex;
       flex-wrap: wrap;
