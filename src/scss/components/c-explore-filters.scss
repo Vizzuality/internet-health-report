@@ -16,7 +16,7 @@
       border-radius: 0;
       display: block;
       font-size: 20px;
-      font-family: "ZillaSlab", serif;
+      font-family: $font-family-1;
       padding: 6px 25px 6px 6px;
       background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
       background-repeat: no-repeat;
@@ -42,7 +42,7 @@
       border: 0;
       border-bottom: 3px solid #000;
       border-radius: 0;
-      font-family: "ZillaSlab", serif;
+      font-family: $font-family-1;
       font-size: 20px;
       font-weight: 300;
 
