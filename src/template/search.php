@@ -45,7 +45,8 @@ get_template_part('template-parts/search-bar');
 
     		else :
           echo "<div class='wrap'><div class='row'>";
-    			get_template_part( 'template-parts/search-content', 'none' );
+				//get_template_part( 'template-parts/search-content', 'none' );
+		  echo "<h1>No items found</h1>";
           echo "</div></div>";
     		endif;
     		?>
