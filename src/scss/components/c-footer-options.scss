@@ -17,6 +17,8 @@
 
     @media screen and (min-width: $screen-l) {
       margin-top: 0;
+      width: 100%;
+      justify-content: flex-end;
     }
   }
 

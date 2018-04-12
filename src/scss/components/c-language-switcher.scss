@@ -1,20 +1,9 @@
 .c-language-switcher {
   display: inline-flex;
-  height: 100%;
-
-  @media screen and (min-width: $screen-m) {
-    width: 30%;
-    margin-left: 20px;
-  }
-
-  @media screen and (min-width: $screen-l) {
-    width: 100%;
-  }
 
   > select {
     height: 50px;
     appearance: none;
-    width: 100%;
     border: 0;
     font-family: $font-family-1;
     font-size: $font-xs;
