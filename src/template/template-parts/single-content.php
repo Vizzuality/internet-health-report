@@ -85,13 +85,16 @@
       </div>
     </div>
 
-<div id="coral_talk_stream"></div>
-<script src="https://talk.mofoprod.net/static/embed.js" async onload="
-  Coral.Talk.render(document.getElementById('coral_talk_stream'), {
-    talk: 'https://talk.mofoprod.net/'
-  });
-"></script>
+    <h3><?php _e('Comments','ihr-2018' ) ?></h3>
+    <p><?php _e('Does this impact your online experience? Share your thoughts below.','ihr-2018' ) ?></p>
 
+    <div id="coral_talk_stream"></div>
+    <script src="https://talk.mofoprod.net/static/embed.js" async onload="
+      Coral.Talk.render(document.getElementById('coral_talk_stream'), {
+        talk: 'https://talk.mofoprod.net/'
+      });
+    "></script>
 
+  </div>
 
 </article><!-- #post-<?php the_ID(); ?> -->
