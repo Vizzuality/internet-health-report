@@ -6,7 +6,7 @@
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Bold.eot);
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Bold.eot?#iefix) format("embedded-opentype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Bold.woff) format("truetype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Bold.woff2) format("woff"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Bold.ttf) format("woff2"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Bold.ttf) format(".svg#ZillaSlab-Bold");
  font-weight:700;
- font-style:"normal";
+ font-style:normal;
  font-display:swap
 }
 @font-face {
@@ -14,7 +14,7 @@
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-SemiBold.eot);
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-SemiBold.eot?#iefix) format("embedded-opentype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-SemiBold.woff) format("truetype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-SemiBold.woff2) format("woff"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-SemiBold.ttf) format("woff2"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-SemiBold.ttf) format(".svg#ZillaSlab-SemiBold");
  font-weight:600;
- font-style:"normal";
+ font-style: normal;
  font-display:swap
 }
 @font-face {
@@ -22,7 +22,7 @@
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Medium.eot);
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Medium.eot?#iefix) format("embedded-opentype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Medium.woff) format("truetype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Medium.woff2) format("woff"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Medium.ttf) format("woff2"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Medium.ttf) format(".svg#ZillaSlab-Medium");
  font-weight:500;
- font-style:"normal";
+ font-style: normal;
  font-display:swap
 }
 @font-face {
@@ -30,14 +30,14 @@
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Regular.eot);
  src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Regular.eot?#iefix) format("embedded-opentype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Regular.woff) format("truetype"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Regular.woff2) format("woff"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Regular.ttf) format("woff2"),url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Regular.ttf) format(".svg#ZillaSlab-Regular");
  font-weight:300;
- font-style:"normal";
+ font-style: normal;
  font-display:swap
 }
 @font-face {
  font-family:ZillaSlab;
- src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Italic.ttf) format(".svg#ZillaSlab-Italic");
+ src:url(/wp-content/themes/ihr-2018/fonts/ZillaSlab-Italic.ttf);
  font-weight:300;
- font-style:"italic";
+ font-style: italic;
  font-display:swap
 }
 
@@ -54,19 +54,8 @@ body.embed-stream-page {
   font-family: "ZillaSlab", sans-serif;
 }
 
-.Slot__inline___3gBcm.talk-slot-comment-reactions,
-.Stream__filterWrapper___1A4eQ,
-.Comment__commentInfoBar___3R1RT,
-.commentActionsRight,
-.ReplyButton__icon___2O9tT,
-.talk-plugin-tag-label,
-.Slot__inline___3gBcm.talk-slot-comment-input-detail-area {
+.Comment__commentInfoBar___3R1RT {
   display: none;
-}
-
-.TabBar__rootSub___1UXZq,
-.ModerationLink__moderationLink___3kAS2 {
-  visibility: hidden;
 }
 
 .talk-stream-comment {
@@ -80,10 +69,6 @@ body.embed-stream-page {
   }
 }
 
-.UserBox__userBox___1TmID.talk-stream-auth-userbox {
-  width: 30%;
-}
-
 .talk-stream-comment-footer {
   padding-left: 10px;
   min-height: 50px;
@@ -95,10 +80,6 @@ body.embed-stream-page {
   }
 }
 
-.UserBox__userBox___1TmID.talk-stream-auth-userbox {
-  display: none;
-}
-
 .Comment__content___H2nSW {
   margin-bottom: 20px;
 }
@@ -107,7 +88,9 @@ body.embed-stream-page {
   border-left: none;
 }
 
-.Stream__tabContainer___2trkn {
+.talk-stream-tab-container {
+  flex-basis: 100%;
+  flex-shrink: 0;
   position: relative;
   margin-top: 28px;
   padding-bottom: 0;
@@ -115,12 +98,54 @@ body.embed-stream-page {
   min-height: 50px;
 }
 
+.talk-stream-tab-container .talk-tab-bar {
+  display: none;
+}
+
 .talk-slot-stream {
-  margin-top: 30px;
+  padding-top: 20px;
+  font-weight: 300;
+}
+
+@media screen and (min-width: 960px) {
+  .talk-slot-stream {
+    flex-basis: 200px;
+    flex-grow: 1;
+  }
+}
+
+.talk-stream-auth-userbox {
+  width: 100%;
+  margin: 0;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .talk-stream-auth-userbox {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .talk-stream-auth-userbox {
+    margin-top: 68px;
+    max-width: 200px;
+  }
+}
+
+.talk-stream-auth-userbox > span,
+.talk-stream-auth-userbox > a {
+  font-weight: 300;
+}
+
+.talk-stream-auth-userbox > a {
+  text-decoration: underline;
+  border: 0 !important;
 }
 
 .talk-plugin-replies-reply-button,
-.talk-plugin-commentbox-button {
+.talk-plugin-commentbox-button,
+.talk-stream-filter-wrapper button {
   margin: 0;
   padding: 2px 15px;
   font-family: "ZillaSlab", sans-serif;
@@ -128,6 +153,13 @@ body.embed-stream-page {
   color: white;
   font-size: 18px;
   box-shadow: 2px 2px 0 0 white, 5px 5px 0 0 black;
+}
+
+
+.talk-plugin-replies-reply-button > i,
+.talk-plugin-commentbox-button > i,
+.talk-stream-filter-wrapper button > i {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -138,7 +170,8 @@ body.embed-stream-page {
 }
 
 .talk-plugin-replies-reply-button:disabled,
-.talk-plugin-commentbox-button:disabled {
+.talk-plugin-commentbox-button:disabled,
+.talk-stream-filter-wrapper button:disabled {
   opacity: .3;
   background: black;
   font-weight: 600;
@@ -150,12 +183,19 @@ body.embed-stream-page {
 .talk-plugin-replies-reply-button:not(:disabled):focus,
 .talk-plugin-commentbox-button:not(:disabled):hover,
 .talk-plugin-commentbox-button:not(:disabled):active,
-.talk-plugin-commentbox-button:not(:disabled):focus {
+.talk-plugin-commentbox-button:not(:disabled):focus,
+.talk-stream-filter-wrapper button:not(:disabled):hover,
+.talk-stream-filter-wrapper button:not(:disabled):active,
+.talk-stream-filter-wrapper button:not(:disabled):focus {
   position: relative;
   top: 2px;
   left: 2px;
   box-shadow: 3px 3px 0 0 black;
   background: black;
+}
+
+.talk-stream-filter-wrapper button span {
+  display: block !important;
 }
 
 .talk-plugin-commentbox-button {
@@ -171,6 +211,7 @@ body.embed-stream-page {
   display: inline-block;
   font-family: "ZillaSlab", sans-serif;
   font-weight: 300;
+  flex-grow: 1;
 }
 
 .talk-comment-timestamp {
@@ -203,8 +244,6 @@ body.embed-stream-page {
 }
 
 .Comment__tagsContainer___3_las {
-  display: none;
-  margin-left: -95px;
   font-family: "ZillaSlab", sans-serif;
 }
 
@@ -227,7 +266,6 @@ body.embed-stream-page {
 
 .talk-plugin-commentbox-textarea {
   border: 3px solid black !important;
-  max-width: 700px;
   padding: 15px 20px;
   font-size: 18px;
   font-weight: 300;
@@ -249,6 +287,27 @@ body.embed-stream-page {
 
 .talk-plugin-commentbox-button-container {
   max-width: 700px;
+}
+
+.talk-slot-comment-input-detail-area {
+  flex-grow: 1;
+}
+
+.talk-slot-comment-input-detail-area label {
+  padding: 0;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .talk-slot-comment-input-detail-area label {
+    font-size: 20px;
+  }
+}
+
+.talk-slot-comment-input-detail-area input {
+  margin-right: 8px;
+  position: relative;
+  top: -2px;
 }
 
 .Comment__link___1quD0 {
@@ -343,8 +402,20 @@ body.embed-stream-page {
   outline: initial;
 }
 
-.talk-stream-auth-sign-in-button > button {
+.talk-new-comments {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.talk-load-more:hover > button {
+  background: white;
+}
+
+.talk-stream-auth-sign-in-button > button,
+.talk-new-comments > button {
   display: inline-block;
+  width: auto;
+  height: auto;
   padding: 5px 40px;
   font-weight: 600;
   font-size: 18px;
@@ -357,7 +428,10 @@ body.embed-stream-page {
 
 .talk-stream-auth-sign-in-button > button:hover,
 .talk-stream-auth-sign-in-button > button:active,
-.talk-stream-auth-sign-in-button > button:focus {
+.talk-stream-auth-sign-in-button > button:focus,
+.talk-new-comments > button:hover,
+.talk-new-comments > button:active,
+.talk-new-comments > button:focus{
   padding: 2px 37px;
   border-width: 6px;
   background: white;
@@ -365,9 +439,19 @@ body.embed-stream-page {
 }
 
 @media screen and (min-width: 768px) {
-  .talk-stream-auth-sign-in-button > button {
+  .talk-stream-auth-sign-in-button > button,
+  .talk-new-comments > button {
     font-size: 20px;
-    line-height: 1.75;
+    padding: 18px 84px;
+  }
+
+  .talk-stream-auth-sign-in-button > button:hover,
+  .talk-stream-auth-sign-in-button > button:active,
+  .talk-stream-auth-sign-in-button > button:focus,
+  .talk-new-comments > button:hover,
+  .talk-new-comments > button:active,
+  .talk-new-comments > button:focus {
+    padding: 15px 81px;
   }
 }
 
@@ -545,8 +629,119 @@ body.embed-stream-page {
   justify-content: space-between;
   flex-direction: row;
   display: flex;
+  align-items: center;
 }
 
 .talk-slot-comment-author-name {
   display: inline-block;
+}
+
+.talk-stream-comment-header-tags-container > .talk-stream-comment-author-tags {
+  display: none;
+}
+
+.talk-embed-stream-comment-actions-container-left {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.talk-embed-stream-comment-actions-container-right {
+  justify-content: flex-start;
+}
+
+.talk-embed-stream-comment-actions-container-left > span {
+  margin-right: 15px;
+}
+
+.talk-plugin-respect-button,
+.talk-plugin-flags-button {
+  font-size: 18px;
+  text-decoration: underline;
+  color: black;
+}
+
+@media screen and (min-width: 768px) {
+  .talk-plugin-respect-button,
+  .talk-plugin-flags-button {
+    font-size: 20px;
+  }
+}
+
+.talk-plugin-respect-button:hover,
+.talk-plugin-flags-button:hover {
+  color: black;
+}
+
+.talk-plugin-respect-button > i,
+.talk-plugin-flags-button > i {
+  display: none;
+}
+
+.talk-plugin-respect-button {
+  margin-right: 0;
+}
+
+.talk-plugin-permalink-button {
+  display: none;
+}
+
+.talk-stream-comment-header-tags-container > .talk-plugin-tag-label {
+  margin: 0;
+  margin-left: 5px;
+  padding: 2px 5px;
+  background: black;
+  border-radius: 0;
+  font-size: 16px;
+}
+
+.talk-embed-stream-comments-tab-pane > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.talk-embed-stream-comments-tab-pane > div #commentBox {
+  max-width: 740px;
+  margin-right: 20px;
+}
+
+.talk-stream-filter-wrapper {
+  position: static;
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .talk-stream-filter-wrapper {
+    font-size: 20px;
+    margin-top: 80px;
+  }
+}
+
+.talk-plugin-viewing-options-menu {
+  right: auto;
+  left: 0;
+  top: 75px;
+  border: 3px solid black;
+  box-shadow: none;
+}
+
+@media screen and (min-width: 768px) {
+  .talk-plugin-viewing-options-menu {
+    top: 127px;
+  }
+}
+
+.talk-plugin-viewing-options-menu::before {
+  content: '';
+  position: absolute;
+  top: -11px;
+  left: 30px;
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border: 3px solid black;
+  transform: rotate(45deg);
+  border-bottom: 0;
+  border-right: 0;
 }
