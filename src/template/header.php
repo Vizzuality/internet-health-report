@@ -88,6 +88,28 @@
 
 <div id="page" class="site l-main-layout">
 	<a class="skip-link screen-reader-text" href="<?php get_permalink(); ?>"><?php esc_html_e( 'Skip to content', 'ihr-2018' ); ?></a>
+  <div class="c-pre-header">
+    <div class="wrap">
+      <div class="row">
+        <ul>
+          <?php
+            $languages = icl_get_languages('skip_missing=0');
+            if(!empty($languages)) {
+              foreach($languages as $l) {
+          ?>
+            <li class="<?php echo $l['active'] ? '-active' : ''; ?>">
+              <a href="<?php echo $l['url']; ?>">
+                <?php echo $l['native_name']; ?>
+              </a>
+            </li>
+          <?php
+              }
+            }
+          ?>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 	<header id="masthead" class="site-header l-header">
     <div class="wrap">

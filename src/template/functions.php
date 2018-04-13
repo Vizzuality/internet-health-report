@@ -338,7 +338,7 @@ function languages_list_footer() {
     echo '<div class="c-language-switcher js-language-switcher"><select aria-label="' . translate( 'Language selector', 'ihr-2018' ) . '">';
     foreach($languages as $l) {
       echo '<option' . ($l['active'] ? ' selected' : '') . ' value="' . $l['url'] . '" data-lang="' . $l['native_name'] . '">';
-      echo icl_disp_language($l['native_name'], $l['translated_name']);
+      echo $l['native_name'];
       echo '</option>';
     }
     echo '</select></div>';
