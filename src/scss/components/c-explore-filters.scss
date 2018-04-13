@@ -7,6 +7,13 @@
     display: flex;
     flex-wrap: wrap;
 
+    // Enhanced selects
+    > div {
+      &:not(:last-of-type) {
+        margin-right: 20px;
+      }
+    }
+
     select {
       border: none;
       background: transparent;

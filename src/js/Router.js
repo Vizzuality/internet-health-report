@@ -9,6 +9,10 @@ const routes = [
     match: /^\/category\/[A-z0-9-]+\/?(\?lang=[a-z]{2})?$/,
     page: 'IssuePage'
   },
+  {
+    match: /^\/\?(.*)?s=.*(.*)?$/,
+    page: 'ExplorePage'
+  },
   // Should be last
   {
     match: /^\/[A-z0-9-]+\/?(\?lang=[a-z]{2})?$/,

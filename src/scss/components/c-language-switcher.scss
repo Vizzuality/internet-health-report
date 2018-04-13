@@ -18,4 +18,11 @@
       font-size: $font-s;
     }
   }
+
+  .c-enhanced-select {
+    .label {
+      color: $white;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiNmZmYiLz48L3N2Zz4K');
+    }
+  }
 }

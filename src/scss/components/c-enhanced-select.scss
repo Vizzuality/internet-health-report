@@ -1,0 +1,42 @@
+.c-enhanced-select {
+  font-size: $font-s;
+
+  select {
+    display: none !important;
+  }
+
+  .label {
+    padding: 6px 25px 6px 6px;
+    font-size: inherit;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTE2LjkxNCAyNS4zNzFMMi4wNTcgMTEuNjU3bDQuNTcxLTUuMDI5IDEwLjI4NiA5LjM3MUwyNy4yIDYuNjI4bDQuOCA1LjAyOXoiIGZpbGw9IiMwMDAiLz48L3N2Zz4K');
+    background-repeat: no-repeat;
+    background-size: 11px auto;
+    background-position: right center;
+  }
+
+  .options {
+
+    li {
+      cursor: pointer;
+
+      &:hover {
+        background: $black;
+
+        button {
+          color: $white;
+        }
+      }
+
+      &.-selected {
+        font-weight: 600;
+      }
+
+      button {
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        font-size: inherit;
+      }
+    }
+  }
+}
