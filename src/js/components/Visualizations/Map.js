@@ -337,7 +337,7 @@ export default class Map extends AbstractVisualization {
 
     // We center the map
     this.map.fitBounds([
-      [-168, -59],
+      [-168, -75],
       [192, 76]
     ]);
 
