@@ -9,442 +9,583 @@
       "font": "ZillaSlab"
     }
   },
-  "signals": [{
-    "name": "minSize",
-    "value": "width",
-    "update": "width >= height? height : width"
-  }],
-  "data": [{
-    "name": "data",
-    "values": [],
-    "format":{"parse": {
-      "size": "number",
-      "value": "number"
-    }},
-    "transform": [{
-      "type": "stack",
-      "groupby": [
-        "label"
-      ],
-      "field": "size",
-      "sort": {
-        "field": [
-          "category",
-          "subcategory"
-        ],
-        "order": [
-          "descending",
-          "ascending"
-        ]
+  "signals": [
+    {
+      "name": "minSize",
+      "value": "width",
+      "update": "width >= height? height : width"
+    }
+  ],
+  "data": [
+    {
+      "name": "data",
+      "values": [],
+      "format": {
+        "parse": {
+          "size": "number",
+          "value": "number"
+        }
       },
-      "as": [
-        "r0",
-        "r1"
+      "transform": [
+        {
+          "type": "collect",
+          "sort": {
+            "field": [
+              "category",
+              "subcategory"
+            ],
+            "order": [
+              "descending",
+              "ascending"
+            ]
+          }
+        },
+        {
+          "type": "stack",
+          "groupby": [
+            "label"
+          ],
+          "field": "size",
+          "sort": {
+            "field": [
+              "category",
+              "subcategory"
+            ],
+            "order": [
+              "descending",
+              "ascending"
+            ]
+          },
+          "as": [
+            "r0",
+            "r1"
+          ]
+        }
       ]
-    }]
-  }, {
-    "name": "summary",
-    "source": "data",
-    "transform": [{
-      "type": "aggregate",
-      "groupby": [
-        "label"
-      ]
-    }, {
-      "type": "pie",
-      "field": "count",
-      "startAngle": {
-        "signal": "0"
-      },
-      "endAngle": {
-        "signal": "-4.1"
-      },
-      "sort": true
-    }, {
-      "type": "formula",
-      "as": "midAngle",
-      "expr": "(datum.startAngle + datum.endAngle)/2"
-    }, {
-      "type": "formula",
-      "as": "baseline",
-      "expr": "datum.midAngle >(-PI/2)? 'bottom':'top' "
-    }, {
-      "type": "formula",
-      "as": "align",
-      "expr": "datum.midAngle >(-PI) ? 'right':'left'"
-    }, {
-      "type": "formula",
-      "as": "agg",
-      "expr": "[{label: datum.label, align: datum.align,baseline: datum.baseline, endAngle: datum.endAngle,startAngle: datum.startAngle, midAngle: datum.midAngle}]"
-    }]
-  }, {
-    "name": "summaryCat",
-    "source": "data",
-    "transform": [{
-      "type": "aggregate",
-      "groupby": [
-        "subcategory",
-        "category"
-      ],
-      "fields": [
-        "r0",
-        "r1"
-      ],
-      "ops": [
-        "min",
-        "max"
-      ],
-      "as": [
-        "r0",
-        "r1"
-      ]
-    }, {
-      "type": "formula",
-      "as": "rm",
-      "expr": "((datum.r1-datum.r0)/2) + datum.r0 + 5.8"
-    }]
-  }, {
-    "name": "sumCat",
-    "source": "summaryCat",
-    "transform": [{
-      "type": "aggregate",
-      "groupby": [
-        "category"
-      ],
-      "fields": [
-        "rm",
-        "r0",
-        "r1"
-      ],
-      "ops": [
-        "max",
-        "min",
-        "max"
-      ],
-      "as": [
-        "rm",
-        "r0",
-        "r1"
-      ]
-    }, {
-      "type": "formula",
-      "as": "r0",
-      "expr": " datum.r0 + 5.8"
-    }, {
-      "type": "formula",
-      "as": "r1",
-      "expr": " datum.r1 + 5.8"
-    }]
-  }],
-  "scales": [{
-    "name": "r",
-    "type": "linear",
-    "domain": {
-      "data": "data",
-      "field": "r1"
     },
-    "range": [{
-      "signal": "minSize/2 - minSize/2.8"
-    }, {
-      "signal": "minSize/2"
-    }]
-  }, {
-    "name": "r-inverted",
-    "type": "linear",
-    "domain": {
-      "data": "data",
-      "field": "r1"
+    {
+      "name": "summary",
+      "source": "data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "label"
+          ]
+        },
+        {
+          "type": "pie",
+          "field": "count",
+          "startAngle": {
+            "signal": "0"
+          },
+          "endAngle": {
+            "signal": "-4.1"
+          },
+          "sort": true
+        },
+        {
+          "type": "formula",
+          "as": "midAngle",
+          "expr": "(datum.startAngle + datum.endAngle)/2"
+        },
+        {
+          "type": "formula",
+          "as": "baseline",
+          "expr": "datum.midAngle < (PI/2)? 'bottom' : 'top' "
+        },
+        {
+          "type": "formula",
+          "as": "align",
+          "expr": "datum.midAngle >(-PI) ? 'right':'left'"
+        },
+        {
+          "type": "formula",
+          "as": "agg",
+          "expr": "[{label: datum.label, align: datum.align,baseline: datum.baseline, endAngle: datum.endAngle,startAngle: datum.startAngle, midAngle: datum.midAngle}]"
+        }
+      ]
     },
-    "range": [{
-      "signal": "minSize/2"
-    }, {
-      "signal": "minSize/2 - minSize/2.8"
-    }]
-  }, {
-    "name": "color",
-    "type": "ordinal",
-    "range": [
-      "#6DD8AF",
-      "#000000",
-      "#6DD8AF"
-    ]
-  }],
-  "marks": [{
-    "name": "pies",
-    "type": "group",
-    "from": {
-      "facet": {
-        "name": "facet",
+    {
+      "name": "summaryCat",
+      "source": "data",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "subcategory",
+            "category"
+          ],
+          "fields": [
+            "r0",
+            "r1"
+          ],
+          "ops": [
+            "min",
+            "max"
+          ],
+          "as": [
+            "r0",
+            "r1"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "rm",
+          "expr": "((datum.r1-datum.r0)/2) + datum.r0 + 5.8"
+        }
+      ]
+    },
+    {
+      "name": "sumCat",
+      "source": "summaryCat",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "category"
+          ],
+          "fields": [
+            "rm",
+            "r0",
+            "r1"
+          ],
+          "ops": [
+            "max",
+            "min",
+            "max"
+          ],
+          "as": [
+            "rm",
+            "r0",
+            "r1"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "r0",
+          "expr": " datum.r0 + 5.8"
+        },
+        {
+          "type": "formula",
+          "as": "r1",
+          "expr": " datum.r1 + 5.8"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "r",
+      "type": "linear",
+      "domain": {
         "data": "data",
-        "groupby": "subcategory"
-      }
+        "field": "r1"
+      },
+      "range": [
+        {
+          "signal": "minSize/2 - minSize/2.8"
+        },
+        {
+          "signal": "minSize/2"
+        }
+      ]
     },
-    "data": [{
-      "name": "MyData",
-      "source": "facet",
-      "transform": [{
-        "type": "pie",
-        "field": "size",
-        "startAngle": {
-          "signal": "0"
+    {
+      "name": "r-inverted",
+      "type": "linear",
+      "domain": {
+        "data": "data",
+        "field": "r1"
+      },
+      "range": [
+        {
+          "signal": "minSize/2"
         },
-        "endAngle": {
-          "signal": "-4.1"
-        },
-        "sort": true
-      }]
-    }],
-    "marks": [{
-      "name": "MyArc",
-      "type": "arc",
+        {
+          "signal": "minSize/2 - minSize/2.8"
+        }
+      ]
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "data",
+        "field": "category"
+      },
+      "range": [
+        "#6DD8AF",
+        "#000000",
+        "#6DD8AF"
+      ]
+    },
+    {
+      "name": "colorS",
+      "type": "ordinal",
+      "domain": {
+        "data": "data",
+        "field": "category"
+      },
+      "range": [
+        "#000000",
+        "#000000",
+        "#6DD8AF"
+      ]
+    },
+    {
+      "name": "widthS",
+      "type": "ordinal",
+      "domain": {
+        "data": "data",
+        "field": "category"
+      },
+      "range": [
+        2,
+        0.15,
+        0.15
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "name": "pies",
+      "type": "group",
       "from": {
-        "data": "MyData"
+        "facet": {
+          "name": "facet",
+          "data": "data",
+          "groupby": "subcategory"
+        }
+      },
+      "data": [
+        {
+          "name": "MyData",
+          "source": "facet",
+          "transform": [
+            {
+              "type": "pie",
+              "field": "size",
+              "startAngle": {
+                "signal": "0"
+              },
+              "endAngle": {
+                "signal": "-4.1"
+              },
+              "sort": true
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "name": "MyArc",
+          "type": "arc",
+          "from": {
+            "data": "MyData"
+          },
+          "encode": {
+            "enter": {
+              "fill": [
+                {
+                  "test": "datum.value==1",
+                  "scale": "color",
+                  "field": "category"
+                },
+                {
+                  "value": "transparent"
+                }
+              ],
+              "stroke": [
+                {
+                  "test": "datum.value==1",
+                  "scale": "colorS",
+                  "field": "category"
+                },
+                {
+                  "scale": "color",
+                  "field": "category"
+                }
+              ],
+              "strokeWidth": [
+                {
+                  "test": "datum.value==1",
+                  "scale": "widthS",
+                  "field": "category"
+                },
+                {
+                   "value": 0.15
+                }
+              ],
+              "x": {
+                "signal": "minSize / 2"
+              },
+              "y": {
+                "signal": "minSize / 2"
+              }
+            },
+            "update": {
+              "opacity": {
+                "value": 1
+              },
+              "startAngle": {
+                "field": "startAngle"
+              },
+              "endAngle": {
+                "field": "endAngle"
+              },
+              "padAngle": {
+                "value": 0.038
+              },
+              "innerRadius": {
+                "scale": "r",
+                "field": "r0",
+                "offset": 7
+              },
+              "outerRadius": {
+                "scale": "r",
+                "field": "r1"
+              },
+              "cornerRadius": {
+                "value": 0
+              }
+            },
+            "hover": {
+              "opacity": {
+                "value": 0.6
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "labels",
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "facetL",
+          "data": "summary",
+          "field": "agg"
+        }
       },
       "encode": {
         "enter": {
-          "fill": [{
-            "test": "datum.value==1",
-            "scale": "color",
-            "field": "category"
-          }, {
-            "value": "transparent"
-          }],
-          "stroke": {
-            "scale": "color",
-            "field": "category"
-          },
-          "strokeWidth": {
-            "value": 0.15
-          },
           "x": {
-            "signal": "minSize / 2"
+            "signal": "minSize",
+            "mult": 0.5
           },
           "y": {
-            "signal": "minSize / 2"
-          }
-        },
-        "update": {
-          "opacity": {
-            "value": 1
-          },
-          "startAngle": {
-            "field": "startAngle"
-          },
-          "endAngle": {
-            "field": "endAngle"
-          },
-          "padAngle": {
-            "value": 0.038
-          },
-          "innerRadius": {
-            "scale": "r",
-            "field": "r0",
-            "offset": 7
-          },
-          "outerRadius": {
-            "scale": "r",
-            "field": "r1"
-          },
-          "cornerRadius": {
-            "value": 0
-          }
-        },
-        "hover": {
-          "opacity": {
-            "value": 0.6
+            "signal": "minSize",
+            "mult": 0.5
           }
         }
-      }
-    }]
-  }, {
-    "name": "labels",
-    "type": "group",
-    "from": {
-      "facet": {
-        "name": "facetL",
-        "data": "summary",
-        "field": "agg"
-      }
-    },
-    "encode": {
-      "enter": {
-        "x": {
-          "signal": "minSize",
-          "mult": 0.5
-        },
-        "y": {
-          "signal": "minSize",
-          "mult": 0.5
+      },
+      "data": [
+        {
+          "name": "Mylabel",
+          "source": "facetL",
+          "transform": [
+            {
+              "type": "countpattern",
+              "field": "label",
+              "pattern": "(\\S+ *\\S+ *\\S+ *)"
+            },
+            {
+              "type": "formula",
+              "as": "lengh",
+              "expr": "length(datum.text)"
+            },
+            {
+              "type": "formula",
+              "as": "parent",
+              "expr": "parent"
+            },
+            {
+              "type": "window",
+              "ops": [
+                "dense_rank"
+              ],
+              "fields": [
+                null
+              ],
+              "as": [
+                "rank"
+              ]
+            },
+            {
+              "type": "joinaggregate",
+              "fields": [
+                "text"
+              ],
+              "ops": [
+                "count"
+              ],
+              "as": [
+                "count"
+              ]
+            },
+            {
+              "type": "formula",
+              "as": "offset",
+              "expr": "minSize> 400 ? 15 * (datum.rank-1) : 11 * (datum.rank-1)"
+            }
+          ]
         }
-      }
+      ],
+      "marks": [
+        {
+          "name": "label",
+          "interactive": false,
+          "type": "text",
+          "from": {
+            "data": "Mylabel"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "field": "x"
+              },
+              "y": {
+                "field": "y"
+              },
+              "dy": {
+                "field": "offset"
+              },
+              "radius": {
+                "signal": "minSize / 2",
+                "offset": 40
+              },
+              "fontSize": {
+                "signal": "minSize> 400 ? 12 : 8"
+              },
+              "theta": {
+                "signal": "(datum.parent.startAngle + datum.parent.endAngle)/2"
+              },
+              "align": {
+                "field": "parent.align"
+              },
+              "baseline": {
+                "field": "parent.baseline"
+              },
+              "text": {
+                "field": "text"
+              }
+            }
+          }
+        }
+      ]
     },
-    "data": [{
-      "name": "Mylabel",
-      "source": "facetL",
-      "transform": [{
-        "type": "countpattern",
-        "field": "label",
-        "pattern": "(\\S+ *\\S+ *\\S+ *)"
-      }, {
-        "type": "formula",
-        "as": "lengh",
-        "expr": "length(datum.text)"
-      }, {
-        "type": "formula",
-        "as": "parent",
-        "expr": "parent"
-      }, {
-        "type": "window",
-        "ops": ["dense_rank"],
-        "fields": [null],
-        "as": ["rank"]
-      }, {
-        "type": "joinaggregate",
-        "fields": ["text"],
-        "ops": ["count"],
-        "as": ["count"]
-      }, {
-        "type": "formula",
-        "as": "offset",
-        "expr": "minSize> 400 ? 15 * (datum.rank-1) : 11 * (datum.rank-1)"
-      }]
-    }],
-    "marks": [{
-      "name": "label",
+    {
+      "name": "skills",
       "interactive": false,
       "type": "text",
       "from": {
-        "data": "Mylabel"
+        "data": "summaryCat"
       },
-
       "encode": {
         "enter": {
           "x": {
-            "field": "x"
+            "signal": "minSize/2 + 7"
           },
           "y": {
-            "field": "y"
+            "scale": "r-inverted",
+            "field": "rm"
           },
-          "dy": {
-            "field": "offset"
-          },
-          "radius": {
-            "signal": "minSize / 2",
-            "offset": 15
+          "fill": {
+            "value": "#000"
           },
           "fontSize": {
             "signal": "minSize> 400 ? 12 : 8"
           },
-          "theta": {
-            "signal": "(datum.parent.startAngle + datum.parent.endAngle)/2"
-          },
           "align": {
-            "field": "parent.align"
+            "value": "left"
           },
           "baseline": {
-            "field": "parent.baseline"
+            "value": "middle"
           },
           "text": {
-            "field": "text"
+            "field": "subcategory"
           }
         }
       }
-    }]
-  }, {
-    "name": "skills",
-    "interactive": false,
-    "type": "text",
-    "from": {
-      "data": "summaryCat"
     },
-    "encode": {
-      "enter": {
-        "x": {
-          "signal": "minSize/2 + 7"
-        },
-        "y": {
-          "scale": "r-inverted",
-          "field": "rm"
-        },
-        "fill": {
-          "value": "#000"
-        },
-        "fontSize": {
-          "signal": "minSize> 400 ? 12 : 8"
-        },
-        "align": {
-          "value": "left"
-        },
-        "baseline": {
-          "value": "middle"
-        },
-        "text": {
-          "field": "subcategory"
+    {
+      "name": "legend",
+      "interactive": false,
+      "from": {
+        "data": "sumCat"
+      },
+      "type": "rect",
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "minSize > 400 ? 2*minSize/2.7 : 2*minSize/2.70"
+          },
+          "y": {
+            "scale": "r-inverted",
+            "field": "r0",
+            "offset": -5
+          },
+          "width": {
+            "value": 10
+          },
+          "y2": {
+            "scale": "r-inverted",
+            "field": "r1"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "category"
+          },
+          "stroke":
+                {
+
+                  "scale": "colorS",
+                  "field": "category"
+                },
+              "strokeWidth":
+                {
+
+                  "scale": "widthS",
+                  "field": "category"
+                }
+        }
+      }
+    },
+    {
+      "name": "cat",
+      "interactive": false,
+      "type": "text",
+      "from": {
+        "data": "sumCat"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "minSize> 400 ? 2*minSize/2.60 : 2*minSize/2.55"
+          },
+          "y": {
+            "scale": "r-inverted",
+            "field": "rm"
+          },
+          "fill": {
+            "value": "#000"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "text": {
+            "field": "category"
+          },
+          "fontWeight": {
+            "value": "bold"
+          }
         }
       }
     }
-  }, {
-    "name": "legend",
-    "interactive": false,
-    "from": {
-      "data": "sumCat"
-    },
-    "type": "rect",
-    "encode": {
-      "enter": {
-        "x": {
-          "signal": "minSize> 400 ? 2*minSize/2.95 : 2*minSize/2.70"
-        },
-        "y": {
-          "scale": "r-inverted",
-          "field": "r0",
-          "offset": -5
-        },
-        "width": {
-          "value": 10
-        },
-        "y2": {
-          "scale": "r-inverted",
-          "field": "r1"
-        },
-        "fill": {
-          "scale": "color",
-          "field": "category"
-        }
-      }
-    }
-  }, {
-    "name": "cat",
-    "interactive": false,
-    "type": "text",
-    "from": {
-      "data": "sumCat"
-    },
-    "encode": {
-      "enter": {
-        "x": {
-          "signal": "minSize> 400 ? 2*minSize/2.8 : 2*minSize/2.55"
-        },
-        "y": {
-          "scale": "r-inverted",
-          "field": "rm"
-        },
-        "fill": {
-          "value": "#000"
-        },
-        "align": {
-          "value": "left"
-        },
-        "baseline": {
-          "value": "middle"
-        },
-        "text": {
-          "field": "category"
-        },
-        "fontWeight": {
-          "value": "bold"
-        }
-      }
-    }
-  }]
+  ]
 }
