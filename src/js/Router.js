@@ -10,7 +10,7 @@ const routes = [
     page: 'IssuePage'
   },
   {
-    match: /^\/\?(.*)?s=.*(.*)?$/,
+    match: /^\/?\?(.*)?s=.*(.*)?$/,
     page: 'ExplorePage'
   },
   // Should be last
