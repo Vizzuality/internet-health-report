@@ -681,6 +681,11 @@ body.embed-stream-page {
   margin-right: 0;
 }
 
+.talk-plugin-respect-count {
+  margin-left: 10px;
+  text-decoration: none;
+}
+
 .talk-plugin-permalink-button {
   display: none;
 }
@@ -744,4 +749,8 @@ body.embed-stream-page {
   transform: rotate(45deg);
   border-bottom: 0;
   border-right: 0;
+}
+
+.talk-stream-no-comments-message {
+  min-height: 225px
 }
