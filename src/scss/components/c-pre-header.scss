@@ -1,6 +1,8 @@
 .c-pre-header {
   display: none;
   background: $black;
+  position: relative; // For the homepage vis
+  z-index: 2; // For the homepage vis
 
   @media screen and (min-width: $screen-l) {
     display: block;
