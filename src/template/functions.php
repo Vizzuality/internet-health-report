@@ -389,7 +389,7 @@ function languages_list_footer() {
 
     // Get number of reactions
     $reaction_count = $wpdb->get_results("SELECT sum(meta_value) as total_reactions FROM $table where meta_key like '_reaction_buttons%' and post_id = " . $post_id);
-    $reaction_order = $wpdb->get_results("SELECT meta_key, meta_value FROM $table where meta_key like '_reaction_buttons%' and post_id = " . $post_id . " order by meta_value desc" );
+    $reaction_order = $wpdb->get_results("SELECT meta_key, CAST(meta_value as UNSIGNED) as ordered_value FROM $table where meta_key like '_reaction_buttons%' and post_id = " . $post_id . " order by ordered_value desc" );
     $reaction_names = explode(',', get_option('reaction_buttons_button_names'));
 
     $reaction_0 = (int) substr($reaction_order[0]->meta_key, -1);
