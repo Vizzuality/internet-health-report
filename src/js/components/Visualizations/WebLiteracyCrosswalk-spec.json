@@ -32,10 +32,12 @@
           "sort": {
             "field": [
               "category",
-              "subcategory"
+              "subcategory",
+              "label"
             ],
             "order": [
               "descending",
+              "ascending",
               "ascending"
             ]
           }
