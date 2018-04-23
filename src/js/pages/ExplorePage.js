@@ -12,6 +12,11 @@ export default class ExplorePage {
       ? filters[0].closest('form')
       : null;
 
-    filters.forEach(filter => new EnhancedSelect(filter, () => form.submit()));
+    filters.forEach(filter => new EnhancedSelect(filter, (option) => {
+      const filterName = option.parentElement.getAttribute('name');
+      const value = option.textContent;
+      window.logEvent('Explore', `Filter by ${filterName}`, value);
+      setTimeout(() => form.submit(), 200);
+    }));
   }
 }
