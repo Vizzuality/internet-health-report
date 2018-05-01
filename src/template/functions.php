@@ -415,9 +415,6 @@ function renderDownloadOptions() {
           data-ga-label=' . $locale . '
         ><a class="text -link" download href=';
           switch(true) {
-            case preg_match('/en.*/', $locale):
-              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/ShortVersionInternetHealthReport_2018.pdf";
-              break;
             case preg_match('/fr.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.pdf";
               break;
@@ -427,6 +424,9 @@ function renderDownloadOptions() {
             case preg_match('/es.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.pdf";
               break;
+            default:
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/ShortVersionInternetHealthReport_2018.pdf";
+              break;
           }
   echo'>.pdf</a></li>';
   echo '<li
@@ -435,9 +435,6 @@ function renderDownloadOptions() {
           data-ga-label=' . $locale . '
         ><a class="text -link" download href=';
           switch(true) {
-            case preg_match('/en.*/', $locale):
-              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
-              break;
             case preg_match('/fr.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.odt";
               break;
@@ -447,6 +444,9 @@ function renderDownloadOptions() {
             case preg_match('/es.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.odt";
               break;
+            default:
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
+              break;
           }
   echo'>.odt</a></li>';
   echo '<li
@@ -455,9 +455,6 @@ function renderDownloadOptions() {
           data-ga-label=' . $locale . '
         ><a class="text -link" download href=';
           switch(true) {
-            case preg_match('/en.*/', $locale):
-              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
-              break;
             case preg_match('/fr.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.epub";
               break;
@@ -466,6 +463,9 @@ function renderDownloadOptions() {
               break;
             case preg_match('/es.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.epub";
+              break;
+            default:
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
               break;
           }
   echo'>.epub</a></li>';
@@ -477,9 +477,6 @@ function renderDownloadOptions() {
           data-ga-label=' . $locale . '
         ><a class="text -link" download href=';
           switch(true) {
-            case preg_match('/en.*/', $locale):
-              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/ShortVersionInternetHealthReport_2018.pdf";
-              break;
             case preg_match('/fr.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.pdf";
               break;
@@ -488,6 +485,9 @@ function renderDownloadOptions() {
               break;
             case preg_match('/es.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.pdf";
+              break;
+            default:
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/ShortVersionInternetHealthReport_2018.pdf";
               break;
           }
   echo'>.pdf</a></li>';
@@ -498,9 +498,6 @@ function renderDownloadOptions() {
           style="display: none"
         ><a class="text -link" download href=';
           switch(true) {
-            case preg_match('/en.*/', $locale):
-              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
-              break;
             case preg_match('/fr.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.odt";
               break;
@@ -510,6 +507,9 @@ function renderDownloadOptions() {
             case preg_match('/es.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.odt";
               break;
+            default:
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.odt";
+              break;
           }
   echo'>.odt</a></li>';
   echo '<li
@@ -518,9 +518,6 @@ function renderDownloadOptions() {
           data-ga-label=' . $locale . '
         ><a class="text -link" download href=';
           switch(true) {
-            case preg_match('/en.*/', $locale):
-              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
-              break;
             case preg_match('/fr.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Bulletin%20de%20sant%C3%A9%20dInternet%202018.epub";
               break;
@@ -529,6 +526,9 @@ function renderDownloadOptions() {
               break;
             case preg_match('/es.*/', $locale):
               echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Informe%20de%20Salud%20de%20Internet%202018.epub";
+              break;
+            default:
+              echo "https://d20x8vt12bnfa2.cloudfront.net/2018/Internet%20Health%20Report%202018.epub";
               break;
           }
   echo'>.epub</a></li>';
