@@ -93,7 +93,7 @@
       <div class="row">
         <ul>
           <?php
-            $languages = icl_get_languages('skip_missing=0');
+            $languages = icl_get_languages('skip_missing=1');
             if(!empty($languages)) {
               foreach($languages as $l) {
           ?>
