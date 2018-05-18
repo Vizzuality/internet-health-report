@@ -8,9 +8,15 @@
 
     <span class="color-border" <?php post_class(); ?> style="background-color:<?php the_field('color', 'category_' . get_the_category()[0]->term_id)?>;"></span>
 
+    <?php 
+      $field = get_field_object('type');
+      $value = $field['value'];
+      $label = $field['choices'][ $value ];
+    ?>
+
     <div class="single-post-body <?php if($image){echo '-image';}; ?>">
     	<header class="single-post-header">
-        <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php echo the_field('type')?></p>
+        <p class="text -link -secondary"><?php echo get_the_category()[0]->cat_name?> // <?php echo $label;?></p>
     	</header><!-- .entry-header -->
 
       <div class="single-post-title">
